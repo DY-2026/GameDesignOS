@@ -1,10 +1,12 @@
-# VOI-OODA AI System Evolver Skill
+# VOI-OODA AI System Evolver
+
+**所属项目:** [ParanoiaSkills](../README.zh-CN.md)
 
 **语言:** [简体中文](./README.zh-CN.md) | [English](./README.en.md)
 
 > Copyright (c) 2026 @Paranoia. All rights reserved.
 
-这个目录是可安装的 Codex skill 包。仓库根目录 README 面向人类读者；这个包面向 agent 使用。
+这是 `ParanoiaSkills` 里的一个具体可安装 skill。它负责“AI 系统受控进化”这个能力，不代表整个技能库。
 
 ## 这个 Skill 做什么
 
@@ -21,8 +23,10 @@
 ```text
 SKILL.md
 agents/openai.yaml
+references/evolution-loop-playbook.md
 references/evolution-loop-playbook.zh-CN.md
 references/evolution-loop-playbook.en.md
+references/eval-versioning-playbook.md
 references/eval-versioning-playbook.zh-CN.md
 references/eval-versioning-playbook.en.md
 templates/evolution_proposal.md
@@ -38,6 +42,14 @@ templates/ooda_voi_state.en.md
 ```text
 使用 $voi-ooda-ai-system-evolver，把这个 AI workflow 问题整理成带 VOI、OODA、eval、Human Gate 和 rollback 的受控进化提案。
 ```
+
+## 在 ParanoiaSkills 里的边界
+
+- 根目录 README 负责整个 `ParanoiaSkills` 的目录、索引和管理规则。
+- 本目录 README 只解释 `voi-ooda-ai-system-evolver` 这个 skill。
+- `SKILL.md` 是 agent 入口，保持轻量。
+- `references/` 是方法论，按需读取。
+- `templates/` 是可复制表单。
 
 ## 维护规则
 

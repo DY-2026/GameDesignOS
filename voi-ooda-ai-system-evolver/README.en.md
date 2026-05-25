@@ -1,10 +1,12 @@
-# VOI-OODA AI System Evolver Skill
+# VOI-OODA AI System Evolver
+
+**Parent project:** [ParanoiaSkills](../README.en.md)
 
 **Languages:** [简体中文](./README.zh-CN.md) | [English](./README.en.md)
 
 > Copyright (c) 2026 @Paranoia. All rights reserved.
 
-This folder is the installable Codex skill package. The repository root README is for human readers; this package is for agent use.
+This is one installable skill inside `ParanoiaSkills`. It owns the controlled AI system evolution capability; it is not the whole skill library.
 
 ## What This Skill Does
 
@@ -21,8 +23,10 @@ It helps an agent improve AI systems without turning one successful case into an
 ```text
 SKILL.md
 agents/openai.yaml
+references/evolution-loop-playbook.md
 references/evolution-loop-playbook.zh-CN.md
 references/evolution-loop-playbook.en.md
+references/eval-versioning-playbook.md
 references/eval-versioning-playbook.zh-CN.md
 references/eval-versioning-playbook.en.md
 templates/evolution_proposal.md
@@ -38,6 +42,14 @@ templates/ooda_voi_state.en.md
 ```text
 Use $voi-ooda-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with VOI, OODA, evals, Human Gate, and rollback.
 ```
+
+## Boundary Inside ParanoiaSkills
+
+- The root README manages the whole `ParanoiaSkills` catalog, structure, and governance rules.
+- This README explains only the `voi-ooda-ai-system-evolver` skill.
+- `SKILL.md` is the lightweight agent entrypoint.
+- `references/` contains methodology loaded as needed.
+- `templates/` contains reusable working forms.
 
 ## Maintenance Rules
 

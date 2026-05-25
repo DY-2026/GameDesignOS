@@ -1,13 +1,15 @@
-# VOI-OODA AI System Evolver Skill
+# VOI-OODA AI System Evolver
+
+**Parent project:** [ParanoiaSkills](../README.md)
 
 **Languages:** [简体中文](./README.zh-CN.md) | [English](./README.en.md)
 
-This folder is the installable Codex skill package. Use the language-specific README files for human-facing package notes.
+This is one installable skill inside `ParanoiaSkills`. It is not the whole project.
 
-这个目录是可安装的 Codex skill 包。人类阅读说明请使用对应语言版本。
+这是 `ParanoiaSkills` 里的一个可安装 skill，不是整个项目本身。
 
-- 中文：[`README.zh-CN.md`](./README.zh-CN.md)
-- English: [`README.en.md`](./README.en.md)
+- 中文说明：[`README.zh-CN.md`](./README.zh-CN.md)
+- English docs: [`README.en.md`](./README.en.md)
 - Agent entrypoint: [`SKILL.md`](./SKILL.md)
 
 Copyright (c) 2026 @Paranoia. All rights reserved.

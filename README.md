@@ -1,30 +1,38 @@
 <p align="center">
-  <img src="./assets/voi-ooda-system-evolver-hero.png" alt="VOI-OODA AI System Evolver decision loop" width="100%">
+  <img src="./assets/voi-ooda-system-evolver-hero.png" alt="ParanoiaSkills skill library hero" width="100%">
 </p>
 
-# VOI-OODA AI System Evolver
+# ParanoiaSkills
 
 **Languages:** [简体中文](./README.zh-CN.md) | [English](./README.en.md)
 
-VOI-OODA AI System Evolver is a controlled evolution skill library for AI systems, agent workflows, Codex skills, prompts, memory, RAG, tool routing, schemas, eval sets, and feedback loops.
+ParanoiaSkills is @Paranoia's public skill library: a collection of reusable, installable skills for Codex-style agents and AI workflows.
 
-VOI-OODA AI System Evolver 是一个面向 AI 系统、Agent workflow、Codex skill、prompt、memory、RAG、tool routing、schema、eval set 与反馈闭环的受控进化技能库。
+ParanoiaSkills 是 @Paranoia 的公开技能库，用来整体管理可复用、可安装的 Codex / Agent skills。
 
-## Start Here
+## Skill Catalog
 
-- 中文介绍：[`README.zh-CN.md`](./README.zh-CN.md)
-- English overview: [`README.en.md`](./README.en.md)
-- Installable skill package: [`voi-ooda-ai-system-evolver/`](./voi-ooda-ai-system-evolver/)
-- Main skill entry: [`voi-ooda-ai-system-evolver/SKILL.md`](./voi-ooda-ai-system-evolver/SKILL.md)
+| Skill | Purpose | Package |
+| --- | --- | --- |
+| VOI-OODA AI System Evolver | Controlled AI system evolution with VOI, OODA, evals, Human Gate, versioning, and rollback | [`voi-ooda-ai-system-evolver/`](./voi-ooda-ai-system-evolver/) |
 
-## What It Controls
+## Repository Model
 
 ```text
-VOI: decide what information is worth acquiring.
-OODA: keep the agent oriented in reality.
-Evals: decide which changes deserve to remain.
-Human Gate: stop high-risk mutations before promotion.
-Rollback: keep every promotion reversible.
+ParanoiaSkills/
+├── README.md                 # library-level entry and management rules
+├── README.zh-CN.md
+├── README.en.md
+├── assets/                   # repository-level visual assets
+└── voi-ooda-ai-system-evolver/
+    ├── SKILL.md              # agent entrypoint for this specific skill
+    ├── README.*.md           # human docs for this specific skill
+    ├── references/           # detailed methodology, loaded as needed
+    └── templates/            # copy-paste working forms
 ```
+
+## Management Rule
+
+The root README explains the whole library. Each skill folder explains one specific skill. New skills should be added as peer folders and registered in the catalog above.
 
 Copyright (c) 2026 @Paranoia. All rights reserved.
