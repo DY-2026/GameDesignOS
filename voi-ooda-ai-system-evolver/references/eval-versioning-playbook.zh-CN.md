@@ -1,0 +1,103 @@
+# Eval 与版本管理 Playbook
+
+> Copyright (c) 2026 @Paranoia. All rights reserved.
+
+## 1. Eval 表面
+
+至少评估三件事：
+
+| 表面 | 问题 |
+| --- | --- |
+| 结果 | 输出是否真正解决了任务？ |
+| 过程 | agent 是否正确使用 VOI、工具、记忆和验证？ |
+| 进化 | 候选系统突变是否让未来任务更好，同时没有显著抬高风险？ |
+
+## 2. Trace 最小字段
+
+每个候选改进都必须保留足够证据，让后来的人能重建它为什么存在：
+
+```yaml
+trace_summary:
+  task_id:
+  user_goal:
+  context_used:
+  tool_calls:
+  uncertainties:
+  cost:
+  result:
+  feedback:
+  failure_signals:
+  candidate_improvements:
+```
+
+## 3. 突变提案
+
+使用这个结构：
+
+```yaml
+proposal_id:
+trigger:
+evidence:
+target_layer: prompt | memory | rag | tool | workflow | eval | schema | docs | skill
+change_summary:
+expected_benefit:
+risk:
+eval_plan:
+human_gate:
+rollback:
+status: candidate
+```
+
+## 4. 分层最低 Eval
+
+| 层级 | 最低检查 |
+| --- | --- |
+| prompt | 回放代表任务，对比指令遵循和风格匹配 |
+| memory | 要有证据、置信度、适用范围、过期机制，并至少做一次反例检查 |
+| RAG | 检查来源质量、召回精度、过期风险和引用行为 |
+| tool routing | 检查工具使用是否正确、过早、过晚或缺失 |
+| workflow | 检查 source contract 与 output gate 是否完整 |
+| schema | 验证结构可机器解析，并覆盖边界样本 |
+| skill | 检查 frontmatter、metadata、引用路径、模板可用性、陈旧措辞和真实调用场景 |
+| README visual | 检查图片路径、alt text、无水印、无误导文字、关键流程有文本版本 |
+
+## 5. Skill Package 回归清单
+
+改 skill 包时，至少跑这些检查：
+
+```text
+frontmatter name == folder name
+agents/openai.yaml default_prompt uses the same skill name
+all referenced files exist
+templates are non-empty and copy-paste usable
+root README is human-facing
+SKILL.md is agent-facing and lightweight
+no stale old name remains in public entrypoints
+copyright/provenance is explicit
+```
+
+## 6. 版本管理
+
+每个被接受的突变都需要：
+
+- version id
+- 改动文件
+- 改动理由
+- eval 证据
+- 风险
+- 回滚路径
+- 提升日期
+
+被拒绝的突变在有复盘价值时，应保留为可搜索的失败样本。
+
+## 7. 提升与回滚
+
+以下情况不得提升为当前规则：
+
+- 缺少 eval
+- 高价值任务出现回退
+- 复杂度增加但质量没有提升
+- Human Gate 尚未完成
+- 回滚方案不清楚
+
+回滚应恢复上一个 prompt、memory 记录、skill 版本、workflow 文档、schema 或 eval 规则，不得触碰无关项目状态。

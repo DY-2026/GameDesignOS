@@ -49,9 +49,12 @@ Do not use it to justify uncontrolled model-weight changes, silent long-term mem
 
 ## Read As Needed
 
-- Full VOI/OODA workflow and scoring rules: `references/evolution-loop-playbook.md`.
-- Eval, trace, versioning, promotion, and rollback rules: `references/eval-versioning-playbook.md`.
-- Reusable working forms: `templates/evolution_proposal.md` and `templates/ooda_voi_state.md`.
+- Full VOI/OODA workflow and scoring rules: `references/evolution-loop-playbook.en.md` or `references/evolution-loop-playbook.zh-CN.md`.
+- Eval, trace, versioning, promotion, and rollback rules: `references/eval-versioning-playbook.en.md` or `references/eval-versioning-playbook.zh-CN.md`.
+- Reusable working forms:
+  - default: `templates/evolution_proposal.md` and `templates/ooda_voi_state.md`
+  - Chinese: `templates/evolution_proposal.zh-CN.md` and `templates/ooda_voi_state.zh-CN.md`
+  - English: `templates/evolution_proposal.en.md` and `templates/ooda_voi_state.en.md`
 
 ## Human Gate Defaults
 
