@@ -1,9 +1,9 @@
 ---
-name: voi-ooda-ai-system-evolver
+name: paranoia-skill
 description: Use when upgrading an AI system, agent workflow, Codex skill, prompt, memory, RAG, tool routing, schema, eval set, or feedback loop using VOI, OODA, evals, traces, human gates, versioning, and rollback. Use for self-improving AI system design without uncontrolled model weight changes.
 ---
 
-# VOI-OODA AI 系统进化器
+# Paranoia Skill
 
 > Copyright (c) 2026 @Paranoia. All rights reserved.
 
