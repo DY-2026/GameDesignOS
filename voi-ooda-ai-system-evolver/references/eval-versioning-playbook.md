@@ -48,7 +48,7 @@ rollback:
 status: candidate
 ```
 
-## 4. 分层最低 eval
+## 4. 分层最低 Eval
 
 | 层级 | 最低检查 |
 | --- | --- |
@@ -56,11 +56,27 @@ status: candidate
 | memory | 要有证据、置信度、适用范围、过期机制，并至少做一次反例检查 |
 | RAG | 检查来源质量、召回精度、过期风险和引用行为 |
 | tool routing | 检查工具使用是否正确、过早、过晚或缺失 |
-| workflow | 检查 source_contract 与 output_gate 是否完整 |
+| workflow | 检查 source contract 与 output gate 是否完整 |
 | schema | 验证结构可机器解析，并覆盖边界样本 |
-| skill | 跑 skill validator，并至少做一次真实调用审查 |
+| skill | 检查 frontmatter、metadata、引用路径、模板可用性、陈旧措辞和真实调用场景 |
+| README visual | 检查图片路径、alt text、无水印、无误导文字、关键流程有文本版本 |
 
-## 5. 版本管理
+## 5. Skill Package 回归清单
+
+改 skill 包时，至少跑这些检查：
+
+```text
+frontmatter name == folder name
+agents/openai.yaml default_prompt uses the same skill name
+all referenced files exist
+templates are non-empty and copy-paste usable
+root README is human-facing
+SKILL.md is agent-facing and lightweight
+no stale old name remains in public entrypoints
+copyright/provenance is explicit
+```
+
+## 6. 版本管理
 
 每个被接受的突变都需要：
 
@@ -74,7 +90,7 @@ status: candidate
 
 被拒绝的突变在有复盘价值时，应保留为可搜索的失败样本。
 
-## 6. 提升与回滚
+## 7. 提升与回滚
 
 以下情况不得提升为当前规则：
 

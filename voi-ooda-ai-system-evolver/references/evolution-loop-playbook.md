@@ -27,6 +27,7 @@
 -> eval
 -> Human Gate
 -> 版本化上线
+-> rollback path
 ```
 
 ## 2. 稀缺资源
@@ -130,3 +131,28 @@ trace -> 失败模式 -> 突变候选 -> eval -> 审批 -> 上线
 | A2 | 文档、模板、候选 skill 文件 | 可自动，但要可回滚 |
 | A3 | 长期记忆、全局 skill 安装、生产策略 | 需要 Human Gate |
 | A4 | 删除、发布、资金、真实用户影响 | 必须明确审批 |
+
+## 8. 公开 Skill 包检查
+
+公开给别人使用的 skill 包，至少检查：
+
+- `SKILL.md` frontmatter `name` 与文件夹名一致。
+- `agents/openai.yaml` 的展示名、默认提示与 `SKILL.md` 一致。
+- 根 README 面向人类；`SKILL.md` 面向 agent，不互相复制污染。
+- `SKILL.md` 保持轻量，只路由到本 skill 自己的 `references/` 与 `templates/`。
+- 参考文件是一层可达，不把一次性 rollout 报告塞进长期 reference。
+- 模板可以直接复制使用，且字段能支持 evidence、eval、Human Gate 与 rollback。
+- 版权、来源和复用边界清楚。
+- 最后做一次陈旧命名和旧项目措辞扫描。
+
+## 9. README 视觉资产 Gate
+
+README 可以使用生成图，但生成图只适合承载氛围、结构隐喻和识别度，不应该承载关键文字信息。
+
+发布前检查：
+
+- 图片文件保存在仓库内，不引用临时生成目录。
+- README 使用相对路径和明确 alt text。
+- 关键流程另有 Markdown、表格或 Mermaid 版本。
+- 图片没有水印、明显错字、品牌侵权或误导性 UI 文案。
+- 图片体积和尺寸适合 GitHub 阅读。

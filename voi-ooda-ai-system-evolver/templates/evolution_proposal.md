@@ -5,12 +5,13 @@
 ```yaml
 proposal_id: "mutation-YYYYMMDD-001"
 trigger: ""          # 触发原因：重复失败、高影响反馈、工具错误、风格返工等
+target_layer: "prompt | memory | rag | tool | workflow | eval | schema | docs | skill"
+affected_files: []
 evidence:
   traces: []         # 可追溯任务轨迹
   user_feedback: []  # 用户反馈或修改证据
   failed_evals: []   # 失败样本或低分 eval
   repeated_pattern: ""
-target_layer: "prompt | memory | rag | tool | workflow | eval | schema | docs | skill"
 change_summary: ""
 expected_benefit: ""
 risk: ""
@@ -23,9 +24,12 @@ eval_plan:
   samples: []
   graders: []
   regression_checks: []
+acceptance_criteria: []
 human_gate:
   required: true
   reason: ""
-rollback: ""
+rollback:
+  method: ""
+  files_to_restore: []
 status: "candidate"
 ```
