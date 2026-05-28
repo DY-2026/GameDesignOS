@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Design Source Curator"
+  short_description: "游戏设计资料策展、审核、入库与增量更新"
+  default_prompt: "使用 $game-design-source-curator，把这些游戏设计来源按证据门和评分标准整理成可沉淀到本地知识库的候选、拒收和入库结果。"

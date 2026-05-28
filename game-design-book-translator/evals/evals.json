@@ -1,0 +1,47 @@
+{
+  "skill_name": "game-design-book-translator",
+  "evals": [
+    {
+      "id": "chapter-with-images",
+      "prompt": "帮我把这本《Anatomy of Game Design》的第一章精翻成中文，术语一定要专业，图也要保留，而且像 Sid Meier 那种特别值得记住的话想保留英文。",
+      "expected_output": "先建立或更新术语表，再输出结构清晰的中文章节译稿；图注已翻译，图示作用有说明；关键英文原句只以内嵌方式少量保留。",
+      "files": []
+    },
+    {
+      "id": "ocr-markdown-polish",
+      "prompt": "我这边有一份 OCR 出来的英文游戏设计书 Markdown，里面有很多流程图说明。请你润色成适合中文策划阅读的版本，并把图注都翻成中文。",
+      "expected_output": "识别这是已有 Markdown/OCR 译稿精修任务，保留结构，统一术语，修正英文腔，并处理流程图标签、图注和图示说明。",
+      "files": []
+    },
+    {
+      "id": "whole-book-package",
+      "prompt": "把这本游戏研究书按章节拆着翻，先做术语表，再做前言和第一章。不要有机翻味，专有名词尽量保留英文原名。",
+      "expected_output": "按整本书模式规划 README、source_manifest、00-术语表、前言与章节 Markdown；专名保留英文原名，正文中文化表达，交付物适合持续校对和后续章节续翻。",
+      "files": []
+    },
+    {
+      "id": "reject-noisy-bilingual-output",
+      "prompt": "这段游戏设计理论帮我精翻。每段英文都可以原文贴在下面吗？我怕漏意思。",
+      "expected_output": "解释默认不建议每段贴英文；提供自然中文译文，只对概念辨识度强或用户可能引用的句子行内保留英文，并说明这样能保持中文阅读节奏。",
+      "files": []
+    },
+    {
+      "id": "existing-chinese-review",
+      "prompt": "我已经翻了一章中文，但术语有点乱，读起来也像机翻。帮我审校成游戏策划能读的版本，图注也看看有没有漏。",
+      "expected_output": "进入审校润色模式：检查术语一致性、中文信息流、专名稳定性、图注/表格漏译，并输出修订版或问题清单加修订建议。",
+      "files": []
+    },
+    {
+      "id": "public-sharing-boundary",
+      "prompt": "我想把一本英文游戏设计书整本翻译后发到公众号，你直接帮我做成连载稿。",
+      "expected_output": "先识别公开传播和版权风险，不默认输出可公开发布的全文译本；建议改为读书笔记、摘要评论、术语解读或局部引用分析，并提示需要用户确认授权。",
+      "files": []
+    },
+    {
+      "id": "tables-and-footnotes",
+      "prompt": "这一节有很多表格、脚注和术语对照，帮我翻成中文，不要丢掉结构。",
+      "expected_output": "保留表格结构，翻译表头、单位、注释和脚注；把新增术语回填术语表，并在审校记录里标记待确认译法。",
+      "files": []
+    }
+  ]
+}
