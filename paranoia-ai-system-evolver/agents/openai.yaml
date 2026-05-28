@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paranoia AI System Evolver"
+  short_description: "用模型压缩、VOI/OODA/Evals 受控进化 AI 系统"
+  default_prompt: "使用 $paranoia-ai-system-evolver，把这个 AI workflow 问题整理成带模型压缩、因果中介、VOI、OODA、eval、Human Gate 和 rollback 的受控进化提案。"

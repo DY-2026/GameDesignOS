@@ -47,7 +47,7 @@ Each package is an installable skill with its own agent entrypoint, human docume
       <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator showcase">
     </td>
     <td width="33%">
-      <img src="./assets/showcase-voi-ooda.png" alt="VOI-OODA AI System Evolver showcase">
+      <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver showcase">
     </td>
   </tr>
   <tr>
@@ -61,7 +61,7 @@ Each package is an installable skill with its own agent entrypoint, human docume
 
 | Skill | Why it matters | Package |
 | --- | --- | --- |
-| **VOI-OODA AI System Evolver** | Turns prompt, workflow, memory, schema, RAG, tool routing, and eval changes into controlled system evolution. It asks what is worth learning, keeps the agent oriented, gates risky changes through humans, and makes upgrades reversible. | [`voi-ooda-ai-system-evolver/`](./voi-ooda-ai-system-evolver/) |
+| **Paranoia AI System Evolver** | Turns prompt, workflow, memory, schema, RAG, tool routing, and eval changes into controlled system evolution. It uses model compression and causal mediators to find control points, keeps the agent oriented with VOI/OODA, gates risky changes through humans, and makes upgrades reversible. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | Produces professional Chinese game design translations that read like serious design writing, not machine translation. It handles terminology, chapters, figures, captions, tables, QA, and source-boundary checks. | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | Converts scattered articles, videos, creators, columns, and websites into a living game design knowledge base. It uses evidence gates, scoring, HTML archives, registries, update history, and design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
 
@@ -108,7 +108,7 @@ Use $game-design-book-translator to translate and polish this game design chapte
 ```
 
 ```text
-Use $voi-ooda-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with VOI, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with model compression, causal mediators, VOI, OODA, evals, Human Gate, and rollback.
 ```
 
 ## Future Skills
@@ -132,7 +132,7 @@ ParanoiaSkills/
 |   `-- showcase-voi-ooda.png
 |-- game-design-book-translator/
 |-- game-design-source-curator/
-`-- voi-ooda-ai-system-evolver/
+`-- paranoia-ai-system-evolver/
 ```
 
 ## Maintenance Rules

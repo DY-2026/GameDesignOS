@@ -15,6 +15,21 @@ evidence:
 change_summary: ""
 expected_benefit: ""
 risk: ""
+model_audit:
+  current_model: ""   # current implicit model
+  proposed_model: ""  # how the new model is shorter, steadier, and more verifiable
+  causal_chain: []    # input -> mediator -> output
+  control_points: []  # observable, intervenable, verifiable mediator nodes
+  description_cost:
+    core_model_length: "low | medium | high"
+    data_patch_length: "low | medium | high"
+    routing_rule_length: "low | medium | high"
+    state_injection_length: "low | medium | high"
+    validation_observation_length: "low | medium | high"
+    exception_patch_length: "low | medium | high"
+    failure_recovery_length: "low | medium | high"
+  diagnosis: "underfit | overfit | missing_mediator | balanced"
+  expected_cost_delta: ""
 voi_reason:
   decision_changed_if_known: ""  # what decision this information or change would affect
   expected_value: "high | medium | low"

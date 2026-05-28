@@ -15,6 +15,21 @@ evidence:
 change_summary: ""
 expected_benefit: ""
 risk: ""
+model_audit:
+  current_model: ""   # 当前隐含模型
+  proposed_model: ""  # 新模型如何更短、更稳、更可验证
+  causal_chain: []    # input -> mediator -> output
+  control_points: []  # 可观察、可干预、可验证的中介节点
+  description_cost:
+    core_model_length: "low | medium | high"
+    data_patch_length: "low | medium | high"
+    routing_rule_length: "low | medium | high"
+    state_injection_length: "low | medium | high"
+    validation_observation_length: "low | medium | high"
+    exception_patch_length: "low | medium | high"
+    failure_recovery_length: "low | medium | high"
+  diagnosis: "underfit | overfit | missing_mediator | balanced"
+  expected_cost_delta: ""
 voi_reason:
   decision_changed_if_known: ""  # 这条信息或改动会改变什么决策
   expected_value: "high | medium | low"

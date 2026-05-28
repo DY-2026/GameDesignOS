@@ -94,7 +94,31 @@ Decide is not declaring truth. It is choosing the most valuable hypothesis to te
 
 Act is not the end. When uncertainty remains, action should be a probe or pressure test that forces reality to answer.
 
-## 5. Task Loop and Meta Loop
+## 5. Model Compression Gate
+
+The Orient phase must explicitly inspect the current system model. Do not only ask "which prompt / workflow / skill should change?" Also ask:
+
+- Is the current model too short, so it only watches the endpoint and cannot locate mediators?
+- Is the current model too long, so routing, state, exception patches, and recovery rules consume execution capacity?
+- Which mediator variable does this change improve?
+- Is that mediator observable, intervenable, and verifiable?
+- After the change, did total description cost fall, or did complexity move somewhere else?
+
+Approximate total description cost:
+
+```text
+total_description_cost
+= core_model_length
++ routing_rule_length
++ state_injection_length
++ validation_observation_length
++ exception_patch_length
++ failure_recovery_length
+```
+
+For the deeper method, read `references/model-compression-playbook.en.md`.
+
+## 6. Task Loop and Meta Loop
 
 Task loop:
 
@@ -110,7 +134,7 @@ trace -> failure mode -> mutation candidate -> eval -> approval -> promotion
 
 Never promote a long-term rule from a single case automatically.
 
-## 6. Candidate Mutation Rules
+## 7. Candidate Mutation Rules
 
 A system change may enter the evolution queue only when it is:
 
@@ -122,17 +146,17 @@ A system change may enter the evolution queue only when it is:
 
 Otherwise, keep it as a task note.
 
-## 7. Permission Ladder
+## 8. Permission Ladder
 
 | Level | Examples | Default Rule |
 | --- | --- | --- |
 | A0 | Analysis, draft text | Automatic |
 | A1 | Read-only research, local checks | Automatic, but record it |
-| A2 | Docs, templates, candidate skill files | Automatic, but reversible |
+| A2 | Docs, templates, candidate skill files, model-audit fields | Automatic, but reversible |
 | A3 | Long-term memory, global skill installation, production strategy | Human Gate required |
 | A4 | Deletion, publishing, money, real-user impact | Explicit approval required |
 
-## 8. Public Skill Package Check
+## 9. Public Skill Package Check
 
 For a public skill package, check at least:
 
@@ -141,11 +165,11 @@ For a public skill package, check at least:
 - The root README is human-facing; `SKILL.md` is agent-facing.
 - `SKILL.md` stays lightweight and routes only to this skill's own `references/` and `templates/`.
 - Reference files are one hop away and do not contain one-off rollout reports.
-- Templates can be copied directly and support evidence, eval, Human Gate, and rollback.
+- Templates can be copied directly and support evidence, model audit, eval, Human Gate, and rollback.
 - Copyright, provenance, and reuse boundaries are explicit.
 - A final stale-name and old-project wording sweep has run.
 
-## 9. README Visual Asset Gate
+## 10. README Visual Asset Gate
 
 README files can use generated images, but generated images should carry atmosphere, structure metaphors, and recognition, not critical text.
 

@@ -13,6 +13,18 @@ ooda_state:
     current_frame:      # 当前如何定性这个局
     old_frame_risk:     # 旧地图可能错在哪里
     domain_model:
+    operating_model:
+      core_model:
+      mediator_chain: []
+      control_points: []
+      description_cost:
+        core_model_length:
+        data_patch_length:
+        routing_rule_length:
+        state_injection_length:
+        validation_observation_length:
+        exception_patch_length:
+        failure_recovery_length:
     user_model:
     uncertainty_map:
       - item:
