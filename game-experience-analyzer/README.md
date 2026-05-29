@@ -1,5 +1,9 @@
 # Game Experience Analyzer
 
+**所属项目:** [ParanoiaSkills](../README.zh-CN.md)
+
+**语言:** 简体中文 | [English](./README.en.md)
+
 <p align="center">
   <img src="./assets/game-experience-analyzer-hero.png" alt="Game Experience Analyzer hero banner" width="100%">
 </p>
@@ -21,7 +25,7 @@
 
 Copyright (c) 2026 @Paranoia. All rights reserved.
 
-## Why This Exists
+## 为什么需要它
 
 游戏体验分析最容易出两个问题：
 
@@ -36,18 +40,18 @@ Input media -> Evidence timeline -> Mode router -> Design lenses -> Actionable r
 
 它先判断输入来源和分析意图，再按品类和样本边界选择策略。四步体验法只是其中一种镜头，不是全局默认答案。
 
-## What It Can Analyze
+## 能分析什么
 
-| Input | Best For | Output Style |
+| 输入 | 适合分析 | 输出样式 |
 | --- | --- | --- |
 | Screenshot | UI 层级、主目标、入口拥挤、奖励表达、静态 Hook | 画面证据表 + UX/体验诊断 |
 | Local recording | 首小时、新手期、教程、玩法循环、商业化打断 | 时间轴 + event stream + feature ledger |
 | Trailer / PV | 会不会火、卖点是否清楚、能否转化、是否需要重剪 | 热度潜力分层 + 验证计划 |
 | Video link | 公开视频、竞品录屏、云端素材、社媒片段 | 访问边界 + 可见证据 + 降级分析 |
 
-## Analysis Modes
+## 分析模式
 
-| Mode | Use When | Core Questions |
+| 模式 | 适用场景 | 核心问题 |
 | --- | --- | --- |
 | `early_experience` | 首登、新手期、首小时、上头程度 | 玩家为什么继续？第一轮循环是否闭合？ |
 | `gameplay_mechanics` | 玩法、机制、核心循环 | 玩家做什么动作？动作如何反馈和成长？ |
@@ -60,17 +64,17 @@ Input media -> Evidence timeline -> Mode router -> Design lenses -> Actionable r
 | `genre_benchmark` | 品类、对标、X+SLG | 哪些策略可迁移，哪些不可迁移？ |
 | `problem_diagnosis` | 哪里不好、怎么改 | 根因、最小改动、owner 和验证指标是什么？ |
 
-## Foresight Window Defaults
+## 前瞻窗口默认值
 
 前瞻判断会把“机会窗口”和“完整研发周期”分开。
 
-| Scope | Default Validation Window | Meaning |
+| 范围 | 默认验证窗口 | 含义 |
 | --- | --- | --- |
 | 休闲轻度 | 1-3 个月 | 必须快速用素材、原型、点击、留存或转化信号证明方向 |
 | 微小中重度 | 3-6 个月 | 必须证明核心玩法、留存、付费承接或市场转化，不能无限观察 |
 | 大体量项目 | 自定义研发周期 | 研发可以更长，但阶段性机会验证仍按前两类拆分 |
 
-## Quick Start
+## 快速开始
 
 Use it directly in Codex:
 
@@ -96,7 +100,7 @@ Use $game-experience-analyzer to analyze this local gameplay recording into time
 用 game-experience-analyzer 整体分析这个游戏项目，不要只做 MDA，要把产品定位、玩法结构、内容供给、商业化长线、市场窗口和最小验证一起看。
 ```
 
-## Example Output
+## 示例输出
 
 示例报告见：
 
@@ -104,9 +108,9 @@ Use $game-experience-analyzer to analyze this local gameplay recording into time
 
 这个案例展示了一个重要边界：PV 可以证明传播兴趣、题材辨识度和文化讨论潜力，但不能直接证明核心玩法、系统叙事和长期产品质量。
 
-## Tooling
+## 工具准备
 
-| Source | Minimum Setup | Better Setup |
+| 来源 | 最小配置 | 更好配置 |
 | --- | --- | --- |
 | Screenshot | 可直接分析 | OCR when UI text changes judgment |
 | Local video | `ffmpeg` for frame extraction | sampled frames + dense event timeline |
@@ -115,7 +119,7 @@ Use $game-experience-analyzer to analyze this local gameplay recording into time
 
 缺工具时，报告会保留 `tool_readiness`：说明缺失项、影响范围、建议安装方式和本次降级范围，而不是编造没有看见的内容。
 
-## Evidence Rules
+## 证据规则
 
 - 每个重要判断都必须能回到截图区域、时间戳、关键帧、页面元数据或用户提供事实。
 - 截图不能直接判断节奏、手感、等待和循环闭合；这些必须标 `uncertain`。
@@ -123,7 +127,7 @@ Use $game-experience-analyzer to analyze this local gameplay recording into time
 - 外部调研必须符合 VOI：只有会改变品类判断、版本事实、竞品基准、市场热度、窗口阶段、Go/No-Go 或建议优先级时才做。
 - 输出必须区分 `known`、`unknown`、`uncertain`、`access_notes` 和 `tool_readiness`。
 
-## Project Boundary
+## 项目边界
 
 协作中的临时命令不等于开源项目规则。用户可能在一次对话里要求 Codex 执行某个步骤、避开某个表述、临时采用某个案例或按某种顺序工作；这些只约束当前任务。
 
@@ -135,12 +139,13 @@ Use $game-experience-analyzer to analyze this local gameplay recording into time
 
 否则，把它当成本次协作上下文处理，不放进 README、SKILL、references、templates 或 examples。
 
-## Package Layout
+## 包结构
 
 ```text
 game-experience-analyzer/
 |-- SKILL.md
 |-- README.md
+|-- README.en.md
 |-- agents/
 |   `-- openai.yaml
 |-- evals/
@@ -164,7 +169,7 @@ game-experience-analyzer/
     `-- trailer-heat-report.md
 ```
 
-## Validation
+## 验证
 
 The package should pass:
 
@@ -175,7 +180,7 @@ python C:\Users\Admin\.codex\skills\.system\skill-creator\scripts\quick_validate
 
 And all JSON/YAML files should parse cleanly.
 
-## Design Principle
+## 设计原则
 
 ```text
 Evidence first.
