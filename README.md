@@ -32,10 +32,10 @@
 Start with one screenshot, gameplay recording, trailer/PV, or video link. Ask the skill for an evidence-linked report:
 
 ```text
-Use $game-experience-analyzer to analyze this PV, predict heat potential, separate visible evidence from unknowns, and give validation metrics.
+Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
 ```
 
-The strongest current case is [`《黑神话：钟馗》6 分钟实机小短片热度潜力预测示例`](./game-experience-analyzer/examples/black-myth-zhongkui-trailer-heat-report.md): a public PV sample becomes a bounded report with visible evidence, heat tier, uncertainty boundary, Conditional Go, and a next-material validation plan.
+The strongest current case is [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md): a public gameplay recording becomes a timestamped report with visual evidence, feature ledger, early-loop diagnosis, UI/guide risks, and validation-ready fixes.
 
 ## What This Is
 

@@ -1,0 +1,111 @@
+rubric_id: game_experience_analyzer_diagnosis_engine
+version: 0.1
+score_scale:
+  "0": "Fail: 输出会误导用户或编造证据。"
+  "1": "Weak: 有部分结构，但边界、证据或行动性不足。"
+  "2": "Pass: 满足可交付诊断的最低要求。"
+  "3": "Strong: 证据链、边界、品类敏感度和验证计划都可直接使用。"
+field_definitions:
+  dimensions: "评估维度；每个维度都按 0-3 分打分。"
+  checks: "人工或自动检查时必须寻找的行为证据。"
+  score_0: "失败表现。"
+  score_1: "弱通过表现。"
+  score_2: "可交付最低通过表现。"
+  score_3: "强交付表现。"
+  hard_fail_if: "只要出现即整体不通过的反幻觉红线。"
+dimensions:
+  mode_selection_accuracy:
+    weight: 1.2
+    checks:
+      - "用户问玩法机制时选择 gameplay_mechanics，而不是只套四步法。"
+      - "用户问单机关卡时选择 single_player_design，而不是手游留存模型。"
+      - "诊断包只映射既有 modes，不新增泛泛 analysis mode。"
+    score_0: "模式与用户目标明显错配。"
+    score_1: "选择了可用模式，但混入大量无关镜头。"
+    score_2: "主 mode 正确，辅助 mode 有解释。"
+    score_3: "主 mode、辅助 mode、诊断包和不启用镜头都说明清楚。"
+  sample_scope_boundary:
+    weight: 1.4
+    checks:
+      - "报告最先输出 sample_boundary、supported_judgment_scope、unsupported_judgment_scope、key_unknowns。"
+      - "截图、PV、买量素材、录屏、首小时、完整通关和不可访问链接都有不同边界。"
+    score_0: "没有样本边界，或把样本外判断写成事实。"
+    score_1: "有边界但不影响后续结论。"
+    score_2: "边界清楚，样本外判断标 uncertain。"
+    score_3: "边界直接约束置信度、诊断包和验证计划。"
+  evidence_linkage:
+    weight: 1.5
+    checks:
+      - "每个重要判断引用 evidence_id。"
+      - "Evidence Index 包含 timestamp/frame_id/region/visible_text/observed_fact/confidence。"
+      - "功能暴露、解锁、首用被区分。"
+    score_0: "关键判断无证据或证据无法定位。"
+    score_1: "有时间戳或截图引用，但没有 evidence_id 体系。"
+    score_2: "重要判断大多绑定 evidence_id。"
+    score_3: "所有 P0/P1 判断、问题卡和建议都能回到 evidence_id。"
+  genre_sensitivity:
+    weight: 1.0
+    checks:
+      - "先识别品类，再推荐策略。"
+      - "单机、SLG、Roguelike、Gacha、模拟经营、PV/买量素材不套同一模板。"
+    score_0: "套用错误品类模型。"
+    score_1: "提到品类但建议仍通用。"
+    score_2: "品类约束影响了问题优先级。"
+    score_3: "品类、平台、商业模型和样本边界共同决定建议。"
+  uncertainty_calibration:
+    weight: 1.2
+    checks:
+      - "置信度低于 0.6 的判断标 uncertain。"
+      - "不可访问链接不编造时间轴。"
+      - "PV 不输出确定销量，截图不判断手感。"
+    score_0: "过度确定或编造。"
+    score_1: "偶尔提示不确定，但结论仍越界。"
+    score_2: "主要 unknown 被保留。"
+    score_3: "未知项被转成明确补料和验证计划。"
+  anti_hallucination:
+    weight: 1.5
+    checks:
+      - "不把未出现系统、未播放内容、未访问页面写成事实。"
+      - "外部研究与样本观察分开。"
+      - "access_notes 和 tool_readiness 被保留。"
+    score_0: "编造素材内容、数据或时间线。"
+    score_1: "有少量无法回证据的事实化表达。"
+    score_2: "事实与推断基本分离。"
+    score_3: "所有推断都有来源、置信度和验证路径。"
+  actionability:
+    weight: 1.2
+    checks:
+      - "建议写清 owner、area、action、expected_effect、validation。"
+      - "问题卡包含最小改动，而不是泛泛优化体验。"
+    score_0: "只有评价，没有可执行动作。"
+    score_1: "建议笼统，无法分派。"
+    score_2: "主要问题有明确动作。"
+    score_3: "每个 P0/P1 问题都有 owner、最小改动、验证指标和停止条件。"
+  validation_quality:
+    weight: 1.2
+    checks:
+      - "验证计划说明会改变什么判断。"
+      - "包含 minimum_sample、metric、pass_threshold、kill_condition。"
+      - "VOI 不成立时停止外部研究。"
+    score_0: "没有验证计划或只有泛泛观察。"
+    score_1: "有指标但不可检查。"
+    score_2: "验证项可执行。"
+    score_3: "验证计划能直接驱动 Go/No-Go、优先级或改版决策。"
+passing_rules:
+  minimum_average_score: 2.0
+  hard_fail_if:
+    - "链接不可访问却编造视频时间轴。"
+    - "只有截图却高置信判断操作手感。"
+    - "只有 PV 却预测确定销量、流水或下载量。"
+    - "用户指定单机流程却使用手游留存模型作为主框架。"
+    - "用户指定玩法机制却只输出四步法。"
+minimal_example:
+  prompt: "只有 3 张战斗截图，判断动作手感。"
+  expected_scores:
+    sample_scope_boundary: 3
+    uncertainty_calibration: 3
+    anti_hallucination: 3
+  must_include:
+    - "截图只能判断静态反馈可读性"
+    - "手感判断标 unsupported_by_sample 或 uncertain"
+    - "补录屏验证计划"

@@ -30,6 +30,39 @@
     "access_notes": "",
     "degradation": ""
   },
+  "sample_scope_gate": {
+    "sample_boundary": "",
+    "supported_judgment_scope": [],
+    "unsupported_judgment_scope": [],
+    "key_unknowns": [],
+    "confidence_ceiling": "high | medium | low | unsupported"
+  },
+  "diagnosis_route": {
+    "diagnosis_pack": "pv_heat_diagnosis | first_hour_retention_diagnosis | core_loop_diagnosis | steam_page_conversion_diagnosis | project_greenlight_risk_diagnosis | monetization_interruption_diagnosis | single_player_pacing_diagnosis | none",
+    "primary_modes": [],
+    "supporting_modes": [],
+    "required_sections": [],
+    "not_enabled": []
+  },
+  "evidence_index": [
+    {
+      "evidence_id": "E001",
+      "source_id": null,
+      "source_type": "screenshot | video_file | video_url | trailer_pv | paid_creative | store_page | user_context",
+      "timestamp": null,
+      "time_range": null,
+      "frame_id": null,
+      "image_id": null,
+      "region": "",
+      "visible_text": "",
+      "observed_fact": "",
+      "event_type": "hook_peak | feature_exposure | feature_unlock | first_use | reward_claim | failure_signal | confusion_signal | monetization_prompt | decision_point | shareable_moment | control_release | loop_closure | access_blocked",
+      "supports_judgment": "",
+      "confidence": 0.0,
+      "uncertainty_note": "",
+      "extraction_method": "direct_observation | frame_sample | ocr | page_metadata | user_provided"
+    }
+  ],
   "genre_route": {
     "primary_genre": null,
     "secondary_genre": null,
@@ -47,6 +80,7 @@
   },
   "visual_evidence": [
     {
+      "evidence_id": "E001",
       "image_id": null,
       "timestamp": null,
       "source_label": null,
@@ -58,10 +92,12 @@
   ],
   "event_stream": [
     {
+      "evidence_id": "E001",
       "timestamp": "00:00:00",
       "image_id": null,
       "evidence_locator": "timestamp | image_id | url | page_context",
       "type": "feature_exposure",
+      "event_type": "hook_peak | feature_exposure | feature_unlock | first_use | reward_claim | failure_signal | confusion_signal | monetization_prompt | decision_point | shareable_moment | control_release | loop_closure | access_blocked",
       "system_tag": null,
       "feature_tag": null,
       "evidence": "",
@@ -213,6 +249,7 @@
       {
         "severity": "high",
         "title": "",
+        "evidence_refs": [],
         "evidence_locator": "",
         "evidence": "",
         "judgment": ""
@@ -223,6 +260,7 @@
         "owner": "",
         "area": "hook | loop | link | surprise | guide | tempo | system | monetization | social | single_player | level | pacing | agency | challenge_feedback | trailer | market | channel | conversion | foresight | window | validation",
         "action": "",
+        "evidence_refs": [],
         "expected_effect": "",
         "validation": ""
       }

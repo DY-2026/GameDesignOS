@@ -32,10 +32,10 @@
 输入一张截图、一段录屏、一个 PV/宣传片或视频链接，让 skill 直接输出证据化设计报告：
 
 ```text
-Use $game-experience-analyzer to analyze this PV, predict heat potential, separate visible evidence from unknowns, and give validation metrics.
+Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
 ```
 
-当前最强案例是 [`《黑神话：钟馗》6 分钟实机小短片热度潜力预测示例`](./game-experience-analyzer/examples/black-myth-zhongkui-trailer-heat-report.md)：一个公开视频样本会被拆成可见证据、热度分层、不确定性边界、Conditional Go 和下一轮素材验证计划。
+当前最强案例是 [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md)：一个公开视频样本会被拆成时间戳证据、功能暴露/解锁/首用账本、前期循环诊断、UI/引导风险和可验证修改建议。
 
 ## 这个项目是什么
 

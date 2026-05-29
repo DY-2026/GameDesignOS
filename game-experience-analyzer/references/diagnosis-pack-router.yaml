@@ -1,0 +1,289 @@
+router_id: diagnosis_pack_router
+version: 0.1
+purpose: "在 analysis-mode-router 之上，把用户场景路由成可交付诊断包；诊断包不是新 mode，只组合既有 modes、sections 和证据要求。"
+base_router: "references/analysis-mode-router.yaml"
+field_definitions:
+  pack_id: "诊断包稳定 ID；供模板、问题卡和验证计划引用。"
+  display_name: "用户可读名称。"
+  user_triggers: "触发该诊断包的中文或英文请求线索。"
+  supported_sources: "该诊断包可处理的输入材料类型；仍需先过 sample scope gate。"
+  primary_modes: "必须来自 references/analysis-mode-router.yaml 的既有 modes。"
+  supporting_modes: "可叠加的既有 modes；不能新增泛泛 mode。"
+  required_sections: "报告必须输出的 sections 或结构字段。"
+  hard_limits: "该诊断包绝对不能越界的判断。"
+principles:
+  - "Evidence first"
+  - "Mode before framework"
+  - "Genre before recommendation"
+  - "VOI before research"
+  - "Validation before confidence"
+common_required_sections:
+  - "sample_scope_gate"
+  - "evidence_index"
+  - "analysis_route"
+  - "key_unknowns"
+  - "prioritized_issue_cards"
+  - "validation_plan"
+output_tiers:
+  quick_triage:
+    template: "templates/quick-triage-report.md"
+    max_issue_cards: 5
+  standard_report:
+    template: "templates/experience-report.md"
+    max_issue_cards: 12
+  consulting_delivery:
+    template: "templates/consulting-diagnosis-report.md"
+    max_issue_cards: 20
+packs:
+  - pack_id: pv_heat_diagnosis
+    display_name: "PV 热度诊断包"
+    user_triggers:
+      - "PV 热度"
+      - "宣传片有没有爆款潜力"
+      - "会不会火"
+      - "买量素材钩子"
+      - "预告片转化"
+    supported_sources:
+      - "trailer_pv"
+      - "paid_creative"
+      - "video_url"
+      - "store_page"
+    primary_modes:
+      - "trailer_heat_prediction"
+    supporting_modes:
+      - "genre_benchmark"
+      - "problem_diagnosis"
+    required_sections:
+      - "sample_scope_gate"
+      - "evidence_index"
+      - "first_3_6_seconds_hook"
+      - "one_sentence_pitch"
+      - "proof_of_play"
+      - "novelty_and_differentiation"
+      - "shareable_moment_index"
+      - "platform_channel_fit"
+      - "heat_potential_tier"
+      - "validation_plan"
+    hard_limits:
+      - "不能把 PV 判断写成确定销量、流水或下载量预测。"
+      - "无法访问链接时只能做页面/封面/标题层弱诊断。"
+
+  - pack_id: first_hour_retention_diagnosis
+    display_name: "首小时留存诊断包"
+    user_triggers:
+      - "首小时留存"
+      - "新手期留存"
+      - "前期体验"
+      - "首登流程"
+      - "上头吗"
+    supported_sources:
+      - "local_recording"
+      - "first_hour_recording"
+      - "video_file"
+      - "video_url"
+    primary_modes:
+      - "early_experience"
+    supporting_modes:
+      - "ux_ui"
+      - "commercialization"
+      - "problem_diagnosis"
+    required_sections:
+      - "sample_scope_gate"
+      - "evidence_index"
+      - "stage_timeline"
+      - "hook_loop_link_surprise"
+      - "feature_ledger"
+      - "confusion_and_failure_signals"
+      - "monetization_prompt_timing"
+      - "retention_hook_hypothesis"
+      - "validation_plan"
+    hard_limits:
+      - "没有连续流程时，不判断等待节奏和循环闭合。"
+      - "首小时只能形成 D1/D7 假设，不能当成长期留存结论。"
+
+  - pack_id: core_loop_diagnosis
+    display_name: "核心循环诊断包"
+    user_triggers:
+      - "核心循环"
+      - "玩法机制"
+      - "机制闭环"
+      - "玩法好不好"
+      - "Build 循环"
+    supported_sources:
+      - "local_recording"
+      - "first_hour_recording"
+      - "full_run_review"
+      - "screenshot"
+      - "video_url"
+    primary_modes:
+      - "gameplay_mechanics"
+    supporting_modes:
+      - "genre_benchmark"
+      - "whole_game_mda"
+      - "problem_diagnosis"
+    required_sections:
+      - "sample_scope_gate"
+      - "evidence_index"
+      - "core_action_table"
+      - "decision_points"
+      - "feedback_loop"
+      - "resource_economy"
+      - "progression_unlock"
+      - "loop_closure_risk"
+      - "validation_plan"
+    hard_limits:
+      - "用户问玩法机制时，不要只套 Hook/Loop/Link/Surprise。"
+      - "截图只能判断机制入口和静态反馈，不能证明循环闭合。"
+
+  - pack_id: steam_page_conversion_diagnosis
+    display_name: "Steam 页面转化诊断包"
+    user_triggers:
+      - "Steam 页面"
+      - "商店页转化"
+      - "愿望单"
+      - "页面能不能转化"
+      - "Steam capsule"
+    supported_sources:
+      - "store_page"
+      - "video_url"
+      - "screenshot"
+      - "trailer_pv"
+    primary_modes:
+      - "trailer_heat_prediction"
+    supporting_modes:
+      - "genre_benchmark"
+      - "ux_ui"
+      - "problem_diagnosis"
+    required_sections:
+      - "sample_scope_gate"
+      - "evidence_index"
+      - "above_the_fold_message"
+      - "capsule_and_visual_promise"
+      - "tag_and_genre_fit"
+      - "screenshot_sequence"
+      - "trailer_to_page_consistency"
+      - "wishlist_cta_path"
+      - "validation_plan"
+    hard_limits:
+      - "页面可见信息不能证明真实购买率。"
+      - "没有后台数据时，只能给转化假设和 A/B 测试计划。"
+
+  - pack_id: project_greenlight_risk_diagnosis
+    display_name: "项目立项风险诊断包"
+    user_triggers:
+      - "立项风险"
+      - "值不值得做"
+      - "Go/No-Go"
+      - "窗口期"
+      - "这个方向能不能跟"
+    supported_sources:
+      - "trailer_pv"
+      - "screenshot"
+      - "local_recording"
+      - "store_page"
+      - "user_context"
+    primary_modes:
+      - "foresight_opportunity"
+    supporting_modes:
+      - "holistic_game_analysis"
+      - "genre_benchmark"
+      - "trailer_heat_prediction"
+      - "gameplay_mechanics"
+    required_sections:
+      - "sample_scope_gate"
+      - "evidence_index"
+      - "opportunity_type"
+      - "innovation_source"
+      - "genre_strategy_fit"
+      - "market_context_voi"
+      - "go_no_go"
+      - "minimum_validation"
+      - "kill_conditions"
+    hard_limits:
+      - "立项判断必须把样本证据、外部研究和用户假设分开。"
+      - "VOI 不成立时，不做泛泛市场调研。"
+
+  - pack_id: monetization_interruption_diagnosis
+    display_name: "商业化打断诊断包"
+    user_triggers:
+      - "商业化打断"
+      - "广告太多吗"
+      - "付费入口"
+      - "首充"
+      - "福利广告"
+    supported_sources:
+      - "local_recording"
+      - "first_hour_recording"
+      - "screenshot"
+      - "video_url"
+    primary_modes:
+      - "commercialization"
+    supporting_modes:
+      - "early_experience"
+      - "ux_ui"
+      - "problem_diagnosis"
+    required_sections:
+      - "sample_scope_gate"
+      - "evidence_index"
+      - "monetization_prompt_timeline"
+      - "player_goal_before_prompt"
+      - "paid_value_fit"
+      - "welfare_noise"
+      - "interruption_risk"
+      - "minimum_fix"
+      - "validation_plan"
+    hard_limits:
+      - "只看到商店入口不能判断打断强度。"
+      - "必须记录商业化请求出现前玩家正在追的目标。"
+
+  - pack_id: single_player_pacing_diagnosis
+    display_name: "单机流程节奏诊断包"
+    user_triggers:
+      - "单机关卡"
+      - "流程节奏"
+      - "关卡主路径"
+      - "Boss 节奏"
+      - "通关复盘"
+    supported_sources:
+      - "local_recording"
+      - "full_run_review"
+      - "video_file"
+      - "video_url"
+      - "screenshot"
+    primary_modes:
+      - "single_player_design"
+    supporting_modes:
+      - "whole_game_mda"
+      - "gameplay_mechanics"
+      - "problem_diagnosis"
+    required_sections:
+      - "sample_scope_gate"
+      - "evidence_index"
+      - "single_player_scope"
+      - "critical_path"
+      - "pacing_beats"
+      - "agency_map"
+      - "challenge_skill_feedback"
+      - "narrative_mechanic_fit"
+      - "finish_intent"
+      - "validation_plan"
+    hard_limits:
+      - "用户问单机关卡时，不套手游留存模型。"
+      - "片段录像不能包装成完整通关结论。"
+minimal_examples:
+  - user_request: "帮我看这个 45 秒 PV 有没有爆款潜力。"
+    selected_pack: "pv_heat_diagnosis"
+    primary_modes:
+      - "trailer_heat_prediction"
+    required_first_output:
+      sample_boundary: "1 条 45 秒 PV；没有连续实机流程。"
+      supported_judgment_scope:
+        - "首秒钩子"
+        - "卖点复述"
+        - "可传播峰值"
+      unsupported_judgment_scope:
+        - "确定销量"
+        - "D7 留存"
+      key_unknowns:
+        - "Steam 愿望单"
+        - "Demo 转化"

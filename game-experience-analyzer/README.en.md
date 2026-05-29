@@ -100,9 +100,9 @@ Chinese requests are also natural:
 
 See:
 
-- [`examples/black-myth-zhongkui-trailer-heat-report.md`](./examples/black-myth-zhongkui-trailer-heat-report.md)
+- [`examples/survival-33-days-gameplay-experience-report.md`](./examples/survival-33-days-gameplay-experience-report.md)
 
-That example shows an important boundary: a PV can support judgment about communicability, theme recognition, and cultural discussion potential, but it cannot directly prove core gameplay quality, systems-narrative quality, or long-term product quality.
+That example shows the recording-first workflow: a public gameplay video can become timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and concrete validation-ready fixes.
 
 ## Tooling
 
@@ -147,7 +147,7 @@ game-experience-analyzer/
 |-- evals/
 |   `-- evals.json
 |-- examples/
-|   `-- black-myth-zhongkui-trailer-heat-report.md
+|   `-- survival-33-days-gameplay-experience-report.md
 |-- references/
 |   |-- analysis-mode-router.yaml
 |   |-- foresight-opportunity-lens.zh-CN.md

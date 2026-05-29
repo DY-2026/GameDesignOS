@@ -3,7 +3,9 @@ version: 0.1
 purpose: 将分析模式映射到必填镜头和报告段落，避免所有任务套同一份模板。
 
 common_required:
-  - sample_boundary
+  - sample_scope_gate
+  - evidence_index
+  - key_unknowns
   - tool_and_access_status
   - visual_or_timeline_evidence
   - analysis_route

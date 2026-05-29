@@ -48,8 +48,8 @@
     },
     {
       "id": 10,
-      "prompt": "用《黑神话：钟馗》6 分钟实机小短片作为案例，分析宣传片热度潜力。注意官方说该视频为春节专门录制，与实际剧情无关。",
-      "expected_output": "组合 trailer_heat_prediction + genre_benchmark；把官方说明作为边界，区分实机演出、玩法证明和市场热度；输出强圈层/爆款候选等分层、前作信任红利、题材差异化、转化断点、评论/播放/愿望单等需要验证的数据。"
+      "prompt": "用《生存33天》41 分钟竖屏试玩录屏作为案例，分析前期体验、玩法循环、功能暴露/解锁/首用、UI 引导风险和可执行优化建议。",
+      "expected_output": "组合 early_experience + gameplay_mechanics + problem_diagnosis；输出样本边界、时间戳证据、阶段时间轴、Hook/Loop/Link/Surprise 评分、feature_ledger、问题优先级和 owner/action/expected_effect/validation 格式的建议。"
     },
     {
       "id": 11,
