@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/voi-ooda-system-evolver-hero.png" alt="ParanoiaSkills game design workflow hero" width="100%">
+  <img src="./assets/demo-game-experience-before-after.png" alt="60-second demo: Game Experience Analyzer turns PV input into an evidence-linked report" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
@@ -11,6 +11,7 @@
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
+  <a href="#60-second-demo">60-Second Demo</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="#current-skills">Current Skills</a> ·
   <a href="#showcase">Showcase</a> ·
@@ -25,6 +26,16 @@
 </p>
 
 > Copyright (c) 2026 @Paranoia. All rights reserved.
+
+## 60-Second Demo
+
+Start with one screenshot, gameplay recording, trailer/PV, or video link. Ask the skill for an evidence-linked report:
+
+```text
+Use $game-experience-analyzer to analyze this PV, predict heat potential, separate visible evidence from unknowns, and give validation metrics.
+```
+
+The strongest current case is [`《黑神话：钟馗》6 分钟实机小短片热度潜力预测示例`](./game-experience-analyzer/examples/black-myth-zhongkui-trailer-heat-report.md): a public PV sample becomes a bounded report with visible evidence, heat tier, uncertainty boundary, Conditional Go, and a next-material validation plan.
 
 ## What This Is
 
@@ -118,6 +129,7 @@ ParanoiaSkills/
 |-- README.zh-CN.md
 |-- README.en.md
 |-- assets/
+|   |-- demo-game-experience-before-after.png
 |   |-- voi-ooda-system-evolver-hero.png
 |   |-- showcase-game-experience-analyzer.png
 |   |-- showcase-voi-ooda.png

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/voi-ooda-system-evolver-hero.png" alt="ParanoiaSkills 游戏设计工作流封面图" width="100%">
+  <img src="./assets/demo-game-experience-before-after.png" alt="60 秒 demo：Game Experience Analyzer 把 PV 输入转成证据化报告" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
@@ -11,6 +11,7 @@
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
+  <a href="#60-秒-demo">60 秒 demo</a> ·
   <a href="#快速开始">快速开始</a> ·
   <a href="#当前-skill">当前 Skill</a> ·
   <a href="#图文展示">图文展示</a> ·
@@ -25,6 +26,16 @@
 </p>
 
 > Copyright (c) 2026 @Paranoia. All rights reserved.
+
+## 60 秒 Demo
+
+输入一张截图、一段录屏、一个 PV/宣传片或视频链接，让 skill 直接输出证据化设计报告：
+
+```text
+Use $game-experience-analyzer to analyze this PV, predict heat potential, separate visible evidence from unknowns, and give validation metrics.
+```
+
+当前最强案例是 [`《黑神话：钟馗》6 分钟实机小短片热度潜力预测示例`](./game-experience-analyzer/examples/black-myth-zhongkui-trailer-heat-report.md)：一个公开视频样本会被拆成可见证据、热度分层、不确定性边界、Conditional Go 和下一轮素材验证计划。
 
 ## 这个项目是什么
 
@@ -118,6 +129,7 @@ ParanoiaSkills/
 |-- README.zh-CN.md
 |-- README.en.md
 |-- assets/
+|   |-- demo-game-experience-before-after.png
 |   |-- voi-ooda-system-evolver-hero.png
 |   |-- showcase-game-experience-analyzer.png
 |   |-- showcase-voi-ooda.png
