@@ -86,6 +86,19 @@ def validate(root: Path) -> list[str]:
         text = read_text(root / rel)
         require("description_cost" in text or "总描述成本" in text, f"{rel} lacks description cost gate", failures)
 
+    eval_zh = read_text(root / "references/eval-versioning-playbook.zh-CN.md")
+    eval_en = read_text(root / "references/eval-versioning-playbook.en.md")
+    require("行为回归门" in eval_zh, "Chinese eval playbook lacks skill behavior regression gate", failures)
+    require("Behavior Regression Gate" in eval_en, "English eval playbook lacks skill behavior regression gate", failures)
+
+    for rel in [
+        "templates/evolution_proposal.md",
+        "templates/evolution_proposal.zh-CN.md",
+        "templates/evolution_proposal.en.md",
+    ]:
+        text = read_text(root / rel)
+        require("behavior_samples" in text, f"{rel} lacks behavior_samples eval field", failures)
+
     duplicate_keys = re.findall(r"^\s{4,}([a-zA-Z_]+):", read_text(root / "templates/evolution_proposal.en.md"), re.MULTILINE)
     require(
         duplicate_keys.count("failure_recovery_length") == 1,

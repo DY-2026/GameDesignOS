@@ -55,6 +55,7 @@ Do not use it to justify uncontrolled model-weight changes, silent long-term mem
 5. Separate task OODA from meta OODA. The task loop completes today's work; the meta loop proposes candidate changes for tomorrow's system.
 6. Keep every evolution change as `candidate` until evidence, evals, required approval, and rollback are present.
 7. When editing a skill, keep `SKILL.md` light. Put detailed methods in this skill's own `references/` and reusable forms in `templates/`.
+8. When the target layer is `skill`, add a behavior regression gate: replay representative user tasks, compare expected behavior before and after, check for negative transfer, and keep the change as `candidate` until the evidence supports promotion.
 
 ## Read As Needed
 

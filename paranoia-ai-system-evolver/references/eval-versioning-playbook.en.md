@@ -58,7 +58,7 @@ status: candidate
 | tool routing | Check whether tools are used correctly, too early, too late, or not at all |
 | workflow | Check source contract and output gate completeness |
 | schema | Validate machine parsing and cover edge samples |
-| skill | Check frontmatter, metadata, reference paths, template usability, stale wording, and realistic invocation |
+| skill | Check frontmatter, metadata, reference paths, template usability, stale wording, realistic invocation, and behavior regression |
 | README visual | Check image path, alt text, no watermark, no misleading text, and text-backed critical flow |
 
 ## 5. Skill Package Regression Checklist
@@ -75,6 +75,16 @@ SKILL.md is agent-facing and lightweight
 no stale old name remains in public entrypoints
 copyright/provenance is explicit
 ```
+
+### Skill Behavior Regression Gate
+
+Structural checks prove that a skill can be installed. They do not prove that it improves real work. A `target_layer: skill` candidate mutation must add behavior evidence:
+
+- Choose 2-3 `behavior_samples` from real tasks or frequent scenarios, with input, expected behavior, and failure signals.
+- Compare behavior before and after the change. If the old version cannot run, compare against the current `SKILL.md` output contract.
+- Check for negative transfer: more verbosity, slower execution, false triggers, skipped VOI, weaker evidence use, or regression on high-value scenarios.
+- If behavior does not improve, keep the change as `candidate` or a failure sample; do not promote it just because the structure looks cleaner.
+- If behavior improves but description cost rises sharply, return to the model-compression gate and verify that the benefit covers the added complexity.
 
 ## 6. Version Management
 

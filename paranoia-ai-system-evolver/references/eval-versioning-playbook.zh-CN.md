@@ -58,7 +58,7 @@ status: candidate
 | tool routing | 检查工具使用是否正确、过早、过晚或缺失 |
 | workflow | 检查 source contract 与 output gate 是否完整 |
 | schema | 验证结构可机器解析，并覆盖边界样本 |
-| skill | 检查 frontmatter、metadata、引用路径、模板可用性、陈旧措辞和真实调用场景 |
+| skill | 检查 frontmatter、metadata、引用路径、模板可用性、陈旧措辞、真实调用场景和行为回归 |
 | README visual | 检查图片路径、alt text、无水印、无误导文字、关键流程有文本版本 |
 
 ## 5. Skill Package 回归清单
@@ -75,6 +75,16 @@ SKILL.md is agent-facing and lightweight
 no stale old name remains in public entrypoints
 copyright/provenance is explicit
 ```
+
+### Skill 行为回归门
+
+结构检查只能证明 skill 可安装，不能证明它让真实任务变好。`target_layer: skill` 的候选突变必须补一层行为证据：
+
+- 选择 2-3 个来自真实任务或高频场景的 `behavior_samples`，写清输入、期望行为和失败信号。
+- 对比改动前后；如果旧版本不可运行，至少对照当前 `SKILL.md` 声称的输出契约。
+- 检查是否出现负迁移：更啰嗦、更慢、误触发、跳过 VOI、忽视证据、破坏既有高价值场景。
+- 若行为没有变好，只能保留为 `candidate` 或失败样本；不要因为结构更完整就提升为当前规则。
+- 若行为变好但描述成本明显上升，回到模型压缩 Gate，判断收益是否覆盖新增复杂度。
 
 ## 6. 版本管理
 

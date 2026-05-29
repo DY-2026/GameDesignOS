@@ -37,6 +37,7 @@ voi_reason:
   conclusion: "do | skip | ask_human"
 eval_plan:
   samples: []
+  behavior_samples: []  # for target_layer=skill: real/frequent invocation, expected behavior, failure signals
   graders: []
   regression_checks: []
 acceptance_criteria: []

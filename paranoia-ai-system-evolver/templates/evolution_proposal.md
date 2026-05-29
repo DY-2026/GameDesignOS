@@ -37,6 +37,7 @@ voi_reason:
   conclusion: "do | skip | ask_human"
 eval_plan:
   samples: []
+  behavior_samples: []  # target_layer=skill 时填写：真实/高频调用、期望行为、失败信号
   graders: []
   regression_checks: []
 acceptance_criteria: []
