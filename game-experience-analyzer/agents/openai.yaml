@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Experience Analyzer"
+  short_description: "游戏截图、录屏、PV、视频链接的体验、玩法、MDA、系统叙事与机会判断"
+  default_prompt: "使用 $game-experience-analyzer，把游戏截图、录屏、PV/宣传片或视频链接拆成画面/时间轴证据，并按用户目标选择体验、玩法机制、整体综合、MDA、系统叙事融合、单机流程、宣传片热度潜力、前瞻机会、商业化或 UX/UI 镜头，输出可落地的判断和验证建议。"

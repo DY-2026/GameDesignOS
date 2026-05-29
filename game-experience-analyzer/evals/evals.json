@@ -1,0 +1,70 @@
+{
+  "skill_name": "game-experience-analyzer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请分析一段放置成长小游戏本地录屏 `<local_idle_growth_entry_video.mp4>`。先判断游戏类型，再输出时间轴证据、Hook/Loop/Link/Surprise 评分、功能暴露/解锁/首用账本，以及优化建议。",
+      "expected_output": "返回中文报告，包含 genre_route、时间戳证据、分析模式与镜头路由、四步法诊断、feature_ledger、问题列表和可执行建议。重点覆盖开局承诺、核心点击/抽取/升级循环、战力反馈、广告/福利入口和长期目标。"
+    },
+    {
+      "id": 2,
+      "prompt": "只看几张 Roguelike 构筑游戏截图 `<screenshot_choice.png>`、`<screenshot_battle.png>`、`<screenshot_reward.png>`，分析首屏 Hook、选择可读性、构筑反馈和体验风险。不能从截图判断的动态节奏请标 uncertain。",
+      "expected_output": "报告包含画面证据表，使用 image_id、画面区域和可见文案支撑判断；能分析静态 Hook/Link、选择信息和构筑暗示，但对 Loop 节奏、战斗手感、失败复盘等动态判断标 uncertain。"
+    },
+    {
+      "id": 3,
+      "prompt": "分析一个末日幸存者/RPG 游戏试玩视频 `<local_survival_rpg_video.mp4>`，重点检查生存危机、首次战斗、资源获取、基地/队伍目标和长期推进。",
+      "expected_output": "识别为 survival_rpg 或相近品类，输出阶段拆解、event_stream、feature_ledger、Hook/Loop/Link/Surprise 评分、问题优先级和 owner/action/expected_effect/validation 格式的建议。"
+    },
+    {
+      "id": 4,
+      "prompt": "这个模拟经营游戏视频链接 `<https://example.com/sim-management-gameplay-video>` 帮我拆一下前期体验。如果链接不可访问，请说明限制，并告诉我需要补哪些截图或录屏片段。",
+      "expected_output": "先判断链接可访问性和可见范围；可访问时输出时间轴或抽样片段证据、模式路由、对应诊断和建议；不可访问时不编造内容，明确平台/权限/地区/登录限制，并给出补料清单。"
+    },
+    {
+      "id": 5,
+      "prompt": "分析一个“模拟经营+SLG / X+SLG”游戏录屏 `<local_x_plus_slg_video.mp4>`，前期有基地建设、生产资源，后面出现地图、联盟、行军或赛季竞争。请不要只按模拟经营或只按 SLG 分析。",
+      "expected_output": "识别为 x_plus_slg 或明确写出 X+SLG 复合品类；分别分析 X 层短循环和 SLG 长线承接，检查资源转换、联盟/地图曝光、长期目标、商业化和验证指标。"
+    },
+    {
+      "id": 6,
+      "prompt": "我这里只有一个 B 站游戏试玩链接，但当前环境没有 ffmpeg 或 yt-dlp。请用 $game-experience-analyzer 告诉我还能分析到什么，并引导我配置工具。",
+      "expected_output": "输出 tool_readiness，说明缺少 ffmpeg/yt-dlp 对抽帧、下载和时间轴分析的影响；提供安装/配置建议；降级为页面元数据、封面、用户补充截图或手动时间戳片段分析，不编造未观看内容。"
+    },
+    {
+      "id": 7,
+      "prompt": "请分析一个单机动作冒险游戏 12 分钟录屏 `<local_single_player_action_slice.mp4>`，重点看关卡主路径、节奏 beat、玩家自主权、战斗学习曲线和继续通关意愿。可以联网查设计背景，但必须符合 VOI。",
+      "expected_output": "识别 analysis_mode 为 single_player_design；先写样本范围门，说明只能判断 level_slice 或 first_segment；输出 critical_path、pacing_beats、agency_map、challenge_skill_feedback、narrative_mechanic_fit 和 finish_intent；联网只在版本、竞品或设计背景会改变建议时使用，并区分样本证据与外部资料。"
+    },
+    {
+      "id": 8,
+      "prompt": "从 MDA 视角整体分析一个单机叙事解谜游戏的视频链接 `<https://example.com/narrative-puzzle-playthrough>`，如果只能看到片段，不要假装完整通关。",
+      "expected_output": "组合 whole_game_mda + single_player_design；输出 Mechanics、Dynamics、Aesthetics 及断裂点，同时标记 single_player_scope；对谜题线索、叙事承诺、玩家选择和反馈进行证据化分析；链接不可访问或片段不足时保留 access_notes 和 unknown。"
+    },
+    {
+      "id": 9,
+      "prompt": "分析一个游戏 PV 链接 `<https://example.com/game-trailer>`，预测这个游戏能不能火。可以联网查当前热度、竞品和平台信息，但必须符合 VOI。",
+      "expected_output": "识别 analysis_mode 为 trailer_heat_prediction；输出首 3-6 秒钩子、一句话卖点、可玩性证明、差异化、品类受众、可传播峰值、平台/渠道适配、转化承接、热度潜力分层、置信度、关键不确定性和验证计划；联网资料与样本证据分开，不输出确定销量。"
+    },
+    {
+      "id": 10,
+      "prompt": "用《黑神话：钟馗》6 分钟实机小短片作为案例，分析宣传片热度潜力。注意官方说该视频为春节专门录制，与实际剧情无关。",
+      "expected_output": "组合 trailer_heat_prediction + genre_benchmark；把官方说明作为边界，区分实机演出、玩法证明和市场热度；输出强圈层/爆款候选等分层、前作信任红利、题材差异化、转化断点、评论/播放/愿望单等需要验证的数据。"
+    },
+    {
+      "id": 11,
+      "prompt": "这个题材和玩法方向现在还值不值得做？请基于一个 PV 链接和几张截图，判断窗口期、机会类型、Go/No-Go 和最低成本验证方案。",
+      "expected_output": "识别 analysis_mode 为 foresight_opportunity，并可组合 trailer_heat_prediction 或 genre_benchmark；输出机会类型、创新源头、市场验证信号、时代情绪信号、窗口阶段、剩余窗口估计、迁移判断、Go/No-Go、最小验证截止和 Kill 条件；默认休闲轻度 1-3 个月、微小中重度 3-6 个月；证据不足时写 assumptions 和 Watch/Conditional Go。"
+    },
+    {
+      "id": 12,
+      "prompt": "整体分析这个游戏项目：我给你一个 PV 链接、几张战斗截图和一段 10 分钟试玩录屏。不要只做 MDA，要把产品定位、玩法结构、内容供给、商业化长线、市场窗口和最小验证一起看。",
+      "expected_output": "识别 analysis_mode 为 holistic_game_analysis；先输出 VOI 门，说明哪些外部信息会改变判断；再输出产品定位、一句话承诺、核心玩法结构、MDA 是否支撑体验承诺、内容供给、商业化与长线、前瞻窗口、整体分层、最小验证截止和 Kill 条件。"
+    },
+    {
+      "id": 13,
+      "prompt": "用 MDA 和系统叙事融合分析一个社会模拟策略游戏录屏：重点看玩法是否就是叙事、玩家价值观是否成为平衡变量、选择后果是否具象化，以及游戏结束后是否形成文化对话。",
+      "expected_output": "识别 whole_game_mda 或 holistic_game_analysis，并启用 systems_narrative_fusion；输出可玩命题、价值轴系统、玩家价值观权重、后果具象化、循环栈、文化对话循环、意义注入×可能性空间；所有判断都绑定截图、时间戳或用户提供事实，不把主题设定当成系统证据。"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "source_items": [
+    {
+      "type": "video_file",
+      "path": "",
+      "url": null,
+      "label": "main_sample",
+      "time_range": null
+    },
+    {
+      "type": "screenshot",
+      "path": "",
+      "url": null,
+      "label": "optional_screenshot",
+      "image_id": null
+    },
+    {
+      "type": "video_url",
+      "path": null,
+      "url": "",
+      "label": "optional_video_link",
+      "time_range": null,
+      "access_notes": null
+    }
+  ],
+  "game_name": null,
+  "platform": "unknown",
+  "region_server": null,
+  "build_or_version": null,
+  "session_scope": "first_session",
+  "expected_genre": "unknown",
+  "is_new_account": "unknown",
+  "has_voice": "unknown",
+  "has_subtitle": "unknown",
+  "tool_readiness": {
+    "browser_access": "unknown",
+    "ffmpeg": "unknown",
+    "yt_dlp": "unknown",
+    "ocr": "unknown",
+    "asr": "unknown",
+    "notes": []
+  },
+  "analysis_goal": "early_experience_review",
+  "analysis_mode": "early_experience",
+  "single_player_scope": "unknown",
+  "trailer_context": {
+    "trailer_type": "unknown",
+    "target_platforms": [],
+    "target_channels": [],
+    "release_status": "unknown",
+    "call_to_action": "unknown"
+  },
+  "foresight_context": {
+    "target_market": "unknown",
+    "target_platform": "unknown",
+    "business_model": "unknown",
+    "project_stage": "unknown",
+    "scope_weight": "casual_light | micro_midcore_heavy | large_scale | unknown",
+    "competitor_scope": [],
+    "research_budget": "unknown"
+  },
+  "voi_gate": {
+    "decision_to_change": "",
+    "external_research_needed": "unknown",
+    "research_questions": [],
+    "stop_conditions": []
+  },
+  "template_id": "general_game_video_experience",
+  "output_formats": ["markdown_report", "structured_json"],
+  "excluded_scope": [],
+  "known_context": []
+}

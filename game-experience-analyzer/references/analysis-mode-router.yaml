@@ -1,0 +1,355 @@
+router_id: game_analysis_mode_router
+name: 游戏分析模式路由
+version: 0.1
+purpose: 根据用户问题选择分析类型，避免所有任务都输出同一种前期体验报告。
+
+default_mode: early_experience
+
+lens_policy:
+  rule: 先选 mode，再选 lens。四步体验模型只是 early_experience 的主镜头之一，不是全局默认模板。
+  common_lenses:
+    - evidence_timeline
+    - visual_evidence
+    - genre_route
+    - system_design_review
+  optional_lenses:
+    - four_step_experience
+    - gameplay_mechanics
+    - holistic_game_analysis
+    - mda
+    - systems_narrative_fusion
+    - single_player_flow
+    - trailer_heat_prediction
+    - foresight_opportunity
+    - commercialization
+    - ux_ui
+    - problem_diagnosis
+
+modes:
+  - mode_id: early_experience
+    name: 前期体验 / 新手期 / 首小时分析
+    triggers:
+      - 前期体验
+      - 新手期
+      - 首登
+      - 首小时
+      - 上头
+      - 留存钩子
+      - 功能暴露
+    core_questions:
+      - 玩家为什么现在继续？
+      - 第一轮循环是否闭合？
+      - 功能暴露、解锁、首用是否过密或过晚？
+      - 长期目标何时被看见？
+    required_lenses:
+      - four_step_experience
+      - 阶段化时间轴
+      - feature_ledger
+      - 新手引导与节奏
+
+  - mode_id: gameplay_mechanics
+    name: 玩法机制分析
+    triggers:
+      - 玩法分析
+      - 机制分析
+      - 核心玩法
+      - 游戏循环
+      - 战斗/建造/经营/构筑机制
+    core_questions:
+      - 玩家做什么动作？
+      - 动作如何被判定？
+      - 资源、奖励和失败如何反馈？
+      - 机制是否产生有效决策，而不是纯点击确认？
+      - 成长是否放大核心动作，而不是替代核心动作？
+    required_lenses:
+      - 核心动作
+      - 玩家决策
+      - 资源/经济
+      - 成长/解锁
+      - 关卡/任务结构
+      - 反馈循环
+
+  - mode_id: whole_game_mda
+    name: MDA 分析 / 机制动态美学分析
+    triggers:
+      - MDA
+      - 机制动态美学
+      - 从 MDA 视角
+      - Mechanics Dynamics Aesthetics
+    core_questions:
+      - Mechanics：规则、系统、资源、操作和约束是什么？
+      - Dynamics：规则在玩家行为中产生什么动态？
+      - Aesthetics：最终给玩家什么情绪、幻想、身份和体验？
+      - M-D-A 之间哪里断裂？
+      - 哪些机制真实支撑了体验承诺？
+      - 如果游戏有主题表达，玩法系统是否真的在生成这个意义，而不是只由文案/过场承担？
+    required_lenses:
+      - Mechanics
+      - Dynamics
+      - Aesthetics
+      - systems_narrative_fusion
+      - 机制-动态-体验断点
+      - 品类策略路由
+      - 系统设计六维审查
+
+  - mode_id: holistic_game_analysis
+    name: 整体游戏综合分析
+    triggers:
+      - 整体分析
+      - 整体拆解
+      - 完整分析
+      - 产品整体
+      - 项目整体
+      - 这个游戏整体怎么样
+      - 从产品角度看
+      - 体验和市场一起看
+    core_questions:
+      - 当前素材能支撑哪种整体判断：PV、首小时、片段、多段样本，还是外部资料增强？
+      - 产品定位是什么：目标用户、平台、主副品类、商业模型和使用场景？
+      - 一句话产品承诺是否足够清楚，能不能被玩家复述？
+      - 核心玩法结构、MDA、内容供给、商业化和长线是否互相支撑？
+      - 玩法是否就是叙事：系统、循环、选择和后果是否共同生成主题意义？
+      - 玩家价值观是否成为选择权重、平衡变量或冲突来源？
+      - 游戏结束后是否形成讨论、内省、复述或文化对话循环？
+      - 当前机会属于结构创新、内容创新、题材创新、投放创新、组合创新，还是反转窗口？
+      - 市场窗口、时代情绪和转化路径是否支持继续投入？
+      - 最小验证是什么？什么结果出现就应停止投入？
+    required_lenses:
+      - sample_scope_gate
+      - product_positioning
+      - one_sentence_promise
+      - gameplay_mechanics
+      - mda
+      - systems_narrative_fusion
+      - content_supply
+      - monetization_longevity_fit
+      - foresight_opportunity
+      - voi_gate
+      - minimum_validation
+      - kill_conditions
+
+  - mode_id: single_player_design
+    name: 单机游戏设计分析
+    triggers:
+      - 单机
+      - 单机游戏
+      - 关卡
+      - Boss
+      - 探索
+      - 开放世界
+      - 半开放
+      - 叙事
+      - 解谜
+      - 动作冒险
+      - 通关
+    core_questions:
+      - 这段样本属于首段流程、关卡片段、开放探索、Boss/战斗、叙事段落，还是完整通关复盘？
+      - critical path 是否清楚，支线/探索是否服务主目标？
+      - 玩家 agency 来自操作、路线、解法、build、叙事选择还是风险管理？
+      - 挑战-技能-反馈是否形成学习曲线，而不是靠数值或提示硬推？
+      - 机制、关卡、叙事和节奏是否互相支撑？
+      - 这段内容是否制造继续推进、探索、精通或通关的意愿？
+    required_lenses:
+      - sample_scope_gate
+      - critical_path
+      - pacing_beats
+      - agency_map
+      - challenge_skill_feedback
+      - narrative_mechanic_fit
+      - content_reuse_and_variety
+      - finish_intent
+
+  - mode_id: trailer_heat_prediction
+    name: PV / 宣传片 / 预告片热度潜力预测
+    triggers:
+      - PV
+      - 宣传片
+      - 预告片
+      - trailer
+      - 买量素材
+      - 能不能火
+      - 会不会火
+      - 爆款潜力
+      - 热度预测
+      - 预约潜力
+      - 愿望单
+    core_questions:
+      - 前 3-6 秒是否把品类、冲突、主卖点或强视觉钩子打出来？
+      - 观众看完后能否用一句话复述这个游戏“哪里不一样”？
+      - PV 展示的是可玩承诺、题材幻想、角色吸引力、系统深度，还是只有气氛？
+      - 这个卖点匹配什么平台和人群：Steam、主机、移动、B站、抖音/TikTok、TapTap、买量渠道？
+      - 传播点是否可截图、可二创、可争议、可梗化、可对标？
+      - 市场热度判断需要哪些当前信息：竞品、预约/愿望单、播放留存、评论情绪、搜索趋势、社区反馈？
+      - 现在应该改素材、改落地页、补玩法实机，还是先做小样本测试？
+    required_lenses:
+      - first_3_6_seconds_hook
+      - one_sentence_value_proposition
+      - gameplay_readability
+      - genre_audience_fit
+      - novelty_and_differentiation
+      - emotional_peak_and_shareability
+      - platform_channel_fit
+      - market_context_voi
+      - heat_potential_tier
+      - validation_metrics
+
+  - mode_id: foresight_opportunity
+    name: 前瞻机会 / 窗口期 / 立项价值判断
+    triggers:
+      - 前瞻
+      - 机会
+      - 窗口
+      - 窗口期
+      - 值不值得做
+      - 还值不值得
+      - 立项
+      - 能不能跟
+      - 大厂已经在做
+      - 机制迁移
+      - 题材迁移
+      - 跨品类迁移
+      - Go / No-Go
+    core_questions:
+      - 这个样本展示的是结构创新、内容创新、题材创新、投放创新、组合创新，还是反转窗口？
+      - 它解决了旧品类、旧题材或旧投放表达的什么痛点？
+      - 目前有多少市场验证：播放互动、社区情绪、预约/愿望单、测试反馈、竞品动作？
+      - 玩家当前在厌倦什么，又在奖励什么？
+      - 当前处于源头萌芽、跟进窗口、验证窗口、红海，还是反转窗口？
+      - 按项目轻重估算，休闲轻度是否还能在 1-3 个月内验证？微小中重度是否还能在 3-6 个月内验证？
+      - 这是结构可迁移、题材可迁移、表达可迁移，还是只适合营销测试？
+      - 下一步最低成本验证是什么？什么信号出现就停止投入？
+    required_lenses:
+      - opportunity_type
+      - innovation_source
+      - market_validation_signal
+      - era_emotion_signal
+      - window_stage
+      - transferability
+      - go_no_go
+      - minimum_validation
+      - kill_conditions
+
+  - mode_id: commercialization
+    name: 商业化 / 福利广告 / 付费入口分析
+    triggers:
+      - 商业化
+      - 付费
+      - 广告
+      - 福利
+      - 礼包
+      - 首充
+      - 变现
+    core_questions:
+      - 商业化入口出现时玩家是否已经理解核心循环？
+      - 付费/广告是否服务当前痛点，还是打断主目标？
+      - 免费、广告、付费三层资源是否清楚？
+      - 红点、弹窗和礼包密度是否造成噪音？
+    required_lenses:
+      - monetization_exposure
+      - welfare_noise
+      - ad_prompt_count
+      - purchase_prompt_count
+      - paid_value_fit
+
+  - mode_id: ux_ui
+    name: UX/UI / 信息层级 / 可读性分析
+    triggers:
+      - UI
+      - UX
+      - 界面
+      - 信息层级
+      - 按钮
+      - 红点
+      - 可读性
+    core_questions:
+      - 玩家第一眼知道要做什么吗？
+      - 主目标、次目标和商业化入口是否抢层级？
+      - 反馈是否可读？
+      - 红点、弹窗、引导手是否形成噪音？
+    required_lenses:
+      - visual_evidence
+      - information_hierarchy
+      - attention_path
+      - interaction_friction
+      - readability_risk
+
+  - mode_id: genre_benchmark
+    name: 品类对标 / 类型策略分析
+    triggers:
+      - 对标
+      - 品类
+      - 类型
+      - 像什么游戏
+      - X+SLG
+      - 竞品
+    core_questions:
+      - 它属于什么主品类或复合品类？
+      - 这个品类的核心成功标准是什么？
+      - 它哪些策略可迁移，哪些不可迁移？
+      - 与同品类常见结构相比，差异在哪里？
+    required_lenses:
+      - genre_route
+      - transferable_patterns
+      - non_transferable_constraints
+      - category_risks
+
+  - mode_id: problem_diagnosis
+    name: 问题诊断 / 改版建议
+    triggers:
+      - 哪里有问题
+      - 怎么改
+      - 诊断
+      - 优化建议
+      - 为什么不好玩
+      - 留不住
+    core_questions:
+      - 问题是 Hook、Loop、Link、Surprise 哪一层？
+      - 是机制问题、节奏问题、UI问题、商业化问题，还是品类错配？
+      - 哪些证据支持这个判断？
+      - 最小改动是什么？
+    required_lenses:
+      - issue_priority
+      - root_cause
+      - minimum_fix
+      - validation_plan
+
+  - mode_id: liveops_longevity
+    name: 长线运营 / 留存 / 版本承接分析
+    triggers:
+      - 长线
+      - 留存
+      - LiveOps
+      - 活动
+      - 版本
+      - 日常
+      - 赛季
+      - D1 D7
+    core_questions:
+      - 首日目标如何接到 D1/D7？
+      - 日常、活动、赛季和长期成长是否分层？
+      - 版本资产是否能复用？
+      - 玩家回来时追什么？
+    required_lenses:
+      - day1_goal
+      - day7_goal
+      - daily_loop
+      - event_layer
+      - long_term_asset
+
+selection_rules:
+  - 如果用户明确点名 MDA、机制动态美学或 Mechanics/Dynamics/Aesthetics，优先 whole_game_mda。
+  - 如果用户说整体分析、完整拆解、产品整体、体验和市场一起看，优先 holistic_game_analysis；只有明确点名 MDA 时才使用 whole_game_mda 作为主模式。
+  - 如果用户问系统叙事、玩法即叙事、价值观选择、意义生成、文化讨论、主题是否由机制承载，优先 holistic_game_analysis + whole_game_mda，并启用 systems_narrative_fusion 镜头。
+  - 如果用户明确点名单机、关卡、Boss、开放世界、叙事解谜或通关体验，优先 single_player_design；若同时点名 MDA，则使用 single_player_design + whole_game_mda。
+  - 如果用户明确点名 PV、宣传片、预告片、买量素材、能不能火、会不会火、爆款潜力、预约或愿望单，优先 trailer_heat_prediction；若素材包含实机片段，再补 gameplay_mechanics 或 genre_benchmark。
+  - 如果用户明确点名前瞻、机会、窗口期、值不值得做、立项、大厂跟进、机制迁移或题材迁移，优先 foresight_opportunity；若用户同时给 PV，则组合 trailer_heat_prediction。
+  - 如果用户只说“分析这个视频/截图”，根据素材先猜测主要意图：试玩录屏默认 early_experience；PV/预告默认 trailer_heat_prediction；纯界面截图默认 ux_ui；无法判断时才默认 early_experience，并在报告中保留可扩展模式。
+  - 如果用户问“玩法怎么样”，优先 gameplay_mechanics，不要只写新手期体验。
+  - 如果用户问“怎么改”，优先 problem_diagnosis，并补充证据链。
+  - 如果用户问“像无尽冬日这种 X+SLG”，优先 genre_benchmark + holistic_game_analysis 的组合；只有点名 MDA 时再叠加 whole_game_mda。
+  - 商业化、广告、付费入口明确出现时，即使主模式不是 commercialization，也要补商业化子节。
+
+output_rule:
+  - Every mode must keep evidence first. Do not write general design theory without source evidence from screenshots, video frames, metadata, or user-provided context.
+  - "VOI first: only collect external research that can change mode selection, opportunity tier, Go/No-Go, priority, or validation plan."
+  - "Systems narrative lens is conditional: use it only when theme, meaning, value conflict, emergent narrative, or post-play cultural discussion can change the judgment."

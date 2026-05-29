@@ -1,0 +1,231 @@
+{
+  "template_id": "general_game_video_experience",
+  "analysis_mode": "early_experience | gameplay_mechanics | holistic_game_analysis | whole_game_mda | single_player_design | trailer_heat_prediction | foresight_opportunity | commercialization | ux_ui | genre_benchmark | problem_diagnosis | liveops_longevity",
+  "video_meta": {
+    "game_name": null,
+    "platform": "unknown",
+    "version": null,
+    "session_scope": "first_session",
+    "expected_genre": "unknown",
+    "source_items": [
+      {
+        "type": "screenshot | video_file | video_url",
+        "path": null,
+        "url": null,
+        "label": null,
+        "time_range": null,
+        "accessed_at": null,
+        "access_notes": null
+      }
+    ],
+    "has_voice": "unknown",
+    "has_subtitle": "unknown"
+  },
+  "tool_readiness": {
+    "browser_access": "unknown",
+    "ffmpeg": "unknown",
+    "yt_dlp": "unknown",
+    "ocr": "unknown",
+    "asr": "unknown",
+    "access_notes": "",
+    "degradation": ""
+  },
+  "genre_route": {
+    "primary_genre": null,
+    "secondary_genre": null,
+    "evidence": "",
+    "strategy_profile": null,
+    "not_applicable": []
+  },
+  "analysis_route": {
+    "mode": null,
+    "reason": "",
+    "selected_lenses": [],
+    "core_questions": [],
+    "required_sections": [],
+    "not_answered": []
+  },
+  "visual_evidence": [
+    {
+      "image_id": null,
+      "timestamp": null,
+      "source_label": null,
+      "region": "",
+      "visible_text": "",
+      "evidence": "",
+      "confidence": 0.0
+    }
+  ],
+  "event_stream": [
+    {
+      "timestamp": "00:00:00",
+      "image_id": null,
+      "evidence_locator": "timestamp | image_id | url | page_context",
+      "type": "feature_exposure",
+      "system_tag": null,
+      "feature_tag": null,
+      "evidence": "",
+      "confidence": 0.0,
+      "state": "exposure"
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "entry",
+      "stage_name": "进入阶段",
+      "start": "00:00:00",
+      "end": null,
+      "objective": "",
+      "findings": [
+        {
+          "evidence_locator": "",
+          "evidence": "",
+          "judgment": "",
+          "confidence": 0.0
+        }
+      ]
+    }
+  ],
+  "four_step_scores": {
+    "scale_1_to_5": 5,
+    "hook": null,
+    "loop": null,
+    "link": null,
+    "surprise": null
+  },
+  "feature_ledger": [
+    {
+      "feature": "",
+      "exposure": null,
+      "unlock": null,
+      "first_use": null,
+      "evidence": "",
+      "confidence": 0.0
+    }
+  ],
+  "system_design_review": {
+    "core_loop": null,
+    "growth_curve": null,
+    "economy_welfare": null,
+    "monetization_intrusion": null,
+    "feedback_intensity": null,
+    "long_term_goal": null,
+    "validation_metrics": []
+  },
+  "mda_analysis": {
+    "mechanics": [],
+    "dynamics": [],
+    "aesthetics": [],
+    "breakpoints": [],
+    "systems_narrative_fusion": {
+      "playable_thesis": "",
+      "value_axis_system": [],
+      "player_value_as_balance": [],
+      "consequence_embodiment": [],
+      "loop_stack": [],
+      "cultural_conversation_loop": "",
+      "meaning_injection_vs_possibility_space": "",
+      "failure_signals": []
+    }
+  },
+  "holistic_game_analysis": {
+    "holistic_scope": "sample_based | pv_based | first_hour | multi_session | research_augmented | insufficient_evidence",
+    "voi_gate": {
+      "decision_to_change": "",
+      "external_research_needed": false,
+      "research_questions": [],
+      "stop_conditions": []
+    },
+    "product_positioning": {
+      "target_user": "",
+      "platform": "",
+      "primary_genre": "",
+      "secondary_genre": "",
+      "business_model": ""
+    },
+    "one_sentence_promise": "",
+    "core_game_structure": [],
+    "mda_fit": [],
+    "systems_narrative_fusion": [],
+    "content_supply": [],
+    "monetization_longevity_fit": [],
+    "foresight_window": [],
+    "overall_tier": "model_works | traction_but_product_unproven | gameplay_works_market_unproven | structural_risk | insufficient_evidence",
+    "minimum_validation": [],
+    "kill_conditions": []
+  },
+  "gameplay_mechanics": {
+    "core_actions": [],
+    "player_decisions": [],
+    "resources_economy": [],
+    "progression_unlocks": [],
+    "levels_or_tasks": [],
+    "feedback_loops": []
+  },
+  "single_player_design": {
+    "single_player_scope": "unknown | first_segment | level_slice | boss_slice | open_world_slice | narrative_slice | full_run_review",
+    "critical_path": [],
+    "pacing_beats": [],
+    "agency_map": [],
+    "challenge_skill_feedback": [],
+    "narrative_mechanic_fit": [],
+    "content_reuse_and_variety": [],
+    "finish_intent": []
+  },
+  "trailer_heat_prediction": {
+    "trailer_type": "unknown | CG | in-engine | gameplay_trailer | vertical_ad | mixed",
+    "first_3_6_seconds_hook": [],
+    "one_sentence_pitch": "",
+    "proof_of_play": [],
+    "genre_audience_fit": [],
+    "novelty_and_differentiation": [],
+    "shareability": [],
+    "platform_channel_fit": [],
+    "conversion_path": [],
+    "heat_potential_tier": "blockbuster_candidate | strong_niche_hit | needs_validation | high_risk | insufficient_evidence",
+    "confidence": "high | medium | low",
+    "key_uncertainties": [],
+    "validation_plan": []
+  },
+  "foresight_opportunity": {
+    "opportunity_type": "structural_innovation | content_innovation | theme_innovation | marketing_innovation | hybrid_innovation | reversal_window | unknown",
+    "source_signal": [],
+    "market_validation_signal": [],
+    "era_emotion_signal": [],
+    "window_stage": "source_emergence | follow_window | validation_window | red_ocean | reversal_window | unknown",
+    "remaining_window_estimate": "casual_light_1_3_months | micro_midcore_heavy_3_6_months | custom | unknown",
+    "minimum_validation_deadline": null,
+    "production_timeline_note": null,
+    "transferability": "structural | theme | expression | marketing_test_only | not_transferable | unknown",
+    "go_no_go": "go | conditional_go | no_go | watch",
+    "minimum_validation": [],
+    "kill_conditions": [],
+    "key_assumptions": []
+  },
+  "metrics": {
+    "key_timestamps": {},
+    "density_metrics": {},
+    "diagnosis_scores": {}
+  },
+  "summary": {
+    "one_line": "",
+    "issues": [
+      {
+        "severity": "high",
+        "title": "",
+        "evidence_locator": "",
+        "evidence": "",
+        "judgment": ""
+      }
+    ],
+    "recommendations": [
+      {
+        "owner": "",
+        "area": "hook | loop | link | surprise | guide | tempo | system | monetization | social | single_player | level | pacing | agency | challenge_feedback | trailer | market | channel | conversion | foresight | window | validation",
+        "action": "",
+        "expected_effect": "",
+        "validation": ""
+      }
+    ]
+  }
+}

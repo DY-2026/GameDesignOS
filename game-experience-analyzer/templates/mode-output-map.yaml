@@ -1,0 +1,256 @@
+map_id: game_experience_mode_output_map
+version: 0.1
+purpose: 将分析模式映射到必填镜头和报告段落，避免所有任务套同一份模板。
+
+common_required:
+  - sample_boundary
+  - tool_and_access_status
+  - visual_or_timeline_evidence
+  - analysis_route
+  - prioritized_findings
+  - actionable_recommendations
+
+modes:
+  early_experience:
+    required_lenses:
+      - evidence_timeline
+      - four_step_experience
+      - feature_ledger
+      - onboarding_pacing
+    optional_lenses:
+      - genre_route
+      - commercialization
+      - ux_ui
+    required_sections:
+      - 样本与边界
+      - 画面证据表
+      - 阶段化时间轴
+      - 体验上头四步法诊断
+      - 功能账本
+      - 新手引导与节奏分析
+      - 问题列表
+      - 优化建议
+
+  gameplay_mechanics:
+    required_lenses:
+      - gameplay_mechanics
+      - feedback_loop
+      - resource_economy
+      - progression_unlock
+    optional_lenses:
+      - genre_route
+      - mda
+      - problem_diagnosis
+    required_sections:
+      - 样本与边界
+      - 分析模式与问题框架
+      - 玩法机制分析
+      - 系统设计审查
+      - 问题列表
+      - 优化建议
+
+  whole_game_mda:
+    required_lenses:
+      - mda
+      - systems_narrative_fusion
+      - genre_route
+      - system_design_review
+    optional_lenses:
+      - gameplay_mechanics
+      - single_player_flow
+      - commercialization
+    required_sections:
+      - 样本与边界
+      - 品类路由与策略
+      - MDA / 机制-动态-体验分析
+      - 系统设计审查
+      - 问题列表
+      - 优化建议
+
+  holistic_game_analysis:
+    required_lenses:
+      - sample_scope_gate
+      - product_positioning
+      - one_sentence_promise
+      - gameplay_mechanics
+      - mda
+      - systems_narrative_fusion
+      - content_supply
+      - monetization_longevity_fit
+      - foresight_opportunity
+      - voi_gate
+      - minimum_validation
+      - kill_conditions
+    optional_lenses:
+      - trailer_heat_prediction
+      - single_player_flow
+      - genre_benchmark
+      - ux_ui
+      - commercialization
+      - liveops_longevity
+    required_sections:
+      - 样本与边界
+      - 分析模式与问题框架
+      - 品类路由与策略
+      - 整体游戏综合分析
+      - MDA / 机制-动态-体验分析
+      - 玩法机制分析
+      - 前瞻机会判断
+      - 问题列表
+      - 优化建议
+
+  single_player_design:
+    required_lenses:
+      - sample_scope_gate
+      - critical_path
+      - pacing_beats
+      - agency_map
+      - challenge_skill_feedback
+      - narrative_mechanic_fit
+      - finish_intent
+    optional_lenses:
+      - mda
+      - gameplay_mechanics
+      - ux_ui
+    required_sections:
+      - 样本与边界
+      - 阶段化时间轴
+      - 单机游戏设计分析
+      - 问题列表
+      - 优化建议
+
+  trailer_heat_prediction:
+    required_lenses:
+      - first_3_6_seconds_hook
+      - one_sentence_pitch
+      - proof_of_play
+      - novelty_and_differentiation
+      - shareability
+      - platform_channel_fit
+      - conversion_path
+      - heat_potential_tier
+      - validation_plan
+    optional_lenses:
+      - genre_benchmark
+      - gameplay_mechanics
+      - market_context_voi
+      - sentiment_scan
+    required_sections:
+      - 样本与边界
+      - 工具与访问状态
+      - 画面证据表
+      - 分析模式与问题框架
+      - PV / 宣传片热度潜力预测
+      - 问题列表
+      - 优化建议
+
+  foresight_opportunity:
+    required_lenses:
+      - opportunity_type
+      - innovation_source
+      - market_validation_signal
+      - era_emotion_signal
+      - window_stage
+      - remaining_window_estimate
+      - minimum_validation_deadline
+      - transferability
+      - go_no_go
+      - minimum_validation
+      - kill_conditions
+    optional_lenses:
+      - trailer_heat_prediction
+      - genre_benchmark
+      - gameplay_mechanics
+      - commercialization
+      - liveops_longevity
+    required_sections:
+      - 样本与边界
+      - 分析模式与问题框架
+      - 前瞻机会判断
+      - 品类路由与策略
+      - 问题列表
+      - 优化建议
+
+  commercialization:
+    required_lenses:
+      - monetization_exposure
+      - paid_value_fit
+      - welfare_noise
+      - interruption_risk
+    optional_lenses:
+      - early_experience
+      - economy
+      - ux_ui
+    required_sections:
+      - 样本与边界
+      - 画面证据表
+      - 商业化观察
+      - 问题列表
+      - 优化建议
+
+  ux_ui:
+    required_lenses:
+      - visual_evidence
+      - information_hierarchy
+      - attention_path
+      - interaction_friction
+    optional_lenses:
+      - accessibility
+      - onboarding_pacing
+    required_sections:
+      - 样本与边界
+      - 画面证据表
+      - UX/UI 诊断
+      - 问题列表
+      - 优化建议
+
+  genre_benchmark:
+    required_lenses:
+      - genre_route
+      - transferable_patterns
+      - non_transferable_constraints
+      - category_risks
+    optional_lenses:
+      - market_context_voi
+      - mda
+      - trailer_heat_prediction
+    required_sections:
+      - 样本与边界
+      - 品类路由与策略
+      - 对标与迁移判断
+      - 问题列表
+      - 优化建议
+
+  problem_diagnosis:
+    required_lenses:
+      - issue_priority
+      - root_cause
+      - minimum_fix
+      - validation_plan
+    optional_lenses:
+      - four_step_experience
+      - gameplay_mechanics
+      - ux_ui
+      - commercialization
+    required_sections:
+      - 样本与边界
+      - 分析模式与问题框架
+      - 问题列表
+      - 优化建议
+
+  liveops_longevity:
+    required_lenses:
+      - day1_goal
+      - day7_goal
+      - daily_loop
+      - event_layer
+      - long_term_asset
+    optional_lenses:
+      - economy
+      - commercialization
+      - social_competition
+    required_sections:
+      - 样本与边界
+      - 长线运营与留存分析
+      - 问题列表
+      - 优化建议

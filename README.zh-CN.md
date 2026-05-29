@@ -5,102 +5,58 @@
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  Paranoia 的游戏设计 skill 库，适用于 Claude Code、Codex、OpenCode 和任意智能体 CLI 工作流。
+  面向游戏设计、设计研究和 AI-assisted creator 的可复用 Agent Skill 库。
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
+  <a href="#快速开始">快速开始</a> ·
   <a href="#当前-skill">当前 Skill</a> ·
   <a href="#图文展示">图文展示</a> ·
-  <a href="#未来-skill">未来 Skill</a>
+  <a href="#项目治理">项目治理</a>
 </p>
 
 <p align="center">
-  Copyright (c) 2026 @Paranoia. All rights reserved.
+  <img alt="Skills" src="https://img.shields.io/badge/Skills-4-2ea44f">
+  <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
+  <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
+  <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
 </p>
 
-ParanoiaSkills 是一个开放 skill 库，把游戏设计阅读、翻译、资料策展和 AI 工作流演化，沉淀成可复用的操作方法。
+> Copyright (c) 2026 @Paranoia. All rights reserved.
 
-它不是 Codex 专用。这里的 skill 以可迁移的 agent instruction、references 和 templates 组织，Claude Code、Codex、OpenCode，或者任何能加载 Markdown skill / prompt / template 的智能体 CLI，都可以根据自己的环境使用或改造。
+## 这个项目是什么
 
-大多数 AI 工作流停在“答得不错”。ParanoiaSkills 关心的是更难的第二步：把一次好结果变成可重复调用的 skill、可维护的知识资产，以及不会失控漂移的进化流程。
+`ParanoiaSkills` 是一套游戏设计工作流 Skill 库，把游戏体验分析、AI 工作流演化、专业翻译和资料策展，沉淀成可复用、可验证、可迁移的 agent instructions、references、templates 和 examples。
 
-这个项目的野心很清楚：把它做成 GitHub 上最值得游戏设计师、设计研究者和 AI-assisted creators 长期收藏与复用的游戏设计工作流项目之一。
-
-它也会随着社区关注继续生长：每当这个仓库获得更多认可，ParanoiaSkills 都会把新的、更成熟的游戏设计 skill 加进来，让这个库从个人方法沉淀，逐步长成一套可共享的游戏设计基础设施。
-
-## 这个仓库是什么
-
-这是 Paranoia 的游戏设计库：一组面向游戏设计阅读、翻译、资料策展和 AI-assisted workflow 的可复用 skill。
-
-每个包都是一个可安装 skill，拥有自己的 agent 入口、人类说明文档、方法论 references、可复制 templates 和验证边界。这个库服务的是认真对待游戏设计这门手艺的人：来源质量、术语、证据、迭代、回退，以及真正可复用的方法。
-
-## 图文展示
-
-<table>
-  <tr>
-    <td width="33%">
-      <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator 展示图">
-    </td>
-    <td width="33%">
-      <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator 展示图">
-    </td>
-    <td width="33%">
-      <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver 展示图">
-    </td>
-  </tr>
-  <tr>
-    <td><b>策展资料</b><br>把散落在文章、视频、作者、专栏和网站里的内容，变成可长期维护的游戏设计知识库。</td>
-    <td><b>翻译设计知识</b><br>把严肃的游戏设计书籍和章节，变成自然、专业、可复查的中文设计写作。</td>
-    <td><b>演化工作流</b><br>用 VOI、OODA、eval、Human Gate 和 rollback 升级 prompt、schema、memory 和 tool routing。</td>
-  </tr>
-</table>
-
-## 当前 Skill
-
-| Skill | 为什么值得用 | 包目录 |
-| --- | --- | --- |
-| **Paranoia AI System Evolver** | 把 prompt、workflow、memory、schema、RAG、tool routing 和 eval 的改动，变成受控的系统演化。它用模型压缩和因果中介找关键控制点，用 VOI/OODA 校准现实，对高影响改动设置 Human Gate，并让升级可以 rollback。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
-| **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本，而不是机翻腔。它覆盖术语表、章节、图注、表格、QA 和来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
-| **Game Design Source Curator** | 把散落在文章、视频、作者、专栏和网站里的游戏设计资料，变成可长期维护的知识库。它使用证据门、评分、HTML 归档、registry、update history 和设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
-
-这三个 skill 合起来，形成一条完整链路：
+它不是一堆提示词合集。这个项目更像一套小型游戏设计操作系统：
 
 ```text
-发现高质量资料
+分析游戏截图、录屏、PV 和视频链接
+-> 演化执行这些工作的 agent workflow
 -> 翻译并结构化设计知识
--> 连接到方法、项目和实验
--> 升级执行这套工作的 agent workflow
--> 在需要时验证、版本化和回退
+-> 策展高质量资料和可复用来源
 ```
 
-## 为什么游戏设计师会需要它
+## 为什么值得收藏
 
-游戏设计知识天然是散的。好东西藏在书、演讲、postmortem、论坛、内部笔记、视频和制作经验里。普通 AI 总结很容易把这些材料压扁，变成一段“看似懂了”的概括。
+- **Evidence-first:** 不写泛泛总结，尽量把判断绑定到来源、截图区域、时间戳、样本证据或验证指标。
+- **Workflow-first:** 不追求一次漂亮回答，而是把可复用流程沉淀到 `SKILL.md`、`references/` 和 `templates/`。
+- **Game-design native:** 面向真实游戏设计工作：体验、玩法、MDA、系统叙事、品类、窗口期、商业化、素材和生产流程。
+- **Agent portable:** 不绑定单一工具；Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
+- **Controlled evolution:** 用 VOI、OODA、eval、Human Gate 和 rollback 防止工作流越改越漂。
 
-ParanoiaSkills 做的是更慢、但更值钱的那部分工作：
+## 快速开始
 
-- **从链接到知识:** 资料要经过筛选、评分、归档，并连接到具体设计用途。
-- **从翻译到设计素养:** 翻译要保住论证结构、术语、图表和生产语境。
-- **从 prompt 成功到 workflow 记忆:** 有用的 agent 行为，只有在有证据、eval 和 rollback 路径后，才进入候选方法。
-- **从个人笔记到可复用基础设施:** templates、references 和包边界让方法可以迁移、复查和继续升级。
-
-## 它怎么工作
-
-每个 skill 都用轻量 `SKILL.md` 作为 agent 入口。长方法放在 `references/`，可复制表单放在 `templates/`，工具或平台相关元数据放在 `agents/`。
+在支持 skill 的 agent 环境里，直接点名对应 skill：
 
 ```text
-SKILL.md      -> 什么时候用、边界是什么、快速流程是什么
-references/  -> 更完整的方法、Gate、评分规则和验证 playbook
-templates/   -> 可直接复制到真实项目里的工作表单
-agents/      -> 支持这些元数据的 agent 环境可读取
+Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, design lenses, heat potential, foresight windows, Go/No-Go, and validation recommendations.
 ```
 
-## Prompt 示例
-
 ```text
-Use $game-design-source-curator to review these game design sources and turn accepted items into a maintainable local knowledge base.
+Use $paranoia-ai-system-evolver to upgrade this prompt/workflow/schema with VOI, OODA, evals, Human Gate, and rollback.
 ```
 
 ```text
@@ -108,17 +64,53 @@ Use $game-design-book-translator to translate and polish this game design chapte
 ```
 
 ```text
-Use $paranoia-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with model compression, causal mediators, VOI, OODA, evals, Human Gate, and rollback.
+Use $game-design-source-curator to review these game design sources and turn accepted items into a maintainable local knowledge base.
 ```
 
-## 未来 Skill
+## 图文展示
 
-未来根据社区反馈和 skill 成熟度，可能继续加入 AI + 独游实战全流程方向的包，例如：
+<table>
+  <tr>
+    <td width="25%">
+      <img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer 展示图">
+    </td>
+    <td width="25%">
+      <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver 展示图">
+    </td>
+    <td width="25%">
+      <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator 展示图">
+    </td>
+    <td width="25%">
+      <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator 展示图">
+    </td>
+  </tr>
+  <tr>
+    <td><b>分析游戏体验</b><br>把截图、录屏、宣传片和视频链接，转成证据优先的游戏设计报告。</td>
+    <td><b>演化工作流</b><br>用 VOI、OODA、eval、Human Gate 和 rollback 升级 prompt、schema、memory 和 tool routing。</td>
+    <td><b>翻译设计知识</b><br>把严肃的游戏设计书籍和章节，变成自然、专业、可复查的中文设计写作。</td>
+    <td><b>策展资料</b><br>把散落在文章、视频、作者、专栏和网站里的内容，变成可长期维护的游戏设计知识库。</td>
+  </tr>
+</table>
 
-- `indie-game-production-master`：覆盖独游从想法验证、GDD/Gate、原型、playtest、AI 资产流水线、Steam/发布策略到复盘沉淀的全流程制作 skill。
-- `godot-ai-game-production`：覆盖 Godot + AI 项目搭建、设计真源、数据契约、资源流水线、headless/keyshot 验证、Demo/Release Gate 和工程复盘的生产 skill。
+## 当前 Skill
 
-## 当前结构
+| Skill | 一句话用途 | 适合场景 | 包目录 |
+| --- | --- | --- | --- |
+| **Game Experience Analyzer** | 把截图、录屏、PV/宣传片和视频链接拆成证据优先的中文游戏设计报告。 | 体验分析、玩法机制、整体项目、MDA、系统叙事、单机流程、热度预测、前瞻窗口、商业化、UX。 | [`game-experience-analyzer/`](./game-experience-analyzer/) |
+| **Paranoia AI System Evolver** | 把 prompt、workflow、memory、schema、tool routing 和 eval 改动变成受控系统演化。 | VOI/OODA、模型压缩、因果中介、Human Gate、rollback、可验证升级。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
+| **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本。 | 术语、章节、图注、表格、QA、来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
+| **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
+
+## 典型用例
+
+- **竞品体验复盘:** 给一段录屏，输出时间轴、功能账本、玩法循环、问题优先级和修改建议。
+- **PV 热度预测:** 给宣传片链接，判断首秒钩子、卖点复述、可玩性证明、平台适配、转化承接和验证计划。
+- **前瞻机会判断:** 判断题材/玩法是否还有窗口；休闲轻度默认 1-3 个月，微小中重度默认 3-6 个月。
+- **资料策展:** 把文章、视频、作者、专栏和网站沉淀成可检索、可引用、可实验的知识库。
+- **专业翻译:** 把游戏设计书籍或长文翻成自然中文，同时保留术语、论证结构和图表语境。
+- **工作流升级:** 把一次有用的 agent 行为升级成候选规则，并用 eval、Human Gate 和 rollback 控制风险。
+
+## 项目结构
 
 ```text
 ParanoiaSkills/
@@ -127,23 +119,63 @@ ParanoiaSkills/
 |-- README.en.md
 |-- assets/
 |   |-- voi-ooda-system-evolver-hero.png
-|   |-- showcase-source-curator.png
+|   |-- showcase-game-experience-analyzer.png
+|   |-- showcase-voi-ooda.png
 |   |-- showcase-book-translator.png
-|   `-- showcase-voi-ooda.png
+|   `-- showcase-source-curator.png
+|-- game-experience-analyzer/
+|-- paranoia-ai-system-evolver/
 |-- game-design-book-translator/
-|-- game-design-source-curator/
-`-- paranoia-ai-system-evolver/
+`-- game-design-source-curator/
 ```
 
-## 总体管理规则
+每个 skill 通常使用同一套结构：
 
-- 根目录 README 只讲整个 `ParanoiaSkills`：定位、目录、结构和治理规则。
+```text
+SKILL.md      -> agent 入口、触发条件、核心流程、边界
+references/  -> 方法、评分规则、路由、质量门、验证 playbook
+templates/   -> 可复制到真实任务中的表单和输出结构
+examples/    -> 可复查的示例输出
+agents/      -> 支持对应元数据的 agent 环境可读取
+evals/       -> 用于回归检查的提示和预期行为
+```
+
+## 安装与使用
+
+这个仓库里的 skill 是可迁移包。典型使用方式：
+
+1. 将某个 skill 目录复制或同步到你的 agent skill 目录。
+2. 确认 `SKILL.md` frontmatter 的 `name` 与目录名一致。
+3. 在 agent 中用 `$skill-name` 或自然语言触发。
+4. 按对应 README 或 `SKILL.md` 的验证方式检查 JSON/YAML、引用路径和示例。
+
+## 项目治理
+
+- 根目录 README 只讲整个 `ParanoiaSkills`：定位、目录、结构、用例和治理规则。
 - 每个 skill 目录只讲一个具体可安装 skill。
+- 区分会话命令和项目规则：用户在协作中给 Codex 的临时指令、执行命令、偏好纠偏和一次性上下文，不会自动写入这个公开项目。只有可复用、可公开、可验证，或用户明确要求沉淀的内容，才进入 README、SKILL、references、templates 或 examples。
 - `SKILL.md` 保持轻量，只放触发条件、核心流程、边界和按需读取路径。
 - 长文方法论放进 `references/`。
 - 可复制工作表单放进 `templates/`。
 - `SKILL.md` frontmatter `name`、文件夹名、`agents/openai.yaml` 默认提示保持一致。
-- 如果某个 skill 在 `C:\Users\Admin\.codex\skills` 下还有运行副本，后续运行副本发生变化时，必须同步回本项目同名目录，并校验两边副本。
+- 如果某个 skill 有运行副本，后续运行副本发生变化时，必须同步回本项目同名目录，并校验两边副本。
+
+## 设计原则
+
+```text
+Evidence before opinion.
+Workflow before one-off prompts.
+VOI before research.
+Eval before promotion.
+Rollback before confidence.
+```
+
+## 未来 Skill
+
+未来根据社区反馈和 skill 成熟度，可能继续加入 AI + 独游实战全流程方向的包，例如：
+
+- `indie-game-production-master`：覆盖独游从想法验证、GDD/Gate、原型、playtest、AI 资产流水线、Steam/发布策略到复盘沉淀的全流程制作 skill。
+- `godot-ai-game-production`：覆盖 Godot + AI 项目搭建、设计真源、数据契约、资源流水线、headless/keyshot 验证、Demo/Release Gate 和工程复盘的生产 skill。
 
 ## 版权
 

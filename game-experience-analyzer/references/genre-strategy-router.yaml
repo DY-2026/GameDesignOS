@@ -1,0 +1,281 @@
+router_id: game_genre_strategy_router
+name: 游戏类型策略路由
+version: 0.1
+purpose: 根据样本证据识别游戏类型，并为截图、录屏、视频链接分析选择不同的体验拆解策略。
+
+route_rules:
+  - genre_id: casual_idle_growth
+    name: 放置/轻量成长/小游戏
+    signals:
+      - 高频点击、开箱、砍树、抽取、合成、装备替换
+      - 战力、等级、境界、图鉴、离线收益
+      - 福利、广告奖励、礼包、排行榜、开服目标密集
+    strategy:
+      hook: 看首屏是否快速承诺变强、爆装、抽取、排行榜或轻松收益。
+      loop: 检查动作-奖励-变强-再行动是否在一分钟内闭合。
+      link: 重点看排行榜、开服目标、图鉴、长期境界线和社交/分享压力。
+      surprise: 重点看稀有奖励、爆装、突破、暴击收益、可截图炫耀点。
+    risk_focus:
+      - 福利和广告过早压过主循环
+      - 红点/弹窗密度过高
+      - 数值成长可读性弱
+      - 付费入口与当前痛点不匹配
+    key_metrics:
+      - time_to_first_action
+      - time_to_first_reward
+      - time_to_first_power_up
+      - repeated_core_action_count
+      - ad_prompt_count
+      - popup_count
+      - red_dot_count
+
+  - genre_id: survival_rpg
+    name: 幸存者/RPG/末日生存
+    signals:
+      - 丧尸、怪潮、生存天数、营地、搜集、武器、角色小队
+      - 地图推进、任务对话、战斗遭遇、资源箱、基地/安全区
+    strategy:
+      hook: 看生存危机、目标天数、世界威胁和角色处境是否迅速成立。
+      loop: 检查探索-战斗-资源-升级/修复-继续探索是否闭合。
+      link: 重点看营地、伙伴、地图区块、任务链、生存目标和基地成长。
+      surprise: 看精英怪、剧情反转、稀有武器、救援/危机事件是否形成峰值。
+    risk_focus:
+      - 开局剧情说明过长但玩家目标不清
+      - 战斗反馈弱，资源用途不明
+      - 地图移动和任务指引割裂
+      - 生存压力只停留在题材，没有机制压力
+    key_metrics:
+      - time_to_first_control
+      - time_to_first_combat
+      - time_to_first_resource_use
+      - time_to_first_base_or_team_goal
+      - combat_reward_clarity
+
+  - genre_id: roguelike_build
+    name: Roguelike/构筑/单局成长
+    signals:
+      - 单局、随机奖励、遗物、技能三选一、build、失败重开
+      - 关卡节点、路线选择、Boss、局外解锁
+    strategy:
+      hook: 看首局是否展示构筑空间和失败后想再来一局的承诺。
+      loop: 检查战斗-选择-构筑强化-下一战的短循环。
+      link: 区分局内成长和局外成长，不把长期养成压过单局乐趣。
+      surprise: 看组合爆发、稀有遗物、Boss 机制或反转奖励。
+    risk_focus:
+      - 随机选择太早但玩家看不懂价值
+      - build 反馈滞后
+      - 局外成长喧宾夺主
+      - 失败不可复盘
+    key_metrics:
+      - time_to_first_choice
+      - choice_understandability
+      - build_feedback_delay
+      - retry_intent_signal
+
+  - genre_id: card_gacha_rpg
+    name: 卡牌/Gacha/阵容养成
+    signals:
+      - 抽卡、角色稀有度、阵容、站位、技能、碎片、升星
+      - 保底、卡池、剧情角色、养成材料
+    strategy:
+      hook: 看角色吸引力、卡池目标、战斗幻想和首抽承诺。
+      loop: 检查战斗-掉落-养成-阵容变化-再战斗。
+      link: 看角色目标、阵容流派、长期卡池规划和剧情关系。
+      surprise: 看高稀有抽取、技能演出、组合技和剧情高点。
+    risk_focus:
+      - 首抽/付费过早压过玩法理解
+      - 养成材料太多不可读
+      - 战斗选择弱，像纯战力碾压
+      - 角色价值只靠稀有度表达
+    key_metrics:
+      - time_to_first_draw
+      - time_to_first_team_decision
+      - material_count_first_10min
+      - combat_choice_count
+
+  - genre_id: sim_management
+    name: 模拟经营/生产链
+    signals:
+      - 建造、生产、订单、顾客、装饰、NPC、资源瓶颈
+      - 收菜、升级建筑、开新区域、自动生产
+    strategy:
+      hook: 看经营主题、第一目标和空间扩张想象是否清楚。
+      loop: 检查生产-订单/收益-升级-解锁新生产的闭环。
+      link: 看空间扩张、NPC关系、装饰收藏和长期经营版图。
+      surprise: 看新区域、新顾客、稀有订单、装饰变化和事件。
+    risk_focus:
+      - 生产链解释慢
+      - 等待时间过早出现
+      - 资源瓶颈不可预期
+      - 装饰/扩张目标弱
+    key_metrics:
+      - time_to_first_order
+      - time_to_first_upgrade
+      - wait_time_first_loop
+      - next_area_visibility
+
+  - genre_id: x_plus_slg
+    name: X+SLG 复合品类
+    signals:
+      - 表层是经营、放置、卡牌、RPG 或生存，长期目标却落到大地图、联盟、行军、领地、战报、赛季竞争
+      - 前期先给基地/城镇/生产链，随后引入联盟、地图扩张、PVP、排行榜或跨服目标
+      - 典型结构可写作 模拟经营+SLG、生存+SLG、卡牌+SLG、放置+SLG
+    strategy:
+      hook: 先判断 X 层是否承担首屏题材和低门槛进入，再判断 SLG 层是否提前给长期战争/联盟/扩张承诺。
+      loop: 同时检查 X 层短循环和 SLG 层长循环；短循环负责留在当下，长循环负责明天回来。
+      link: 重点看基地、联盟、地图位置、赛季目标、排行榜、资源争夺是否把短循环接到长期竞争。
+      surprise: 看联盟事件、地图冲突、跨服战报、基地升级、稀有英雄/建筑解锁是否形成峰值。
+    risk_focus:
+      - 只做经营表皮，没有 SLG 长期压力
+      - SLG 入口过早，玩家还没理解 X 层生产/养成
+      - 联盟、地图、行军和资源解释滞后
+      - 短循环奖励无法转化成长线资源
+      - 赛季目标和个人成长脱节
+    key_metrics:
+      - time_to_first_x_loop
+      - time_to_first_base_upgrade
+      - time_to_first_map_exposure
+      - time_to_first_alliance_exposure
+      - time_to_first_march_or_pvp_hint
+      - x_loop_to_slg_resource_conversion
+
+  - genre_id: slg_4x
+    name: SLG/4X/联盟战争
+    signals:
+      - 大地图、城建、采集、行军、联盟、战报、领地、KvK
+    strategy:
+      hook: 看世界冲突、势力目标和第一块领地/基地承诺。
+      loop: 检查建造-采集-训练-行军-回报。
+      link: 重点看联盟、地图位置、长期战争和赛季目标。
+      surprise: 看侦查、战报、联盟事件、地图冲突峰值。
+    risk_focus:
+      - 开局系统过多
+      - 时间资源解释不清
+      - 联盟价值出现太晚
+      - 战报不可读
+    key_metrics:
+      - time_to_first_build
+      - time_to_first_march
+      - time_to_alliance_exposure
+      - map_goal_clarity
+
+  - genre_id: action_arpg
+    name: ARPG/动作战斗
+    signals:
+      - 移动、闪避、技能、连击、Boss、打击反馈、装备掉落
+    strategy:
+      hook: 看战斗动词、敌人威胁和操作幻想是否立即成立。
+      loop: 检查遭遇-操作-反馈-掉落/成长-下一战。
+      link: 看装备构筑、关卡推进、Boss目标和角色成长。
+      surprise: 看技能爆发、Boss阶段、处决、稀有掉落。
+    risk_focus:
+      - 自动战斗过早削弱操作理解
+      - 打击反馈弱
+      - 技能差异不可读
+      - 失败原因不可复盘
+    key_metrics:
+      - time_to_first_manual_action
+      - feedback_readability
+      - skill_choice_count
+      - failure_replayability
+
+  - genre_id: single_player_linear_action
+    name: 单机线性动作/动作冒险
+    signals:
+      - 章节、关卡、检查点、Boss、剧情过场、固定路线、逐步获得能力
+      - 以战斗、移动、平台跳跃、潜行或动作解谜推进
+    strategy:
+      hook: 看开场是否快速建立操作幻想、世界冲突、主目标和第一个可掌握动作。
+      loop: 检查遭遇-学习-测试-奖励-下一段的 teach/test/twist 节奏。
+      link: 看章节目标、能力获得、角色动机、世界变化和通关意愿是否接住短期挑战。
+      surprise: 看 setpiece、Boss阶段变化、能力反转、剧情高点和空间揭示。
+    risk_focus:
+      - 过场压过可玩目标
+      - 教学只教按钮不教判断
+      - 关卡节奏只有战斗堆叠，缺少变化和呼吸
+      - Boss 失败原因不可复盘
+      - 新能力没有被关卡立刻验证
+    key_metrics:
+      - time_to_first_control
+      - time_to_first_meaningful_choice
+      - teach_test_twist_presence
+      - checkpoint_friction
+      - failure_explainability
+      - setpiece_interval
+
+  - genre_id: single_player_open_world
+    name: 单机开放世界/半开放探索
+    signals:
+      - 大地图、自由路线、地标、支线、收集、营地、区域等级、探索奖励
+      - 主线目标和多个可选目标并存
+    strategy:
+      hook: 看玩家是否能快速理解“我要去哪”和“我为什么偏离主线也有价值”。
+      loop: 检查观察-选择路线-遭遇/探索-奖励-新线索的探索循环。
+      link: 看世界地图、角色成长、区域解锁、故事线索和收集目标如何形成长期牵引。
+      surprise: 看远景地标、隐藏空间、突发遭遇、稀有奖励和叙事发现。
+    risk_focus:
+      - 图标密度高但探索动机弱
+      - 开放路线实际只有清单劳动
+      - 支线奖励和主线成长断裂
+      - 导航过强导致玩家只追标记
+      - 探索风险与奖励不成比例
+    key_metrics:
+      - time_to_first_landmark
+      - route_choice_count
+      - optional_discovery_count
+      - map_icon_density
+      - exploration_reward_clarity
+      - main_optional_goal_balance
+
+  - genre_id: single_player_narrative_puzzle
+    name: 单机叙事/解谜/冒险
+    signals:
+      - 对话、线索、物品、谜题、场景调查、章节故事、选择分支
+      - 低战斗或无战斗，以理解、推理、探索和叙事推进
+    strategy:
+      hook: 看悬念、角色动机、谜题承诺或场景异常是否快速成立。
+      loop: 检查观察-假设-尝试-反馈-新线索的推理循环。
+      link: 看人物关系、未解问题、世界规则和章节目标是否承接玩家好奇心。
+      surprise: 看真相反转、谜题解法、空间变化、角色揭示和情绪峰值。
+    risk_focus:
+      - 线索可见但不可理解
+      - 谜题反馈弱，玩家不知道失败原因
+      - 叙事选择没有机制或情绪后果
+      - 文本量压过互动
+      - 提示过强破坏推理快感
+    key_metrics:
+      - time_to_first_mystery
+      - clue_visibility
+      - clue_interpretability
+      - puzzle_feedback_clarity
+      - text_interaction_ratio
+      - choice_consequence_signal
+
+  - genre_id: competitive_moba
+    name: MOBA/竞技对抗
+    signals:
+      - 英雄、对线、技能、团战、推塔、段位、队友/敌方
+    strategy:
+      hook: 看英雄定位、技能爽点和首个对抗目标。
+      loop: 检查对线/交火-资源-装备/等级-下一目标。
+      link: 看段位、英雄池、队友协作和长期精进目标。
+      surprise: 看击杀、反杀、团战、极限操作和翻盘点。
+    risk_focus:
+      - 教学只讲按钮不讲目标
+      - 技能反馈不可读
+      - 队友/敌方信息过载
+      - 胜负原因不清
+    key_metrics:
+      - time_to_first_pvp_decision
+      - skill_readability
+      - objective_clarity
+      - death_or_failure_explainability
+
+fallback:
+  rule: 如果无法稳定识别品类，先按最明显的核心动作临时路由，并在报告里写明备用品类可能。若发现 X 层短循环与 SLG 长线同时存在，优先标为 X+SLG，而不是只选其中一个。
+  required_output:
+    - primary_genre
+    - secondary_genre
+    - evidence
+    - strategy_profile
+    - not_applicable
