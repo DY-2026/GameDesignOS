@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paranoia.skills/contracts/issue-card.schema.json",
+  "title": "Issue Card",
+  "type": "object",
+  "required": [
+    "issue_id",
+    "severity",
+    "area",
+    "claim",
+    "evidence_refs",
+    "root_cause",
+    "minimum_fix",
+    "expected_effect",
+    "validation_method",
+    "owner"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "issue_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    "area": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "root_cause": {
+      "type": "string",
+      "minLength": 1
+    },
+    "minimum_fix": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expected_effect": {
+      "type": "string",
+      "minLength": 1
+    },
+    "validation_method": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

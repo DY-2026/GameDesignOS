@@ -1,5 +1,13 @@
 # One Page Pitch
 
+## Case Visibility
+
+| Field | Value |
+| --- | --- |
+| case_visibility | private_user_work / public_repo_example / public_article / client_confidential / synthetic_case / unknown |
+| output_destination | private_notes / repo_example / public_post / client_delivery / unknown |
+| redaction_required | true / false / unknown |
+
 ## 原始创意
 
 >
@@ -12,25 +20,29 @@
 | 玩法母体 |  |  |  |
 | 情绪承诺 |  |  |  |
 | 差异化种子 |  |  |  |
-| 平台假设 |  | assumption |  |
-| 商业化假设 |  | assumption |  |
-| 受众假设 |  | assumption |  |
+| 平台假设 |  | assumption/unknown |  |
+| 商业化假设 |  | assumption/unknown |  |
+| 受众假设 |  | assumption/unknown |  |
 | 关键 unknown |  | unknown |  |
+
+## Design Nucleus Options
+
+| ID | 候选设计核 | 玩家行为变化 | 最大风险 | 最小验证 |
+| --- | --- | --- | --- | --- |
+| N1 |  |  |  |  |
+| N2 |  |  |  |  |
 
 ## Assumption Ledger
 
-| ID | Assumption | 置信度 | 影响 | 验证方式 |
+| ID | Assumption / Unknown | 置信度 | 影响 | 验证方式 |
 | --- | --- | --- | --- | --- |
 | A1 |  |  |  |  |
 
-## External Feasibility Check
+## External Evidence Status
 
-| 维度 | 当前判断 | Evidence 状态 | 下一步 |
+| 决策点 | VOI 判断 | Evidence 状态 | 下一步 |
 | --- | --- | --- | --- |
-| 相似产品 |  | verified/partial/evidence-needed/contradicted |  |
-| 玩家动机关键词 |  |  |  |
-| 需求缺口 |  |  |  |
-| 标签和品类参照 |  |  |  |
+| design_nucleus / audience / platform / business / scope / validation / go_no_go |  | not-run/evidence-needed/partial/verified/contradicted |  |
 
 ## Player Promise
 
@@ -39,12 +51,6 @@
 | 对外宣传承诺 |  |
 | 前 10 分钟承诺 |  |
 | 长期游玩承诺 |  |
-
-## Design Nucleus
-
-一句话写清它如何改变玩家行为：
-
->
 
 ## Core Loop
 
@@ -87,6 +93,7 @@
 
 | 维度 | 判断 |
 | --- | --- |
+| 推荐设计核 |  |
 | 差异化 |  |
 | 可验证性 |  |
 | Scope 可控性 |  |

@@ -27,4 +27,4 @@
 
 本目录是项目内可追踪副本。后续如果运行副本发生变化，请同步回本目录，并重新校验两边内容一致。
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.

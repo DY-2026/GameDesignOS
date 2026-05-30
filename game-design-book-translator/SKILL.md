@@ -5,7 +5,7 @@ description: Use when translating, polishing, structuring, or QA-checking Englis
 
 # Game Design Book Translator
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 把英文游戏设计、游戏研发、Game Studies、系统设计、数值设计、UX/design theory 文本翻成适合中文策划与研发阅读的专业中文。目标不是逐句搬运，而是稳定术语、保留论证结构、处理图像信息，并让译文像中文作者在写。
 

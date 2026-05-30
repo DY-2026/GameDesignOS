@@ -1,32 +1,35 @@
-# Feasibility Scan
+# External Evidence Status / VOI Feasibility Gate
 
-## 外部验证状态
+This file keeps the older `feasibility-scan` template name for compatibility, but the runtime model is VOI-based external evidence status.
 
-| 维度 | 当前发现 | Evidence 状态 | 对设计的影响 | 下一步 |
-| --- | --- | --- | --- | --- |
-| 相似产品 |  | verified/partial/evidence-needed/contradicted |  |  |
-| 玩家动机关键词 |  |  |  |  |
-| 需求缺口 |  |  |  |  |
-| 标签和品类参照 |  |  |  |  |
-| 评论/社区信号 |  |  |  |  |
-| 价格/销量/商业参照 |  |  |  |  |
+## VOI Question
 
-## 核心体验浓缩
-
-用一句话说明这个概念的独特体验：
-
->
-
-目标受众听完后应当立刻理解：
-
-- 玩家是谁：
-- 玩家做什么：
-- 最关键的情绪：
-- 最关键的取舍：
-- 为什么不是普通换皮：
-
-## 继续验证问题
-
-| 问题 | 为什么重要 | 验证方式 |
+| Decision Point | Would Evidence Change This? | Why / Why Not |
 | --- | --- | --- |
-|  |  |  |
+| design_nucleus | yes/no/unknown |  |
+| target_audience | yes/no/unknown |  |
+| platform_fit | yes/no/unknown |  |
+| business_model | yes/no/unknown |  |
+| scope_gate | yes/no/unknown |  |
+| validation_plan | yes/no/unknown |  |
+| go_no_go | yes/no/unknown |  |
+
+## External Evidence Status
+
+| Decision Point | Current Finding | Evidence Status | Design Impact | Next Step |
+| --- | --- | --- | --- | --- |
+|  |  | not-run/evidence-needed/partial/verified/contradicted |  |  |
+
+## Minimal Example
+
+| Decision Point | Current Finding | Evidence Status | Design Impact | Next Step |
+| --- | --- | --- | --- | --- |
+| design_nucleus | 需要判断“照料变形”是否比“布局改路”更易理解 | evidence-needed | 先做双候选灰盒测试，不写确定市场判断 | 查同类评论动机或做 5 人可理解性测试 |
+| business_model | 当前原型不依赖商业化 | not-run | 商业模式只进 assumption ledger | 原型后再评估 |
+
+## Quality Gate
+
+- 没有证据时，必须写 `not-run` 或 `evidence-needed`。
+- 不得为了完整而泛搜。
+- 不得把未验证市场判断写成事实。
+- 有证据时必须说明它改变哪个设计 gate。

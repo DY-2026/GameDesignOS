@@ -4,7 +4,7 @@
 
 **语言:** 简体中文 | [English](./README.en.md)
 
-> Copyright (c) 2026 @Paranoia. All rights reserved.
+> Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 这是 `ParanoiaSkills` 里的一个具体可安装 skill。它负责“AI 系统受控进化”这个能力，不代表整个技能库。
 
@@ -62,6 +62,6 @@ quick_validate.py
 - `SKILL.md` 保持轻量，只做触发、工作流和按需读取路由。
 - 长期方法论放在 `references/`。
 - 可复制工作表单放在 `templates/`。
-- 改动后先运行 `quick_validate.py`，再同步运行时副本并做一致性校验。
+- 改动后在仓库根目录运行 `python scripts/validate_skill.py paranoia-ai-system-evolver`，再同步运行时副本并做一致性校验。
 - `name`、文件夹名、`agents/openai.yaml` 和公开 README 的命名保持一致。
 - 全局安装、长期记忆写入和生产影响改动都属于 Human Gate。

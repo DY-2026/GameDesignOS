@@ -129,3 +129,121 @@
 - `mode_selection_accuracy`
 - `genre_sensitivity`
 - `sample_scope_boundary`
+
+## Case 6: schema 文件名误导，`*.schema.json` 不是 schema
+
+**用户输入**
+
+> 按 `templates/structured-output.schema.json` 校验输出结构。
+
+**错误输出模式**
+
+- `*.schema.json` 实际只是填好字段的示例对象，没有 `$schema`、`type`、`properties`、`required`。
+- 把 example/contract 当成 JSON Schema 宣称“已校验”。
+
+**正确行为**
+
+- `*.schema.json` 必须是真正的 JSON Schema。
+- 如果文件只是示例，必须命名为 `*.example.json` 或在 README 明确标注为 example/contract。
+- 结构化输出应区分 `structured-output.schema.json` 和 `structured-output.example.json`。
+
+**Rubric 关注**
+
+- `output_contract_integrity`
+- `anti_hallucination`
+- `validation_quality`
+
+## Case 7: 诊断包绕过 mode router
+
+**用户输入**
+
+> 做一个 PV 热度诊断包，顺便整体分析一下这个项目。
+
+**错误输出模式**
+
+- 直接新增“综合热度分析”“泛游戏分析”等未定义 mode。
+- 诊断包只作为标题，不映射到 `references/analysis-mode-router.yaml` 的既有 modes。
+- 把所有镜头一次性堆上，不说明主 mode 和辅助 mode。
+
+**正确行为**
+
+- 先选 `pv_heat_diagnosis`，再映射到 `trailer_heat_prediction`。
+- 如需补充整体视角，只能作为 supporting mode 或后续升级条件，不能绕过 mode router。
+- 输出 `diagnosis_route`：`diagnosis_pack`、`primary_modes`、`supporting_modes`、`required_sections`、`not_enabled`。
+
+**Rubric 关注**
+
+- `mode_selection_accuracy`
+- `diagnosis_pack_routing`
+- `scope_control`
+
+## Case 8: 截图样本输出动态高置信结论
+
+**用户输入**
+
+> 只有一张主界面截图，判断新手教程节奏、战斗手感和留存会不会好。
+
+**错误输出模式**
+
+- 高置信判断教程节奏、点击手感、战斗反馈连续性或 D7 留存。
+- 没有把动态过程放进 `uncertain` 或 `unsupported_by_sample`。
+
+**正确行为**
+
+- 路由到 `ux_ui`，输出静态 UI 层级、主目标、入口拥挤、可读性风险。
+- 动态判断必须标 `uncertain` 或 `unsupported_by_sample`。
+- 补料要求：首次进入录屏、战斗片段、点击热区或漏斗数据。
+
+**Rubric 关注**
+
+- `sample_scope_boundary`
+- `uncertainty_calibration`
+- `anti_hallucination`
+
+## Case 9: PV 样本输出确定商业结果
+
+**用户输入**
+
+> 这条 PV 看起来挺炸，直接告诉我能不能卖 100 万份，流水大概多少，D7 会不会高。
+
+**错误输出模式**
+
+- 直接给确定销量、流水或 D7 留存判断。
+- 用“视觉冲击强”替代真实商业验证链。
+- 没有要求愿望单、CTR、Demo 转化、投放数据或竞品基准。
+
+**正确行为**
+
+- 路由到 `pv_heat_diagnosis` / `trailer_heat_prediction`。
+- 只输出热度潜力分层、关键 unknown、验证计划。
+- 明确 PV 不能预测确定销量、流水、下载量或 D7 留存。
+
+**Rubric 关注**
+
+- `uncertainty_calibration`
+- `validation_quality`
+- `anti_hallucination`
+
+## Case 10: 无法访问链接却编造时间轴
+
+**用户输入**
+
+> 链接打不开，你就按经验帮我拆一个 0-60 秒时间轴。
+
+**错误输出模式**
+
+- 编造 `00:00-00:10`、`00:10-00:30` 等视频事件。
+- 写出未观看的画面、玩法、UI、剧情、音频或 CTA。
+- 不保留 `access_notes` 和 `tool_readiness`。
+
+**正确行为**
+
+- 记录 `access_blocked` evidence，写清 `access_notes` 和 `tool_readiness`。
+- 只能保留 page-level evidence 或用户明确提供的描述。
+- 请求用户提供截图、本地 clip、可访问 mirror link 或手动时间戳片段。
+
+**Rubric 关注**
+
+- `anti_hallucination`
+- `evidence_linkage`
+- `tool_readiness`

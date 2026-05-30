@@ -21,4 +21,4 @@
 - 整本书模板：[`templates/book-translation-package.md`](./templates/book-translation-package.md)
 - Eval 样例：[`evals/evals.json`](./evals/evals.json)
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.

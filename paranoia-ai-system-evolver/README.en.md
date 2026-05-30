@@ -4,7 +4,7 @@
 
 **Languages:** [简体中文](./README.zh-CN.md) | [English](./README.en.md)
 
-> Copyright (c) 2026 @Paranoia. All rights reserved.
+> Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 This is one installable skill inside `ParanoiaSkills`. It owns the controlled AI system evolution capability; it is not the whole skill library.
 
@@ -62,6 +62,6 @@ Use $paranoia-ai-system-evolver to turn this AI workflow problem into a controll
 - Keep `SKILL.md` as the lightweight routing layer.
 - Put durable methodology in `references/`.
 - Put copy-paste working forms in `templates/`.
-- After changes, run `quick_validate.py`, then sync the runtime copy and verify both copies match.
+- After changes, run `python scripts/validate_skill.py paranoia-ai-system-evolver` from the repository root, then sync the runtime copy and verify both copies match.
 - Keep the frontmatter `name`, folder name, `agents/openai.yaml`, and public README naming aligned.
 - Treat global installation, long-term memory writes, and production-impacting changes as Human Gate actions.

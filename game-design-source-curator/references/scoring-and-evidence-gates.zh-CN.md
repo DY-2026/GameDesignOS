@@ -1,6 +1,6 @@
 # 审核评分与证据门
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 ## 硬门槛
 

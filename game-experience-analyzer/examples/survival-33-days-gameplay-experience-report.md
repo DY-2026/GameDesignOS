@@ -1,3 +1,11 @@
+---
+case_type: public_material_analysis
+source_status: public
+contains_private_project_info: false
+license_status: public_source
+intended_use: skill_behavior_demo
+---
+
 # 《生存33天》41 分钟试玩录屏诊断报告示例
 
 本示例用于展示 `game-experience-analyzer` 升级后的诊断交付形态：先过样本边界门，再建立 Evidence Index，然后进入诊断包、问题卡和验证计划。它不是“看完视频后的观感总结”。

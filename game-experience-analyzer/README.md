@@ -23,7 +23,7 @@
 
 它适合游戏设计师、制作人、发行/宣发、竞品研究、AI-assisted game team 和任何需要把“我觉得这游戏不错/不行”变成“证据在哪里、问题是什么、下一步怎么验证”的使用者。
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 ## 为什么需要它
 
@@ -124,11 +124,18 @@ Use $game-experience-analyzer to analyze this local gameplay recording into a sa
 
 ## 示例输出
 
-示例报告见：
+示例索引见：
 
-- [`examples/survival-33-days-gameplay-experience-report.md`](./examples/survival-33-days-gameplay-experience-report.md)
+- [`examples/README.md`](./examples/README.md)
 
-这个案例展示了录屏优先的工作流：一个公开视频样本会被拆成时间戳证据、功能暴露/解锁/首用账本、Hook/Loop/Link/Surprise 诊断和可验证修改建议。
+索引列出当前公开示例的 `input_type`、`diagnosis_pack`、`main_mode`、`confidence_boundary` 和输出文件。
+
+## Contract Input
+
+- GCA can export player-promise-contract.
+- GEA can validate whether a prototype/video fulfills that contract.
+
+当用户提供 `player-promise-contract` 时，先读取其中的 external promise、first 10 minutes promise 和 long-term promise，再用 Evidence Index 检查样本是否兑现了承诺、在哪些环节失真、下一轮 validation plan 应该验证什么。
 
 ## 工具准备
 
@@ -147,6 +154,7 @@ Use $game-experience-analyzer to analyze this local gameplay recording into a sa
 - 每个重要判断都必须能回到 `evidence_id`，并能定位到截图区域、时间戳、关键帧、页面元数据或用户提供事实。
 - 关键截图必须图文并茂：插入截图，并解释可观察事实、设计含义、诊断判断和迭代动作。
 - Evidence Index 字段见 [`references/evidence-taxonomy.zh-CN.md`](./references/evidence-taxonomy.zh-CN.md)，结构校验见 [`templates/evidence-index.schema.json`](./templates/evidence-index.schema.json)。
+- 结构化输出校验见 [`templates/structured-output.schema.json`](./templates/structured-output.schema.json)；字段示例/contract 见 [`templates/structured-output.example.json`](./templates/structured-output.example.json)，不得把 example 文件误称为 schema。
 - 截图不能直接判断节奏、手感、等待和循环闭合；这些必须标 `uncertain`。
 - PV/宣传片只能预测热度潜力和验证路径，不能包装成确定销量、流水或下载量预测。
 - 外部调研必须符合 VOI：只有会改变品类判断、版本事实、竞品基准、市场热度、窗口阶段、Go/No-Go 或建议优先级时才做。
@@ -178,6 +186,7 @@ game-experience-analyzer/
 |   |-- negative_cases.md
 |   `-- rubric.yaml
 |-- examples/
+|   |-- README.md
 |   `-- survival-33-days-gameplay-experience-report.md
 |-- references/
 |   |-- analysis-mode-router.yaml
@@ -199,6 +208,7 @@ game-experience-analyzer/
     |-- issue-card.md
     |-- mode-output-map.yaml
     |-- quick-triage-report.md
+    |-- structured-output.example.json
     |-- structured-output.schema.json
     |-- trailer-heat-report.md
     |-- validation-plan.md
@@ -207,14 +217,14 @@ game-experience-analyzer/
 
 ## 验证
 
-The package should pass:
+在仓库根目录运行：
 
-```powershell
-$env:PYTHONUTF8='1'
-python C:\Users\Admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py D:\ai\voi-ooda-ai-system-evolver\game-experience-analyzer
+```text
+python scripts/validate_repo.py
+python scripts/validate_skill.py game-experience-analyzer
 ```
 
-And all JSON/YAML files should parse cleanly.
+所有 JSON/YAML 文件都应该能解析通过。
 
 ## 设计原则
 

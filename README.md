@@ -16,6 +16,8 @@
   <a href="#easy-start">Easy Start</a> ·
   <a href="#current-skills">Current Skills</a> ·
   <a href="#showcase">Showcase</a> ·
+  <a href="#publication-safety">Publication Safety</a> ·
+  <a href="#license">License</a> ·
   <a href="#governance">Governance</a>
 </p>
 
@@ -26,7 +28,7 @@
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
 </p>
 
-> Copyright (c) 2026 @Paranoia. All rights reserved.
+> License: skill documents and tooling are released under the MIT License. The Paranoia name, logos, visual identity, and project branding are not licensed as trademarks.
 
 > Think of it as a compact operating system for game designers and AI agents: not a prompt collection, but reusable decision loops, evidence rules, quality gates, and output templates packaged as skills.
 
@@ -145,6 +147,21 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
   </tr>
 </table>
 
+## Skill Architecture
+
+`ParanoiaSkills` is organized into three layers. Public repository contains base skills. Private overlays should live outside this repository.
+
+- **Design Production Layer**
+  - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.
+  - [`game-experience-analyzer/`](./game-experience-analyzer/): media/sample -> evidence-linked diagnosis.
+- **Workflow Governance Layer**
+  - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/): prompt/workflow/schema/eval changes -> controlled evolution.
+- **Knowledge Asset Layer**
+  - [`game-design-book-translator/`](./game-design-book-translator/): design texts -> professional Chinese design writing.
+  - [`game-design-source-curator/`](./game-design-source-curator/): scattered sources -> durable knowledge base.
+
+Users may still use these skills with real projects, private projects, client work, or synthetic cases in their own environment. The public-case rules apply only to content committed back to this repository.
+
 ## Current Skills
 
 | Skill | One-line Use | Best For | Package |
@@ -172,13 +189,22 @@ ParanoiaSkills/
 |-- README.md
 |-- README.zh-CN.md
 |-- README.en.md
+|-- LICENSE
+|-- CONTRIBUTING.md
+|-- adapters/
+|-- contracts/
+|-- docs/
+|-- .github/
+|-- releases/
+|-- scripts/
 |-- assets/
 |   |-- demo-game-experience-before-after.png
 |   |-- voi-ooda-system-evolver-hero.png
 |   |-- showcase-game-experience-analyzer.png
 |   |-- showcase-voi-ooda.png
 |   |-- showcase-book-translator.png
-|   `-- showcase-source-curator.png
+|   |-- showcase-source-curator.png
+|   `-- showcase-game-concept-architect.png
 |-- game-experience-analyzer/
 |-- paranoia-ai-system-evolver/
 |-- game-design-book-translator/
@@ -206,10 +232,31 @@ These packages are portable skill folders. A typical setup:
 3. Trigger the skill by `$skill-name` or natural language.
 4. Validate JSON/YAML, reference paths, and examples according to the skill README or `SKILL.md`.
 
+## Validation
+
+Run these commands from the repository root:
+
+```text
+python scripts/validate_repo.py
+python scripts/validate_skill.py game-experience-analyzer
+python scripts/validate_skill.py game-concept-architect
+```
+
+## Publication Safety
+
+Before adding examples, eval prompts, screenshots, fixtures, release notes, or copied session commands, follow [`CONTRIBUTING.md`](./CONTRIBUTING.md). Public material must be synthetic, public, or explicitly cleared, and must not leak user commands, local files, personal projects, private data, client work, or unpublished strategy.
+
+## License
+
+Skill documents and tooling in this repository are released under the [MIT License](./LICENSE).
+
+The Paranoia name, logos, visual identity, and project branding are not licensed as trademarks. Examples may have their own `source_status`, `case_type`, or source metadata; check each example's frontmatter before reuse.
+
 ## Governance
 
 - Keep the root README focused on the whole `ParanoiaSkills` library: positioning, packages, structure, use cases, and governance.
 - Keep each skill folder responsible for one installable skill.
+- Public examples, eval prompts, screenshots, fixtures, release notes, and copied session commands must follow [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 - Separate session commands from project rules: temporary Codex instructions, execution commands, preference corrections, and one-off context from a working conversation are not automatically written into this public project. Only reusable, public, verifiable rules, or content the user explicitly asks to preserve, should enter README, SKILL, references, templates, or examples.
 - Keep `SKILL.md` lightweight: trigger conditions, core workflow, boundaries, and read-as-needed paths.
 - Put durable methodology in `references/`.
@@ -234,7 +281,3 @@ Depending on feedback and maturity, future additions may include AI + indie game
 
 - `indie-game-production-master`: full-cycle indie production from idea validation, GDD/Gates, prototyping, playtesting, AI asset pipelines, Steam/release strategy, and postmortem writeback.
 - `godot-ai-game-production`: Godot + AI production covering project scaffolding, design truth, data contracts, asset pipelines, headless/keyshot validation, Demo/Release Gates, and engineering retrospectives.
-
-## Copyright
-
-Copyright (c) 2026 @Paranoia. All rights reserved.

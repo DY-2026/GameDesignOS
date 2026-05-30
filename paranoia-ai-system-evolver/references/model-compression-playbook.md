@@ -1,6 +1,6 @@
 # 模型压缩 Playbook
 
-> Copyright (c) 2026 @Paranoia. All rights reserved.
+> Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 此文件为默认中文版本。英文版见 `model-compression-playbook.en.md`，简体中文版见 `model-compression-playbook.zh-CN.md`。
 

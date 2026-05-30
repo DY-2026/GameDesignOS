@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paranoia.skills/contracts/player-promise-contract.schema.json",
+  "title": "Player Promise Contract",
+  "type": "object",
+  "required": [
+    "concept_id",
+    "concept_title",
+    "source_skill",
+    "external_promise",
+    "first_10_minutes_promise",
+    "long_term_promise",
+    "assumptions",
+    "validation_notes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "concept_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "concept_title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_skill": {
+      "type": "string",
+      "const": "game-concept-architect"
+    },
+    "external_promise": {
+      "$ref": "#/$defs/promise_layer"
+    },
+    "first_10_minutes_promise": {
+      "$ref": "#/$defs/promise_layer"
+    },
+    "long_term_promise": {
+      "$ref": "#/$defs/promise_layer"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "validation_notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "promise_layer": {
+      "type": "object",
+      "required": [
+        "claim",
+        "expected_evidence",
+        "failure_signals"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "failure_signals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

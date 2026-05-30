@@ -7,7 +7,7 @@ metadata:
 
 # Game Design Source Curator
 
-> Copyright (c) 2026 @Paranoia. All rights reserved.
+> Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 把到处看到的文章、视频、作者、专栏和网站，变成一套可持续维护的游戏设计知识资产。
 

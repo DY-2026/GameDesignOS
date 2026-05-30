@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paranoia.skills/contracts/validation-plan.schema.json",
+  "title": "Validation Plan",
+  "type": "object",
+  "required": [
+    "validation_id",
+    "target_assumption",
+    "prototype_scope",
+    "test_method",
+    "success_criteria",
+    "failure_criteria",
+    "next_investment_condition",
+    "kill_condition",
+    "evidence_required"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "validation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_assumption": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prototype_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "test_method": {
+      "type": "string",
+      "minLength": 1
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "failure_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "next_investment_condition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kill_condition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_required": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    }
+  }
+}

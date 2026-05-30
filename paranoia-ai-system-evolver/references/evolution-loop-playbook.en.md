@@ -1,6 +1,6 @@
 # Evolution Loop Playbook
 
-> Copyright (c) 2026 @Paranoia. All rights reserved.
+> Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 ## 1. System Definition
 
