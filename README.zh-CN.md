@@ -16,9 +16,7 @@
   <a href="#轻松上手">轻松上手</a> ·
   <a href="#当前-skill">当前 Skill</a> ·
   <a href="#图文展示">图文展示</a> ·
-  <a href="#发布安全规则">发布安全规则</a> ·
-  <a href="#license">License</a> ·
-  <a href="#项目治理">项目治理</a>
+  <a href="#license">License</a>
 </p>
 
 <p align="center">
@@ -242,27 +240,19 @@ python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 ```
 
-## 发布安全规则
-
-新增 examples、eval prompts、截图、fixtures、release notes 或从会话中整理命令前，先遵守 [`CONTRIBUTING.md`](./CONTRIBUTING.md)。公开材料只能使用 synthetic cases、公开材料案例或明确可公开样本，不能泄露用户命令、本地文件、个人项目、私有数据、客户材料或未公开策略。
-
 ## License
 
 本仓库的 skill documents and tooling 使用 [MIT License](./LICENSE) 发布。
 
 Paranoia 名称、logo、视觉识别和项目品牌不作为商标授权。examples 可能有各自的 `source_status`、`case_type` 或来源元数据，复用前请检查对应文件 frontmatter。
 
-## 项目治理
+## Skill 包约定
 
-- 根目录 README 只讲整个 `ParanoiaSkills`：定位、目录、结构、用例和治理规则。
-- 每个 skill 目录只讲一个具体可安装 skill。
-- 公开 examples、eval prompts、截图、fixtures、release notes 和从会话中整理出的命令必须遵守 [`CONTRIBUTING.md`](./CONTRIBUTING.md)。
-- 区分会话命令和项目规则：用户在协作中给 Codex 的临时指令、执行命令、偏好纠偏和一次性上下文，不会自动写入这个公开项目。只有可复用、可公开、可验证，或用户明确要求沉淀的内容，才进入 README、SKILL、references、templates 或 examples。
-- `SKILL.md` 保持轻量，只放触发条件、核心流程、边界和按需读取路径。
-- 长文方法论放进 `references/`。
-- 可复制工作表单放进 `templates/`。
-- `SKILL.md` frontmatter `name`、文件夹名、`agents/openai.yaml` 默认提示保持一致。
-- 如果某个 skill 有运行副本，后续运行副本发生变化时，必须同步回本项目同名目录，并校验两边副本。
+每个 skill 都是一个可独立安装的包：`SKILL.md` 放运行入口，`references/` 放方法说明，`templates/` 放可复用表单，`examples/` 和 `evals/` 用于展示与回归检查。
+
+## 贡献
+
+提交公开 examples、evals、assets、showcases 或 release notes 前，请确保材料为 synthetic、公开材料或明确 cleared material。具体规则见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
 
 ## 设计原则
 

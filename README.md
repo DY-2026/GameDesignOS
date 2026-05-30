@@ -16,9 +16,7 @@
   <a href="#easy-start">Easy Start</a> ·
   <a href="#current-skills">Current Skills</a> ·
   <a href="#showcase">Showcase</a> ·
-  <a href="#publication-safety">Publication Safety</a> ·
-  <a href="#license">License</a> ·
-  <a href="#governance">Governance</a>
+  <a href="#license">License</a>
 </p>
 
 <p align="center">
@@ -242,27 +240,19 @@ python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 ```
 
-## Publication Safety
-
-Before adding examples, eval prompts, screenshots, fixtures, release notes, or copied session commands, follow [`CONTRIBUTING.md`](./CONTRIBUTING.md). Public material must be synthetic, public, or explicitly cleared, and must not leak user commands, local files, personal projects, private data, client work, or unpublished strategy.
-
 ## License
 
 Skill documents and tooling in this repository are released under the [MIT License](./LICENSE).
 
 The Paranoia name, logos, visual identity, and project branding are not licensed as trademarks. Examples may have their own `source_status`, `case_type`, or source metadata; check each example's frontmatter before reuse.
 
-## Governance
+## Package Conventions
 
-- Keep the root README focused on the whole `ParanoiaSkills` library: positioning, packages, structure, use cases, and governance.
-- Keep each skill folder responsible for one installable skill.
-- Public examples, eval prompts, screenshots, fixtures, release notes, and copied session commands must follow [`CONTRIBUTING.md`](./CONTRIBUTING.md).
-- Separate session commands from project rules: temporary Codex instructions, execution commands, preference corrections, and one-off context from a working conversation are not automatically written into this public project. Only reusable, public, verifiable rules, or content the user explicitly asks to preserve, should enter README, SKILL, references, templates, or examples.
-- Keep `SKILL.md` lightweight: trigger conditions, core workflow, boundaries, and read-as-needed paths.
-- Put durable methodology in `references/`.
-- Put reusable working forms in `templates/`.
-- Keep `SKILL.md` frontmatter `name`, folder name, and `agents/openai.yaml` aligned.
-- If a runtime copy changes later, sync it back to the matching project folder and validate both copies.
+Each skill is an independently installable package. Keep `SKILL.md` as the runtime entrypoint, put durable methods in `references/`, reusable forms in `templates/`, examples in `examples/`, and regression checks in `evals/`.
+
+## Contributing
+
+Public examples, evals, assets, showcases, and release notes must use synthetic, public, or explicitly cleared material. See [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting repository-facing content.
 
 ## Design Principles
 

@@ -53,6 +53,24 @@ For public-facing examples, eval cases, showcase assets, or docs that describe a
 | `redaction_required` | `true` / `false` |
 | `private_inference_risk` | `low` / `medium` / `high` |
 
+## Skill Package Conventions
+
+Each skill folder should remain focused on one installable skill:
+
+- Keep `SKILL.md` lightweight: trigger conditions, core workflow, boundaries, and read-as-needed paths.
+- Put durable methodology, scoring rules, routers, and gates in `references/`.
+- Put reusable working forms and output structures in `templates/`.
+- Put public examples in `examples/` and regression prompts in `evals/`.
+- Keep `SKILL.md` frontmatter `name`, the folder name, and `agents/openai.yaml` aligned.
+
+## Session Context Boundary
+
+Commands, temporary Codex instructions, execution details, preference corrections, and one-off context from a working session are not repository documentation by default.
+
+Only add them to this public repository when they have been rewritten into reusable, public, verifiable project rules or when the user explicitly asks to preserve them as public project material.
+
+If you maintain an installed runtime copy of a skill, keep it synchronized with the repository source and validate both copies before release.
+
 ## Minimal Safe Example
 
 ```markdown
