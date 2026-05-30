@@ -2,7 +2,7 @@
 name: game-experience-analyzer
 description: Use when analyzing game screenshots, local gameplay recordings, trailers/PVs, paid creatives, store pages, or video links into Chinese evidence-linked diagnosis reports with sample scope gates, evidence indexes, diagnosis packs, mode routing, genre-sensitive recommendations, validation plans, and actionable game design recommendations.
 metadata:
-  short-description: Analyze screenshots, recordings, and video links into Chinese experience reports
+  short-description: Build illustrated, evidence-linked Chinese game diagnosis reports
 ---
 
 # Game Experience Analyzer
@@ -82,6 +82,7 @@ Copyright (c) 2026 @Paranoia. All rights reserved.
    - 每个关键观察都绑定时间戳；截图没有时间戳时绑定 `image_id`。
    - OCR、字幕、UI 文案只在会改变判断时记录。
    - 低置信度观察标记 `uncertain`。
+   - 关键截图必须图文并茂输出：插入截图，并按 `templates/visual-evidence-card.md` 写可观察事实、设计含义、诊断判断和迭代动作。
 7. 生成 `event_stream` 和 `feature_ledger`。所有重要判断、P0/P1 问题和建议都必须能引用 `evidence_id`。
 8. 读取 `references/analysis-mode-router.yaml`，按用户目标选择输出结构；若用户没指定，默认 `early_experience`，但在报告中写明可升级到哪些模式。用户点名单机、关卡、叙事、流程、Boss、探索、开放世界、解谜、动作冒险时，同时读取 `references/single-player-analysis.zh-CN.md`。用户点名 PV、宣传片、预告片、买量素材、能不能火或爆款潜力时，同时读取 `references/trailer-heat-prediction.zh-CN.md`。用户点名前瞻、窗口、机会、值不值得做、迁移、立项或大厂跟进时，同时读取 `references/foresight-opportunity-lens.zh-CN.md`。
 9. 用品类路由和系统设计审查镜头补充判断：先确认品类，再检查该品类的核心循环、成长/经济、商业化边界、反馈强度、长期目标和验证指标。单机样本额外检查 critical path、pacing、agency、challenge-skill、content reuse、narrative-mechanic fit 和 finish intent。
@@ -161,6 +162,7 @@ Copyright (c) 2026 @Paranoia. All rights reserved.
   - 报告：`templates/experience-report.md`
   - 快速诊断：`templates/quick-triage-report.md`
   - 咨询交付：`templates/consulting-diagnosis-report.md`
+  - 关键截图解释卡：`templates/visual-evidence-card.md`
   - 问题卡：`templates/issue-card.md`
   - 验证计划：`templates/validation-plan.md`
   - 模式输出映射：`templates/mode-output-map.yaml`
@@ -177,6 +179,7 @@ Copyright (c) 2026 @Paranoia. All rights reserved.
 - 报告先给证据，再给设计判断；录屏/视频优先时间轴证据，截图优先画面证据表。
 - 报告必须最先给样本边界门：样本边界、可判断范围、不可判断范围、关键 unknown。
 - Evidence Index 必须覆盖所有重要判断；P0/P1 问题卡和核心建议都要引用 `evidence_id`。
+- 关键截图不能只作为装饰图；每张关键图必须配解释卡，说明可观察事实、设计含义、诊断判断、迭代动作和置信度。
 - 诊断包只能映射到已有 modes；不要为了方便新增“泛泛分析模式”。
 - 只检查当前模式要求的分析镜头。用户未要求前期体验或四步法时，不强制输出 Hook、Loop、Link、Surprise。
 - 如果用户要求整体游戏/MDA 分析，必须输出 Mechanics、Dynamics、Aesthetics 的证据化拆解，不能只写感受词。

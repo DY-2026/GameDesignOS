@@ -1,0 +1,60 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Secrets and local machine config
+.env
+.env.*
+*.local
+
+# Logs and caches
+*.log
+.cache/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+
+# Dependency folders
+node_modules/
+.venv/
+venv/
+env/
+
+# Local work and generated scratch artifacts
+tmp/
+temp/
+scratch/
+outputs/
+runs/
+artifacts/
+_skill_work/
+
+# Raw media and downloaded archives should stay local unless explicitly curated as assets
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.wav
+*.mp3
+*.zip
+*.7z
+*.rar
+
+# Video-analysis extraction byproducts
+frames/
+keyframes/
+*_frames/
+frame_*.jpg
+frame_*.jpeg
+frame_*.png
+yt_meta*.json
+*_yt_meta.json

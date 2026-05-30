@@ -145,6 +145,7 @@ Use $game-experience-analyzer to analyze this local gameplay recording into a sa
 
 - 报告必须先输出 Sample Scope Gate：样本边界、可判断范围、不可判断范围、关键 unknown。
 - 每个重要判断都必须能回到 `evidence_id`，并能定位到截图区域、时间戳、关键帧、页面元数据或用户提供事实。
+- 关键截图必须图文并茂：插入截图，并解释可观察事实、设计含义、诊断判断和迭代动作。
 - Evidence Index 字段见 [`references/evidence-taxonomy.zh-CN.md`](./references/evidence-taxonomy.zh-CN.md)，结构校验见 [`templates/evidence-index.schema.json`](./templates/evidence-index.schema.json)。
 - 截图不能直接判断节奏、手感、等待和循环闭合；这些必须标 `uncertain`。
 - PV/宣传片只能预测热度潜力和验证路径，不能包装成确定销量、流水或下载量预测。
@@ -200,7 +201,8 @@ game-experience-analyzer/
     |-- quick-triage-report.md
     |-- structured-output.schema.json
     |-- trailer-heat-report.md
-    `-- validation-plan.md
+    |-- validation-plan.md
+    `-- visual-evidence-card.md
 ```
 
 ## 验证

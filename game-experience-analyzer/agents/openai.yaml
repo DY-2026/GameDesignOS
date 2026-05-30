@@ -1,4 +1,4 @@
 interface:
   display_name: "Game Experience Analyzer"
-  short_description: "游戏截图、录屏、PV、买量素材、商店页和视频链接的证据化诊断引擎"
-  default_prompt: "使用 $game-experience-analyzer，先输出样本边界门和 evidence_id 索引，再按用户目标选择诊断包与已有分析模式，输出问题卡、设计建议和验证计划。"
+  short_description: "游戏截图、录屏、PV、买量素材、商店页和视频链接的图文证据化诊断引擎"
+  default_prompt: "使用 $game-experience-analyzer，先输出样本边界门和 evidence_id 索引，再对关键截图做图文解释卡，并按用户目标选择诊断包与已有分析模式，输出问题卡、设计建议和验证计划。"

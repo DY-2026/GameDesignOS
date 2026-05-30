@@ -5,7 +5,7 @@
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  面向游戏设计、设计研究和 AI-assisted creator 的可复用 Agent Skill 库。
+  Evidence-first 的游戏设计 Agent Skill 库：把一句话创意、试玩证据、设计知识和 AI 工作流，沉淀成可复用的生产系统。
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/Skills-4-2ea44f">
+  <img alt="Skills" src="https://img.shields.io/badge/Skills-5-2ea44f">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
@@ -39,12 +39,13 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 
 ## 这个项目是什么
 
-`ParanoiaSkills` 是一套游戏设计工作流 Skill 库，把游戏体验分析、AI 工作流演化、专业翻译和资料策展，沉淀成可复用、可验证、可迁移的 agent instructions、references、templates 和 examples。
+`ParanoiaSkills` 是一套游戏设计工作流 Skill 库，把一句话创意架构、游戏体验分析、AI 工作流演化、专业翻译和资料策展，沉淀成可复用、可验证、可迁移的 agent instructions、references、templates 和 examples。
 
 它不是一堆提示词合集。这个项目更像一套小型游戏设计操作系统：
 
 ```text
 分析游戏截图、录屏、PV 和视频链接
+-> 把一句话创意架构成可验证的游戏概念
 -> 演化执行这些工作的 agent workflow
 -> 翻译并结构化设计知识
 -> 策展高质量资料和可复用来源
@@ -53,6 +54,7 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 ## 为什么值得收藏
 
 - **Evidence-first:** 不写泛泛总结，尽量把判断绑定到来源、截图区域、时间戳、样本证据或验证指标。
+- **Concept-to-validation:** 不把“绝妙点子”直接扩写成 GDD，而是拆成 seed、玩家承诺、核心循环、scope gate 和原型验证计划。
 - **Workflow-first:** 不追求一次漂亮回答，而是把可复用流程沉淀到 `SKILL.md`、`references/` 和 `templates/`。
 - **Game-design native:** 面向真实游戏设计工作：体验、玩法、MDA、系统叙事、品类、窗口期、商业化、素材和生产流程。
 - **Agent portable:** 不绑定单一工具；Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
@@ -62,7 +64,6 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 
 在支持 skill 的 agent 环境里，直接点名对应 skill：
 
-```text
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, design lenses, heat potential, foresight windows, Go/No-Go, and validation recommendations.
 ```
 
@@ -78,21 +79,28 @@ Use $game-design-book-translator to translate and polish this game design chapte
 Use $game-design-source-curator to review these game design sources and turn accepted items into a maintainable local knowledge base.
 ```
 
+```text
+Use $game-concept-architect to turn this one-line game idea into a concept seed, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
+```
+
 ## 图文展示
 
 <table>
   <tr>
-    <td width="25%">
+    <td width="20%">
       <img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer 展示图">
     </td>
-    <td width="25%">
+    <td width="20%">
       <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver 展示图">
     </td>
-    <td width="25%">
+    <td width="20%">
       <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator 展示图">
     </td>
-    <td width="25%">
+    <td width="20%">
       <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator 展示图">
+    </td>
+    <td width="20%">
+      <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect 展示图">
     </td>
   </tr>
   <tr>
@@ -100,6 +108,7 @@ Use $game-design-source-curator to review these game design sources and turn acc
     <td><b>演化工作流</b><br>用 VOI、OODA、eval、Human Gate 和 rollback 升级 prompt、schema、memory 和 tool routing。</td>
     <td><b>翻译设计知识</b><br>把严肃的游戏设计书籍和章节，变成自然、专业、可复查的中文设计写作。</td>
     <td><b>策展资料</b><br>把散落在文章、视频、作者、专栏和网站里的内容，变成可长期维护的游戏设计知识库。</td>
+    <td><b>架构游戏概念</b><br>把一句话创意拆成 seed、玩家承诺、核心循环、scope gate 和验证计划。</td>
   </tr>
 </table>
 
@@ -111,6 +120,7 @@ Use $game-design-source-curator to review these game design sources and turn acc
 | **Paranoia AI System Evolver** | 把 prompt、workflow、memory、schema、tool routing 和 eval 改动变成受控系统演化。 | VOI/OODA、模型压缩、因果中介、Human Gate、rollback、可验证升级。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本。 | 术语、章节、图注、表格、QA、来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
+| **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
 
 ## 典型用例
 
@@ -120,6 +130,7 @@ Use $game-design-source-curator to review these game design sources and turn acc
 - **资料策展:** 把文章、视频、作者、专栏和网站沉淀成可检索、可引用、可实验的知识库。
 - **专业翻译:** 把游戏设计书籍或长文翻成自然中文，同时保留术语、论证结构和图表语境。
 - **工作流升级:** 把一次有用的 agent 行为升级成候选规则，并用 eval、Human Gate 和 rollback 控制风险。
+- **创意可行性:** 把一句话创意拆成 concept seed、玩家承诺、核心循环、scope gate、生产可行性和原型验证计划。
 
 ## 项目结构
 
@@ -138,7 +149,8 @@ ParanoiaSkills/
 |-- game-experience-analyzer/
 |-- paranoia-ai-system-evolver/
 |-- game-design-book-translator/
-`-- game-design-source-curator/
+|-- game-design-source-curator/
+`-- game-concept-architect/
 ```
 
 每个 skill 通常使用同一套结构：
@@ -176,6 +188,7 @@ evals/       -> 用于回归检查的提示和预期行为
 
 ```text
 Evidence before opinion.
+Feasibility before scope.
 Workflow before one-off prompts.
 VOI before research.
 Eval before promotion.

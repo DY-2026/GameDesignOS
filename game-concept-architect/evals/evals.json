@@ -1,0 +1,113 @@
+{
+  "skill": "game-concept-architect",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "one_page_clockwork_garden",
+      "input": "做一个在废弃温室里培育机械植物、抵御夜间虫群的轻量策略防守游戏。",
+      "mode": "one_page_pitch",
+      "expected_sections": [
+        "Concept Seed Extraction",
+        "External Feasibility Check",
+        "Assumption Ledger",
+        "Player Promise",
+        "Design Nucleus",
+        "Core Loop",
+        "Production Feasibility",
+        "Scope Gate",
+        "Validation Plan"
+      ],
+      "must_include": [
+        "机械植物",
+        "夜间虫群",
+        "玩家行为",
+        "Evidence 状态",
+        "团队能力",
+        "最危险假设",
+        "通过标准",
+        "失败标准"
+      ],
+      "must_not": [
+        "只扩写温室世界观",
+        "完整开放世界",
+        "未标注 assumption 的确定商业结论"
+      ]
+    },
+    {
+      "id": "full_brief_dream_postman",
+      "input": "做一个在梦境城市里投递信件、用卡牌改变街区规则的短局冒险游戏。",
+      "mode": "full_design_brief",
+      "expected_sections": [
+        "Concept Seed Extraction",
+        "External Feasibility Check",
+        "Assumption Ledger",
+        "Player Promise",
+        "Key Systems",
+        "Production Feasibility",
+        "Feature Priority Matrix",
+        "Risk Register",
+        "Validation Plan"
+      ],
+      "must_include": [
+        "梦境城市",
+        "投递",
+        "规则卡",
+        "Evidence 状态",
+        "内容产能",
+        "验证方式",
+        "删除条件"
+      ],
+      "must_not": [
+        "只写梦境世界观",
+        "没有 scope gate",
+        "把未提供平台写成确定事实"
+      ]
+    },
+    {
+      "id": "vertical_slice_tiny_crew_salvage",
+      "input": "做一个指挥三人小队在废弃太空站回收物资、每次行动都会改变站内结构的战术生存游戏。",
+      "mode": "vertical_slice_plan",
+      "expected_sections": [
+        "Vertical Slice Goal",
+        "Build Scope",
+        "Production Feasibility",
+        "Milestones",
+        "Playtest Protocol",
+        "Next Investment Decision"
+      ],
+      "must_include": [
+        "三人小队",
+        "废弃太空站",
+        "结构变化",
+        "撤离",
+        "Evidence 状态",
+        "团队能力",
+        "不验证商业化"
+      ],
+      "must_not": [
+        "忽略生产约束",
+        "默认实时多人",
+        "完整基地建造"
+      ]
+    },
+    {
+      "id": "negative_vague_idea",
+      "input": "做一个很酷的开放世界二次元 RPG。",
+      "mode": "one_page_pitch",
+      "expected_behavior": "必须标注信息不足和 high-impact unknown，不得编造确定平台、商业模式、团队能力或完整系统。",
+      "must_include": [
+        "unknown",
+        "assumption",
+        "evidence-needed",
+        "生产约束",
+        "scope gate",
+        "建议砍掉"
+      ],
+      "must_not": [
+        "确定的大世界地图规划",
+        "完整角色池",
+        "未验证的 LiveOps 计划"
+      ]
+    }
+  ]
+}

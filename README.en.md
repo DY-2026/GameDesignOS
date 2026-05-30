@@ -5,7 +5,7 @@
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  Reusable agent skills for game design, design research, and AI-assisted creative workflows.
+  Evidence-first agent skills for turning game ideas, playtest footage, design knowledge, and AI workflows into reusable production systems.
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/Skills-4-2ea44f">
+  <img alt="Skills" src="https://img.shields.io/badge/Skills-5-2ea44f">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
@@ -39,12 +39,13 @@ The strongest current case is [`《生存33天》41 分钟试玩录屏前期体�
 
 ## What This Is
 
-`ParanoiaSkills` is a game-design skill library that turns game experience analysis, AI workflow evolution, professional translation, and source curation into reusable agent instructions, references, templates, and examples.
+`ParanoiaSkills` is a game-design skill library that turns one-line ideas, game experience analysis, AI workflow evolution, professional translation, and source curation into reusable agent instructions, references, templates, and examples.
 
 It is not a prompt dump. It is closer to a compact operating system for serious game design work:
 
 ```text
 Analyze screenshots, recordings, trailers, and video links
+-> architect one-line ideas into testable game concepts
 -> evolve the agent workflow that performs the work
 -> translate and structure design knowledge
 -> curate high-quality sources into reusable knowledge
@@ -53,6 +54,7 @@ Analyze screenshots, recordings, trailers, and video links
 ## Why Star This
 
 - **Evidence-first:** judgments should point back to sources, screenshots, timestamps, sample evidence, or validation metrics.
+- **Concept-to-validation:** a promising idea is not treated as a GDD; it becomes a seed, a player promise, a core loop, a scope gate, and a prototype test.
 - **Workflow-first:** useful behavior is written into `SKILL.md`, `references/`, and `templates/`, not left as one lucky answer.
 - **Game-design native:** built for experience, mechanics, MDA, systems narrative, genre strategy, market windows, monetization, and production workflows.
 - **Agent portable:** not tied to one tool; Codex, Claude Code, OpenCode, or any Markdown-skill-capable agent can adapt it.
@@ -62,7 +64,6 @@ Analyze screenshots, recordings, trailers, and video links
 
 Call a skill directly in an agent environment that supports skill loading:
 
-```text
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, design lenses, heat potential, foresight windows, Go/No-Go, and validation recommendations.
 ```
 
@@ -78,21 +79,28 @@ Use $game-design-book-translator to translate and polish this game design chapte
 Use $game-design-source-curator to review these game design sources and turn accepted items into a maintainable local knowledge base.
 ```
 
+```text
+Use $game-concept-architect to turn this one-line game idea into a concept seed, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
+```
+
 ## Showcase
 
 <table>
   <tr>
-    <td width="25%">
+    <td width="20%">
       <img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer showcase">
     </td>
-    <td width="25%">
+    <td width="20%">
       <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver showcase">
     </td>
-    <td width="25%">
+    <td width="20%">
       <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator showcase">
     </td>
-    <td width="25%">
+    <td width="20%">
       <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator showcase">
+    </td>
+    <td width="20%">
+      <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect showcase">
     </td>
   </tr>
   <tr>
@@ -100,6 +108,7 @@ Use $game-design-source-curator to review these game design sources and turn acc
     <td><b>Evolve workflows</b><br>Upgrade prompts, schemas, evals, memory, and tool routing through VOI, OODA, gates, and rollback.</td>
     <td><b>Translate design knowledge</b><br>Transform serious game design books and chapters into professional Chinese design writing.</td>
     <td><b>Curate sources</b><br>Turn scattered articles, videos, creators, columns, and websites into a durable game design knowledge base.</td>
+    <td><b>Architect game concepts</b><br>Turn a one-line idea into a seed, player promise, core loop, scope gate, and validation plan.</td>
   </tr>
 </table>
 
@@ -111,6 +120,7 @@ Use $game-design-source-curator to review these game design sources and turn acc
 | **Paranoia AI System Evolver** | Turns prompt, workflow, memory, schema, tool-routing, and eval changes into controlled system evolution. | VOI/OODA, model compression, causal mediators, Human Gate, rollback, validated upgrades. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | Produces professional Chinese game design translations that read like serious design writing. | Terminology, chapters, figures, captions, tables, QA, source-boundary checks. | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | Converts scattered game design sources into a durable local knowledge base. | Source screening, scoring, HTML archives, registries, update history, design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
+| **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
 
 ## Use Cases
 
@@ -120,6 +130,7 @@ Use $game-design-source-curator to review these game design sources and turn acc
 - **Source curation:** turn articles, videos, creators, columns, and websites into searchable, citable, experiment-ready design knowledge.
 - **Professional translation:** translate game design books or essays while preserving terminology, argument structure, and figure context.
 - **Workflow evolution:** promote useful agent behavior into candidate rules with evals, Human Gate, and rollback.
+- **Concept feasibility:** turn a one-line idea into concept seed extraction, player promises, core loop design, scope gate, production feasibility, and prototype validation.
 
 ## Repository Layout
 
@@ -138,7 +149,8 @@ ParanoiaSkills/
 |-- game-experience-analyzer/
 |-- paranoia-ai-system-evolver/
 |-- game-design-book-translator/
-`-- game-design-source-curator/
+|-- game-design-source-curator/
+`-- game-concept-architect/
 ```
 
 Most skills follow this structure:
@@ -176,6 +188,7 @@ These packages are portable skill folders. A typical setup:
 
 ```text
 Evidence before opinion.
+Feasibility before scope.
 Workflow before one-off prompts.
 VOI before research.
 Eval before promotion.

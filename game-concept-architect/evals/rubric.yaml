@@ -1,0 +1,86 @@
+skill: game-concept-architect
+version: 0.1.0
+passing_score: 80
+criteria:
+  concept_seed_extraction:
+    weight: 12
+    pass:
+      - "拆出题材母体、玩法母体、情绪承诺、差异化种子、平台假设、商业化假设、受众假设、关键 unknown"
+      - "明确区分用户已提供信息、assumption 和 unknown"
+    fail:
+      - "直接扩写成长篇 GDD"
+      - "把题材或世界观当成差异化"
+  player_promise:
+    weight: 12
+    pass:
+      - "先定义对外宣传承诺、前 10 分钟承诺、长期游玩承诺"
+      - "承诺能对应具体玩家行为和反馈"
+    fail:
+      - "先堆系统再补一句玩家体验"
+      - "承诺只有氛围，没有可玩行为"
+  design_nucleus_and_core_loop:
+    weight: 14
+    pass:
+      - "设计核能改变玩家行为、选择、节奏、成长或表达"
+      - "核心循环包含行动、选择、风险、反馈、奖励和新约束"
+    fail:
+      - "设计核只是题材、世界观或品类"
+      - "循环只有行动和奖励，没有取舍"
+  system_mapping:
+    weight: 10
+    pass:
+      - "每个系统说明服务哪个循环"
+      - "每个系统说明改变什么玩家行为、带来什么反馈、如何验证"
+    fail:
+      - "系统列表泛泛堆砌"
+      - "没有删除条件或验证方式"
+  assumption_ledger:
+    weight: 10
+    pass:
+      - "所有未提供信息进入 assumption ledger"
+      - "每条 assumption 有置信度、影响等级和验证方式"
+    fail:
+      - "把未提供的平台、商业、受众、团队能力写成确定事实"
+  scope_gate:
+    weight: 12
+    pass:
+      - "分出 MVP、Vertical Slice、Demo 后、宣传保留、建议砍掉"
+      - "能解释取舍理由"
+    fail:
+      - "没有优先级"
+      - "MVP 接近完整正式版"
+  validation_plan:
+    weight: 12
+    pass:
+      - "包含最小可玩原型、第一轮测试目标、最危险假设、通过标准、失败标准、下一步投入条件"
+      - "通过和失败标准可观察、可判断"
+    fail:
+      - "只说以后测试"
+      - "没有失败标准"
+  platform_business_fit:
+    weight: 6
+    pass:
+      - "当平台或商业模式被提及或暗示时，说明适配和风险"
+    fail:
+      - "忽略平台、输入、局长、商业化、内容产能等现实约束"
+  external_feasibility:
+    weight: 6
+    pass:
+      - "包含外部验证状态、相似产品、玩家动机、需求缺口或标签参照"
+      - "无当前证据时明确标记 evidence-needed，而不是编造数据"
+    fail:
+      - "把未验证的市场判断写成确定事实"
+      - "只说有市场，不说明外部信号"
+  production_feasibility:
+    weight: 6
+    pass:
+      - "评估团队能力、技术方案、内容产能、周期成本和高光时刻产出"
+      - "不把团队不擅长且无人兜底的能力作为核心卖点"
+    fail:
+      - "忽略制作成本和能力边界"
+      - "承诺大量内容或高光体验但没有产能验证"
+score_bands:
+  excellent: "90-100: 可直接用于立项讨论或原型 planning"
+  pass: "80-89: 结构完整，少量判断可继续追问"
+  revise: "60-79: 有方向但缺少关键 gate 或验证标准"
+  fail: "0-59: 幻想型文档或普通 GDD 扩写"
