@@ -5,14 +5,15 @@
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  Evidence-first 的游戏设计 Agent Skill 库：把一句话创意、试玩证据、设计知识和 AI 工作流，沉淀成可复用的生产系统。
+  把游戏设计工作流做成可安装、可验证、可迁移的 Agent Skill 包。
+  从录屏/PV 到证据报告，从一句话创意到验证计划，从 prompt 改动到带 eval 与 rollback 的系统演化。
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
   <a href="#60-秒-demo">60 秒 demo</a> ·
-  <a href="#快速开始">快速开始</a> ·
+  <a href="#轻松上手">轻松上手</a> ·
   <a href="#当前-skill">当前 Skill</a> ·
   <a href="#图文展示">图文展示</a> ·
   <a href="#项目治理">项目治理</a>
@@ -26,6 +27,8 @@
 </p>
 
 > Copyright (c) 2026 @Paranoia. All rights reserved.
+
+> 像给游戏设计师和 AI agent 用的“小型操作系统”：不是收集提示词，而是把可复用的判断流程、证据规则、质量门和输出模板打包成 skill。
 
 ## 60 秒 Demo
 
@@ -53,6 +56,7 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 
 ## 为什么值得收藏
 
+- **Open and portable:** 每个 skill 都是可读、可复制、可审计的 Markdown 包，不把你的工作流锁死在某个产品里。
 - **Evidence-first:** 不写泛泛总结，尽量把判断绑定到来源、截图区域、时间戳、样本证据或验证指标。
 - **Concept-to-validation:** 不把“绝妙点子”直接扩写成 GDD，而是拆成 seed、玩家承诺、核心循环、scope gate 和原型验证计划。
 - **Workflow-first:** 不追求一次漂亮回答，而是把可复用流程沉淀到 `SKILL.md`、`references/` 和 `templates/`。
@@ -60,10 +64,25 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 - **Agent portable:** 不绑定单一工具；Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
 - **Controlled evolution:** 用 VOI、OODA、eval、Human Gate 和 rollback 防止工作流越改越漂。
 
-## 快速开始
+## 轻松上手
+
+最简单的用法只有三步：选一个 skill，把材料交给 agent，要求它按 skill 输出可复查的结果。
+
+### 1. 不知道选哪个？先看这张表
+
+| 你手里的材料 | 该用哪个 skill | 你会得到什么 |
+| --- | --- | --- |
+| 截图、录屏、PV、视频链接 | `$game-experience-analyzer` | 带时间戳/证据/问题优先级的游戏体验报告 |
+| 一句话游戏创意 | `$game-concept-architect` | concept seed、玩家承诺、核心循环、scope gate、验证计划 |
+| 一段 prompt、workflow、schema 或 agent 规则 | `$paranoia-ai-system-evolver` | 带 VOI/OODA/eval/Human Gate/rollback 的系统演化提案 |
+| 英文游戏设计章节或长文 | `$game-design-book-translator` | 专业、自然、可复查的中文设计翻译 |
+| 一批文章、视频、作者或网站 | `$game-design-source-curator` | 可长期维护的游戏设计知识库条目 |
+
+### 2. 复制一句最小提示词
 
 在支持 skill 的 agent 环境里，直接点名对应 skill：
 
+```text
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, design lenses, heat potential, foresight windows, Go/No-Go, and validation recommendations.
 ```
 
@@ -82,6 +101,20 @@ Use $game-design-source-curator to review these game design sources and turn acc
 ```text
 Use $game-concept-architect to turn this one-line game idea into a concept seed, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
 ```
+
+### 3. 安装到自己的 agent 环境
+
+如果你的工具支持本地 skill，把对应目录复制到它的 skill 目录即可。以 Codex 为例：
+
+```text
+game-experience-analyzer/
+paranoia-ai-system-evolver/
+game-design-book-translator/
+game-design-source-curator/
+game-concept-architect/
+```
+
+安装后确认两件事：`SKILL.md` frontmatter 的 `name` 和目录名一致；`references/`、`templates/`、`examples/` 里的相对路径还能打开。
 
 ## 图文展示
 

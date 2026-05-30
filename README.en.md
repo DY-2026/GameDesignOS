@@ -5,14 +5,15 @@
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  Evidence-first agent skills for turning game ideas, playtest footage, design knowledge, and AI workflows into reusable production systems.
+  Installable, verifiable, and portable agent skill packages for game-design work.
+  Go from gameplay/PV evidence to reports, from one-line ideas to validation plans, and from prompt changes to eval-backed workflow evolution.
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
   <a href="#60-second-demo">60-Second Demo</a> ·
-  <a href="#quick-start">Quick Start</a> ·
+  <a href="#easy-start">Easy Start</a> ·
   <a href="#current-skills">Current Skills</a> ·
   <a href="#showcase">Showcase</a> ·
   <a href="#governance">Governance</a>
@@ -26,6 +27,8 @@
 </p>
 
 > Copyright (c) 2026 @Paranoia. All rights reserved.
+
+> Think of it as a compact operating system for game designers and AI agents: not a prompt collection, but reusable decision loops, evidence rules, quality gates, and output templates packaged as skills.
 
 ## 60-Second Demo
 
@@ -53,6 +56,7 @@ Analyze screenshots, recordings, trailers, and video links
 
 ## Why Star This
 
+- **Open and portable:** each skill is a readable, copyable, auditable Markdown package that does not lock your workflow into one product.
 - **Evidence-first:** judgments should point back to sources, screenshots, timestamps, sample evidence, or validation metrics.
 - **Concept-to-validation:** a promising idea is not treated as a GDD; it becomes a seed, a player promise, a core loop, a scope gate, and a prototype test.
 - **Workflow-first:** useful behavior is written into `SKILL.md`, `references/`, and `templates/`, not left as one lucky answer.
@@ -60,10 +64,25 @@ Analyze screenshots, recordings, trailers, and video links
 - **Agent portable:** not tied to one tool; Codex, Claude Code, OpenCode, or any Markdown-skill-capable agent can adapt it.
 - **Controlled evolution:** VOI, OODA, evals, Human Gate, and rollback keep workflows from drifting out of control.
 
-## Quick Start
+## Easy Start
+
+The simplest path is three small moves: pick a skill, give the agent your material, and ask for a reviewable output.
+
+### 1. Pick the right skill
+
+| What you have | Use this skill | What you get |
+| --- | --- | --- |
+| Screenshot, recording, PV/trailer, or video link | `$game-experience-analyzer` | A game experience report with timestamps, evidence, and issue priorities |
+| One-line game idea | `$game-concept-architect` | Concept seed, player promise, core loop, scope gate, and validation plan |
+| Prompt, workflow, schema, or agent rule | `$paranoia-ai-system-evolver` | A VOI/OODA/eval/Human Gate/rollback-backed evolution proposal |
+| English game design chapter or essay | `$game-design-book-translator` | Professional Chinese design translation with reviewable terminology |
+| Articles, videos, creators, or websites | `$game-design-source-curator` | Maintainable game design knowledge-base entries |
+
+### 2. Copy a minimal prompt
 
 Call a skill directly in an agent environment that supports skill loading:
 
+```text
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, design lenses, heat potential, foresight windows, Go/No-Go, and validation recommendations.
 ```
 
@@ -82,6 +101,20 @@ Use $game-design-source-curator to review these game design sources and turn acc
 ```text
 Use $game-concept-architect to turn this one-line game idea into a concept seed, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
 ```
+
+### 3. Install it in your own agent environment
+
+If your tool supports local skills, copy the target folder into that tool's skill directory:
+
+```text
+game-experience-analyzer/
+paranoia-ai-system-evolver/
+game-design-book-translator/
+game-design-source-curator/
+game-concept-architect/
+```
+
+After installation, check that the `SKILL.md` frontmatter `name` matches the folder name, and that relative links inside `references/`, `templates/`, and `examples/` still resolve.
 
 ## Showcase
 
