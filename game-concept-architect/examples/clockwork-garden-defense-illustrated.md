@@ -1,3 +1,11 @@
+---
+case_type: synthetic_example
+source_status: synthetic
+contains_private_project_info: false
+license_status: repo_safe
+intended_use: skill_behavior_demo
+---
+
 # Illustrated Case: Clockwork Garden Defense
 
 ![Clockwork Garden Defense key art](../assets/clockwork-garden-defense-key-art.png)

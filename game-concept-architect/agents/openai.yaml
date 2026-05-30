@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Concept Architect"
+  short_description: "把一句话游戏创意扩展为可验证的设计蓝图"
+  default_prompt: "使用 $game-concept-architect，把一句话游戏创意拆成 concept seed、design nucleus options、assumption ledger、玩家承诺、核心循环、scope gate、production feasibility 和 validation plan。根据用户指定的 output_mode 输出 idea_triage、one_page_pitch、full_design_brief 或 vertical_slice_plan。"

@@ -7,7 +7,7 @@ metadata:
 
 # Game Experience Analyzer
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 ## 什么时候使用
 
@@ -88,7 +88,7 @@ Copyright (c) 2026 @Paranoia. All rights reserved.
 9. 用品类路由和系统设计审查镜头补充判断：先确认品类，再检查该品类的核心循环、成长/经济、商业化边界、反馈强度、长期目标和验证指标。单机样本额外检查 critical path、pacing、agency、challenge-skill、content reuse、narrative-mechanic fit 和 finish intent。
 10. 只输出当前诊断包和分析模式需要的评分和表格。前期体验或用户点名四步法时输出 Hook、Loop、Link、Surprise；整体综合分析输出产品定位、玩法结构、MDA、系统叙事融合、内容供给、商业化长线、前瞻窗口和验证路径；MDA 分析只在用户明确点名 MDA 时作为主模式；玩法分析输出机制表；单机分析输出流程/关卡表；PV/宣传片预测输出传播卖点、品类受众、平台适配、差异化、验证数据和热度潜力分层；前瞻机会判断输出机会类型、窗口阶段、剩余窗口估计、Go/No-Go、最小验证截止和 Kill 条件。
 11. 根据交付深度选择模板：快速诊断用 `templates/quick-triage-report.md`，标准报告用 `templates/experience-report.md`，咨询交付用 `templates/consulting-diagnosis-report.md`。问题卡和验证计划分别使用 `templates/issue-card.md`、`templates/validation-plan.md`。
-12. 附上或摘要说明对齐 `templates/structured-output.schema.json` 和 `templates/evidence-index.schema.json` 的结构化 JSON。
+12. 附上或摘要说明对齐 `templates/structured-output.schema.json` 和 `templates/evidence-index.schema.json` 的结构化 JSON；需要字段示例时参考 `templates/structured-output.example.json`，不得把 example/contract 误称为 schema。
 13. 最后执行输出门检查。
 
 ## 输入源与边界
@@ -168,9 +168,10 @@ Copyright (c) 2026 @Paranoia. All rights reserved.
   - 模式输出映射：`templates/mode-output-map.yaml`
   - PV/宣传片报告：`templates/trailer-heat-report.md`
   - 证据索引结构：`templates/evidence-index.schema.json`
-  - 结构化输出：`templates/structured-output.schema.json`
+  - 结构化输出 schema：`templates/structured-output.schema.json`
+  - 结构化输出示例/contract：`templates/structured-output.example.json`
 - 可选验证提示：`evals/evals.json`、`evals/rubric.yaml`、`evals/negative_cases.md`
-- 示例报告：`examples/survival-33-days-gameplay-experience-report.md`
+- 示例索引：`examples/README.md`
 
 ## 输出门
 

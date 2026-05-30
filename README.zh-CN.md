@@ -16,6 +16,8 @@
   <a href="#轻松上手">轻松上手</a> ·
   <a href="#当前-skill">当前 Skill</a> ·
   <a href="#图文展示">图文展示</a> ·
+  <a href="#发布安全规则">发布安全规则</a> ·
+  <a href="#license">License</a> ·
   <a href="#项目治理">项目治理</a>
 </p>
 
@@ -26,7 +28,7 @@
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
 </p>
 
-> Copyright (c) 2026 @Paranoia. All rights reserved.
+> License: skill documents and tooling are released under the MIT License. Paranoia 名称、logo、视觉识别和项目品牌不作为商标授权。
 
 > 像给游戏设计师和 AI agent 用的“小型操作系统”：不是收集提示词，而是把可复用的判断流程、证据规则、质量门和输出模板打包成 skill。
 
@@ -145,6 +147,21 @@ game-concept-architect/
   </tr>
 </table>
 
+## Skill Architecture
+
+`ParanoiaSkills` 分为三层。本仓库只包含公开基础 skill。私有项目规则、客户材料、真实案例和个人工作室偏好应放在仓库外的 private overlay。
+
+- **Design Production Layer**
+  - [`game-concept-architect/`](./game-concept-architect/)：one-line idea -> verifiable design blueprint。
+  - [`game-experience-analyzer/`](./game-experience-analyzer/)：media/sample -> evidence-linked diagnosis。
+- **Workflow Governance Layer**
+  - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/)：prompt/workflow/schema/eval changes -> controlled evolution。
+- **Knowledge Asset Layer**
+  - [`game-design-book-translator/`](./game-design-book-translator/)：design texts -> professional Chinese design writing。
+  - [`game-design-source-curator/`](./game-design-source-curator/)：scattered sources -> durable knowledge base。
+
+用户仍然可以在自己的环境中用这些 skill 处理真实项目、私有项目、客户项目或 synthetic cases。公开案例规则只约束提交回本仓库的内容。
+
 ## 当前 Skill
 
 | Skill | 一句话用途 | 适合场景 | 包目录 |
@@ -172,13 +189,22 @@ ParanoiaSkills/
 |-- README.md
 |-- README.zh-CN.md
 |-- README.en.md
+|-- LICENSE
+|-- CONTRIBUTING.md
+|-- adapters/
+|-- contracts/
+|-- docs/
+|-- .github/
+|-- releases/
+|-- scripts/
 |-- assets/
 |   |-- demo-game-experience-before-after.png
 |   |-- voi-ooda-system-evolver-hero.png
 |   |-- showcase-game-experience-analyzer.png
 |   |-- showcase-voi-ooda.png
 |   |-- showcase-book-translator.png
-|   `-- showcase-source-curator.png
+|   |-- showcase-source-curator.png
+|   `-- showcase-game-concept-architect.png
 |-- game-experience-analyzer/
 |-- paranoia-ai-system-evolver/
 |-- game-design-book-translator/
@@ -206,10 +232,31 @@ evals/       -> 用于回归检查的提示和预期行为
 3. 在 agent 中用 `$skill-name` 或自然语言触发。
 4. 按对应 README 或 `SKILL.md` 的验证方式检查 JSON/YAML、引用路径和示例。
 
+## 验证
+
+在仓库根目录运行：
+
+```text
+python scripts/validate_repo.py
+python scripts/validate_skill.py game-experience-analyzer
+python scripts/validate_skill.py game-concept-architect
+```
+
+## 发布安全规则
+
+新增 examples、eval prompts、截图、fixtures、release notes 或从会话中整理命令前，先遵守 [`CONTRIBUTING.md`](./CONTRIBUTING.md)。公开材料只能使用 synthetic cases、公开材料案例或明确可公开样本，不能泄露用户命令、本地文件、个人项目、私有数据、客户材料或未公开策略。
+
+## License
+
+本仓库的 skill documents and tooling 使用 [MIT License](./LICENSE) 发布。
+
+Paranoia 名称、logo、视觉识别和项目品牌不作为商标授权。examples 可能有各自的 `source_status`、`case_type` 或来源元数据，复用前请检查对应文件 frontmatter。
+
 ## 项目治理
 
 - 根目录 README 只讲整个 `ParanoiaSkills`：定位、目录、结构、用例和治理规则。
 - 每个 skill 目录只讲一个具体可安装 skill。
+- 公开 examples、eval prompts、截图、fixtures、release notes 和从会话中整理出的命令必须遵守 [`CONTRIBUTING.md`](./CONTRIBUTING.md)。
 - 区分会话命令和项目规则：用户在协作中给 Codex 的临时指令、执行命令、偏好纠偏和一次性上下文，不会自动写入这个公开项目。只有可复用、可公开、可验证，或用户明确要求沉淀的内容，才进入 README、SKILL、references、templates 或 examples。
 - `SKILL.md` 保持轻量，只放触发条件、核心流程、边界和按需读取路径。
 - 长文方法论放进 `references/`。
@@ -234,7 +281,3 @@ Rollback before confidence.
 
 - `indie-game-production-master`：覆盖独游从想法验证、GDD/Gate、原型、playtest、AI 资产流水线、Steam/发布策略到复盘沉淀的全流程制作 skill。
 - `godot-ai-game-production`：覆盖 Godot + AI 项目搭建、设计真源、数据契约、资源流水线、headless/keyshot 验证、Demo/Release Gate 和工程复盘的生产 skill。
-
-## 版权
-
-Copyright (c) 2026 @Paranoia. All rights reserved.

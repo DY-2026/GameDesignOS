@@ -1,10 +1,18 @@
 # Vertical Slice Plan
 
-## 0. 原始创意
+## 0. Case Visibility
+
+| Field | Value |
+| --- | --- |
+| case_visibility | private_user_work / public_repo_example / public_article / client_confidential / synthetic_case / unknown |
+| output_destination | private_notes / repo_example / public_post / client_delivery / unknown |
+| redaction_required | true / false / unknown |
+
+## 1. 原始创意
 
 >
 
-## 1. Concept Seed Extraction
+## 2. Concept Seed Extraction
 
 | 字段 | 结果 | 确定性 | 影响 |
 | --- | --- | --- | --- |
@@ -12,27 +20,31 @@
 | 玩法母体 |  |  |  |
 | 情绪承诺 |  |  |  |
 | 差异化种子 |  |  |  |
-| 平台假设 |  | assumption |  |
-| 商业化假设 |  | assumption |  |
-| 受众假设 |  | assumption |  |
+| 平台假设 |  | assumption/unknown |  |
+| 商业化假设 |  | assumption/unknown |  |
+| 受众假设 |  | assumption/unknown |  |
 | 关键 unknown |  | unknown |  |
 
-## 2. Assumption Ledger
+## 3. Design Nucleus Options
+
+| ID | 候选设计核 | 玩家行为变化 | 切片验证价值 | 最小测试 | Kill Signal |
+| --- | --- | --- | --- | --- | --- |
+| N1 |  |  |  |  |  |
+| N2 |  |  |  |  |  |
+
+## 4. Assumption Ledger
 
 | ID | Assumption | 置信度 | 影响 | 验证方式 | 决策后果 |
 | --- | --- | --- | --- | --- | --- |
 | A1 |  |  |  |  |  |
 
-## 3. External Feasibility Check
+## 5. External Evidence Status
 
-| 维度 | 当前判断 | Evidence 状态 | 对切片的影响 |
+| 决策点 | VOI 判断 | Evidence 状态 | 对切片的影响 |
 | --- | --- | --- | --- |
-| 相似产品 |  | verified/partial/evidence-needed/contradicted |  |
-| 玩家动机关键词 |  |  |  |
-| 需求缺口 |  |  |  |
-| 标签和品类参照 |  |  |  |
+| design_nucleus / audience / platform / business / scope / validation / go_no_go |  | not-run/evidence-needed/partial/verified/contradicted |  |
 
-## 4. Vertical Slice Goal
+## 6. Vertical Slice Goal
 
 本次切片必须证明：
 
@@ -42,7 +54,7 @@
 
 -
 
-## 5. Player Promise
+## 7. Player Promise
 
 | 层级 | 本切片要兑现的部分 |
 | --- | --- |
@@ -50,17 +62,17 @@
 | 前 10 分钟承诺 |  |
 | 长期游玩承诺 |  |
 
-## 6. Design Nucleus
+## 8. Selected Design Nucleus
 
 >
 
-## 7. Core Loop in Slice
+## 9. Core Loop in Slice
 
 ```text
 
 ```
 
-## 8. Build Scope
+## 10. Build Scope
 
 | 层级 | 内容 | 验证目的 |
 | --- | --- | --- |
@@ -68,13 +80,13 @@
 | Vertical Slice 应该有 |  |  |
 | 明确不做 |  |  |
 
-## 9. Feature Priority Matrix
+## 11. Feature Priority Matrix
 
 | 功能 | 承诺贡献 | 行为改变 | Unknown 降低 | 制作成本 | 依赖风险 | 优先级 |
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |  |
 
-## 10. Production Feasibility
+## 12. Production Feasibility
 
 | 维度 | 当前判断 | 风险 | 切片处理 |
 | --- | --- | --- | --- |
@@ -83,7 +95,7 @@
 | 内容产能 |  |  |  |
 | 周期和成本 |  |  |  |
 
-## 11. Milestones
+## 13. Milestones
 
 | 阶段 | 目标 | 可交付物 | 通过标准 |
 | --- | --- | --- | --- |
@@ -92,7 +104,7 @@
 | M2 First Playable |  |  |  |
 | M3 Test Build |  |  |  |
 
-## 12. Playtest Protocol
+## 14. Playtest Protocol
 
 | 项目 | 内容 |
 | --- | --- |
@@ -102,7 +114,7 @@
 | 观察指标 |  |
 | 访谈问题 |  |
 
-## 13. Validation Plan
+## 15. Validation Plan
 
 | 项目 | 内容 |
 | --- | --- |
@@ -111,13 +123,13 @@
 | 失败标准 |  |
 | 下一步投入条件 |  |
 
-## 14. Risk Register
+## 16. Risk Register
 
 | ID | 风险 | 概率 | 影响 | 缓解动作 |
 | --- | --- | --- | --- | --- |
 | R1 |  |  |  |  |
 
-## 15. Next Investment Decision
+## 17. Next Investment Decision
 
 | 结果 | 动作 |
 | --- | --- |

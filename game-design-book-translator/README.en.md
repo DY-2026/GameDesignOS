@@ -19,4 +19,4 @@ Use this skill to translate, polish, structure, and QA-check English game design
 - Whole-book template: [`templates/book-translation-package.md`](./templates/book-translation-package.md)
 - Eval cases: [`evals/evals.json`](./evals/evals.json)
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.

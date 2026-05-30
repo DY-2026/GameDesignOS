@@ -1,6 +1,6 @@
 # 游戏设计来源策展工作流
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 ## 任务模式
 

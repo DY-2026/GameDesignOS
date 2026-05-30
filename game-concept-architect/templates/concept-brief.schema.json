@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Game Concept Brief",
+  "type": "object",
+  "required": [
+    "case_visibility",
+    "output_destination",
+    "redaction_required",
+    "original_idea",
+    "concept_seed",
+    "design_nucleus_options",
+    "assumption_ledger",
+    "external_evidence_status",
+    "player_promise",
+    "scope_gate",
+    "validation_plan"
+  ],
+  "properties": {
+    "case_visibility": {
+      "type": "string",
+      "enum": [
+        "private_user_work",
+        "public_repo_example",
+        "public_article",
+        "client_confidential",
+        "synthetic_case",
+        "unknown"
+      ]
+    },
+    "output_destination": {
+      "type": "string",
+      "enum": [
+        "private_notes",
+        "repo_example",
+        "public_post",
+        "client_delivery",
+        "unknown"
+      ]
+    },
+    "redaction_required": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "unknown"
+      ]
+    },
+    "original_idea": {
+      "type": "string"
+    },
+    "concept_seed": {
+      "type": "object",
+      "required": [
+        "theme_material",
+        "gameplay_material",
+        "emotional_promise",
+        "differentiation_seed",
+        "key_unknowns"
+      ],
+      "properties": {
+        "theme_material": {
+          "type": "string"
+        },
+        "gameplay_material": {
+          "type": "string"
+        },
+        "emotional_promise": {
+          "type": "string"
+        },
+        "differentiation_seed": {
+          "type": "string"
+        },
+        "platform_assumption": {
+          "type": "string"
+        },
+        "business_assumption": {
+          "type": "string"
+        },
+        "audience_assumption": {
+          "type": "string"
+        },
+        "key_unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "design_nucleus_options": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "nucleus_statement",
+          "behavior_change",
+          "smallest_test",
+          "kill_signal"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nucleus_statement": {
+            "type": "string"
+          },
+          "behavior_change": {
+            "type": "string"
+          },
+          "promise_fit": {
+            "type": "string"
+          },
+          "platform_fit": {
+            "type": "string"
+          },
+          "production_profile": {
+            "type": "string"
+          },
+          "key_assumptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "smallest_test": {
+            "type": "string"
+          },
+          "kill_signal": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "assumption_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "assumption",
+          "confidence",
+          "impact",
+          "validation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "assumption": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "string"
+          },
+          "impact": {
+            "type": "string"
+          },
+          "validation": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "external_evidence_status": {
+      "type": "string",
+      "enum": [
+        "not-run",
+        "evidence-needed",
+        "partial",
+        "verified",
+        "contradicted"
+      ]
+    },
+    "player_promise": {
+      "type": "object"
+    },
+    "core_loop": {
+      "type": "string"
+    },
+    "scope_gate": {
+      "type": "object"
+    },
+    "validation_plan": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

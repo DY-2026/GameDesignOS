@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paranoia.skills/contracts/evidence-index.schema.json",
+  "title": "Cross-Skill Evidence Index",
+  "description": "Stable cross-skill interface for evidence indexes. The canonical detailed schema is game-experience-analyzer/templates/evidence-index.schema.json.",
+  "$ref": "../game-experience-analyzer/templates/evidence-index.schema.json"
+}

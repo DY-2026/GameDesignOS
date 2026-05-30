@@ -23,7 +23,7 @@
 
 It is built for game designers, producers, publishing and marketing teams, competitor research, AI-assisted game teams, and anyone who needs to turn "this game feels good/bad" into "where is the evidence, what is the problem, and how should we validate the next step?"
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 ## Why This Exists
 
@@ -100,9 +100,9 @@ Chinese requests are also natural:
 
 See:
 
-- [`examples/survival-33-days-gameplay-experience-report.md`](./examples/survival-33-days-gameplay-experience-report.md)
+- [`examples/README.md`](./examples/README.md)
 
-That example shows the recording-first workflow: a public gameplay video can become timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and concrete validation-ready fixes.
+The index lists the current public example with its `input_type`, `diagnosis_pack`, `main_mode`, `confidence_boundary`, and output file.
 
 ## Tooling
 
@@ -145,8 +145,11 @@ game-experience-analyzer/
 |-- agents/
 |   `-- openai.yaml
 |-- evals/
-|   `-- evals.json
+|   |-- evals.json
+|   |-- negative_cases.md
+|   `-- rubric.yaml
 |-- examples/
+|   |-- README.md
 |   `-- survival-33-days-gameplay-experience-report.md
 |-- references/
 |   |-- analysis-mode-router.yaml
@@ -159,19 +162,21 @@ game-experience-analyzer/
 |   `-- video-analysis-workflow.zh-CN.md
 `-- templates/
     |-- analysis-input.json
+    |-- evidence-index.schema.json
     |-- experience-report.md
     |-- mode-output-map.yaml
+    |-- structured-output.example.json
     |-- structured-output.schema.json
     `-- trailer-heat-report.md
 ```
 
 ## Validation
 
-The package should pass:
+Run from the repository root:
 
-```powershell
-$env:PYTHONUTF8='1'
-python C:\Users\Admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py D:\ai\voi-ooda-ai-system-evolver\game-experience-analyzer
+```text
+python scripts/validate_repo.py
+python scripts/validate_skill.py game-experience-analyzer
 ```
 
 All JSON/YAML files should parse cleanly.

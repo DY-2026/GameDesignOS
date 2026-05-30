@@ -23,6 +23,6 @@ This installable skill turns game design articles, videos, creators, columns, an
 
 ## Sync Rule
 
-This directory is the project-tracked copy. If the runtime copy at `C:\Users\Admin\.codex\skills\game-design-source-curator` changes later, sync those changes back here and revalidate that both copies match.
+This directory is the project-tracked copy. If a runtime copy in a host agent skill directory changes later, sync those changes back here and revalidate that both copies match.
 
-Copyright (c) 2026 @Paranoia. All rights reserved.
+Copyright (c) 2026 Paranoia. Licensed under the MIT License.

@@ -1,269 +1,651 @@
 {
-  "template_id": "general_game_video_experience",
-  "analysis_mode": "early_experience | gameplay_mechanics | holistic_game_analysis | whole_game_mda | single_player_design | trailer_heat_prediction | foresight_opportunity | commercialization | ux_ui | genre_benchmark | problem_diagnosis | liveops_longevity",
-  "video_meta": {
-    "game_name": null,
-    "platform": "unknown",
-    "version": null,
-    "session_scope": "first_session",
-    "expected_genre": "unknown",
-    "source_items": [
-      {
-        "type": "screenshot | video_file | video_url",
-        "path": null,
-        "url": null,
-        "label": null,
-        "time_range": null,
-        "accessed_at": null,
-        "access_notes": null
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DY-2026/ParanoiaSkills/game-experience-analyzer/templates/structured-output.schema.json",
+  "title": "Game Experience Analyzer Structured Output",
+  "description": "Strict core schema for evidence-linked game diagnosis outputs. For a filled example contract, see structured-output.example.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "template_id",
+    "analysis_mode",
+    "video_meta",
+    "tool_readiness",
+    "sample_scope_gate",
+    "diagnosis_route",
+    "evidence_index",
+    "analysis_route",
+    "summary"
+  ],
+  "properties": {
+    "template_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "analysis_mode": {
+      "$ref": "#/$defs/analysis_mode"
+    },
+    "video_meta": {
+      "$ref": "#/$defs/video_meta"
+    },
+    "tool_readiness": {
+      "$ref": "#/$defs/tool_readiness"
+    },
+    "sample_scope_gate": {
+      "$ref": "#/$defs/sample_scope_gate"
+    },
+    "diagnosis_route": {
+      "$ref": "#/$defs/diagnosis_route"
+    },
+    "evidence_index": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evidence_item"
       }
-    ],
-    "has_voice": "unknown",
-    "has_subtitle": "unknown"
-  },
-  "tool_readiness": {
-    "browser_access": "unknown",
-    "ffmpeg": "unknown",
-    "yt_dlp": "unknown",
-    "ocr": "unknown",
-    "asr": "unknown",
-    "access_notes": "",
-    "degradation": ""
-  },
-  "sample_scope_gate": {
-    "sample_boundary": "",
-    "supported_judgment_scope": [],
-    "unsupported_judgment_scope": [],
-    "key_unknowns": [],
-    "confidence_ceiling": "high | medium | low | unsupported"
-  },
-  "diagnosis_route": {
-    "diagnosis_pack": "pv_heat_diagnosis | first_hour_retention_diagnosis | core_loop_diagnosis | steam_page_conversion_diagnosis | project_greenlight_risk_diagnosis | monetization_interruption_diagnosis | single_player_pacing_diagnosis | none",
-    "primary_modes": [],
-    "supporting_modes": [],
-    "required_sections": [],
-    "not_enabled": []
-  },
-  "evidence_index": [
-    {
-      "evidence_id": "E001",
-      "source_id": null,
-      "source_type": "screenshot | video_file | video_url | trailer_pv | paid_creative | store_page | user_context",
-      "timestamp": null,
-      "time_range": null,
-      "frame_id": null,
-      "image_id": null,
-      "region": "",
-      "visible_text": "",
-      "observed_fact": "",
-      "event_type": "hook_peak | feature_exposure | feature_unlock | first_use | reward_claim | failure_signal | confusion_signal | monetization_prompt | decision_point | shareable_moment | control_release | loop_closure | access_blocked",
-      "supports_judgment": "",
-      "confidence": 0.0,
-      "uncertainty_note": "",
-      "extraction_method": "direct_observation | frame_sample | ocr | page_metadata | user_provided"
+    },
+    "genre_route": {
+      "type": "object"
+    },
+    "analysis_route": {
+      "$ref": "#/$defs/analysis_route"
+    },
+    "visual_evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/visual_evidence_item"
+      }
+    },
+    "event_stream": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event_stream_item"
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "four_step_scores": {
+      "type": "object"
+    },
+    "feature_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "system_design_review": {
+      "type": "object"
+    },
+    "mda_analysis": {
+      "type": "object"
+    },
+    "holistic_game_analysis": {
+      "type": "object"
+    },
+    "gameplay_mechanics": {
+      "type": "object"
+    },
+    "single_player_design": {
+      "type": "object"
+    },
+    "trailer_heat_prediction": {
+      "$ref": "#/$defs/trailer_heat_prediction"
+    },
+    "foresight_opportunity": {
+      "type": "object"
+    },
+    "commercialization": {
+      "type": "object"
+    },
+    "ux_ui": {
+      "type": "object"
+    },
+    "genre_benchmark": {
+      "type": "object"
+    },
+    "problem_diagnosis": {
+      "type": "object"
+    },
+    "liveops_longevity": {
+      "type": "object"
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
     }
-  ],
-  "genre_route": {
-    "primary_genre": null,
-    "secondary_genre": null,
-    "evidence": "",
-    "strategy_profile": null,
-    "not_applicable": []
   },
-  "analysis_route": {
-    "mode": null,
-    "reason": "",
-    "selected_lenses": [],
-    "core_questions": [],
-    "required_sections": [],
-    "not_answered": []
-  },
-  "visual_evidence": [
-    {
-      "evidence_id": "E001",
-      "image_id": null,
-      "timestamp": null,
-      "source_label": null,
-      "region": "",
-      "visible_text": "",
-      "evidence": "",
-      "confidence": 0.0
-    }
-  ],
-  "event_stream": [
-    {
-      "evidence_id": "E001",
-      "timestamp": "00:00:00",
-      "image_id": null,
-      "evidence_locator": "timestamp | image_id | url | page_context",
-      "type": "feature_exposure",
-      "event_type": "hook_peak | feature_exposure | feature_unlock | first_use | reward_claim | failure_signal | confusion_signal | monetization_prompt | decision_point | shareable_moment | control_release | loop_closure | access_blocked",
-      "system_tag": null,
-      "feature_tag": null,
-      "evidence": "",
-      "confidence": 0.0,
-      "state": "exposure"
-    }
-  ],
-  "stages": [
-    {
-      "stage_id": "entry",
-      "stage_name": "进入阶段",
-      "start": "00:00:00",
-      "end": null,
-      "objective": "",
-      "findings": [
-        {
-          "evidence_locator": "",
-          "evidence": "",
-          "judgment": "",
-          "confidence": 0.0
-        }
+  "$defs": {
+    "analysis_mode": {
+      "type": "string",
+      "enum": [
+        "early_experience",
+        "gameplay_mechanics",
+        "holistic_game_analysis",
+        "whole_game_mda",
+        "single_player_design",
+        "trailer_heat_prediction",
+        "foresight_opportunity",
+        "commercialization",
+        "ux_ui",
+        "genre_benchmark",
+        "problem_diagnosis",
+        "liveops_longevity"
       ]
-    }
-  ],
-  "four_step_scores": {
-    "scale_1_to_5": 5,
-    "hook": null,
-    "loop": null,
-    "link": null,
-    "surprise": null
-  },
-  "feature_ledger": [
-    {
-      "feature": "",
-      "exposure": null,
-      "unlock": null,
-      "first_use": null,
-      "evidence": "",
-      "confidence": 0.0
-    }
-  ],
-  "system_design_review": {
-    "core_loop": null,
-    "growth_curve": null,
-    "economy_welfare": null,
-    "monetization_intrusion": null,
-    "feedback_intensity": null,
-    "long_term_goal": null,
-    "validation_metrics": []
-  },
-  "mda_analysis": {
-    "mechanics": [],
-    "dynamics": [],
-    "aesthetics": [],
-    "breakpoints": [],
-    "systems_narrative_fusion": {
-      "playable_thesis": "",
-      "value_axis_system": [],
-      "player_value_as_balance": [],
-      "consequence_embodiment": [],
-      "loop_stack": [],
-      "cultural_conversation_loop": "",
-      "meaning_injection_vs_possibility_space": "",
-      "failure_signals": []
-    }
-  },
-  "holistic_game_analysis": {
-    "holistic_scope": "sample_based | pv_based | first_hour | multi_session | research_augmented | insufficient_evidence",
-    "voi_gate": {
-      "decision_to_change": "",
-      "external_research_needed": false,
-      "research_questions": [],
-      "stop_conditions": []
     },
-    "product_positioning": {
-      "target_user": "",
-      "platform": "",
-      "primary_genre": "",
-      "secondary_genre": "",
-      "business_model": ""
+    "diagnosis_pack": {
+      "type": "string",
+      "enum": [
+        "pv_heat_diagnosis",
+        "first_hour_retention_diagnosis",
+        "core_loop_diagnosis",
+        "steam_page_conversion_diagnosis",
+        "project_greenlight_risk_diagnosis",
+        "monetization_interruption_diagnosis",
+        "single_player_pacing_diagnosis",
+        "none"
+      ]
     },
-    "one_sentence_promise": "",
-    "core_game_structure": [],
-    "mda_fit": [],
-    "systems_narrative_fusion": [],
-    "content_supply": [],
-    "monetization_longevity_fit": [],
-    "foresight_window": [],
-    "overall_tier": "model_works | traction_but_product_unproven | gameplay_works_market_unproven | structural_risk | insufficient_evidence",
-    "minimum_validation": [],
-    "kill_conditions": []
-  },
-  "gameplay_mechanics": {
-    "core_actions": [],
-    "player_decisions": [],
-    "resources_economy": [],
-    "progression_unlocks": [],
-    "levels_or_tasks": [],
-    "feedback_loops": []
-  },
-  "single_player_design": {
-    "single_player_scope": "unknown | first_segment | level_slice | boss_slice | open_world_slice | narrative_slice | full_run_review",
-    "critical_path": [],
-    "pacing_beats": [],
-    "agency_map": [],
-    "challenge_skill_feedback": [],
-    "narrative_mechanic_fit": [],
-    "content_reuse_and_variety": [],
-    "finish_intent": []
-  },
-  "trailer_heat_prediction": {
-    "trailer_type": "unknown | CG | in-engine | gameplay_trailer | vertical_ad | mixed",
-    "first_3_6_seconds_hook": [],
-    "one_sentence_pitch": "",
-    "proof_of_play": [],
-    "genre_audience_fit": [],
-    "novelty_and_differentiation": [],
-    "shareability": [],
-    "platform_channel_fit": [],
-    "conversion_path": [],
-    "heat_potential_tier": "blockbuster_candidate | strong_niche_hit | needs_validation | high_risk | insufficient_evidence",
-    "confidence": "high | medium | low",
-    "key_uncertainties": [],
-    "validation_plan": []
-  },
-  "foresight_opportunity": {
-    "opportunity_type": "structural_innovation | content_innovation | theme_innovation | marketing_innovation | hybrid_innovation | reversal_window | unknown",
-    "source_signal": [],
-    "market_validation_signal": [],
-    "era_emotion_signal": [],
-    "window_stage": "source_emergence | follow_window | validation_window | red_ocean | reversal_window | unknown",
-    "remaining_window_estimate": "casual_light_1_3_months | micro_midcore_heavy_3_6_months | custom | unknown",
-    "minimum_validation_deadline": null,
-    "production_timeline_note": null,
-    "transferability": "structural | theme | expression | marketing_test_only | not_transferable | unknown",
-    "go_no_go": "go | conditional_go | no_go | watch",
-    "minimum_validation": [],
-    "kill_conditions": [],
-    "key_assumptions": []
-  },
-  "metrics": {
-    "key_timestamps": {},
-    "density_metrics": {},
-    "diagnosis_scores": {}
-  },
-  "summary": {
-    "one_line": "",
-    "issues": [
-      {
-        "severity": "high",
-        "title": "",
-        "evidence_refs": [],
-        "evidence_locator": "",
-        "evidence": "",
-        "judgment": ""
+    "confidence_label": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unsupported"
+      ]
+    },
+    "readiness_status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "missing",
+        "blocked",
+        "unknown",
+        "not_checked",
+        "not_applicable"
+      ]
+    },
+    "string_or_null": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "string_array": {
+      "type": "array",
+      "items": {
+        "type": "string"
       }
-    ],
-    "recommendations": [
-      {
-        "owner": "",
-        "area": "hook | loop | link | surprise | guide | tempo | system | monetization | social | single_player | level | pacing | agency | challenge_feedback | trailer | market | channel | conversion | foresight | window | validation",
-        "action": "",
-        "evidence_refs": [],
-        "expected_effect": "",
-        "validation": ""
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "screenshot",
+        "video_file",
+        "video_url",
+        "trailer_pv",
+        "paid_creative",
+        "store_page",
+        "local_recording",
+        "first_hour_recording",
+        "full_run_review",
+        "user_context"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "hook_peak",
+        "feature_exposure",
+        "feature_unlock",
+        "first_use",
+        "reward_claim",
+        "failure_signal",
+        "confusion_signal",
+        "monetization_prompt",
+        "decision_point",
+        "shareable_moment",
+        "control_release",
+        "loop_closure",
+        "access_blocked"
+      ]
+    },
+    "video_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_items"
+      ],
+      "properties": {
+        "game_name": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "session_scope": {
+          "type": "string"
+        },
+        "expected_genre": {
+          "type": "string"
+        },
+        "source_items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/source_item"
+          }
+        },
+        "has_voice": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "has_subtitle": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        }
       }
-    ]
+    },
+    "source_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/source_type"
+        },
+        "path": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "url": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "label": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "time_range": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "accessed_at": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "access_notes": {
+          "$ref": "#/$defs/string_or_null"
+        }
+      }
+    },
+    "tool_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "access_notes",
+        "degradation"
+      ],
+      "properties": {
+        "browser_access": {
+          "$ref": "#/$defs/readiness_status"
+        },
+        "ffmpeg": {
+          "$ref": "#/$defs/readiness_status"
+        },
+        "yt_dlp": {
+          "$ref": "#/$defs/readiness_status"
+        },
+        "ocr": {
+          "$ref": "#/$defs/readiness_status"
+        },
+        "asr": {
+          "$ref": "#/$defs/readiness_status"
+        },
+        "access_notes": {
+          "type": "string"
+        },
+        "degradation": {
+          "type": "string"
+        }
+      }
+    },
+    "sample_scope_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_boundary",
+        "supported_judgment_scope",
+        "unsupported_judgment_scope",
+        "key_unknowns",
+        "confidence_ceiling"
+      ],
+      "properties": {
+        "sample_boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supported_judgment_scope": {
+          "$ref": "#/$defs/string_array"
+        },
+        "unsupported_judgment_scope": {
+          "$ref": "#/$defs/string_array"
+        },
+        "key_unknowns": {
+          "$ref": "#/$defs/string_array"
+        },
+        "confidence_ceiling": {
+          "$ref": "#/$defs/confidence_label"
+        }
+      }
+    },
+    "diagnosis_route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diagnosis_pack",
+        "primary_modes",
+        "supporting_modes",
+        "required_sections",
+        "not_enabled"
+      ],
+      "properties": {
+        "diagnosis_pack": {
+          "$ref": "#/$defs/diagnosis_pack"
+        },
+        "primary_modes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/analysis_mode"
+          }
+        },
+        "supporting_modes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/analysis_mode"
+          }
+        },
+        "required_sections": {
+          "$ref": "#/$defs/string_array"
+        },
+        "not_enabled": {
+          "$ref": "#/$defs/string_array"
+        }
+      }
+    },
+    "evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_type",
+        "observed_fact",
+        "event_type",
+        "supports_judgment",
+        "confidence",
+        "extraction_method"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^E[0-9]{3,}$"
+        },
+        "source_id": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "source_type": {
+          "$ref": "#/$defs/source_type"
+        },
+        "timestamp": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "time_range": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "frame_id": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "image_id": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "region": {
+          "type": "string"
+        },
+        "visible_text": {
+          "type": "string"
+        },
+        "observed_fact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "event_type": {
+          "$ref": "#/$defs/event_type"
+        },
+        "supports_judgment": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "uncertainty_note": {
+          "type": "string"
+        },
+        "extraction_method": {
+          "type": "string",
+          "enum": [
+            "direct_observation",
+            "frame_sample",
+            "ocr",
+            "page_metadata",
+            "user_provided",
+            "synthetic_example"
+          ]
+        }
+      }
+    },
+    "analysis_route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "reason",
+        "selected_lenses",
+        "core_questions",
+        "required_sections",
+        "not_answered"
+      ],
+      "properties": {
+        "mode": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/analysis_mode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "selected_lenses": {
+          "$ref": "#/$defs/string_array"
+        },
+        "core_questions": {
+          "$ref": "#/$defs/string_array"
+        },
+        "required_sections": {
+          "$ref": "#/$defs/string_array"
+        },
+        "not_answered": {
+          "$ref": "#/$defs/string_array"
+        }
+      }
+    },
+    "visual_evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "evidence",
+        "confidence"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string"
+        },
+        "image_id": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "timestamp": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "source_label": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "region": {
+          "type": "string"
+        },
+        "visible_text": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "event_stream_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "evidence_locator",
+        "event_type",
+        "evidence",
+        "confidence"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "image_id": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "evidence_locator": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "event_type": {
+          "$ref": "#/$defs/event_type"
+        },
+        "system_tag": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "feature_tag": {
+          "$ref": "#/$defs/string_or_null"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "trailer_heat_prediction": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "trailer_type": {
+          "type": "string"
+        },
+        "first_3_6_seconds_hook": {
+          "type": "array"
+        },
+        "one_sentence_pitch": {
+          "type": "string"
+        },
+        "proof_of_play": {
+          "type": "array"
+        },
+        "heat_potential_tier": {
+          "type": "string",
+          "enum": [
+            "blockbuster_candidate",
+            "strong_niche_hit",
+            "needs_validation",
+            "high_risk",
+            "insufficient_evidence"
+          ]
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence_label"
+        },
+        "key_uncertainties": {
+          "$ref": "#/$defs/string_array"
+        },
+        "validation_plan": {
+          "type": "array"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "one_line",
+        "issues",
+        "recommendations"
+      ],
+      "properties": {
+        "one_line": {
+          "type": "string"
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    }
   }
 }

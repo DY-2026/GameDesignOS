@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Player Promise Contract",
+  "type": "object",
+  "required": [
+    "concept_name",
+    "selected_nucleus",
+    "case_visibility",
+    "output_destination",
+    "promise_layers",
+    "quality_gate"
+  ],
+  "properties": {
+    "concept_name": {
+      "type": "string"
+    },
+    "selected_nucleus": {
+      "type": "string"
+    },
+    "case_visibility": {
+      "type": "string",
+      "enum": [
+        "private_user_work",
+        "public_repo_example",
+        "public_article",
+        "client_confidential",
+        "synthetic_case",
+        "unknown"
+      ]
+    },
+    "output_destination": {
+      "type": "string",
+      "enum": [
+        "private_notes",
+        "repo_example",
+        "public_post",
+        "client_delivery",
+        "unknown"
+      ]
+    },
+    "promise_layers": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "layer",
+          "promise",
+          "player_action",
+          "feedback",
+          "validation_signal"
+        ],
+        "properties": {
+          "layer": {
+            "type": "string",
+            "enum": [
+              "public_promise",
+              "first_10_minutes",
+              "long_term_play"
+            ]
+          },
+          "promise": {
+            "type": "string"
+          },
+          "player_action": {
+            "type": "string"
+          },
+          "feedback": {
+            "type": "string"
+          },
+          "validation_signal": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "quality_gate": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

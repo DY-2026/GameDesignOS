@@ -1,17 +1,45 @@
 {
   "skill": "game-concept-architect",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "cases": [
+    {
+      "id": "idea_triage_vague_seed",
+      "input": "做一个很酷的开放世界二次元 RPG。",
+      "mode": "idea_triage",
+      "expected_sections": [
+        "Case Visibility",
+        "Concept Seed Extraction",
+        "Design Nucleus Options",
+        "Assumption Ledger",
+        "External Evidence Status",
+        "Recommended Next Step"
+      ],
+      "must_include": [
+        "unknown",
+        "assumption",
+        "evidence-needed",
+        "not-run",
+        "生产约束",
+        "scope"
+      ],
+      "must_not": [
+        "确定的大世界地图规划",
+        "完整角色池",
+        "未验证的 LiveOps 计划",
+        "市场已有验证"
+      ]
+    },
     {
       "id": "one_page_clockwork_garden",
       "input": "做一个在废弃温室里培育机械植物、抵御夜间虫群的轻量策略防守游戏。",
       "mode": "one_page_pitch",
       "expected_sections": [
+        "Case Visibility",
         "Concept Seed Extraction",
-        "External Feasibility Check",
+        "Design Nucleus Options",
         "Assumption Ledger",
+        "External Evidence Status",
         "Player Promise",
-        "Design Nucleus",
         "Core Loop",
         "Production Feasibility",
         "Scope Gate",
@@ -38,11 +66,14 @@
       "input": "做一个在梦境城市里投递信件、用卡牌改变街区规则的短局冒险游戏。",
       "mode": "full_design_brief",
       "expected_sections": [
+        "Case Visibility",
         "Concept Seed Extraction",
-        "External Feasibility Check",
+        "Design Nucleus Options",
         "Assumption Ledger",
+        "External Evidence Status",
         "Player Promise",
         "Key Systems",
+        "Reference Game Boundary",
         "Production Feasibility",
         "Feature Priority Matrix",
         "Risk Register",
@@ -68,6 +99,9 @@
       "input": "做一个指挥三人小队在废弃太空站回收物资、每次行动都会改变站内结构的战术生存游戏。",
       "mode": "vertical_slice_plan",
       "expected_sections": [
+        "Case Visibility",
+        "Design Nucleus Options",
+        "External Evidence Status",
         "Vertical Slice Goal",
         "Build Scope",
         "Production Feasibility",
@@ -88,25 +122,6 @@
         "忽略生产约束",
         "默认实时多人",
         "完整基地建造"
-      ]
-    },
-    {
-      "id": "negative_vague_idea",
-      "input": "做一个很酷的开放世界二次元 RPG。",
-      "mode": "one_page_pitch",
-      "expected_behavior": "必须标注信息不足和 high-impact unknown，不得编造确定平台、商业模式、团队能力或完整系统。",
-      "must_include": [
-        "unknown",
-        "assumption",
-        "evidence-needed",
-        "生产约束",
-        "scope gate",
-        "建议砍掉"
-      ],
-      "must_not": [
-        "确定的大世界地图规划",
-        "完整角色池",
-        "未验证的 LiveOps 计划"
       ]
     }
   ]
