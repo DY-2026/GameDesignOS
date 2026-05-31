@@ -1,6 +1,6 @@
 {
   "skill": "game-concept-architect",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "cases": [
     {
       "id": "idea_triage_vague_seed",
@@ -122,6 +122,162 @@
         "忽略生产约束",
         "默认实时多人",
         "完整基地建造"
+      ]
+    },
+    {
+      "id": "verb_inventory_action_platformer",
+      "input": "做一个横版动作平台游戏，主角用钩爪和短冲刺穿过会变化的矿洞。",
+      "mode": "idea_triage",
+      "expected_sections": [
+        "Case Visibility",
+        "Concept Seed Extraction",
+        "Player Verb Inventory",
+        "Design Nucleus Options",
+        "Action-Goal Alignment",
+        "Assumption Ledger",
+        "External Evidence Status",
+        "Recommended Next Step"
+      ],
+      "must_include": [
+        "直接动作",
+        "间接动作",
+        "抽象动作",
+        "界面动作",
+        "80% 时间",
+        "动作-目标"
+      ],
+      "must_not": [
+        "只写美术风格",
+        "只写关卡数量",
+        "把钩爪当成题材包装"
+      ]
+    },
+    {
+      "id": "goal_layers_single_action_puzzle",
+      "input": "做一个只交换相邻星盘碎片的短局解谜游戏，但希望它能长期留住玩家。",
+      "mode": "one_page_pitch",
+      "expected_sections": [
+        "Player Verb Inventory",
+        "Action-Goal Alignment",
+        "Design Nucleus Options",
+        "Player Promise",
+        "Core Loop",
+        "Validation Plan"
+      ],
+      "must_include": [
+        "瞬时目标",
+        "局内目标",
+        "中期目标",
+        "长期目标",
+        "玩家自发目标",
+        "核心动作"
+      ],
+      "must_not": [
+        "因为动作简单所以不可做",
+        "只靠每日签到留存",
+        "没有目标层级"
+      ]
+    },
+    {
+      "id": "uncertainty_calibration_trading_builder",
+      "input": "做一个资源交易和岛屿建设桌游，每回合有骰子产出、玩家交易、隐藏事件和共同灾害。",
+      "mode": "full_design_brief",
+      "expected_sections": [
+        "Uncertainty Calibration",
+        "Action-Goal Alignment",
+        "System Dynamics Map",
+        "Scope Gate",
+        "Validation Plan"
+      ],
+      "must_include": [
+        "人",
+        "隐藏信息",
+        "脑力技能",
+        "随机性",
+        "公平感",
+        "失败原因"
+      ],
+      "must_not": [
+        "随机越多越好",
+        "用随机抹掉玩家努力",
+        "不区分交易和骰子的不同不确定性"
+      ]
+    },
+    {
+      "id": "content_flow_card_battler",
+      "input": "做一个卡牌战斗游戏，核心循环已经是抽牌、出牌、结算，但需要设计长期内容和扩展包节奏。",
+      "mode": "full_design_brief",
+      "expected_sections": [
+        "Content Flow Plan",
+        "Core Loop",
+        "Production Feasibility",
+        "Feature Priority Matrix",
+        "Risk Register",
+        "Validation Plan"
+      ],
+      "must_include": [
+        "核心循环变奏",
+        "难度曲线",
+        "内容集合",
+        "内容产能",
+        "消耗速度",
+        "生产方式"
+      ],
+      "must_not": [
+        "只堆卡牌数量",
+        "用扩展包替代核心循环验证",
+        "不评估内容产能"
+      ]
+    },
+    {
+      "id": "audience_desire_social_expression",
+      "input": "做一个校园社交换装游戏，玩家主要在课间活动、装扮空间、和朋友展示风格。",
+      "mode": "one_page_pitch",
+      "expected_sections": [
+        "Audience Desire Map",
+        "Player Promise",
+        "Core Loop",
+        "Action-Goal Alignment",
+        "Validation Plan"
+      ],
+      "must_include": [
+        "玩家想做什么",
+        "为什么兴奋",
+        "表达",
+        "社交",
+        "拒绝点",
+        "相邻游戏或场景"
+      ],
+      "must_not": [
+        "只写女性用户",
+        "只写年龄层",
+        "不说明玩家动机"
+      ]
+    },
+    {
+      "id": "playable_theme_resource_dilemma",
+      "input": "做一个海底避难所管理游戏，玩家每天决定氧气、食物和维修名额分配，让秩序、同情和生存效率互相冲突。",
+      "mode": "full_design_brief",
+      "expected_sections": [
+        "Playable Theme Map",
+        "System Dynamics Map",
+        "Player Promise",
+        "Core Loop",
+        "Risk Register",
+        "Validation Plan"
+      ],
+      "must_include": [
+        "主题命题",
+        "可操作系统",
+        "价值轴",
+        "数值代价",
+        "意义代价",
+        "可见后果"
+      ],
+      "must_not": [
+        "主题只停留在剧情",
+        "只有结算文字",
+        "没有玩家选择后果"
       ]
     }
   ]

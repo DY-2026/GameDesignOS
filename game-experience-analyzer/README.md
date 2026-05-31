@@ -13,13 +13,13 @@
 </p>
 
 <p align="center">
-  <img alt="Skill" src="https://img.shields.io/badge/Codex%20Skill-game--experience--analyzer-2ea44f">
+  <img alt="Skill" src="https://img.shields.io/badge/Agent%20Skill-game--experience--analyzer-2ea44f">
   <img alt="Language" src="https://img.shields.io/badge/Reports-Chinese-blue">
   <img alt="Inputs" src="https://img.shields.io/badge/Inputs-Screenshot%20%7C%20Recording%20%7C%20PV%20%7C%20URL-6f42c1">
   <img alt="Evidence First" src="https://img.shields.io/badge/Method-Evidence--First-f9a825">
 </p>
 
-`game-experience-analyzer` 是一个面向游戏诊断交付的 Codex skill。它不会把视频看完后写成泛泛观后感，而是先输出样本边界门，再建立 `evidence_id` 索引，最后根据用户场景选择诊断包和既有分析模式：前期体验、玩法机制、整体项目、MDA、系统叙事融合、单机流程、PV 热度预测、前瞻机会、品类策略、商业化或 UX/UI。
+`game-experience-analyzer` 是一个面向游戏诊断交付的 agent skill / Markdown skill package。它不会把视频看完后写成泛泛观后感，而是先输出样本边界门，再建立 `evidence_id` 索引，最后根据用户场景选择诊断包和既有分析模式：前期体验、玩法机制、游戏拆解、整体项目、MDA、系统叙事融合、单机流程、PV 热度预测、前瞻机会、品类策略、商业化或 UX/UI。
 
 它适合游戏设计师、制作人、发行/宣发、竞品研究、AI-assisted game team 和任何需要把“我觉得这游戏不错/不行”变成“证据在哪里、问题是什么、下一步怎么验证”的使用者。
 
@@ -75,6 +75,7 @@ Input media -> Sample Scope Gate -> Evidence Index -> Diagnosis Pack -> Mode rou
 | PV 热度诊断包 | `trailer_heat_prediction` | 判断首秒钩子、卖点复述、可传播峰值和验证路径。 |
 | 首小时留存诊断包 | `early_experience` | 诊断首小时流程、功能账本、困惑/失败信号和留存钩子。 |
 | 核心循环诊断包 | `gameplay_mechanics` | 诊断核心动作、决策点、资源经济、成长解锁和循环闭合。 |
+| 游戏拆解诊断包 | `holistic_game_analysis` + `gameplay_mechanics` | 拆玩家动词、动作-目标对齐、不确定性、系统动态、内容流、受众动机、可玩主题和迁移边界。 |
 | Steam 页面转化诊断包 | `trailer_heat_prediction` + `ux_ui` | 诊断商店页首屏、标签、截图顺序、预告片和愿望单 CTA。 |
 | 项目立项风险诊断包 | `foresight_opportunity` | 判断窗口期、机会类型、Go/No-Go、最小验证和 Kill 条件。 |
 | 商业化打断诊断包 | `commercialization` | 诊断付费/广告/福利请求是否破坏当前玩家目标。 |
@@ -92,7 +93,7 @@ Input media -> Sample Scope Gate -> Evidence Index -> Diagnosis Pack -> Mode rou
 
 ## 快速开始
 
-Use it directly in Codex:
+在任何支持本地 skill / Markdown skill 的 agent 环境中直接使用：
 
 ```text
 Use $game-experience-analyzer to analyze this local gameplay recording into a sample scope gate, evidence index, diagnosis pack route, gameplay mechanics findings, issue cards, and a validation plan.
@@ -116,10 +117,15 @@ Use $game-experience-analyzer to analyze this local gameplay recording into a sa
 用 game-experience-analyzer 做商业化打断诊断包。重点看广告/付费请求出现前玩家正在追什么目标，以及最小改法和验证计划。
 ```
 
+```text
+用 game-experience-analyzer 做游戏拆解诊断包。先写 dissection_goal 和样本边界，再拆玩家动词、动作-目标对齐、不确定性、系统动态、内容流、受众动机、可玩主题和迁移边界。
+```
+
 输出分三档：
 
 - 快速诊断：[`templates/quick-triage-report.md`](./templates/quick-triage-report.md)
 - 标准报告：[`templates/experience-report.md`](./templates/experience-report.md)
+- 游戏拆解诊断：[`templates/game-dissection-report.md`](./templates/game-dissection-report.md)
 - 咨询交付：[`templates/consulting-diagnosis-report.md`](./templates/consulting-diagnosis-report.md)
 
 ## 示例输出
@@ -162,7 +168,7 @@ Use $game-experience-analyzer to analyze this local gameplay recording into a sa
 
 ## 项目边界
 
-协作中的临时命令不等于开源项目规则。用户可能在一次对话里要求 Codex 执行某个步骤、避开某个表述、临时采用某个案例或按某种顺序工作；这些只约束当前任务。
+协作中的临时命令不等于开源项目规则。用户可能在一次对话里要求某个 agent 执行某个步骤、避开某个表述、临时采用某个案例或按某种顺序工作；这些只约束当前任务。
 
 只有满足以下条件之一，才写进这个 skill：
 
@@ -193,6 +199,7 @@ game-experience-analyzer/
 |   |-- diagnosis-pack-router.yaml
 |   |-- evidence-taxonomy.zh-CN.md
 |   |-- foresight-opportunity-lens.zh-CN.md
+|   |-- game-dissection-diagnosis.zh-CN.md
 |   |-- genre-strategy-router.yaml
 |   |-- sample-scope-gate.zh-CN.md
 |   |-- single-player-analysis.zh-CN.md
@@ -205,6 +212,7 @@ game-experience-analyzer/
     |-- consulting-diagnosis-report.md
     |-- evidence-index.schema.json
     |-- experience-report.md
+    |-- game-dissection-report.md
     |-- issue-card.md
     |-- mode-output-map.yaml
     |-- quick-triage-report.md

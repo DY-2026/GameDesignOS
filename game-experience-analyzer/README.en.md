@@ -13,13 +13,13 @@
 </p>
 
 <p align="center">
-  <img alt="Skill" src="https://img.shields.io/badge/Codex%20Skill-game--experience--analyzer-2ea44f">
+  <img alt="Skill" src="https://img.shields.io/badge/Agent%20Skill-game--experience--analyzer-2ea44f">
   <img alt="Language" src="https://img.shields.io/badge/Reports-Chinese-blue">
   <img alt="Inputs" src="https://img.shields.io/badge/Inputs-Screenshot%20%7C%20Recording%20%7C%20PV%20%7C%20URL-6f42c1">
   <img alt="Evidence First" src="https://img.shields.io/badge/Method-Evidence--First-f9a825">
 </p>
 
-`game-experience-analyzer` is a Codex skill for game design analysis. It does not watch a video and write a loose reaction essay. It first builds screenshot, keyframe, and timestamp evidence, then routes the task into the right lens: early experience, gameplay mechanics, holistic product analysis, MDA, systems-narrative fusion, single-player flow, trailer heat prediction, foresight opportunity, genre strategy, commercialization, or UX/UI.
+`game-experience-analyzer` is an agent skill / Markdown skill package for game design analysis. It does not watch a video and write a loose reaction essay. It first builds screenshot, keyframe, and timestamp evidence, then routes the task into the right lens: early experience, gameplay mechanics, game dissection, holistic product analysis, MDA, systems-narrative fusion, single-player flow, trailer heat prediction, foresight opportunity, genre strategy, commercialization, or UX/UI.
 
 It is built for game designers, producers, publishing and marketing teams, competitor research, AI-assisted game teams, and anyone who needs to turn "this game feels good/bad" into "where is the evidence, what is the problem, and how should we validate the next step?"
 
@@ -64,6 +64,21 @@ It identifies the input source and analysis intent first, then chooses strategy 
 | `genre_benchmark` | genre strategy, benchmark, X+SLG | Which strategies migrate, and which do not? |
 | `problem_diagnosis` | what is wrong, how to fix it | What is the root cause, smallest change, owner, and validation metric? |
 
+## Diagnosis Packs
+
+Diagnosis packs are not new analysis modes. They route a user scenario into existing modes and required sections.
+
+| Pack | Primary Mode | Use |
+| --- | --- | --- |
+| PV heat diagnosis | `trailer_heat_prediction` | Judge first-second hook, selling point repetition, shareable peaks, and validation path. |
+| First-hour retention diagnosis | `early_experience` | Diagnose first-hour flow, feature ledger, confusion/failure signals, and retention hooks. |
+| Core-loop diagnosis | `gameplay_mechanics` | Diagnose core actions, decision points, resource economy, progression unlocks, and loop closure. |
+| Game dissection diagnosis | `holistic_game_analysis` + `gameplay_mechanics` | Break down player verbs, action-goal alignment, uncertainty, system dynamics, content flow, audience desire, playable theme, and transfer boundary. |
+| Steam/store conversion diagnosis | `trailer_heat_prediction` + `ux_ui` | Diagnose first screen, tags, screenshot order, trailer bridge, and wishlist CTA. |
+| Project greenlight risk diagnosis | `foresight_opportunity` | Judge window phase, opportunity type, Go/No-Go, minimum validation, and kill conditions. |
+| Monetization interruption diagnosis | `commercialization` | Diagnose whether paid/ad/welfare prompts break the player's current goal. |
+| Single-player pacing diagnosis | `single_player_design` | Diagnose critical path, pacing beats, agency, challenge feedback, and finish intent. |
+
 ## Foresight Window Defaults
 
 Foresight work separates the opportunity validation window from the full development cycle.
@@ -76,7 +91,7 @@ Foresight work separates the opportunity validation window from the full develop
 
 ## Quick Start
 
-Use it directly in Codex:
+Use it in any agent environment that can load local skills or Markdown skill packages:
 
 ```text
 Use $game-experience-analyzer to analyze this local gameplay recording into timestamped evidence, gameplay mechanics, MDA, Hook/Loop/Link/Surprise scores, and actionable recommendations.
@@ -94,6 +109,10 @@ Chinese requests are also natural:
 
 ```text
 用 game-experience-analyzer 判断这个题材和玩法方向现在还值不值得做，给出窗口期、Go/No-Go、最小验证截止和 Kill 条件。
+```
+
+```text
+用 game-experience-analyzer 做游戏拆解诊断包。先写 dissection_goal 和样本边界，再拆玩家动词、动作-目标对齐、不确定性、系统动态、内容流、受众动机、可玩主题和迁移边界。
 ```
 
 ## Example Output
@@ -125,7 +144,7 @@ When tooling is missing, the report keeps `tool_readiness`: missing items, impac
 
 ## Project Boundary
 
-Temporary collaboration instructions are not public project rules. A user may ask Codex to follow a one-off order, avoid a phrase, use a temporary case, or execute a session-specific sequence; those instructions bind the current task only.
+Temporary collaboration instructions are not public project rules. A user may ask an agent to follow a one-off order, avoid a phrase, use a temporary case, or execute a session-specific sequence; those instructions bind the current task only.
 
 Only write a change into this skill when at least one condition is true:
 
@@ -153,8 +172,11 @@ game-experience-analyzer/
 |   `-- survival-33-days-gameplay-experience-report.md
 |-- references/
 |   |-- analysis-mode-router.yaml
+|   |-- diagnosis-pack-router.yaml
 |   |-- foresight-opportunity-lens.zh-CN.md
+|   |-- game-dissection-diagnosis.zh-CN.md
 |   |-- genre-strategy-router.yaml
+|   |-- sample-scope-gate.zh-CN.md
 |   |-- single-player-analysis.zh-CN.md
 |   |-- system-design-review-lens.zh-CN.md
 |   |-- tooling-setup.zh-CN.md
@@ -164,7 +186,10 @@ game-experience-analyzer/
     |-- analysis-input.json
     |-- evidence-index.schema.json
     |-- experience-report.md
+    |-- game-dissection-report.md
+    |-- issue-card.md
     |-- mode-output-map.yaml
+    |-- quick-triage-report.md
     |-- structured-output.example.json
     |-- structured-output.schema.json
     `-- trailer-heat-report.md

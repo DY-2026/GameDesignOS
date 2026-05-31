@@ -1,5 +1,5 @@
 rubric_id: game_experience_analyzer_diagnosis_engine
-version: 0.1
+version: 0.2
 score_scale:
   "0": "Fail: 输出会误导用户或编造证据。"
   "1": "Weak: 有部分结构，但边界、证据或行动性不足。"
@@ -24,6 +24,17 @@ dimensions:
     score_1: "选择了可用模式，但混入大量无关镜头。"
     score_2: "主 mode 正确，辅助 mode 有解释。"
     score_3: "主 mode、辅助 mode、诊断包和不启用镜头都说明清楚。"
+  game_dissection_quality:
+    weight: 1.3
+    checks:
+      - "完整拆解请求选择 game_dissection_diagnosis，并写明 dissection_goal。"
+      - "输出 player_verb_inventory、action_goal_alignment、uncertainty_sources、system_dynamics_map、content_flow、audience_desire、meaning_or_theme 和 transferability_boundary。"
+      - "机制迁移区分 transferable_structure、non_transferable_surface、dependency、adaptation_cost、minimum_validation 和 kill_condition。"
+      - "MDA 不是未点名时的主模式；玩家动词、目标和动态先于理论标签。"
+    score_0: "把完整拆解写成泛泛感想、竞品复刻清单或单一 MDA 套壳。"
+    score_1: "提到拆解维度，但缺少动词、目标、动态或迁移边界。"
+    score_2: "核心拆解结构完整，样本外判断有降级。"
+    score_3: "拆解目标、证据链、系统动态、可迁移结构和验证计划都能直接用于设计决策。"
   sample_scope_boundary:
     weight: 1.4
     checks:
@@ -99,6 +110,8 @@ passing_rules:
     - "只有 PV 却预测确定销量、流水或下载量。"
     - "用户指定单机流程却使用手游留存模型作为主框架。"
     - "用户指定玩法机制却只输出四步法。"
+    - "完整拆解却复制竞品表层 IP、角色、剧情、美术、数值或运营节奏作为方案。"
+    - "短片段或截图被包装成完整通关、长期留存或社区生态结论。"
 minimal_example:
   prompt: "只有 3 张战斗截图，判断动作手感。"
   expected_scores:

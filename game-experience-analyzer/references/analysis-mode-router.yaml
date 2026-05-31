@@ -1,6 +1,6 @@
 router_id: game_analysis_mode_router
 name: 游戏分析模式路由
-version: 0.1
+version: 0.2
 purpose: 根据用户问题选择分析类型，避免所有任务都输出同一种前期体验报告。
 
 default_mode: early_experience
@@ -14,6 +14,14 @@ lens_policy:
     - system_design_review
   optional_lenses:
     - four_step_experience
+    - game_dissection
+    - player_verb_inventory
+    - action_goal_alignment
+    - uncertainty_sources
+    - system_dynamics_map
+    - content_flow
+    - audience_desire
+    - transferability_boundary
     - gameplay_mechanics
     - holistic_game_analysis
     - mda
@@ -54,14 +62,22 @@ modes:
       - 机制分析
       - 核心玩法
       - 游戏循环
+      - 机制拆解
+      - 玩家动词
+      - 动作目标
       - 战斗/建造/经营/构筑机制
     core_questions:
       - 玩家做什么动作？
       - 动作如何被判定？
+      - 核心动词服务哪些瞬时目标、局内目标和长期目标？
+      - 不确定性来自玩家、隐藏信息、身体技能、脑力技能还是随机性？
       - 资源、奖励和失败如何反馈？
       - 机制是否产生有效决策，而不是纯点击确认？
       - 成长是否放大核心动作，而不是替代核心动作？
     required_lenses:
+      - player_verb_inventory
+      - action_goal_alignment
+      - uncertainty_sources
       - 核心动作
       - 玩家决策
       - 资源/经济
@@ -97,7 +113,15 @@ modes:
     triggers:
       - 整体分析
       - 整体拆解
+      - 完整拆解
+      - 游戏拆解
       - 完整分析
+      - 为什么它成立
+      - 为什么好玩
+      - 机制能不能迁移
+      - 拆一下这个机制
+      - 从玩法结构看
+      - 可迁移结构
       - 产品整体
       - 项目整体
       - 这个游戏整体怎么样
@@ -107,8 +131,13 @@ modes:
       - 当前素材能支撑哪种整体判断：PV、首小时、片段、多段样本，还是外部资料增强？
       - 产品定位是什么：目标用户、平台、主副品类、商业模型和使用场景？
       - 一句话产品承诺是否足够清楚，能不能被玩家复述？
+      - 玩家 80% 的时间在做什么动词，这些动词是否真的服务目标？
+      - 核心动作、目标层级、不确定性和反馈是否形成可复用动态？
       - 核心玩法结构、MDA、内容供给、商业化和长线是否互相支撑？
+      - 内容变化是否改变玩家判断，还是只用内容替代核心循环？
+      - 受众动机被哪些动作、目标和反馈承载？
       - 玩法是否就是叙事：系统、循环、选择和后果是否共同生成主题意义？
+      - 哪些结构可以迁移，哪些表层和依赖条件不能照搬？
       - 玩家价值观是否成为选择权重、平衡变量或冲突来源？
       - 游戏结束后是否形成讨论、内省、复述或文化对话循环？
       - 当前机会属于结构创新、内容创新、题材创新、投放创新、组合创新，还是反转窗口？
@@ -118,10 +147,18 @@ modes:
       - sample_scope_gate
       - product_positioning
       - one_sentence_promise
+      - game_dissection
+      - player_verb_inventory
+      - action_goal_alignment
+      - uncertainty_sources
+      - system_dynamics_map
       - gameplay_mechanics
       - mda
       - systems_narrative_fusion
       - content_supply
+      - content_flow
+      - audience_desire
+      - transferability_boundary
       - monetization_longevity_fit
       - foresight_opportunity
       - voi_gate
@@ -338,7 +375,9 @@ modes:
 
 selection_rules:
   - 如果用户明确点名 MDA、机制动态美学或 Mechanics/Dynamics/Aesthetics，优先 whole_game_mda。
-  - 如果用户说整体分析、完整拆解、产品整体、体验和市场一起看，优先 holistic_game_analysis；只有明确点名 MDA 时才使用 whole_game_mda 作为主模式。
+  - 如果用户说完整拆解、游戏拆解、为什么成立、为什么好玩、机制可迁移、拆机制或从玩法结构看，先选 game_dissection_diagnosis，再映射到 holistic_game_analysis，并按需要叠加 gameplay_mechanics、genre_benchmark 或 problem_diagnosis。
+  - 如果完整拆解请求只有截图、短片段或不可访问链接，仍可输出 game_dissection_diagnosis 框架，但必须在 sample_scope_gate 中降级循环闭合、手感、长期内容和商业结果判断。
+  - 如果用户说整体分析、产品整体、体验和市场一起看，优先 holistic_game_analysis；只有明确点名 MDA 时才使用 whole_game_mda 作为主模式。
   - 如果用户问系统叙事、玩法即叙事、价值观选择、意义生成、文化讨论、主题是否由机制承载，优先 holistic_game_analysis + whole_game_mda，并启用 systems_narrative_fusion 镜头。
   - 如果用户明确点名单机、关卡、Boss、开放世界、叙事解谜或通关体验，优先 single_player_design；若同时点名 MDA，则使用 single_player_design + whole_game_mda。
   - 如果用户明确点名 PV、宣传片、预告片、买量素材、能不能火、会不会火、爆款潜力、预约或愿望单，优先 trailer_heat_prediction；若素材包含实机片段，再补 gameplay_mechanics 或 genre_benchmark。

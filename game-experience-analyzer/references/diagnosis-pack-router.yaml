@@ -1,5 +1,5 @@
 router_id: diagnosis_pack_router
-version: 0.1
+version: 0.2
 purpose: "在 analysis-mode-router 之上，把用户场景路由成可交付诊断包；诊断包不是新 mode，只组合既有 modes、sections 和证据要求。"
 base_router: "references/analysis-mode-router.yaml"
 field_definitions:
@@ -134,6 +134,56 @@ packs:
     hard_limits:
       - "用户问玩法机制时，不要只套 Hook/Loop/Link/Surprise。"
       - "截图只能判断机制入口和静态反馈，不能证明循环闭合。"
+
+  - pack_id: game_dissection_diagnosis
+    display_name: "游戏拆解诊断包"
+    user_triggers:
+      - "完整拆解"
+      - "游戏拆解"
+      - "整体拆这个游戏"
+      - "为什么它成立"
+      - "为什么好玩"
+      - "机制能不能迁移"
+      - "拆一下这个机制"
+      - "从玩法结构看"
+      - "像某游戏但怎么迁移"
+      - "可迁移结构"
+    supported_sources:
+      - "local_recording"
+      - "full_run_review"
+      - "video_file"
+      - "video_url"
+      - "screenshot"
+      - "store_page"
+      - "user_context"
+    primary_modes:
+      - "holistic_game_analysis"
+    supporting_modes:
+      - "gameplay_mechanics"
+      - "whole_game_mda"
+      - "single_player_design"
+      - "genre_benchmark"
+      - "problem_diagnosis"
+      - "foresight_opportunity"
+    required_sections:
+      - "sample_scope_gate"
+      - "evidence_index"
+      - "dissection_goal"
+      - "player_verb_inventory"
+      - "action_goal_alignment"
+      - "uncertainty_sources"
+      - "system_dynamics_map"
+      - "content_flow"
+      - "audience_desire"
+      - "meaning_or_theme"
+      - "transferability_boundary"
+      - "validation_plan"
+    hard_limits:
+      - "不能把截图或短片段包装成完整通关、完整循环或长期内容结论。"
+      - "不能复制参考游戏的 IP、角色、剧情、文案、美术、数值或运营节奏作为建议。"
+      - "不能无证据判断全局口碑、长期留存、商业结果或社区生态。"
+      - "用户未点名 MDA 时，不要把 MDA 当作主模式；游戏拆解应先做玩家动词、目标和系统动态。"
+      - "机制迁移必须输出 transferable_structure、non_transferable_surface、dependency、adaptation_cost 和 minimum_validation。"
 
   - pack_id: steam_page_conversion_diagnosis
     display_name: "Steam 页面转化诊断包"

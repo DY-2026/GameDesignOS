@@ -72,8 +72,8 @@ The simplest path is three small moves: pick a skill, give the agent your materi
 
 | What you have | Use this skill | What you get |
 | --- | --- | --- |
-| Screenshot, recording, PV/trailer, or video link | `$game-experience-analyzer` | A game experience report with timestamps, evidence, and issue priorities |
-| One-line game idea | `$game-concept-architect` | Concept seed, player promise, core loop, scope gate, and validation plan |
+| Screenshot, recording, PV/trailer, or video link | `$game-experience-analyzer` | A game experience report with timestamps, evidence, issue priorities, game dissection, mechanic transfer boundaries, and validation plans |
+| One-line game idea | `$game-concept-architect` | Concept seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan |
 | Prompt, workflow, schema, or agent rule | `$paranoia-ai-system-evolver` | A VOI/OODA/eval/Human Gate/rollback-backed evolution proposal |
 | English game design chapter or essay | `$game-design-book-translator` | Professional Chinese design translation with reviewable terminology |
 | Articles, videos, creators, or websites | `$game-design-source-curator` | Maintainable game design knowledge-base entries |
@@ -84,6 +84,10 @@ Call a skill directly in an agent environment that supports skill loading:
 
 ```text
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, design lenses, heat potential, foresight windows, Go/No-Go, and validation recommendations.
+```
+
+```text
+Use $game-experience-analyzer to dissect this game into player verbs, action-goal alignment, uncertainty sources, system dynamics, content flow, audience desire, transfer boundaries, and validation recommendations.
 ```
 
 ```text
@@ -99,7 +103,7 @@ Use $game-design-source-curator to review these game design sources and turn acc
 ```
 
 ```text
-Use $game-concept-architect to turn this one-line game idea into a concept seed, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
+Use $game-concept-architect to turn this one-line game idea into a concept seed, player verbs, action-goal alignment, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
 ```
 
 ### 3. Install it in your own agent environment
@@ -137,11 +141,11 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
     </td>
   </tr>
   <tr>
-    <td><b>Analyze game experience</b><br>Convert screenshots, recordings, trailers, and video links into evidence-first game design reports.</td>
+    <td><b>Analyze game experience</b><br>Convert screenshots, recordings, trailers, and video links into evidence-first diagnosis, game dissection, and mechanic-transfer judgment.</td>
     <td><b>Evolve workflows</b><br>Upgrade prompts, schemas, evals, memory, and tool routing through VOI, OODA, gates, and rollback.</td>
     <td><b>Translate design knowledge</b><br>Transform serious game design books and chapters into professional Chinese design writing.</td>
     <td><b>Curate sources</b><br>Turn scattered articles, videos, creators, columns, and websites into a durable game design knowledge base.</td>
-    <td><b>Architect game concepts</b><br>Turn a one-line idea into a seed, player promise, core loop, scope gate, and validation plan.</td>
+    <td><b>Architect game concepts</b><br>Turn a one-line idea into a seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan.</td>
   </tr>
 </table>
 
@@ -164,21 +168,22 @@ Users may still use these skills with real projects, private projects, client wo
 
 | Skill | One-line Use | Best For | Package |
 | --- | --- | --- | --- |
-| **Game Experience Analyzer** | Turns screenshots, gameplay recordings, trailers/PVs, and video links into evidence-first Chinese game design reports. | Early experience, mechanics, holistic product analysis, MDA, systems-narrative fusion, single-player flow, genre strategy, heat prediction, foresight windows, monetization, UX. | [`game-experience-analyzer/`](./game-experience-analyzer/) |
+| **Game Experience Analyzer** | Turns screenshots, gameplay recordings, trailers/PVs, and video links into evidence-first Chinese game design reports. | Early experience, mechanics, game dissection, mechanic transfer, holistic product analysis, MDA, systems-narrative fusion, single-player flow, genre strategy, heat prediction, foresight windows, monetization, UX. | [`game-experience-analyzer/`](./game-experience-analyzer/) |
 | **Paranoia AI System Evolver** | Turns prompt, workflow, memory, schema, tool-routing, and eval changes into controlled system evolution. | VOI/OODA, model compression, causal mediators, Human Gate, rollback, validated upgrades. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | Produces professional Chinese game design translations that read like serious design writing. | Terminology, chapters, figures, captions, tables, QA, source-boundary checks. | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | Converts scattered game design sources into a durable local knowledge base. | Source screening, scoring, HTML archives, registries, update history, design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
-| **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
+| **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player verbs, action-goal alignment, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
 
 ## Use Cases
 
 - **Competitor experience review:** turn a gameplay recording into a timeline, feature ledger, loop diagnosis, issue priority, and concrete fixes.
+- **Game dissection and mechanic transfer:** break a sample into player verbs, goal layers, uncertainty, system dynamics, content flow, audience desire, playable theme, and transfer boundaries.
 - **Trailer heat prediction:** evaluate first seconds, one-line value proposition, proof of play, channel fit, conversion path, and validation plan.
 - **Foresight opportunity:** judge whether a genre, theme, or mechanic still has a window; casual/light defaults to 1-3 months, micro/midcore-heavy defaults to 3-6 months.
 - **Source curation:** turn articles, videos, creators, columns, and websites into searchable, citable, experiment-ready design knowledge.
 - **Professional translation:** translate game design books or essays while preserving terminology, argument structure, and figure context.
 - **Workflow evolution:** promote useful agent behavior into candidate rules with evals, Human Gate, and rollback.
-- **Concept feasibility:** turn a one-line idea into concept seed extraction, player promises, core loop design, scope gate, production feasibility, and prototype validation.
+- **Concept feasibility:** turn a one-line idea into concept seed extraction, player verbs, action-goal alignment, player promises, core loop design, scope gate, production feasibility, and prototype validation.
 
 ## Repository Layout
 

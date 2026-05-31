@@ -1,6 +1,6 @@
 ---
 name: game-experience-analyzer
-description: Use when analyzing game screenshots, local gameplay recordings, trailers/PVs, paid creatives, store pages, or video links into Chinese evidence-linked diagnosis reports with sample scope gates, evidence indexes, diagnosis packs, mode routing, genre-sensitive recommendations, validation plans, and actionable game design recommendations.
+description: Use when analyzing game screenshots, local gameplay recordings, trailers/PVs, paid creatives, store pages, or video links into Chinese evidence-linked diagnosis reports with sample scope gates, evidence indexes, game dissection diagnosis packs, mode routing, genre-sensitive recommendations, validation plans, and actionable game design recommendations.
 metadata:
   short-description: Build illustrated, evidence-linked Chinese game diagnosis reports
 ---
@@ -28,6 +28,11 @@ Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 - “做一个整体游戏分析”
 - “整体分析这个游戏”
 - “完整拆解这个项目”
+- “完整拆解这个游戏”
+- “游戏拆解”
+- “为什么它成立”
+- “这个机制能不能迁移”
+- “从玩法结构看这个项目”
 - “从 MDA 视角看这个游戏”
 - “分析一下这个单机游戏”
 - “这个单机的关卡/节奏/叙事怎么样”
@@ -58,6 +63,7 @@ Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 - 证据镜头：画面证据、时间轴、关键帧、页面/链接访问范围。
 - 体验镜头：Hook、Loop、Link、Surprise。
 - 机制镜头：核心动作、玩家决策、资源经济、成长/解锁、反馈循环。
+- 游戏拆解镜头：玩家动词、动作-目标对齐、不确定性来源、系统动态、内容流、受众动机、可玩主题和迁移边界。
 - 整体镜头：Mechanics、Dynamics、Aesthetics 和断点。
 - 综合整体镜头：产品定位、一句话承诺、玩法结构、MDA、内容供给、商业化长线、前瞻窗口、最小验证。
 - 系统叙事融合镜头：可玩命题、价值轴、玩家价值观权重、后果具象化、循环外延到文化对话。
@@ -72,7 +78,7 @@ Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
 1. 先判断输入源类型：`screenshot`、`video_file`、`video_url`、`trailer_pv`、`paid_creative`、`store_page`；再判断分析模式：`early_experience`、`gameplay_mechanics`、`holistic_game_analysis`、`whole_game_mda`、`single_player_design`、`trailer_heat_prediction`、`foresight_opportunity`、`commercialization`、`ux_ui`、`genre_benchmark`、`problem_diagnosis`、`liveops_longevity`。如果用户只给一种来源，不要追问一长串信息，直接按默认值开始。
 2. 读取 `references/sample-scope-gate.zh-CN.md`，先生成样本边界门：`sample_boundary`、`supported_judgment_scope`、`unsupported_judgment_scope`、`key_unknowns`。如果用户要求越界判断，保留问题但标 `unsupported_by_sample`。
-3. 读取 `references/diagnosis-pack-router.yaml`。如果用户场景匹配 PV 热度、首小时留存、核心循环、Steam 页面转化、立项风险、商业化打断或单机流程节奏，先选诊断包，再映射到已有 modes 和 required sections；不要新增泛泛分析模式。
+3. 读取 `references/diagnosis-pack-router.yaml`。如果用户场景匹配 PV 热度、首小时留存、核心循环、游戏拆解、Steam 页面转化、立项风险、商业化打断或单机流程节奏，先选诊断包，再映射到已有 modes 和 required sections；不要新增泛泛分析模式。
 4. 读取 `templates/analysis-input.json`，缺失元信息写 `unknown` 或 `null`。
 5. 检查工具可用性：截图可直接观察；录屏优先检查 `ffmpeg`；视频链接优先检查浏览器访问、平台元数据接口、`yt-dlp` 或等价下载/抽帧能力。缺工具时读取 `references/tooling-setup.zh-CN.md`，先给安装/配置引导，再按可用证据降级。
 6. 建立证据层，并按 `references/evidence-taxonomy.zh-CN.md` 生成 `evidence_index`：
@@ -84,10 +90,10 @@ Copyright (c) 2026 Paranoia. Licensed under the MIT License.
    - 低置信度观察标记 `uncertain`。
    - 关键截图必须图文并茂输出：插入截图，并按 `templates/visual-evidence-card.md` 写可观察事实、设计含义、诊断判断和迭代动作。
 7. 生成 `event_stream` 和 `feature_ledger`。所有重要判断、P0/P1 问题和建议都必须能引用 `evidence_id`。
-8. 读取 `references/analysis-mode-router.yaml`，按用户目标选择输出结构；若用户没指定，默认 `early_experience`，但在报告中写明可升级到哪些模式。用户点名单机、关卡、叙事、流程、Boss、探索、开放世界、解谜、动作冒险时，同时读取 `references/single-player-analysis.zh-CN.md`。用户点名 PV、宣传片、预告片、买量素材、能不能火或爆款潜力时，同时读取 `references/trailer-heat-prediction.zh-CN.md`。用户点名前瞻、窗口、机会、值不值得做、迁移、立项或大厂跟进时，同时读取 `references/foresight-opportunity-lens.zh-CN.md`。
+8. 读取 `references/analysis-mode-router.yaml`，按用户目标选择输出结构；若用户没指定，默认 `early_experience`，但在报告中写明可升级到哪些模式。用户点名完整拆解、游戏拆解、为什么成立、为什么好玩、玩法结构或机制迁移时，同时读取 `references/game-dissection-diagnosis.zh-CN.md`。用户点名单机、关卡、叙事、流程、Boss、探索、开放世界、解谜、动作冒险时，同时读取 `references/single-player-analysis.zh-CN.md`。用户点名 PV、宣传片、预告片、买量素材、能不能火或爆款潜力时，同时读取 `references/trailer-heat-prediction.zh-CN.md`。用户点名前瞻、窗口、机会、值不值得做、迁移、立项或大厂跟进时，同时读取 `references/foresight-opportunity-lens.zh-CN.md`。
 9. 用品类路由和系统设计审查镜头补充判断：先确认品类，再检查该品类的核心循环、成长/经济、商业化边界、反馈强度、长期目标和验证指标。单机样本额外检查 critical path、pacing、agency、challenge-skill、content reuse、narrative-mechanic fit 和 finish intent。
-10. 只输出当前诊断包和分析模式需要的评分和表格。前期体验或用户点名四步法时输出 Hook、Loop、Link、Surprise；整体综合分析输出产品定位、玩法结构、MDA、系统叙事融合、内容供给、商业化长线、前瞻窗口和验证路径；MDA 分析只在用户明确点名 MDA 时作为主模式；玩法分析输出机制表；单机分析输出流程/关卡表；PV/宣传片预测输出传播卖点、品类受众、平台适配、差异化、验证数据和热度潜力分层；前瞻机会判断输出机会类型、窗口阶段、剩余窗口估计、Go/No-Go、最小验证截止和 Kill 条件。
-11. 根据交付深度选择模板：快速诊断用 `templates/quick-triage-report.md`，标准报告用 `templates/experience-report.md`，咨询交付用 `templates/consulting-diagnosis-report.md`。问题卡和验证计划分别使用 `templates/issue-card.md`、`templates/validation-plan.md`。
+10. 只输出当前诊断包和分析模式需要的评分和表格。前期体验或用户点名四步法时输出 Hook、Loop、Link、Surprise；游戏拆解输出玩家动词、动作-目标对齐、不确定性、系统动态、内容流、受众动机、可玩主题、迁移边界和验证计划；整体综合分析输出产品定位、玩法结构、MDA、系统叙事融合、内容供给、商业化长线、前瞻窗口和验证路径；MDA 分析只在用户明确点名 MDA 时作为主模式；玩法分析输出机制表；单机分析输出流程/关卡表；PV/宣传片预测输出传播卖点、品类受众、平台适配、差异化、验证数据和热度潜力分层；前瞻机会判断输出机会类型、窗口阶段、剩余窗口估计、Go/No-Go、最小验证截止和 Kill 条件。
+11. 根据交付深度选择模板：快速诊断用 `templates/quick-triage-report.md`，标准报告用 `templates/experience-report.md`，游戏拆解诊断用 `templates/game-dissection-report.md`，咨询交付用 `templates/consulting-diagnosis-report.md`。问题卡和验证计划分别使用 `templates/issue-card.md`、`templates/validation-plan.md`。
 12. 附上或摘要说明对齐 `templates/structured-output.schema.json` 和 `templates/evidence-index.schema.json` 的结构化 JSON；需要字段示例时参考 `templates/structured-output.example.json`，不得把 example/contract 误称为 schema。
 13. 最后执行输出门检查。
 
@@ -153,6 +159,7 @@ Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 - 证据字段与事件分类：`references/evidence-taxonomy.zh-CN.md`
 - 分析模式路由：`references/analysis-mode-router.yaml`
 - 诊断包路由：`references/diagnosis-pack-router.yaml`
+- 游戏拆解诊断：`references/game-dissection-diagnosis.zh-CN.md`
 - 品类策略路由：`references/genre-strategy-router.yaml`
 - 单机游戏分析：`references/single-player-analysis.zh-CN.md`
 - PV/宣传片热度预测：`references/trailer-heat-prediction.zh-CN.md`
@@ -160,6 +167,7 @@ Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 - 输出模板：
   - 输入：`templates/analysis-input.json`
   - 报告：`templates/experience-report.md`
+  - 游戏拆解诊断：`templates/game-dissection-report.md`
   - 快速诊断：`templates/quick-triage-report.md`
   - 咨询交付：`templates/consulting-diagnosis-report.md`
   - 关键截图解释卡：`templates/visual-evidence-card.md`
@@ -182,6 +190,8 @@ Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 - Evidence Index 必须覆盖所有重要判断；P0/P1 问题卡和核心建议都要引用 `evidence_id`。
 - 关键截图不能只作为装饰图；每张关键图必须配解释卡，说明可观察事实、设计含义、诊断判断、迭代动作和置信度。
 - 诊断包只能映射到已有 modes；不要为了方便新增“泛泛分析模式”。
+- 完整拆解必须说明 `dissection_goal`、样本边界和迁移边界；不能把参考游戏的 IP、角色、剧情、美术、数值或运营节奏原样复制成建议。
+- 游戏拆解必须包含玩家动词、动作-目标对齐、不确定性、系统动态、内容流、受众动机和可玩主题的证据化判断；证据不足时保留 unknown 或 uncertain。
 - 只检查当前模式要求的分析镜头。用户未要求前期体验或四步法时，不强制输出 Hook、Loop、Link、Surprise。
 - 如果用户要求整体游戏/MDA 分析，必须输出 Mechanics、Dynamics、Aesthetics 的证据化拆解，不能只写感受词。
 - 如果用户要求系统叙事、意义生成或玩法叙事融合，必须说明主题是否被机制、动态、选择和后果共同承载，不能只引用故事设定。

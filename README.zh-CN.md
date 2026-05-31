@@ -72,8 +72,8 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 
 | 你手里的材料 | 该用哪个 skill | 你会得到什么 |
 | --- | --- | --- |
-| 截图、录屏、PV、视频链接 | `$game-experience-analyzer` | 带时间戳/证据/问题优先级的游戏体验报告 |
-| 一句话游戏创意 | `$game-concept-architect` | concept seed、玩家承诺、核心循环、scope gate、验证计划 |
+| 截图、录屏、PV、视频链接 | `$game-experience-analyzer` | 带时间戳/证据/问题优先级的体验报告，或游戏拆解、机制迁移和验证计划 |
+| 一句话游戏创意 | `$game-concept-architect` | concept seed、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate、验证计划 |
 | 一段 prompt、workflow、schema 或 agent 规则 | `$paranoia-ai-system-evolver` | 带 VOI/OODA/eval/Human Gate/rollback 的系统演化提案 |
 | 英文游戏设计章节或长文 | `$game-design-book-translator` | 专业、自然、可复查的中文设计翻译 |
 | 一批文章、视频、作者或网站 | `$game-design-source-curator` | 可长期维护的游戏设计知识库条目 |
@@ -84,6 +84,10 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 
 ```text
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, design lenses, heat potential, foresight windows, Go/No-Go, and validation recommendations.
+```
+
+```text
+Use $game-experience-analyzer to dissect this game into player verbs, action-goal alignment, uncertainty sources, system dynamics, content flow, audience desire, transfer boundaries, and validation recommendations.
 ```
 
 ```text
@@ -99,12 +103,12 @@ Use $game-design-source-curator to review these game design sources and turn acc
 ```
 
 ```text
-Use $game-concept-architect to turn this one-line game idea into a concept seed, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
+Use $game-concept-architect to turn this one-line game idea into a concept seed, player verbs, action-goal alignment, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
 ```
 
 ### 3. 安装到自己的 agent 环境
 
-如果你的工具支持本地 skill，把对应目录复制到它的 skill 目录即可。以 Codex 为例：
+如果你的工具支持本地 skill / Markdown skill package，把对应目录复制或同步到它的 skill 目录即可。常见宿主可以是 Codex、Claude Code、OpenCode，或其他能读取 Markdown skill 的 agent 环境：
 
 ```text
 game-experience-analyzer/
@@ -137,11 +141,11 @@ game-concept-architect/
     </td>
   </tr>
   <tr>
-    <td><b>分析游戏体验</b><br>把截图、录屏、宣传片和视频链接，转成证据优先的游戏设计报告。</td>
+    <td><b>分析游戏体验</b><br>把截图、录屏、宣传片和视频链接，转成证据优先的体验诊断、游戏拆解和机制迁移判断。</td>
     <td><b>演化工作流</b><br>用 VOI、OODA、eval、Human Gate 和 rollback 升级 prompt、schema、memory 和 tool routing。</td>
     <td><b>翻译设计知识</b><br>把严肃的游戏设计书籍和章节，变成自然、专业、可复查的中文设计写作。</td>
     <td><b>策展资料</b><br>把散落在文章、视频、作者、专栏和网站里的内容，变成可长期维护的游戏设计知识库。</td>
-    <td><b>架构游戏概念</b><br>把一句话创意拆成 seed、玩家承诺、核心循环、scope gate 和验证计划。</td>
+    <td><b>架构游戏概念</b><br>把一句话创意拆成 seed、玩家动词、动作-目标、玩家承诺、核心循环、scope gate 和验证计划。</td>
   </tr>
 </table>
 
@@ -164,21 +168,22 @@ game-concept-architect/
 
 | Skill | 一句话用途 | 适合场景 | 包目录 |
 | --- | --- | --- | --- |
-| **Game Experience Analyzer** | 把截图、录屏、PV/宣传片和视频链接拆成证据优先的中文游戏设计报告。 | 体验分析、玩法机制、整体项目、MDA、系统叙事、单机流程、热度预测、前瞻窗口、商业化、UX。 | [`game-experience-analyzer/`](./game-experience-analyzer/) |
+| **Game Experience Analyzer** | 把截图、录屏、PV/宣传片和视频链接拆成证据优先的中文游戏设计报告。 | 体验分析、玩法机制、游戏拆解、机制迁移、整体项目、MDA、系统叙事、单机流程、热度预测、前瞻窗口、商业化、UX。 | [`game-experience-analyzer/`](./game-experience-analyzer/) |
 | **Paranoia AI System Evolver** | 把 prompt、workflow、memory、schema、tool routing 和 eval 改动变成受控系统演化。 | VOI/OODA、模型压缩、因果中介、Human Gate、rollback、可验证升级。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本。 | 术语、章节、图注、表格、QA、来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
-| **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
+| **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
 
 ## 典型用例
 
 - **竞品体验复盘:** 给一段录屏，输出时间轴、功能账本、玩法循环、问题优先级和修改建议。
+- **游戏拆解与机制迁移:** 按玩家动词、目标层级、不确定性、系统动态、内容流、受众动机和可玩主题，判断哪些结构可迁移、哪些表层不能照搬。
 - **PV 热度预测:** 给宣传片链接，判断首秒钩子、卖点复述、可玩性证明、平台适配、转化承接和验证计划。
 - **前瞻机会判断:** 判断题材/玩法是否还有窗口；休闲轻度默认 1-3 个月，微小中重度默认 3-6 个月。
 - **资料策展:** 把文章、视频、作者、专栏和网站沉淀成可检索、可引用、可实验的知识库。
 - **专业翻译:** 把游戏设计书籍或长文翻成自然中文，同时保留术语、论证结构和图表语境。
 - **工作流升级:** 把一次有用的 agent 行为升级成候选规则，并用 eval、Human Gate 和 rollback 控制风险。
-- **创意可行性:** 把一句话创意拆成 concept seed、玩家承诺、核心循环、scope gate、生产可行性和原型验证计划。
+- **创意可行性:** 把一句话创意拆成 concept seed、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate、生产可行性和原型验证计划。
 
 ## 项目结构
 

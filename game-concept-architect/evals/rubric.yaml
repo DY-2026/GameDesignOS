@@ -1,32 +1,50 @@
 skill: game-concept-architect
-version: 0.2.0
+version: 0.3.0
 passing_score: 80
 criteria:
   concept_seed_extraction:
-    weight: 10
+    weight: 8
     pass:
       - "拆出题材母体、玩法母体、情绪承诺、差异化种子、平台假设、商业化假设、受众假设、关键 unknown"
       - "明确区分用户已提供信息、assumption 和 unknown"
     fail:
       - "直接扩写成长篇 GDD"
       - "把题材或世界观当成差异化"
+  player_verb_inventory:
+    weight: 8
+    pass:
+      - "说明玩家直接动作、间接动作、抽象动作和界面动作"
+      - "指出玩家 80% 时间里真正反复做什么"
+      - "能区分高频核心动作和营销包装动作"
+    fail:
+      - "只列系统名或功能名"
+      - "不说明玩家实际怎么操作、判断或选择"
   design_nucleus_options:
-    weight: 14
+    weight: 10
     pass:
       - "一句话创意存在多个合理方向时，先比较 design nucleus options"
       - "每个候选能说明玩家行为变化、关键假设、最小测试和 kill signal"
     fail:
       - "过早锁死单一设计核"
       - "候选只是题材、世界观、品类或美术包装"
+  action_goal_alignment:
+    weight: 8
+    pass:
+      - "核心动词连接瞬时目标、局内目标和至少一个中长期目标"
+      - "简单动作能被多层目标放大，复杂目标能回连核心循环"
+      - "指出脱离核心循环的目标或功能"
+    fail:
+      - "目标很多但核心动作无法推进"
+      - "长期目标只靠签到、数值堆叠或外部奖励"
   assumption_ledger:
-    weight: 10
+    weight: 7
     pass:
       - "所有未提供信息进入 assumption ledger"
       - "每条 assumption 有置信度、影响等级和验证方式"
     fail:
       - "把未提供的平台、商业、受众、团队能力写成确定事实"
   external_evidence_status:
-    weight: 8
+    weight: 4
     pass:
       - "说明外部调研的 VOI，或标记 not-run/evidence-needed"
       - "没有当前证据时不写确定市场判断"
@@ -34,7 +52,7 @@ criteria:
       - "没有证据却写成市场已有验证"
       - "为了完整而泛搜，不说明 VOI"
   player_promise:
-    weight: 10
+    weight: 7
     pass:
       - "定义对外宣传承诺、前 10 分钟承诺、长期游玩承诺"
       - "承诺能对应具体玩家行为和反馈"
@@ -42,15 +60,35 @@ criteria:
       - "先堆系统再补一句玩家体验"
       - "承诺只有氛围，没有可玩行为"
   core_loop:
-    weight: 10
+    weight: 7
     pass:
       - "核心循环包含行动、选择、风险、反馈、奖励和新约束"
       - "循环回连到选定 design nucleus"
     fail:
       - "循环只有行动和奖励，没有取舍"
       - "循环与玩家承诺脱节"
-  system_mapping:
+  uncertainty_calibration:
+    weight: 6
+    pass:
+      - "区分人、隐藏信息、身体技能、脑力技能和随机性"
+      - "说明不确定性服务挑战、变化、追赶或抗分析瘫痪中的哪一项"
+      - "玩家能理解成功和失败原因"
+    fail:
+      - "把随机性当作默认答案"
+      - "随机性抹掉玩家明确努力"
+  dynamics_content_audience_theme:
     weight: 8
+    pass:
+      - "关键系统能说明规则组合产生的动态和阶段"
+      - "长期内容来自核心循环变奏，并评估难度曲线、内容集合和产能"
+      - "受众写成行为、动机、情绪收益和拒绝点"
+      - "主题由操作、选择、反馈和后果承载"
+    fail:
+      - "只堆内容数量"
+      - "受众只是人口标签"
+      - "主题只停留在剧情、美术或旁白"
+  system_mapping:
+    weight: 5
     pass:
       - "每个系统说明服务哪个循环"
       - "每个系统说明改变什么玩家行为、带来什么反馈、如何验证"
@@ -58,7 +96,7 @@ criteria:
       - "系统列表泛泛堆砌"
       - "没有删除条件或验证方式"
   platform_business_fit:
-    weight: 7
+    weight: 4
     pass:
       - "当平台或商业模式被提及或暗示时，说明适配和风险"
       - "平台未知时保持 assumption 语气"
@@ -66,7 +104,7 @@ criteria:
       - "小屏短会话平台写成长局重操作"
       - "买断平台默认广告签到"
   production_feasibility:
-    weight: 8
+    weight: 6
     pass:
       - "评估团队能力、技术方案、内容产能、周期成本和高光时刻产出"
       - "团队能力未知时不默认开放世界、实时多人、长期 live ops 或大量剧情分支"
@@ -74,7 +112,7 @@ criteria:
       - "忽略制作成本和能力边界"
       - "承诺大量内容或高光体验但没有产能验证"
   scope_gate:
-    weight: 8
+    weight: 5
     pass:
       - "分出 MVP、Vertical Slice、Demo 后、宣传保留、建议砍掉"
       - "能解释取舍理由"

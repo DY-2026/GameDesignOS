@@ -88,6 +88,9 @@
     "gameplay_mechanics": {
       "type": "object"
     },
+    "game_dissection_diagnosis": {
+      "type": "object"
+    },
     "single_player_design": {
       "type": "object"
     },
@@ -143,6 +146,7 @@
         "pv_heat_diagnosis",
         "first_hour_retention_diagnosis",
         "core_loop_diagnosis",
+        "game_dissection_diagnosis",
         "steam_page_conversion_diagnosis",
         "project_greenlight_risk_diagnosis",
         "monetization_interruption_diagnosis",

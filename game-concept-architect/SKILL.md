@@ -1,6 +1,6 @@
 ---
 name: game-concept-architect
-description: 将一句话游戏创意扩展为可验证的游戏设计蓝图：从 concept seed、design nucleus options、assumption ledger、玩家承诺、核心循环、scope gate 到 validation plan。适用于真实项目、私有项目、客户项目、公开案例或 synthetic cases；仓库示例发布规则由 CONTRIBUTING.md 管理。
+description: 将一句话游戏创意扩展为可验证的游戏设计蓝图：从 concept seed、玩家动词、design nucleus options、动作-目标对齐、assumption ledger、玩家承诺、核心循环、scope gate 到 validation plan。适用于真实项目、私有项目、客户项目、公开案例或 synthetic cases；仓库示例发布规则由 CONTRIBUTING.md 管理。
 ---
 
 # Game Concept Architect
@@ -16,12 +16,16 @@ Users may use this skill with their own real projects or confidential projects i
 在输出任何设计案之前，必须按下面顺序完成。用户要求简短时可以压缩，但不要跳过 gate。
 
 1. `concept seed extraction`
-2. `design nucleus options`
-3. `assumption ledger`
-4. `player promise`
-5. `core loop`
-6. `scope gate`
-7. `validation plan`
+2. `player verb inventory`
+3. `design nucleus options`
+4. `action-goal alignment`
+5. `assumption ledger`
+6. `player promise`
+7. `core loop`
+8. `scope gate`
+9. `validation plan`
+
+当输入涉及参考游戏、机制迁移、完整方案、玩法审查、受众动机、随机性、长期内容或主题表达时，启用 `game dissection lens`。只展开会改变关键设计判断的层级，不要为了显得完整而把所有模板都塞进输出。
 
 ## 默认工作流
 
@@ -39,52 +43,73 @@ Users may use this skill with their own real projects or confidential projects i
    - 商业化假设
    - 受众假设
    - 关键 unknown
-4. 生成 2 到 4 个 design nucleus options。每个候选都要写清：
+4. 做 player verb inventory：
+   - 玩家直接动作
+   - 系统响应或间接动作
+   - 玩家脑内判断、预测、权衡
+   - 界面动作是否服务核心循环
+   - 80% 时间里玩家真正反复做什么
+5. 生成 2 到 4 个 design nucleus options。每个候选都要写清：
    - 玩家反复做什么取舍
    - 它改变什么行为、节奏、成长或表达
    - 它依赖哪些 assumptions
    - 它最适合的受众、平台和生产画像
    - 它的最大风险和最小验证方式
-5. 做 external evidence status / VOI feasibility gate：
+6. 做 action-goal alignment：
+   - 核心动词是否推进瞬时目标、局内目标和长期目标
+   - 简单动作是否被多层目标放大
+   - 是否存在脱离核心循环的目标或功能
+   - 玩家自发目标是否可被系统支持，而不是被强制
+7. 做 external evidence status / VOI feasibility gate：
    - 不强制联网，不做泛搜。
    - 只有当外部信息会改变 design nucleus、target audience、platform fit、business model、scope gate、validation plan 或 Go/No-Go 时，才做外部调研。
    - 没有当前证据时，标记 `not-run` 或 `evidence-needed`，不得写成确定市场判断。
-6. 将所有用户未提供的信息标记为 assumption 或 unknown，并说明置信度、影响等级和验证方式。
-7. 选择或建议一个 design nucleus 后，先定义玩家承诺：
+8. 将所有用户未提供的信息标记为 assumption 或 unknown，并说明置信度、影响等级和验证方式。
+9. 选择或建议一个 design nucleus 后，先定义玩家承诺：
    - 对外宣传承诺
    - 前 10 分钟承诺
    - 长期游玩承诺
-8. 构建核心循环：
+10. 构建核心循环：
    - 行动
    - 选择
    - 风险
    - 反馈
    - 奖励
    - 成长或新约束
-9. 只有当新增系统能说清以下内容时，才允许加入：
+11. 做 uncertainty calibration：
+   - 不确定性来自人、隐藏信息、身体技能、脑力技能还是随机性
+   - 它降低分析瘫痪、制造变化、形成追赶，还是掩盖设计问题
+   - 玩家是否能解释失败原因
+   - 随机性是否覆盖了玩家努力
+12. 只有当新增系统能说清以下内容时，才允许加入：
    - 它服务哪个核心循环
    - 它改变什么玩家行为
    - 它创造什么反馈
    - 它如何被验证
-10. 做 production feasibility check：
+13. 对关键系统做 dynamics / content / audience / theme 检查：
+   - 规则组合后会产生什么玩家动态和阶段
+   - 内容是否来自核心循环变奏，而不是靠堆量续命
+   - 受众假设是否写成行为、动机和拒绝点，而不是标签
+   - 主题是否被操作、选择和后果承载
+14. 做 production feasibility check：
    - 团队能力未知时，不要默认开放世界、实时多人、长期 live ops、大量剧情分支或高精度物理可做。
    - 技术方案是否有成熟参考、可替代方案或可验证原型。
    - 内容和高光时刻是否能持续产出。
    - 时间、预算、外包、工具链和商业预期是否匹配。
-11. 执行 scope gate：
+15. 执行 scope gate：
    - MVP 必须有
    - Vertical Slice 应该有
    - Demo 后再做
    - 宣传概念可以保留但暂不开发
    - 建议砍掉的危险设计
-12. 输出 validation plan：
+16. 输出 validation plan：
    - 最小可玩原型
    - 第一轮测试目标
    - 最危险假设
    - 通过标准
    - 失败标准
    - 下一步投入条件
-13. 根据用户需求选择输出模式并组织最终交付。
+17. 根据用户需求选择输出模式并组织最终交付。
 
 ## External Evidence Status / VOI Feasibility Gate
 
@@ -118,9 +143,9 @@ Users may use this skill with their own real projects or confidential projects i
 
 | 模式 | 默认触发 | 交付重点 |
 | --- | --- | --- |
-| `idea_triage` | 用户只给一句话，且没有指定完整方案 | 快速拆 seed、列 design nucleus options、标 unknown、给下一步验证建议 |
+| `idea_triage` | 用户只给一句话，且没有指定完整方案 | 快速拆 seed、列 design nucleus options、标 unknown、必要时补 player verbs 和 action-goal 风险 |
 | `one_page_pitch` | 用户要 pitch、轻量方案或立项判断 | 一页 pitch、玩家承诺、核心循环、scope 摘要、验证计划摘要 |
-| `full_design_brief` | 用户要完整方案、完整设计案、制作前文档 | seed、nucleus、assumptions、承诺、循环、系统、平台商业、生产可行性、scope、风险、验证 |
+| `full_design_brief` | 用户要完整方案、完整设计案、制作前文档 | seed、verbs、nucleus、assumptions、承诺、循环、系统、平台商业、生产可行性、scope、风险、验证 |
 | `vertical_slice_plan` | 用户要原型制作、demo、first playable、里程碑计划 | 垂直切片目标、功能优先级、生产边界、里程碑、测试标准、下一步投入条件 |
 
 如果用户只给一句话且没有指定完整方案，默认使用 `idea_triage`。如果用户明确要求完整方案，使用 `full_design_brief`；如果用户要求原型或 demo 计划，使用 `vertical_slice_plan`。
@@ -130,6 +155,7 @@ Users may use this skill with their own real projects or confidential projects i
 按任务需要加载对应 reference，不要一次性塞入所有资料：
 
 - 在扩展任何一句话创意前，优先使用 `references/concept-seed-extraction.zh-CN.md`。
+- 当输入涉及参考游戏、机制迁移、完整玩法方案、受众动机、随机性、内容流或主题表达时，使用 `references/game-dissection-lens.zh-CN.md`。
 - 在比较设计核候选时，使用 `references/design-nucleus-options.zh-CN.md`。
 - 在判断是否需要外部调研时，使用 `references/voi-feasibility-gate.zh-CN.md`。
 - 在书写玩家承诺前，使用 `references/player-promise-framework.zh-CN.md`。
@@ -143,7 +169,14 @@ Users may use this skill with their own real projects or confidential projects i
 按最终交付选择 template：
 
 - `templates/idea-triage.md`
+- `templates/player-verb-inventory.md`
 - `templates/design-nucleus-options.md`
+- `templates/action-goal-alignment.md`
+- `templates/uncertainty-calibration.md`
+- `templates/system-dynamics-map.md`
+- `templates/content-flow-plan.md`
+- `templates/audience-desire-map.md`
+- `templates/playable-theme-map.md`
 - `templates/player-promise-contract.md`
 - `templates/reference-game-boundary.md`
 - `templates/production-profile.md`
@@ -168,6 +201,11 @@ Users may use this skill with their own real projects or confidential projects i
 
 - 不要把题材当差异化。题材组合只有在改变玩家行为时，才可能成为设计核。
 - 不要把世界观当玩法。设定必须创造行动、约束或选择，才有设计价值。
+- 不要只列功能名；必须能说清玩家反复执行的动词，以及这些动词如何接到目标。
+- 不要把随机性当万能调味料；必须说明它来自哪里、放在哪里、玩家如何理解失败。
+- 不要用“内容很多”弥补核心循环薄弱；内容必须是核心循环的变奏和延展。
+- 不要把受众写成人口标签；必须写出玩家想做什么、为什么兴奋、为什么反感。
+- 不要把主题停留在剧情或美术；主题必须被操作、选择和后果承载。
 - 不要因为某个系统是品类标配就加入它。
 - 不要在一句话创意有多个合理方向时，过早锁死单一设计核。
 - 不要把 assumption 藏在确定语气里。
@@ -190,7 +228,9 @@ Users may use this skill with their own real projects or confidential projects i
 ## Case Visibility
 ## Original Idea
 ## Concept Seed Extraction
+## Player Verb Inventory
 ## Design Nucleus Options
+## Action-Goal Alignment
 ## Assumption Ledger
 ## External Evidence Status
 ## Recommended Next Step
@@ -201,7 +241,9 @@ Users may use this skill with their own real projects or confidential projects i
 ```markdown
 ## Case Visibility
 ## Concept Seed Extraction
+## Player Verb Inventory
 ## Design Nucleus Options
+## Action-Goal Alignment
 ## Assumption Ledger
 ## External Evidence Status
 ## Player Promise
@@ -215,6 +257,11 @@ Users may use this skill with their own real projects or confidential projects i
 
 ```markdown
 ## Key Systems
+## Uncertainty Calibration
+## System Dynamics Map
+## Content Flow Plan
+## Audience Desire Map
+## Playable Theme Map
 ## Platform and Business Fit
 ## Reference Game Boundary
 ## Feature Priority Matrix

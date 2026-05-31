@@ -65,6 +65,21 @@
       "id": 13,
       "prompt": "用 MDA 和系统叙事融合分析一个社会模拟策略游戏录屏：重点看玩法是否就是叙事、玩家价值观是否成为平衡变量、选择后果是否具象化，以及游戏结束后是否形成文化对话。",
       "expected_output": "识别 whole_game_mda 或 holistic_game_analysis，并启用 systems_narrative_fusion；输出可玩命题、价值轴系统、玩家价值观权重、后果具象化、循环栈、文化对话循环、意义注入×可能性空间；所有判断都绑定截图、时间戳或用户提供事实，不把主题设定当成系统证据。"
+    },
+    {
+      "id": 14,
+      "prompt": "完整拆解一个横版动作平台游戏 25 分钟录屏 `<local_action_platformer_slice.mp4>`，重点解释它为什么成立、玩家高频动作是什么、目标怎么驱动动作、哪些机制能迁移到我们的项目。",
+      "expected_output": "识别 diagnosis_pack 为 game_dissection_diagnosis，主 mode 为 holistic_game_analysis，可辅助 gameplay_mechanics 或 single_player_design；先输出 sample_scope_gate 和 evidence_index；必须包含 dissection_goal、player_verb_inventory、action_goal_alignment、uncertainty_sources、system_dynamics_map、content_flow、audience_desire、meaning_or_theme、transferability_boundary 和 validation_plan。不能复制参考游戏表层 IP/角色/剧情/美术/数值；25 分钟片段不能包装成完整通关或长期内容结论。"
+    },
+    {
+      "id": 15,
+      "prompt": "我只有三张战斗截图，但想让你完整拆解这个游戏为什么好玩、长期留存会不会强、机制能不能直接抄到另一个品类。",
+      "expected_output": "仍可选择 game_dissection_diagnosis，但 sample_scope_gate 必须降级：截图可判断静态动词入口、目标可读性、资源/反馈线索和内容承诺；不可判断操作手感、循环闭合、长期留存、完整系统动态和商业结果。迁移判断只能输出结构假设和需要补的录屏/数据，不能建议直接照搬。"
+    },
+    {
+      "id": 16,
+      "prompt": "这个游戏像某知名竞品，我想把它的机制迁移到我们的社交模拟项目。请拆结构，不要做复刻方案。",
+      "expected_output": "识别 game_dissection_diagnosis + genre_benchmark；输出 transferable_structure、non_transferable_surface、dependency、adaptation_cost、minimum_validation 和 kill_condition；明确禁止复制 IP、角色、剧情、美术、文案、数值和运营节奏；说明社交模拟项目的受众动机、内容产能和社交密度如何改变机制迁移。"
     }
   ]
 }

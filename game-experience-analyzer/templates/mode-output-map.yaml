@@ -1,5 +1,5 @@
 map_id: game_experience_mode_output_map
-version: 0.1
+version: 0.2
 purpose: 将分析模式映射到必填镜头和报告段落，避免所有任务套同一份模板。
 
 common_required:
@@ -35,6 +35,9 @@ modes:
 
   gameplay_mechanics:
     required_lenses:
+      - player_verb_inventory
+      - action_goal_alignment
+      - uncertainty_sources
       - gameplay_mechanics
       - feedback_loop
       - resource_economy
@@ -46,6 +49,8 @@ modes:
     required_sections:
       - 样本与边界
       - 分析模式与问题框架
+      - 玩家动词清单
+      - 动作和目标对齐
       - 玩法机制分析
       - 系统设计审查
       - 问题列表
@@ -74,10 +79,18 @@ modes:
       - sample_scope_gate
       - product_positioning
       - one_sentence_promise
+      - game_dissection
+      - player_verb_inventory
+      - action_goal_alignment
+      - uncertainty_sources
+      - system_dynamics_map
       - gameplay_mechanics
       - mda
       - systems_narrative_fusion
       - content_supply
+      - content_flow
+      - audience_desire
+      - transferability_boundary
       - monetization_longevity_fit
       - foresight_opportunity
       - voi_gate
@@ -94,6 +107,8 @@ modes:
       - 样本与边界
       - 分析模式与问题框架
       - 品类路由与策略
+      - 游戏拆解诊断
+      - 玩家动词、目标与系统动态
       - 整体游戏综合分析
       - MDA / 机制-动态-体验分析
       - 玩法机制分析

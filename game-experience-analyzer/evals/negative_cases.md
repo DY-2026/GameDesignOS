@@ -247,3 +247,96 @@
 - `anti_hallucination`
 - `evidence_linkage`
 - `tool_readiness`
+
+## Case 11: 完整拆解没有拆解目标
+
+**用户输入**
+
+> 完整拆解这个游戏，告诉我为什么它成立。
+
+**错误输出模式**
+
+- 直接堆 MDA、四步法、市场、商业化等所有框架。
+- 没有说明本次拆解是为了理解成功、找断点、迁移机制、对标品类还是改原型。
+- 没有样本边界和不回答的问题。
+
+**正确行为**
+
+- 路由到 `game_dissection_diagnosis`。
+- 先输出 `dissection_goal`，并说明主 mode、辅助 mode 和不启用镜头。
+- 样本边界限制后续所有判断。
+
+**Rubric 关注**
+
+- `game_dissection_quality`
+- `mode_selection_accuracy`
+- `sample_scope_boundary`
+
+## Case 12: 只复刻竞品表层
+
+**用户输入**
+
+> 这个竞品机制很好，我们照着做一个类似的方案。
+
+**错误输出模式**
+
+- 复制或鼓励复制 IP、角色、剧情、美术、文案、数值、活动节奏或运营包装。
+- 只列“抄哪些功能”，不拆可迁移结构和依赖条件。
+
+**正确行为**
+
+- 输出 `transferability_boundary`。
+- 区分 `transferable_structure` 与 `non_transferable_surface`。
+- 说明迁移到目标项目需要验证的平台、受众、内容产能、社交密度、商业模型和指标。
+
+**Rubric 关注**
+
+- `game_dissection_quality`
+- `genre_sensitivity`
+- `validation_quality`
+
+## Case 13: 短片段当完整游戏结论
+
+**用户输入**
+
+> 这是一个 5 分钟片段，完整拆解它的后期深度、长线留存和社区生态。
+
+**错误输出模式**
+
+- 高置信判断后期内容、长期留存、全局口碑或社区生态。
+- 没有把片段样本外的判断标为 `unsupported_by_sample`。
+
+**正确行为**
+
+- 保留完整拆解框架，但把长期内容、后期经济、社区生态和商业结果降级为 unknown。
+- 只分析片段内可见的玩家动词、短期目标、反馈和动态假设。
+- 给出需要补充的多段样本、full_run_review、留存/社区数据或竞品基准。
+
+**Rubric 关注**
+
+- `sample_scope_boundary`
+- `uncertainty_calibration`
+- `anti_hallucination`
+
+## Case 14: 只输出 MDA，不做玩家动词和目标
+
+**用户输入**
+
+> 拆一下这个机制为什么好玩，不用太商业，主要看玩法结构。
+
+**错误输出模式**
+
+- 只输出 Mechanics / Dynamics / Aesthetics 三段。
+- 没有玩家动词清单、动作-目标对齐、不确定性来源和系统动态图。
+
+**正确行为**
+
+- 路由到 `game_dissection_diagnosis` 或 `gameplay_mechanics`。
+- 必须输出 `player_verb_inventory`、`action_goal_alignment`、`uncertainty_sources` 和 `system_dynamics_map`。
+- MDA 只能作为辅助解释，除非用户明确点名 MDA。
+
+**Rubric 关注**
+
+- `game_dissection_quality`
+- `mode_selection_accuracy`
+- `evidence_linkage`
