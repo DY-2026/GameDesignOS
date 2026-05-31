@@ -55,8 +55,7 @@ def _parse_frontmatter(skill_md: Path, errors: list[str]) -> dict[str, Any]:
 
     raw = match.group(1)
     if yaml is None:
-        name_match = re.search(r"^name:\s*([^\n#]+)", raw, re.MULTILINE)
-        return {"name": name_match.group(1).strip().strip("'\"")} if name_match else {}
+        return _parse_frontmatter_fallback(raw)
 
     try:
         data = yaml.safe_load(raw) or {}
@@ -70,10 +69,55 @@ def _parse_frontmatter(skill_md: Path, errors: list[str]) -> dict[str, Any]:
     return data
 
 
+def _parse_frontmatter_fallback(raw: str) -> dict[str, Any]:
+    fields: dict[str, Any] = {}
+    for line in raw.splitlines():
+        if not (line and line.strip() and not line.lstrip().startswith("#")):
+            continue
+        match = re.match(r"^\s*([A-Za-z_][A-Za-z0-9_\\-]*)\s*:\s*(.*?)\s*$", line)
+        if not match:
+            continue
+        key = match.group(1)
+        value = match.group(2).strip().strip("'\"")
+        if value.lower() in {"true", "false"}:
+            fields[key] = value.lower() == "true"
+        else:
+            fields[key] = value
+    return fields
+
+
+def _parse_openai_yaml_fallback(text: str, errors: list[str], path: Path) -> dict[str, Any]:
+    data: dict[str, Any] = {}
+    interface: dict[str, str] = {}
+    for line in text.splitlines():
+        match = re.match(
+            r"^\s*(interface:\s*)?([A-Za-z_][A-Za-z0-9_\\-]*)\s*:\s*(.*)$",
+            line,
+        )
+        if not match:
+            continue
+
+        if match.group(1):
+            continue
+
+        if line.startswith(" ") and match.group(2) in {"display_name", "short_description", "default_prompt"}:
+            value = match.group(3).strip().strip("'\"")
+            if line.startswith("  "):  # interface child key
+                interface[match.group(2)] = value
+        elif match.group(2) in {"display_name", "short_description", "default_prompt"}:
+            data[match.group(2)] = match.group(3).strip().strip("'\"")
+
+    if interface:
+        data["interface"] = interface
+    for key in ("display_name", "short_description", "default_prompt"):
+        if not data.get(key) and not interface.get(key):
+            errors.append(f"{path}: missing non-empty {key}")
+    return data
+
+
 def _parse_yaml(path: Path, errors: list[str]) -> Any:
     if yaml is None:
-        errors.append(f"{path}: YAML validation requires PyYAML")
-        return None
+        return {}
     try:
         return yaml.safe_load(_read(path))
     except Exception as exc:  # noqa: BLE001
@@ -143,7 +187,7 @@ def _check_openai_yaml(skill_dir: Path, errors: list[str]) -> None:
         return
 
     if yaml is None:
-        _parse_yaml(openai_yaml, errors)
+        _parse_openai_yaml_fallback(_read(openai_yaml), errors, openai_yaml)
         return
 
     data = _parse_yaml(openai_yaml, errors)
