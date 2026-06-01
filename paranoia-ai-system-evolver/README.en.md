@@ -6,19 +6,21 @@
 
 > Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
-This is one installable skill inside `ParanoiaSkills`. It owns the controlled AI system evolution capability; it is not the whole skill library.
+This is one installable skill inside `ParanoiaSkills`. It owns the Paranoia Method system-evolution capability; it is not the whole project.
 
 ## What This Skill Does
 
-It helps an agent improve AI systems without turning one successful case into an uncontrolled permanent rule. It combines:
+It helps an agent improve AI systems by turning behavior changes into auditable operating-model proposals. The goal is not to add more caution words; it is to decide whether a system change has enough evidence, lower total description cost, controlled rollout, and rollback.
 
-- Model compression: judge whether a prompt, skill, agent, workflow, or harness explains more real tasks with a shorter core model
-- Causal mediators: break final outcomes into observable, intervenable, and verifiable intermediate links
-- VOI: decide what information is worth acquiring
-- OODA: keep a compact Observe / Orient / Decide / Act state
-- Evals: test result quality, process quality, and evolution risk
-- Human Gate: require approval for high-impact changes
-- Rollback: keep every promoted change reversible
+The skill applies the Paranoia Method through:
+
+- Operating-model audit: make the implicit model, causal mediators, and control points explicit
+- Total description cost: compare seven cost terms before and after a change instead of judging only the prompt
+- Assertion evidence ledger: separate verified facts, tool observations, inference judgments, assumptions, and human-confirmation items
+- Missing-alternative check: verify that important options and subagent findings were not compressed away
+- Deterministic gates first: prefer schema, routing, validators, retry, and rollback before LLM judgment
+- Shadow-first release: move behavior-changing gates through `off -> shadow -> warn -> enforce -> rollbackable`
+- Human Gate and rollback: keep durable promotions approved and reversible
 
 ## Package Contents
 
@@ -46,7 +48,7 @@ quick_validate.py
 ## Suggested Prompt
 
 ```text
-Use $paranoia-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with model compression, causal mediators, VOI, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to turn this AI workflow problem into a Paranoia Method evolution proposal: operating model, total description cost, assertion evidence ledger, missing-alternative check, shadow-first rollout, evals, Human Gate, and rollback.
 ```
 
 ## Boundary Inside ParanoiaSkills

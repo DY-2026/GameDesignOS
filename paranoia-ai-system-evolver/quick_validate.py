@@ -58,6 +58,8 @@ def validate(root: Path) -> list[str]:
     require("name: paranoia-ai-system-evolver" in skill, "SKILL.md name mismatch", failures)
     require("references/model-compression-playbook" in skill, "SKILL.md does not route to model compression playbook", failures)
     require("model compression" in skill.lower(), "SKILL.md lacks model-compression language", failures)
+    require("total description cost" in skill.lower(), "SKILL.md lacks total description cost language", failures)
+    require("Trust Gate" in skill, "SKILL.md lacks Trust Gate language", failures)
 
     agent = read_text(root / "agents/openai.yaml")
     require("Paranoia AI System Evolver" in agent, "agents/openai.yaml display name mismatch", failures)
@@ -98,6 +100,44 @@ def validate(root: Path) -> list[str]:
     ]:
         text = read_text(root / rel)
         require("behavior_samples" in text, f"{rel} lacks behavior_samples eval field", failures)
+        for token in [
+            "highest_cost_term",
+            "before_description_cost",
+            "after_description_cost",
+            "complexity_displacement_risk",
+            "mdl_verdict",
+            "trust_gate_vnext",
+            "assertion_evidence_ledger",
+            "missing_alternative_check",
+            "subagent_loss_audit",
+            "shadow_first_interceptor_policy",
+        ]:
+            require(token in text, f"{rel} lacks {token}", failures)
+
+    for rel in [
+        "templates/ooda_voi_state.md",
+        "templates/ooda_voi_state.zh-CN.md",
+        "templates/ooda_voi_state.en.md",
+    ]:
+        text = read_text(root / rel)
+        for token in [
+            "highest_cost_term",
+            "complexity_displacement_risk",
+            "mdl_verdict",
+            "trust_gate_vnext",
+            "assertion_evidence_ledger",
+            "missing_alternative_check",
+            "subagent_loss_audit",
+            "shadow_first_interceptor_policy",
+        ]:
+            require(token in text, f"{rel} lacks {token}", failures)
+
+    eval_en = read_text(root / "references/eval-versioning-playbook.en.md")
+    eval_zh = read_text(root / "references/eval-versioning-playbook.zh-CN.md")
+    for token in ["MDL Regression Gate", "Trust Gate vNext", "Shadow-First Interceptor Policy"]:
+        require(token in eval_en, f"English eval playbook lacks {token}", failures)
+    for token in ["MDL 回归 Gate", "Trust Gate vNext", "Shadow-First Interceptor Policy"]:
+        require(token in eval_zh, f"Chinese eval playbook lacks {token}", failures)
 
     duplicate_keys = re.findall(r"^\s{4,}([a-zA-Z_]+):", read_text(root / "templates/evolution_proposal.en.md"), re.MULTILINE)
     require(

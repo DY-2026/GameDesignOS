@@ -52,6 +52,8 @@ model_score = core_model_length
 
 The goal is not to minimize every term independently. The goal is to reduce total description cost without losing important result quality.
 
+Keep all seven terms. `data_patch_length` is the recurring cost of explaining case-specific facts, boundaries, and examples before the system can run. `exception_patch_length` is the accumulated cost of new rules added after the model fails. An upgrade is suspect when it reduces one term by hiding the same complexity in another term.
+
 Default interpretation:
 
 | Cost | Question | Reduction Pattern |
@@ -171,8 +173,13 @@ model_audit:
     validation_observation_length: "low | medium | high"
     exception_patch_length: "low | medium | high"
     failure_recovery_length: "low | medium | high"
+  highest_cost_term: ""
+  before_description_cost: {}
+  after_description_cost: {}
   diagnosis: "underfit | overfit | missing_mediator | balanced"
   candidate_change: ""
   expected_cost_delta: ""
+  complexity_displacement_risk: "low | medium | high"
+  mdl_verdict: "reduced | unchanged | increased | displaced"
 ```
 

@@ -28,8 +28,33 @@ model_audit:
     validation_observation_length: "low | medium | high"
     exception_patch_length: "low | medium | high"
     failure_recovery_length: "low | medium | high"
+  highest_cost_term: ""
+  before_description_cost: {}
+  after_description_cost: {}
   diagnosis: "underfit | overfit | missing_mediator | balanced"
   expected_cost_delta: ""
+  complexity_displacement_risk: "low | medium | high"
+  mdl_verdict: "reduced | unchanged | increased | displaced"
+trust_gate_vnext:
+  assertion_evidence_ledger:
+    verified_facts: []
+    tool_observations: []
+    inference_judgments: []
+    unverified_assumptions: []
+    human_confirmation_needed: []
+  missing_alternative_check:
+    alternatives_considered: []
+    rejected_reasons: []
+    omission_risk: "low | medium | high"
+  subagent_loss_audit:
+    subagent_sources: []
+    dropped_or_weakened_findings: []
+    compression_loss_risk: "low | medium | high"
+  shadow_first_interceptor_policy:
+    release_mode: "off | shadow | warn | enforce"
+    observed_hits: []
+    false_positive_risk: "low | medium | high"
+    rollbackable: true
 voi_reason:
   decision_changed_if_known: ""  # what decision this information or change would affect
   expected_value: "high | medium | low"

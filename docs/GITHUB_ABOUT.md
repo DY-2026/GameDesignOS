@@ -4,7 +4,7 @@ Use GitHub's repository settings to set the public metadata manually.
 
 ## Description
 
-Evidence-first game design agent skills for experience diagnosis, concept architecture, workflow evolution, translation, and source curation.
+Paranoia Method agent skills for game-design work: evidence-led diagnosis, concept architecture, workflow evolution, translation, and source curation as verifiable operating models.
 
 ## Topics
 
@@ -14,7 +14,8 @@ agent-skills
 game-design
 game-analysis
 game-development
-prompt-engineering
+operating-models
+workflow-governance
 llm
 codex
 workflow

@@ -86,6 +86,30 @@ Structural checks prove that a skill can be installed. They do not prove that it
 - If behavior does not improve, keep the change as `candidate` or a failure sample; do not promote it just because the structure looks cleaner.
 - If behavior improves but description cost rises sharply, return to the model-compression gate and verify that the benefit covers the added complexity.
 
+### MDL Regression Gate
+
+A candidate mutation may improve a local result while making the total system harder to describe. Before promotion, compare `before_description_cost` and `after_description_cost` across all seven terms:
+
+- `core_model_length`
+- `data_patch_length`
+- `routing_rule_length`
+- `state_injection_length`
+- `validation_observation_length`
+- `exception_patch_length`
+- `failure_recovery_length`
+
+Do not promote when the change merely moves complexity from prompt/context into routing, state, validation, exception patches, or recovery. Keep it as `candidate` until eval evidence shows the quality gain is worth the added description cost.
+
+### Trust Gate vNext
+
+For major recommendations and behavior-changing gates, validate evidence and omissions before promotion:
+
+- Assertion Evidence Ledger: critical assertions must be tagged as `verified_fact`, `tool_observation`, `inference_judgment`, `unverified_assumption`, or `human_confirmation_needed`.
+- Missing-Alternative Check: list serious alternatives, rejected reasons, and omission risk before recommending a single path.
+- Subagent Loss Audit: when subagent output or long context is compressed, record high-value findings that were dropped, weakened, or not inspected.
+- Code-Deterministic First: deterministic routing, schema, validator, retry, rollback, and gate logic should precede LLM judgment; the LLM handles ambiguous semantics and synthesis.
+- Shadow-First Interceptor Policy: changes to UAV checks, routing, ticketing, memory writes, retries, blocking hooks, or trust gates should move through `off -> shadow -> warn -> enforce -> rollbackable`.
+
 ## 6. Version Management
 
 Every accepted mutation needs:

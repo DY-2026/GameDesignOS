@@ -86,6 +86,30 @@ copyright/provenance is explicit
 - 若行为没有变好，只能保留为 `candidate` 或失败样本；不要因为结构更完整就提升为当前规则。
 - 若行为变好但描述成本明显上升，回到模型压缩 Gate，判断收益是否覆盖新增复杂度。
 
+### MDL 回归 Gate
+
+候选改动可能改善局部结果，却让整个系统更难描述。提升前必须对比 `before_description_cost` 和 `after_description_cost` 的七项成本：
+
+- `core_model_length`
+- `data_patch_length`
+- `routing_rule_length`
+- `state_injection_length`
+- `validation_observation_length`
+- `exception_patch_length`
+- `failure_recovery_length`
+
+如果改动只是把复杂度从 prompt/context 挪到 routing、state、validation、exception patches 或 recovery，不要提升为长期规则。除非 eval 证据证明质量收益足以覆盖新增描述成本，否则保持 `candidate`。
+
+### Trust Gate vNext
+
+重大建议和会改变行为的 gate，在提升前必须同时验证证据和遗漏：
+
+- Assertion Evidence Ledger：关键断言必须标记为 `verified_fact`、`tool_observation`、`inference_judgment`、`unverified_assumption` 或 `human_confirmation_needed`。
+- Missing-Alternative Check：给出重要替代方案、未选择原因和遗漏风险，再推荐单一路径。
+- Subagent Loss Audit：当子 agent 输出或长上下文被压缩时，记录被丢弃、变弱或未检查的高价值信息。
+- Code-Deterministic First：确定性 routing、schema、validator、retry、rollback 和 gate 逻辑优先于 LLM 判断；LLM 只处理模糊语义、权衡和综合。
+- Shadow-First Interceptor Policy：UAV 检查、路由、票据、记忆写入、重试、阻断 hook 或 trust gate 的变更，按 `off -> shadow -> warn -> enforce -> rollbackable` 推进。
+
 ## 6. 版本管理
 
 每个被接受的突变都需要：

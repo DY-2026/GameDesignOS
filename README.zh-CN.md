@@ -5,8 +5,8 @@
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  把游戏设计工作流做成可安装、可验证、可迁移的 Agent Skill 包。
-  从录屏/PV 到证据报告，从一句话创意到验证计划，从 prompt 改动到带 eval 与 rollback 的系统演化。
+  一套基于 Paranoia Method 的游戏设计与 agent 工作流 skill 系统。
+  把玩法证据、创意种子、工作流突变、翻译与资料来源，压缩成可验证的操作模型。
 </p>
 
 <p align="center">
@@ -23,12 +23,12 @@
   <img alt="Skills" src="https://img.shields.io/badge/Skills-5-2ea44f">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
-  <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
+  <img alt="Method" src="https://img.shields.io/badge/Method-Paranoia%20Method-f9a825">
 </p>
 
 > License: skill documents and tooling are released under the MIT License. Paranoia 名称、logo、视觉识别和项目品牌不作为商标授权。
 
-> 像给游戏设计师和 AI agent 用的“小型操作系统”：不是收集提示词，而是把可复用的判断流程、证据规则、质量门和输出模板打包成 skill。
+> ParanoiaSkills 把 skill 当成操作模型来设计：一个足够轻的入口，加上证据账本、成本门、验证面和可回滚路径。
 
 ## 60 秒 Demo
 
@@ -42,27 +42,26 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 
 ## 这个项目是什么
 
-`ParanoiaSkills` 是一套游戏设计工作流 Skill 库，把一句话创意架构、游戏体验分析、AI 工作流演化、专业翻译和资料策展，沉淀成可复用、可验证、可迁移的 agent instructions、references、templates 和 examples。
+`ParanoiaSkills` 是一套围绕 Paranoia Method 搭建的游戏设计与 AI agent 工作流系统：把混乱的创意、样本、判断和工作流改动，压缩成可调用、可检查、可修订、可迁移的操作模型。
 
-它不是一堆提示词合集。这个项目更像一套小型游戏设计操作系统：
+每个 skill 都不是一段提示词配方，而是一个被打包的机制：轻量入口、深入 references、可复制 templates、确定性 validator，以及必要时的 eval 和 rollback 面。
 
 ```text
-分析游戏截图、录屏、PV 和视频链接
--> 把一句话创意架构成可验证的游戏概念
--> 演化执行这些工作的 agent workflow
--> 翻译并结构化设计知识
--> 策展高质量资料和可复用来源
+原始玩法证据 -> 带证据账本的设计诊断
+创意碎片 -> 玩家承诺、动词、循环与验证门
+工作流突变 -> 带成本/信任/eval/rollback gate 的候选规则
+设计文本或资料来源 -> 可复用的知识资产
 ```
 
 ## 为什么值得收藏
 
 - **Open and portable:** 每个 skill 都是可读、可复制、可审计的 Markdown 包，不把你的工作流锁死在某个产品里。
-- **Evidence-first:** 不写泛泛总结，尽量把判断绑定到来源、截图区域、时间戳、样本证据或验证指标。
+- **不是“谨慎措辞”，而是证据账本:** 关键断言要区分已验证事实、工具观察、推理判断、未验证假设和人类待确认。
 - **Concept-to-validation:** 不把“绝妙点子”直接扩写成 GDD，而是拆成 seed、玩家承诺、核心循环、scope gate 和原型验证计划。
-- **Workflow-first:** 不追求一次漂亮回答，而是把可复用流程沉淀到 `SKILL.md`、`references/` 和 `templates/`。
+- **操作模型优先:** 不追求一次漂亮回答，而是把可复用行为压缩进 `SKILL.md`、`references/`、`templates/`、validator 和 eval gate。
 - **Game-design native:** 面向真实游戏设计工作：体验、玩法、MDA、系统叙事、品类、窗口期、商业化、素材和生产流程。
 - **Agent portable:** 不绑定单一工具；Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
-- **Controlled evolution:** 用 VOI、OODA、eval、Human Gate 和 rollback 防止工作流越改越漂。
+- **受控演化:** 系统改动先过成本检查、反遗漏检查、shadow-first 发布、eval、Human Gate 和 rollback，再进入长期规则。
 
 ## 轻松上手
 
@@ -74,7 +73,7 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 | --- | --- | --- |
 | 截图、录屏、PV、视频链接 | `$game-experience-analyzer` | 带时间戳/证据/问题优先级的体验报告，或游戏拆解、机制迁移和验证计划 |
 | 一句话游戏创意 | `$game-concept-architect` | concept seed、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate、验证计划 |
-| 一段 prompt、workflow、schema 或 agent 规则 | `$paranoia-ai-system-evolver` | 带 VOI/OODA/eval/Human Gate/rollback 的系统演化提案 |
+| 一段 prompt、workflow、schema 或 agent 规则 | `$paranoia-ai-system-evolver` | 带操作模型、证据账本、成本变化、替代方案检查、shadow 发布、eval 和 rollback 的 Paranoia Method 演化提案 |
 | 英文游戏设计章节或长文 | `$game-design-book-translator` | 专业、自然、可复查的中文设计翻译 |
 | 一批文章、视频、作者或网站 | `$game-design-source-curator` | 可长期维护的游戏设计知识库条目 |
 
@@ -91,7 +90,7 @@ Use $game-experience-analyzer to dissect this game into player verbs, action-goa
 ```
 
 ```text
-Use $paranoia-ai-system-evolver to upgrade this prompt/workflow/schema with VOI, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to upgrade this prompt/workflow/schema through the Paranoia Method: map the operating model, compare total description cost, build an assertion evidence ledger, check missing alternatives, plan shadow-first rollout, evals, Human Gate, and rollback.
 ```
 
 ```text
@@ -142,7 +141,7 @@ game-concept-architect/
   </tr>
   <tr>
     <td><b>分析游戏体验</b><br>把截图、录屏、宣传片和视频链接，转成证据优先的体验诊断、游戏拆解和机制迁移判断。</td>
-    <td><b>演化工作流</b><br>用 VOI、OODA、eval、Human Gate 和 rollback 升级 prompt、schema、memory 和 tool routing。</td>
+    <td><b>演化工作流</b><br>把 prompt、schema、memory、eval 和 routing 改动变成带成本、证据、shadow 和 rollback gate 的候选操作模型升级。</td>
     <td><b>翻译设计知识</b><br>把严肃的游戏设计书籍和章节，变成自然、专业、可复查的中文设计写作。</td>
     <td><b>策展资料</b><br>把散落在文章、视频、作者、专栏和网站里的内容，变成可长期维护的游戏设计知识库。</td>
     <td><b>架构游戏概念</b><br>把一句话创意拆成 seed、玩家动词、动作-目标、玩家承诺、核心循环、scope gate 和验证计划。</td>
@@ -151,13 +150,13 @@ game-concept-architect/
 
 ## Skill Architecture
 
-`ParanoiaSkills` 分为三层。本仓库只包含公开基础 skill。私有项目规则、客户材料、真实案例和个人工作室偏好应放在仓库外的 private overlay。
+`ParanoiaSkills` 分为三层操作模型。本仓库只包含公开基础 skill。私有项目规则、客户材料、真实案例和个人工作室偏好应放在仓库外的 private overlay。
 
 - **Design Production Layer**
   - [`game-concept-architect/`](./game-concept-architect/)：one-line idea -> verifiable design blueprint。
   - [`game-experience-analyzer/`](./game-experience-analyzer/)：media/sample -> evidence-linked diagnosis。
 - **Workflow Governance Layer**
-  - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/)：prompt/workflow/schema/eval changes -> controlled evolution。
+  - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/)：system changes -> Paranoia Method evolution gates。
 - **Knowledge Asset Layer**
   - [`game-design-book-translator/`](./game-design-book-translator/)：design texts -> professional Chinese design writing。
   - [`game-design-source-curator/`](./game-design-source-curator/)：scattered sources -> durable knowledge base。
@@ -169,7 +168,7 @@ game-concept-architect/
 | Skill | 一句话用途 | 适合场景 | 包目录 |
 | --- | --- | --- | --- |
 | **Game Experience Analyzer** | 把截图、录屏、PV/宣传片和视频链接拆成证据优先的中文游戏设计报告。 | 体验分析、玩法机制、游戏拆解、机制迁移、整体项目、MDA、系统叙事、单机流程、热度预测、前瞻窗口、商业化、UX。 | [`game-experience-analyzer/`](./game-experience-analyzer/) |
-| **Paranoia AI System Evolver** | 把 prompt、workflow、memory、schema、tool routing 和 eval 改动变成受控系统演化。 | VOI/OODA、模型压缩、因果中介、Human Gate、rollback、可验证升级。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
+| **Paranoia AI System Evolver** | 把 prompt、workflow、memory、schema、tool routing 和 eval 改动变成 Paranoia Method 演化提案。 | 操作模型审计、总描述成本、证据账本、反遗漏检查、子 agent 损失审计、shadow-first 发布、Human Gate、rollback。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本。 | 术语、章节、图注、表格、QA、来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
@@ -182,7 +181,7 @@ game-concept-architect/
 - **前瞻机会判断:** 判断题材/玩法是否还有窗口；休闲轻度默认 1-3 个月，微小中重度默认 3-6 个月。
 - **资料策展:** 把文章、视频、作者、专栏和网站沉淀成可检索、可引用、可实验的知识库。
 - **专业翻译:** 把游戏设计书籍或长文翻成自然中文，同时保留术语、论证结构和图表语境。
-- **工作流升级:** 把一次有用的 agent 行为升级成候选规则，并用 eval、Human Gate 和 rollback 控制风险。
+- **工作流升级:** 把一次有用的 agent 行为升级成候选操作模型改动，并用证据、成本变化、shadow 发布、eval、Human Gate 和 rollback 控制风险。
 - **创意可行性:** 把一句话创意拆成 concept seed、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate、生产可行性和原型验证计划。
 
 ## 项目结构
@@ -262,10 +261,11 @@ Paranoia 名称、logo、视觉识别和项目品牌不作为商标授权。exam
 ## 设计原则
 
 ```text
-Evidence before opinion.
+Evidence ledger before opinion.
+Operating model before prompt.
 Feasibility before scope.
-Workflow before one-off prompts.
-VOI before research.
+Alternatives before recommendation.
+Shadow before enforcement.
 Eval before promotion.
 Rollback before confidence.
 ```

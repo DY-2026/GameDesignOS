@@ -109,12 +109,25 @@ Orient 阶段必须显式检查当前系统模型。不要只问“要改什么 
 ```text
 total_description_cost
 = core_model_length
++ data_patch_length
 + routing_rule_length
 + state_injection_length
 + validation_observation_length
 + exception_patch_length
 + failure_recovery_length
 ```
+
+每次 Orient 都要标出最高成本项和预期成本变化。如果表面改进只是把复杂度从 prompt/context 挪到 routing、state、eval、exception 或 recovery，保持 `candidate`。
+
+## Trust Gate vNext
+
+重大建议或会改变行为的系统更新前，不只验证事实口吻，还要验证证据和遗漏：
+
+- Assertion Evidence Ledger：把关键断言分成已验证事实、工具观察、推理判断、未验证假设、人类待确认。
+- Missing-Alternative Check：列出重要替代方案、未选择原因，以及是否有可行方案被压缩掉。
+- Subagent Loss Audit：使用子 agent、摘要或上下文压缩时，记录被丢弃或变弱的高价值发现。
+- Code-Deterministic First：确定性 routing、schema、gate、validator、retry、rollback 优先；LLM 只处理必要语义、权衡和创造性综合。
+- Shadow-First Interceptor Policy：会改变行为的 gate 按 `off -> shadow -> warn -> enforce -> rollbackable` 发布。
 
 更完整的方法见 `references/model-compression-playbook.zh-CN.md`。
 

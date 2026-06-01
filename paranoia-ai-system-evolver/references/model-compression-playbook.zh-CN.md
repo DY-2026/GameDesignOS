@@ -52,6 +52,8 @@ model_score = core_model_length
 
 升级目标不是让每一项都最小，而是让总描述成本下降，同时不牺牲关键结果质量。
 
+保留全部七项。`data_patch_length` 是系统每次运行前，为解释具体事实、边界和样例付出的重复成本；`exception_patch_length` 是模型失败后不断新增规则补丁的累计成本。如果一个升级只是把复杂度从一项挪到另一项，它仍然可疑。
+
 默认解释：
 
 | 成本项 | 问题 | 降低方式 |
@@ -171,8 +173,13 @@ model_audit:
     validation_observation_length: "low | medium | high"
     exception_patch_length: "low | medium | high"
     failure_recovery_length: "low | medium | high"
+  highest_cost_term: ""
+  before_description_cost: {}
+  after_description_cost: {}
   diagnosis: "underfit | overfit | missing_mediator | balanced"
   candidate_change: ""
   expected_cost_delta: ""
+  complexity_displacement_risk: "low | medium | high"
+  mdl_verdict: "reduced | unchanged | increased | displaced"
 ```
 

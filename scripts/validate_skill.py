@@ -237,6 +237,60 @@ def _check_example_frontmatter(skill_dir: Path, errors: list[str]) -> None:
             errors.append(f"{path}: contains_private_project_info must be false")
 
 
+def _check_paranoia_mdl_trust_gate(skill_dir: Path, errors: list[str]) -> None:
+    if skill_dir.name != "paranoia-ai-system-evolver":
+        return
+
+    required_files = {
+        "SKILL.md": ["total description cost", "Trust Gate", "shadow"],
+        "references/model-compression-playbook.en.md": [
+            "highest_cost_term",
+            "before_description_cost",
+            "after_description_cost",
+            "complexity_displacement_risk",
+            "mdl_verdict",
+        ],
+        "references/eval-versioning-playbook.en.md": [
+            "MDL Regression Gate",
+            "Trust Gate vNext",
+            "Assertion Evidence Ledger",
+            "Missing-Alternative Check",
+            "Subagent Loss Audit",
+            "Shadow-First Interceptor Policy",
+        ],
+    }
+
+    template_tokens = [
+        "highest_cost_term",
+        "complexity_displacement_risk",
+        "mdl_verdict",
+        "trust_gate_vnext",
+        "assertion_evidence_ledger",
+        "missing_alternative_check",
+        "subagent_loss_audit",
+        "shadow_first_interceptor_policy",
+    ]
+    for rel in (
+        "templates/evolution_proposal.md",
+        "templates/evolution_proposal.zh-CN.md",
+        "templates/evolution_proposal.en.md",
+        "templates/ooda_voi_state.md",
+        "templates/ooda_voi_state.zh-CN.md",
+        "templates/ooda_voi_state.en.md",
+    ):
+        required_files[rel] = template_tokens
+
+    for rel, tokens in required_files.items():
+        path = skill_dir / rel
+        if not path.exists():
+            errors.append(f"{path}: required MDL/Trust Gate file is missing")
+            continue
+        text = _read(path)
+        for token in tokens:
+            if token not in text:
+                errors.append(f"{path}: missing MDL/Trust Gate token {token}")
+
+
 def validate_skill(skill_dir: Path) -> list[str]:
     skill_dir = skill_dir.resolve()
     errors: list[str] = []
@@ -264,6 +318,7 @@ def validate_skill(skill_dir: Path) -> list[str]:
     _check_references(skill_dir, errors)
     _check_data_files(skill_dir, errors)
     _check_example_frontmatter(skill_dir, errors)
+    _check_paranoia_mdl_trust_gate(skill_dir, errors)
 
     return errors
 

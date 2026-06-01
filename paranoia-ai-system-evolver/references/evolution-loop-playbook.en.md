@@ -109,6 +109,7 @@ Approximate total description cost:
 ```text
 total_description_cost
 = core_model_length
++ data_patch_length
 + routing_rule_length
 + state_injection_length
 + validation_observation_length
@@ -116,9 +117,21 @@ total_description_cost
 + failure_recovery_length
 ```
 
+Every Orient pass should name the highest-cost term and the likely cost delta. If the apparent improvement only moves complexity from prompt/context into routing, state, eval, exceptions, or recovery, keep the change as `candidate`.
+
 For the deeper method, read `references/model-compression-playbook.en.md`.
 
-## 6. Task Loop and Meta Loop
+## 6. Trust Gate vNext
+
+Before major recommendations or behavior-changing system updates, verify evidence and omissions, not only factual tone:
+
+- Assertion Evidence Ledger: classify critical claims as verified facts, tool observations, inference judgments, unverified assumptions, or human-confirmation items.
+- Missing-Alternative Check: list serious alternatives, why they were rejected, and whether a plausible option was compressed out.
+- Subagent Loss Audit: when using subagents, summaries, or context compression, record high-value findings that were dropped or weakened.
+- Code-Deterministic First: prefer deterministic routing, schema, gates, validators, retry, and rollback; leave ambiguous semantics, tradeoffs, and creative synthesis to the LLM.
+- Shadow-First Interceptor Policy: ship behavior-changing gates as `off -> shadow -> warn -> enforce -> rollbackable`.
+
+## 7. Task Loop and Meta Loop
 
 Task loop:
 
@@ -134,7 +147,7 @@ trace -> failure mode -> mutation candidate -> eval -> approval -> promotion
 
 Never promote a long-term rule from a single case automatically.
 
-## 7. Candidate Mutation Rules
+## 8. Candidate Mutation Rules
 
 A system change may enter the evolution queue only when it is:
 
@@ -146,7 +159,7 @@ A system change may enter the evolution queue only when it is:
 
 Otherwise, keep it as a task note.
 
-## 8. Permission Ladder
+## 9. Permission Ladder
 
 | Level | Examples | Default Rule |
 | --- | --- | --- |
@@ -156,7 +169,7 @@ Otherwise, keep it as a task note.
 | A3 | Long-term memory, global skill installation, production strategy | Human Gate required |
 | A4 | Deletion, publishing, money, real-user impact | Explicit approval required |
 
-## 9. Public Skill Package Check
+## 10. Public Skill Package Check
 
 For a public skill package, check at least:
 
@@ -169,7 +182,7 @@ For a public skill package, check at least:
 - Copyright, provenance, and reuse boundaries are explicit.
 - A final stale-name and old-project wording sweep has run.
 
-## 10. README Visual Asset Gate
+## 11. README Visual Asset Gate
 
 README files can use generated images, but generated images should carry atmosphere, structure metaphors, and recognition, not critical text.
 

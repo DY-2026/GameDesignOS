@@ -26,6 +26,10 @@ OODA is not about reacting faster. The center of gravity is Orient: refresh the 
 
 Good AI engineering is not a pile of prompts, tools, skills, and workflows. It is an executable model of the task: compact enough to reuse, causal enough to expose control points, and explicit enough to validate, recover, and revise.
 
+Do not judge an AI system only by the prompt, context, or tool list. Judge its total description cost: the core model plus routing rules, state injection, validation observations, exception patches, and failure recovery. A strong evolution explains more real cases with a shorter total system description.
+
+Trust Gate vNext is not produced by making the model sound cautious. Critical assertions need evidence status, important recommendations need missing-alternative checks, and behavior-changing gates should ship shadow-first before they enforce.
+
 ## When To Use
 
 Use this skill for changes to:
@@ -46,6 +50,8 @@ Do not use it to justify uncontrolled model-weight changes, silent long-term mem
    - causality: which mediator variables connect the input to the desired outcome?
    - control points: which mediator can the agent, workflow, or human actually intervene on?
    - cost: where are core-model, routing, state, validation, exception, and recovery costs accumulating?
+   - MDL verdict: did the change reduce total description cost, or move complexity into another layer?
+   - trust gate: which claims are verified facts, tool observations, inferences, unverified assumptions, or human-confirmation items?
 4. Maintain a compact OODA state:
    - Observe: goal, context, evidence, surprising signals.
    - Orient: current frame, user model, domain model, uncertainty map.
@@ -56,6 +62,7 @@ Do not use it to justify uncontrolled model-weight changes, silent long-term mem
 6. Keep every evolution change as `candidate` until evidence, evals, required approval, and rollback are present.
 7. When editing a skill, keep `SKILL.md` light. Put detailed methods in this skill's own `references/` and reusable forms in `templates/`.
 8. When the target layer is `skill`, add a behavior regression gate: replay representative user tasks, compare expected behavior before and after, check for negative transfer, and keep the change as `candidate` until the evidence supports promotion.
+9. For behavior-changing gates, interceptors, routing, memory writes, retries, blocking hooks, or ticket/UAV-style trust checks, default to `off -> shadow -> warn -> enforce -> rollbackable`.
 
 ## Read As Needed
 
@@ -84,6 +91,8 @@ End by stating:
 - what changed
 - why the evidence is sufficient
 - which evals or checks ran
+- whether total description cost decreased, which term decreased, which term increased, and whether complexity moved layers
+- evidence status for critical assertions, missing alternatives, and subagent/context compression losses
 - what remains `candidate`
 - what needs Human Gate
 - how to rollback

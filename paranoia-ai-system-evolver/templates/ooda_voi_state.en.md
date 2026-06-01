@@ -25,6 +25,27 @@ ooda_state:
         validation_observation_length:
         exception_patch_length:
         failure_recovery_length:
+      highest_cost_term:
+      expected_cost_delta:
+      complexity_displacement_risk:
+      mdl_verdict:
+    trust_gate_vnext:
+      assertion_evidence_ledger:
+        verified_facts: []
+        tool_observations: []
+        inference_judgments: []
+        unverified_assumptions: []
+        human_confirmation_needed: []
+      missing_alternative_check:
+        alternatives_considered: []
+        rejected_reasons: []
+        omission_risk:
+      subagent_loss_audit:
+        dropped_or_weakened_findings: []
+        compression_loss_risk:
+      shadow_first_interceptor_policy:
+        release_mode: "off | shadow | warn | enforce"
+        rollbackable: true
     user_model:
     uncertainty_map:
       - item:

@@ -6,19 +6,21 @@
 
 > Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
-这是 `ParanoiaSkills` 里的一个具体可安装 skill。它负责“AI 系统受控进化”这个能力，不代表整个技能库。
+这是 `ParanoiaSkills` 里的一个具体可安装 skill。它负责 Paranoia Method 里的“系统演化器”能力，不代表整个技能库。
 
 ## 这个 Skill 做什么
 
-它帮助 agent 改进 AI 系统，同时避免把一次成功案例直接提升成永久规则。它组合了：
+它帮助 agent 把行为改动整理成可审计的操作模型提案。目标不是让 AI 多说几句谨慎话，而是判断一个系统改动是否有足够证据、是否降低总描述成本、是否能 shadow 发布、是否能回滚。
 
-- 模型压缩：判断 prompt、skill、agent、workflow 或 harness 是否用更短的核心模型解释更多真实任务。
-- 因果中介：把最终结果拆成可观察、可干预、可验证的中间链路。
-- VOI：判断哪些信息值得获取。
-- OODA：维护紧凑的 Observe / Orient / Decide / Act 状态。
-- Evals：检查结果质量、过程质量和进化风险。
-- Human Gate：高影响改动必须人工确认。
-- Rollback：每个被提升的改动都要可回滚。
+这个 skill 用 Paranoia Method 做七件事：
+
+- 操作模型审计：显式写出隐含模型、因果中介和控制点。
+- 总描述成本：比较七项成本，而不是只盯 prompt。
+- 断言证据账本：区分已验证事实、工具观察、推理判断、未验证假设和人类待确认。
+- 反遗漏检查：确认重要替代方案和子 agent 关键信息没有被压缩掉。
+- 确定性 gate 优先：schema、routing、validator、retry、rollback 先于 LLM 判断。
+- Shadow-first 发布：行为改变类 gate 先走 `off -> shadow -> warn -> enforce -> rollbackable`。
+- Human Gate 与 rollback：长期规则必须可批准、可追溯、可回滚。
 
 ## 包内容
 
@@ -46,7 +48,7 @@ quick_validate.py
 ## 推荐提示词
 
 ```text
-使用 $paranoia-ai-system-evolver，把这个 AI workflow 问题整理成带模型压缩、因果中介、VOI、OODA、eval、Human Gate 和 rollback 的受控进化提案。
+使用 $paranoia-ai-system-evolver，把这个 AI workflow 问题整理成 Paranoia Method 演化提案：操作模型、总描述成本、断言证据账本、反遗漏检查、shadow-first 发布、eval、Human Gate 和 rollback。
 ```
 
 ## 在 ParanoiaSkills 里的边界
