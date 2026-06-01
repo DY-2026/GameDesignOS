@@ -1,4 +1,4 @@
 interface:
   display_name: "Game Design Book Translator"
-  short_description: "游戏设计书籍、章节、图注与术语表的专业中文翻译"
-  default_prompt: "翻译或审校游戏设计/游戏研发英文材料时，先判定交付模式、统一术语、处理图注表格，并输出适合中文策划与研发阅读的版本。"
+  short_description: "游戏设计书籍/PDF的专业中文精翻、图像回填与术语治理"
+  default_prompt: "翻译或审校游戏设计/游戏研发英文材料时，先判定交付模式、统一术语、处理图注表格；整本书任务要区分初译、图像回填、中文精校、英文好句摘要和质量门。"

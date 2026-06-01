@@ -20,6 +20,18 @@
       "files": []
     },
     {
+      "id": "whole-book-high-quality-gate",
+      "prompt": "使用 MiniMax 把这本游戏叙事 UX 的 PDF 完整高质量翻译出来，图也要有，最后给我能通读的版本。",
+      "expected_output": "不把初译冒充完整交付；建立私有翻译包，完成来源清单、目录拆分、术语表、逐章初译、图片裁切与 figures_manifest、逐章精校版、合并精校版、质量门报告；报告 pending、图片引用和模型残留检查结果。",
+      "files": []
+    },
+    {
+      "id": "english-good-sentences-with-copyright-boundary",
+      "prompt": "完整翻译后，把原文里英文写得好的句子也整理一下，我之后做读书笔记想用。",
+      "expected_output": "新增英文好句摘要与译法文件，但不堆大段英文原文；使用英文短触发词、中文好句摘要、译法/写法点评和设计讨论场景，并说明受版权材料只适合个人学习或内部研究。",
+      "files": []
+    },
+    {
       "id": "reject-noisy-bilingual-output",
       "prompt": "这段游戏设计理论帮我精翻。每段英文都可以原文贴在下面吗？我怕漏意思。",
       "expected_output": "解释默认不建议每段贴英文；提供自然中文译文，只对概念辨识度强或用户可能引用的句子行内保留英文，并说明这样能保持中文阅读节奏。",

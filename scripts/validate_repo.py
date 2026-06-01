@@ -17,6 +17,7 @@ REQUIRED_SKILLS = [
 ]
 
 REQUIRED_PATHS = [
+    ".gitignore",
     "README.md",
     "README.zh-CN.md",
     "README.en.md",
@@ -32,9 +33,14 @@ SKIP_DIRS = {
     "__pycache__",
     ".pytest_cache",
     ".ruff_cache",
+    "_private_translations",
     ".venv",
     "venv",
     "node_modules",
+}
+
+PRIVATE_IGNORE_RULES = {
+    "_private_translations/",
 }
 
 
@@ -55,6 +61,27 @@ def _check_required_paths(repo_root: Path, errors: list[str]) -> None:
             errors.append(f"{relative}: required path missing")
 
 
+def _check_private_ignore_rules(repo_root: Path, errors: list[str]) -> None:
+    gitignore = repo_root / ".gitignore"
+    if not gitignore.exists():
+        return
+
+    rules = {
+        line.strip()
+        for line in gitignore.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    }
+    for required in sorted(PRIVATE_IGNORE_RULES):
+        accepted = {
+            required,
+            required.rstrip("/"),
+            f"/{required}",
+            f"/{required.rstrip('/')}",
+        }
+        if rules.isdisjoint(accepted):
+            errors.append(f".gitignore: missing required private ignore rule {required}")
+
+
 def _check_repo_data_files(repo_root: Path, errors: list[str]) -> None:
     for path in _iter_data_files(repo_root):
         if path.suffix == ".json":
@@ -73,6 +100,7 @@ def main() -> int:
     all_errors: list[str] = []
 
     _check_required_paths(repo_root, all_errors)
+    _check_private_ignore_rules(repo_root, all_errors)
 
     for skill_name in REQUIRED_SKILLS:
         skill_dir = repo_root / skill_name
