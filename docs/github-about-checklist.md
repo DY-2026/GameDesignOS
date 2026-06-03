@@ -2,8 +2,6 @@
 
 Use GitHub repository settings to set the public metadata manually.
 
-Canonical checklist: [github-about-checklist.md](./github-about-checklist.md)
-
 ## Description
 
 Evidence-first agent skills for game design analysis, concept architecture, and AI workflow evolution.

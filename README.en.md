@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/demo-game-experience-before-after.png" alt="60-second demo: Game Experience Analyzer turns PV input into an evidence-linked report" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner.png" alt="ParanoiaSkills - Evidence-first agent skills for game design work" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
@@ -12,10 +12,13 @@
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
-  <a href="#60-second-demo">60-Second Demo</a> ·
+  <a href="#what-this-is">What This Is</a> ·
+  <a href="./docs/try-it-in-10-minutes.md">Try in 10 Minutes</a> ·
   <a href="#easy-start">Easy Start</a> ·
+  <a href="#60-second-demo">60-Second Demo</a> ·
   <a href="#current-skills">Current Skills</a> ·
   <a href="#showcase">Showcase</a> ·
+  <a href="#star-history">Star History</a> ·
   <a href="#license">License</a>
 </p>
 
@@ -29,16 +32,6 @@
 > License: skill documents and tooling are released under the MIT License. The Paranoia name, logos, visual identity, and project branding are not licensed as trademarks.
 
 > Think of it as a compact operating system for game designers and AI agents: not a prompt collection, but reusable decision loops, evidence rules, quality gates, and output templates packaged as skills.
-
-## 60-Second Demo
-
-Start with one screenshot, gameplay recording, trailer/PV, or video link. Ask the skill for an evidence-linked report:
-
-```text
-Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
-```
-
-The strongest current case is [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md): a public gameplay recording becomes a timestamped report with visual evidence, feature ledger, early-loop diagnosis, UI/guide risks, and validation-ready fixes.
 
 ## What This Is
 
@@ -54,15 +47,43 @@ Analyze screenshots, recordings, trailers, and video links
 -> curate high-quality sources into reusable knowledge
 ```
 
-## Why Star This
+## What Makes It Different
 
-- **Open and portable:** each skill is a readable, copyable, auditable Markdown package that does not lock your workflow into one product.
-- **Evidence-first:** judgments should point back to sources, screenshots, timestamps, sample evidence, or validation metrics.
-- **Concept-to-validation:** a promising idea is not treated as a GDD; it becomes a seed, a player promise, a core loop, a scope gate, and a prototype test.
+- **Evidence-first:** judgments point back to sources, screenshots, timestamps, sample evidence, or validation metrics.
+- **Concept-to-validation:** a promising idea becomes a seed, a player promise, a core loop, a scope gate, and a prototype test.
 - **Workflow-first:** useful behavior is written into `SKILL.md`, `references/`, and `templates/`, not left as one lucky answer.
-- **Game-design native:** built for experience, mechanics, MDA, systems narrative, genre strategy, market windows, monetization, and production workflows.
-- **Agent portable:** not tied to one tool; Codex, Claude Code, OpenCode, or any Markdown-skill-capable agent can adapt it.
-- **Controlled evolution:** VOI, OODA, evals, Human Gate, and rollback keep workflows from drifting out of control.
+- **Agent portable:** Codex, Claude Code, OpenCode, or any Markdown-skill-capable agent can adapt the packages.
+- **Public/private safe:** public examples stay synthetic, public, cleared, or marked `needs_review`; real projects stay in your own environment.
+
+## Try It in 3 Prompts
+
+```text
+Use $game-experience-analyzer to diagnose this PV or gameplay recording into sample boundary, timestamped evidence, Hook/Loop/Link/Surprise diagnosis, issue cards, and validation recommendations.
+```
+
+```text
+Use $game-concept-architect to turn this one-line game idea into concept seed extraction, design nucleus options, player promise contract, core loop, scope gate, and prototype validation plan.
+```
+
+```text
+Use $paranoia-ai-system-evolver to upgrade this workflow with VOI, OODA, eval checks, Human Gate, and rollback.
+```
+
+For the full onboarding path, see [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md). Star this repo if you want more public game-analysis examples and portable agent-skill templates; more stars help prioritize better public demos, adapters, and reusable skill templates.
+
+## 60-Second Demo
+
+Start with one screenshot, gameplay recording, trailer/PV, or video link. Ask the skill for an evidence-linked report:
+
+<p align="center">
+  <img src="./assets/demo-game-experience-before-after.png" alt="60-second demo: Game Experience Analyzer turns PV input into an evidence-linked report" width="100%">
+</p>
+
+```text
+Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
+```
+
+The strongest current example is [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md): a gameplay recording sample becomes a timestamped report with visual evidence, feature ledger, early-loop diagnosis, UI/guide risks, and validation-ready fixes. Its source status is marked `needs_review` before public-material promotion.
 
 ## Easy Start
 
@@ -149,6 +170,8 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
   </tr>
 </table>
 
+For the compact proof-path list, see the [showcase index](./docs/showcases/README.md).
+
 ## Skill Architecture
 
 `ParanoiaSkills` is organized into three layers. Public repository contains base skills. Private overlays should live outside this repository.
@@ -187,33 +210,14 @@ Users may still use these skills with real projects, private projects, client wo
 
 ## Repository Layout
 
-```text
-ParanoiaSkills/
-|-- README.md
-|-- README.zh-CN.md
-|-- README.en.md
-|-- LICENSE
-|-- CONTRIBUTING.md
-|-- adapters/
-|-- contracts/
-|-- docs/
-|-- .github/
-|-- releases/
-|-- scripts/
-|-- assets/
-|   |-- demo-game-experience-before-after.png
-|   |-- voi-ooda-system-evolver-hero.png
-|   |-- showcase-game-experience-analyzer.png
-|   |-- showcase-voi-ooda.png
-|   |-- showcase-book-translator.png
-|   |-- showcase-source-curator.png
-|   `-- showcase-game-concept-architect.png
-|-- game-experience-analyzer/
-|-- paranoia-ai-system-evolver/
-|-- game-design-book-translator/
-|-- game-design-source-curator/
-`-- game-concept-architect/
-```
+Read the repository as a set of installable skill packages plus supporting public infrastructure.
+
+| Layer | Paths | Purpose |
+| --- | --- | --- |
+| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/` | Copyable agent skills. Each package carries its own runtime instructions, references, templates, examples, and evals. |
+| Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | Explains what the project is, how to try it, showcase boundaries, release drafts, and public-facing docs. |
+| Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | Adapter notes, shared schemas, GitHub workflow/templates, and repository validation tools. |
+| Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | Contribution rules, license terms, and public README/showcase visuals. |
 
 Most skills follow this structure:
 
@@ -244,6 +248,16 @@ python scripts/validate_repo.py
 python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 ```
+
+## Star History
+
+<a href="https://star-history.com/#DY-2026/ParanoiaSkills&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date&theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date">
+    <img alt="Star History Chart for DY-2026/ParanoiaSkills" src="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date">
+  </picture>
+</a>
 
 ## License
 

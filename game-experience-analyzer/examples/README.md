@@ -1,15 +1,21 @@
 ---
-case_type: synthetic_example
-source_status: synthetic
+case_type: examples_index
+source_status: mixed_needs_review
 contains_private_project_info: false
 license_status: repo_safe
-intended_use: skill_behavior_demo
+intended_use: example_catalog
 ---
 
-# Game Experience Analyzer 示例索引
+# Game Experience Analyzer Examples
 
-本目录只收录可公开展示或完全合成的样例。新增示例必须先给 `sample_scope_gate`，再声明 `diagnosis_pack` 与 `primary_mode`；`diagnosis_pack: none` 只表示当前输入没有命中已命名诊断包，仍然必须走 `analysis-mode-router`，不得新增泛泛分析模式。
+This directory contains reviewable examples for `$game-experience-analyzer`. Every entry must declare its source boundary and must avoid private project information.
 
-| status | example | input_type | diagnosis_pack | main_mode | confidence_boundary | output_file |
-| --- | --- | --- | --- | --- | --- | --- |
-| current | Survival 33 Days gameplay recording review | `video_url` / gameplay recording | `first_hour_retention_diagnosis` | `early_experience` | Public gameplay recording sample with page metadata and sampled keyframes; supports first-session flow, Hook/Loop/Link/Surprise evidence, feature exposure/unlock/first-use ledger, and UI density. It does not support claims about real D1/D7/D30 retention, revenue, paid conversion, official balance, or complete player sentiment. | [`survival-33-days-gameplay-experience-report.md`](./survival-33-days-gameplay-experience-report.md) |
+## Entries
+
+| example | case_type | source_status | input_type | skill mode | output file | what it demonstrates | whether it is synthetic/public/cleared | contains_private_project_info |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Survival 33 Days gameplay recording review | needs_review | needs_review | video_url / gameplay recording | early_experience / first_hour_retention_diagnosis | [survival-33-days-gameplay-experience-report.md](./survival-33-days-gameplay-experience-report.md) | Demonstrates sample boundary, evidence index, Hook/Loop/Link/Surprise diagnosis, feature exposure/unlock/first-use ledger, UI density review, and unsupported-claim boundaries from a gameplay recording sample. | needs_review | false |
+
+## Public Boundary
+
+Do not add examples derived from private projects, client work, unreleased roadmaps, local work logs, private screenshots, private recordings, or private overlays. If public source status is unclear, mark the entry `needs_review` instead of treating it as `public_material_analysis`.

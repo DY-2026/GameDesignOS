@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/demo-game-experience-before-after.png" alt="60 秒 demo：Game Experience Analyzer 把 PV 输入转成证据化报告" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner.png" alt="ParanoiaSkills - Evidence-first agent skills for game design work" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
@@ -12,10 +12,13 @@
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
-  <a href="#60-秒-demo">60 秒 demo</a> ·
+  <a href="#这个项目是什么">这个项目是什么</a> ·
+  <a href="./docs/try-it-in-10-minutes.md">10 分钟试用</a> ·
   <a href="#轻松上手">轻松上手</a> ·
+  <a href="#60-秒-demo">60 秒 demo</a> ·
   <a href="#当前-skill">当前 Skill</a> ·
   <a href="#图文展示">图文展示</a> ·
+  <a href="#star-history">Star History</a> ·
   <a href="#license">License</a>
 </p>
 
@@ -29,16 +32,6 @@
 > License: skill documents and tooling are released under the MIT License. Paranoia 名称、logo、视觉识别和项目品牌不作为商标授权。
 
 > 像给游戏设计师和 AI agent 用的“小型操作系统”：不是收集提示词，而是把可复用的判断流程、证据规则、质量门和输出模板打包成 skill。
-
-## 60 秒 Demo
-
-输入一张截图、一段录屏、一个 PV/宣传片或视频链接，让 skill 直接输出证据化设计报告：
-
-```text
-Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
-```
-
-当前最强案例是 [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md)：一个公开视频样本会被拆成时间戳证据、功能暴露/解锁/首用账本、前期循环诊断、UI/引导风险和可验证修改建议。
 
 ## 这个项目是什么
 
@@ -54,15 +47,43 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 -> 策展高质量资料和可复用来源
 ```
 
-## 为什么值得收藏
+## 它哪里不一样
 
-- **Open and portable:** 每个 skill 都是可读、可复制、可审计的 Markdown 包，不把你的工作流锁死在某个产品里。
-- **Evidence-first:** 不写泛泛总结，尽量把判断绑定到来源、截图区域、时间戳、样本证据或验证指标。
+- **Evidence-first:** 判断尽量绑定到来源、截图区域、时间戳、样本证据或验证指标。
 - **Concept-to-validation:** 不把“绝妙点子”直接扩写成 GDD，而是拆成 seed、玩家承诺、核心循环、scope gate 和原型验证计划。
 - **Workflow-first:** 不追求一次漂亮回答，而是把可复用流程沉淀到 `SKILL.md`、`references/` 和 `templates/`。
-- **Game-design native:** 面向真实游戏设计工作：体验、玩法、MDA、系统叙事、品类、窗口期、商业化、素材和生产流程。
-- **Agent portable:** 不绑定单一工具；Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
-- **Controlled evolution:** 用 VOI、OODA、eval、Human Gate 和 rollback 防止工作流越改越漂。
+- **Agent portable:** Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
+- **Public/private safe:** 公开示例只使用 synthetic、public、cleared 或 `needs_review` 材料；真实项目留在你自己的环境中。
+
+## Try It in 3 Prompts
+
+```text
+Use $game-experience-analyzer to diagnose this PV or gameplay recording into sample boundary, timestamped evidence, Hook/Loop/Link/Surprise diagnosis, issue cards, and validation recommendations.
+```
+
+```text
+Use $game-concept-architect to turn this one-line game idea into concept seed extraction, design nucleus options, player promise contract, core loop, scope gate, and prototype validation plan.
+```
+
+```text
+Use $paranoia-ai-system-evolver to upgrade this workflow with VOI, OODA, eval checks, Human Gate, and rollback.
+```
+
+完整上手路径见 [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md)。如果你希望继续看到更多公开游戏分析案例和可迁移的 agent skill 模板，欢迎 star 这个仓库；star 越多，我会越优先补更好的公开 demo、adapter 和可复用 skill 模板。
+
+## 60 秒 Demo
+
+输入一张截图、一段录屏、一个 PV/宣传片或视频链接，让 skill 直接输出证据化设计报告：
+
+<p align="center">
+  <img src="./assets/demo-game-experience-before-after.png" alt="60 秒 demo：Game Experience Analyzer 把 PV 输入转成证据化报告" width="100%">
+</p>
+
+```text
+Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
+```
+
+当前可查看示例是 [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md)：一个录屏样本会被拆成时间戳证据、功能暴露/解锁/首用账本、前期循环诊断、UI/引导风险和可验证修改建议。该示例在正式作为 public material 展示前已标为 `needs_review`。
 
 ## 轻松上手
 
@@ -149,6 +170,8 @@ game-concept-architect/
   </tr>
 </table>
 
+更小的 proof-path 列表见 [showcase index](./docs/showcases/README.md)。
+
 ## Skill Architecture
 
 `ParanoiaSkills` 分为三层。本仓库只包含公开基础 skill。私有项目规则、客户材料、真实案例和个人工作室偏好应放在仓库外的 private overlay。
@@ -187,33 +210,14 @@ game-concept-architect/
 
 ## 项目结构
 
-```text
-ParanoiaSkills/
-|-- README.md
-|-- README.zh-CN.md
-|-- README.en.md
-|-- LICENSE
-|-- CONTRIBUTING.md
-|-- adapters/
-|-- contracts/
-|-- docs/
-|-- .github/
-|-- releases/
-|-- scripts/
-|-- assets/
-|   |-- demo-game-experience-before-after.png
-|   |-- voi-ooda-system-evolver-hero.png
-|   |-- showcase-game-experience-analyzer.png
-|   |-- showcase-voi-ooda.png
-|   |-- showcase-book-translator.png
-|   |-- showcase-source-curator.png
-|   `-- showcase-game-concept-architect.png
-|-- game-experience-analyzer/
-|-- paranoia-ai-system-evolver/
-|-- game-design-book-translator/
-|-- game-design-source-curator/
-`-- game-concept-architect/
-```
+可以把这个仓库理解成“一组可安装 skill 包 + 支撑公开发布的基础设施”，而不是一个普通素材目录。
+
+| 层级 | 路径 | 作用 |
+| --- | --- | --- |
+| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/` | 可复制到 agent 环境里的 skill 包。每个包都有自己的运行入口、方法参考、模板、示例和 eval。 |
+| Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | 说明项目是什么、怎么试用、showcase 边界、release 草稿和公开文档。 |
+| Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | 适配器说明、共享 schema、GitHub workflow/templates 和仓库校验工具。 |
+| Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | 贡献规则、授权信息，以及 README/showcase 使用的公开视觉素材。 |
 
 每个 skill 通常使用同一套结构：
 
@@ -244,6 +248,16 @@ python scripts/validate_repo.py
 python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 ```
+
+## Star History
+
+<a href="https://star-history.com/#DY-2026/ParanoiaSkills&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date&theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date">
+    <img alt="Star History Chart for DY-2026/ParanoiaSkills" src="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date">
+  </picture>
+</a>
 
 ## License
 

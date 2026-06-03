@@ -1,12 +1,14 @@
 ---
-case_type: public_material_analysis
-source_status: public
+case_type: needs_review
+source_status: needs_review
 contains_private_project_info: false
-license_status: public_source
+license_status: needs_review
 intended_use: skill_behavior_demo
 ---
 
 # 《生存33天》41 分钟试玩录屏诊断报告示例
+
+> Source status note: this example is retained as a skill-behavior demo, but its public source status needs review before it is promoted as a public-material showcase.
 
 本示例用于展示 `game-experience-analyzer` 升级后的诊断交付形态：先过样本边界门，再建立 Evidence Index，然后进入诊断包、问题卡和验证计划。它不是“看完视频后的观感总结”。
 
@@ -14,7 +16,7 @@ intended_use: skill_behavior_demo
 
 | 字段 | 内容 |
 | --- | --- |
-| 样本边界 `sample_boundary` | B 站公开视频链接，标题为“游戏试玩:丧尸rpg《生存33天》”，时长 41:30；本报告基于可访问页面元数据、公开互动数据和抽样关键帧，不含完整 ASR、后台埋点、正式版本数据。 |
+| 样本边界 `sample_boundary` | B 站视频链接（source_status: needs_review），标题为“游戏试玩:丧尸rpg《生存33天》”，时长 41:30；本报告基于可访问页面元数据、页面互动数据和抽样关键帧，不含完整 ASR、后台埋点、正式版本数据。 |
 | 可判断范围 `supported_judgment_scope` | 首局/首小时体验结构、前期 Hook、移动教学、任务牵引、自动/半自动战斗循环、功能暴露/首用、UI 信息密度、长线目标露出、可执行改版方向。 |
 | 不可判断范围 `unsupported_judgment_scope` | 真实 D1/D7/D30 留存、付费率、广告收益、完整后期 Build 深度、服务器生态、买量转化、正式版本数值平衡、所有玩家群体口碑。 |
 | 关键 unknown `key_unknowns` | 新号真实首小时漏斗、首战/首 Boss 到达率、功能入口点击热区、广告或礼包真实触发规则、是否存在未录到的手动技能深度、正式服是否已改版。 |
@@ -46,8 +48,8 @@ intended_use: skill_behavior_demo
 | 本次访问/刷新时间 | 2026-05-29 |
 | 视频时长 | 41:30 |
 | 样本类型 | `video_url`；竖屏 story 试玩录屏；抽样关键帧分析 |
-| 公开互动数据 | 播放 763，弹幕 0，评论 1，收藏 2，投币 2，分享 7，点赞 3 |
-| 评论样本 | 1 条公开评论：“真棒” |
+| 页面互动数据 | 播放 763，弹幕 0，评论 1，收藏 2，投币 2，分享 7，点赞 3 |
+| 页面评论样本 | 1 条可见评论：“真棒” |
 | 画面规格 | API 显示原视频 480 x 1066；本次抽帧使用可访问流中的关键帧 |
 | 关键帧资产 | `examples/survival-33-days-assets/` |
 
@@ -72,7 +74,7 @@ intended_use: skill_behavior_demo
 | 商业化打断诊断包 | `commercialization` | 首屏即出现福利/代金券活动，影响第一眼 Hook | 未看到完整付费链路，不能判断收入效率 |
 | 问题诊断 | `problem_diagnosis` | 用户需要把示例报告做成可交付诊断样板 | 不做泛泛“整体项目分析” |
 
-不启用 `trailer_heat_prediction`：这是试玩录屏，不是 PV；低播放量只能作为公开传播背景，不能推出产品热度结论。
+不启用 `trailer_heat_prediction`：这是试玩录屏，不是 PV；低播放量只能作为传播背景，不能推出产品热度结论。
 
 ## 6. Evidence Index
 
