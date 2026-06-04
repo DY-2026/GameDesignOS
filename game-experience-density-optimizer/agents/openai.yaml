@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Experience Density Optimizer"
+  short_description: "把留存和节奏问题转成一周可验证的 EPM 实验"
+  default_prompt: "使用 $game-experience-density-optimizer，把当前游戏的留存、首局节奏或体验密度问题拆成 EPM 诊断、事件频率/决策权重/叙事压缩三类旋钮、一周 A/B 变体矩阵、埋点字典、看板字段、预注册判定规则和回滚条件。"
