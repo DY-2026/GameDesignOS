@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner.png" alt="ParanoiaSkills - Evidence-first agent skills for game design work" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v2.png" alt="ParanoiaSkills - Evidence-first agent skills for game design work" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
   Installable, verifiable, and portable agent skill packages for game-design work.
-  Go from gameplay/PV evidence to reports, from one-line ideas to validation plans, and from prompt changes to eval-backed workflow evolution.
+  Go from gameplay/PV evidence to reports, from retention and pacing problems to ED experiments, from one-line ideas to validation plans, and from prompt changes to eval-backed workflow evolution.
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/Skills-5-2ea44f">
+  <img alt="Skills" src="https://img.shields.io/badge/Skills-6-2ea44f">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
@@ -35,12 +35,13 @@
 
 ## What This Is
 
-`ParanoiaSkills` is a game-design skill library that turns one-line ideas, game experience analysis, AI workflow evolution, professional translation, and source curation into reusable agent instructions, references, templates, and examples.
+`ParanoiaSkills` is a game-design skill library that turns game experience analysis, experience-concentration experiments, one-line ideas, AI workflow evolution, professional translation, and source curation into reusable agent instructions, references, templates, and examples.
 
 It is not a prompt dump. It is closer to a compact operating system for serious game design work:
 
 ```text
 Analyze screenshots, recordings, trailers, and video links
+-> turn retention, pacing, feedback, embodiment, and cognitive-load problems into weekly ED experiments
 -> architect one-line ideas into testable game concepts
 -> evolve the agent workflow that performs the work
 -> translate and structure design knowledge
@@ -55,7 +56,7 @@ Analyze screenshots, recordings, trailers, and video links
 - **Agent portable:** Codex, Claude Code, OpenCode, or any Markdown-skill-capable agent can adapt the packages.
 - **Public/private safe:** public examples stay synthetic, public, cleared, or marked `needs_review`; real projects stay in your own environment.
 
-## Try It in 3 Prompts
+## Try It in 4 Prompts
 
 ```text
 Use $game-experience-analyzer to diagnose this PV or gameplay recording into sample boundary, timestamped evidence, Hook/Loop/Link/Surprise diagnosis, issue cards, and validation recommendations.
@@ -67,6 +68,10 @@ Use $game-concept-architect to turn this one-line game idea into concept seed ex
 
 ```text
 Use $paranoia-ai-system-evolver to upgrade this workflow with VOI, OODA, eval checks, Human Gate, and rollback.
+```
+
+```text
+Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience concentration problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
 ```
 
 For the full onboarding path, see [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md). Star this repo if you want more public game-analysis examples and portable agent-skill templates; more stars help prioritize better public demos, adapters, and reusable skill templates.
@@ -98,6 +103,7 @@ The simplest path is three small moves: pick a skill, give the agent your materi
 | Prompt, workflow, schema, or agent rule | `$paranoia-ai-system-evolver` | A VOI/OODA/eval/Human Gate/rollback-backed evolution proposal |
 | English game design chapter or essay | `$game-design-book-translator` | Professional Chinese design translation with reviewable terminology |
 | Articles, videos, creators, or websites | `$game-design-source-curator` | Maintainable game design knowledge-base entries |
+| Retention, pacing, feedback, embodiment, atmosphere, or cognitive-load problem | `$game-experience-density-optimizer` | ED diagnosis, weekly A/B variants, instrumentation, dashboard fields, and rollback gates |
 
 ### 2. Copy a minimal prompt
 
@@ -127,6 +133,10 @@ Use $game-design-source-curator to review these game design sources and turn acc
 Use $game-concept-architect to turn this one-line game idea into a concept seed, player verbs, action-goal alignment, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
 ```
 
+```text
+Use $game-experience-density-optimizer to turn this first-session experience concentration problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
+```
+
 ### 3. Install it in your own agent environment
 
 If your tool supports local skills, copy the target folder into that tool's skill directory:
@@ -137,6 +147,7 @@ paranoia-ai-system-evolver/
 game-design-book-translator/
 game-design-source-curator/
 game-concept-architect/
+game-experience-density-optimizer/
 ```
 
 After installation, check that the `SKILL.md` frontmatter `name` matches the folder name, and that relative links inside `references/`, `templates/`, and `examples/` still resolve.
@@ -145,20 +156,23 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
 
 <table>
   <tr>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer showcase">
     </td>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver showcase">
     </td>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator showcase">
     </td>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator showcase">
     </td>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect showcase">
+    </td>
+    <td width="16%">
+      <img src="./assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer showcase">
     </td>
   </tr>
   <tr>
@@ -167,6 +181,7 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
     <td><b>Translate design knowledge</b><br>Transform serious game design books and chapters into professional Chinese design writing.</td>
     <td><b>Curate sources</b><br>Turn scattered articles, videos, creators, columns, and websites into a durable game design knowledge base.</td>
     <td><b>Architect game concepts</b><br>Turn a one-line idea into a seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan.</td>
+    <td><b>Optimize experience concentration</b><br>Turn retention, pacing, feedback, embodiment, atmosphere, and cognitive-load issues into weekly ED experiments.</td>
   </tr>
 </table>
 
@@ -179,6 +194,7 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 - **Design Production Layer**
   - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.
   - [`game-experience-analyzer/`](./game-experience-analyzer/): media/sample -> evidence-linked diagnosis.
+  - [`game-experience-density-optimizer/`](./game-experience-density-optimizer/): retention/pacing/feedback issue -> weekly ED experiment.
 - **Workflow Governance Layer**
   - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/): prompt/workflow/schema/eval changes -> controlled evolution.
 - **Knowledge Asset Layer**
@@ -196,6 +212,7 @@ Users may still use these skills with real projects, private projects, client wo
 | **Game Design Book Translator** | Produces professional Chinese game design translations that read like serious design writing. | Terminology, chapters, figures, captions, tables, QA, source-boundary checks. | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | Converts scattered game design sources into a durable local knowledge base. | Source screening, scoring, HTML archives, registries, update history, design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player verbs, action-goal alignment, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
+| **Game Experience Concentration Optimizer** | Turns experience concentration, retention, pacing, feedback, embodiment, atmosphere, and cognitive-load problems into weekly ED experiments. | First-session tuning, prototype feel, live-ops micro tests, A/B variants, telemetry dictionaries, dashboard specs, rollback gates. | [`game-experience-density-optimizer/`](./game-experience-density-optimizer/) |
 
 ## Use Cases
 
@@ -207,6 +224,7 @@ Users may still use these skills with real projects, private projects, client wo
 - **Professional translation:** translate game design books or essays while preserving terminology, argument structure, and figure context.
 - **Workflow evolution:** promote useful agent behavior into candidate rules with evals, Human Gate, and rollback.
 - **Concept feasibility:** turn a one-line idea into concept seed extraction, player verbs, action-goal alignment, player promises, core loop design, scope gate, production feasibility, and prototype validation.
+- **Experience concentration experiments:** turn first-session, pacing, feedback, embodiment, atmosphere, or cognitive-load issues into weekly ED experiments with metrics and rollback gates.
 
 ## Repository Layout
 
@@ -214,7 +232,7 @@ Read the repository as a set of installable skill packages plus supporting publi
 
 | Layer | Paths | Purpose |
 | --- | --- | --- |
-| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/` | Copyable agent skills. Each package carries its own runtime instructions, references, templates, examples, and evals. |
+| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | Copyable agent skills. Each package carries its own runtime instructions, references, templates, examples, and evals. |
 | Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | Explains what the project is, how to try it, showcase boundaries, release drafts, and public-facing docs. |
 | Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | Adapter notes, shared schemas, GitHub workflow/templates, and repository validation tools. |
 | Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | Contribution rules, license terms, and public README/showcase visuals. |
@@ -247,6 +265,7 @@ Run these commands from the repository root:
 python scripts/validate_repo.py
 python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
+python scripts/validate_skill.py game-experience-density-optimizer
 ```
 
 ## Star History

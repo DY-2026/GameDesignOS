@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner.png" alt="ParanoiaSkills - Evidence-first agent skills for game design work" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v2.png" alt="ParanoiaSkills - Evidence-first agent skills for game design work" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
   把游戏设计工作流做成可安装、可验证、可迁移的 Agent Skill 包。
-  从录屏/PV 到证据报告，从一句话创意到验证计划，从 prompt 改动到带 eval 与 rollback 的系统演化。
+  从录屏/PV 到证据报告，从留存与节奏问题到体验浓度实验，从一句话创意到验证计划，从 prompt 改动到带 eval 与 rollback 的系统演化。
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/Skills-5-2ea44f">
+  <img alt="Skills" src="https://img.shields.io/badge/Skills-6-2ea44f">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
@@ -35,12 +35,13 @@
 
 ## 这个项目是什么
 
-`ParanoiaSkills` 是一套游戏设计工作流 Skill 库，把一句话创意架构、游戏体验分析、AI 工作流演化、专业翻译和资料策展，沉淀成可复用、可验证、可迁移的 agent instructions、references、templates 和 examples。
+`ParanoiaSkills` 是一套游戏设计工作流 Skill 库，把游戏体验分析、体验浓度实验、一句话创意架构、AI 工作流演化、专业翻译和资料策展，沉淀成可复用、可验证、可迁移的 agent instructions、references、templates 和 examples。
 
 它不是一堆提示词合集。这个项目更像一套小型游戏设计操作系统：
 
 ```text
 分析游戏截图、录屏、PV 和视频链接
+-> 把留存、节奏、反馈、具身感和认知负荷问题转成一周体验浓度实验
 -> 把一句话创意架构成可验证的游戏概念
 -> 演化执行这些工作的 agent workflow
 -> 翻译并结构化设计知识
@@ -55,7 +56,7 @@
 - **Agent portable:** Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
 - **Public/private safe:** 公开示例只使用 synthetic、public、cleared 或 `needs_review` 材料；真实项目留在你自己的环境中。
 
-## Try It in 3 Prompts
+## Try It in 4 Prompts
 
 ```text
 Use $game-experience-analyzer to diagnose this PV or gameplay recording into sample boundary, timestamped evidence, Hook/Loop/Link/Surprise diagnosis, issue cards, and validation recommendations.
@@ -67,6 +68,10 @@ Use $game-concept-architect to turn this one-line game idea into concept seed ex
 
 ```text
 Use $paranoia-ai-system-evolver to upgrade this workflow with VOI, OODA, eval checks, Human Gate, and rollback.
+```
+
+```text
+Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience concentration problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
 ```
 
 完整上手路径见 [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md)。如果你希望继续看到更多公开游戏分析案例和可迁移的 agent skill 模板，欢迎 star 这个仓库；star 越多，我会越优先补更好的公开 demo、adapter 和可复用 skill 模板。
@@ -98,6 +103,7 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 | 一段 prompt、workflow、schema 或 agent 规则 | `$paranoia-ai-system-evolver` | 带 VOI/OODA/eval/Human Gate/rollback 的系统演化提案 |
 | 英文游戏设计章节或长文 | `$game-design-book-translator` | 专业、自然、可复查的中文设计翻译 |
 | 一批文章、视频、作者或网站 | `$game-design-source-curator` | 可长期维护的游戏设计知识库条目 |
+| 留存、节奏、反馈、具身感、氛围感或认知负荷问题 | `$game-experience-density-optimizer` | ED 诊断、一周 A/B 变体、埋点字典、看板字段和回滚门 |
 
 ### 2. 复制一句最小提示词
 
@@ -127,6 +133,10 @@ Use $game-design-source-curator to review these game design sources and turn acc
 Use $game-concept-architect to turn this one-line game idea into a concept seed, player verbs, action-goal alignment, player promise, core loop, scope gate, production feasibility check, and prototype validation plan.
 ```
 
+```text
+Use $game-experience-density-optimizer to turn this first-session experience concentration problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
+```
+
 ### 3. 安装到自己的 agent 环境
 
 如果你的工具支持本地 skill / Markdown skill package，把对应目录复制或同步到它的 skill 目录即可。常见宿主可以是 Codex、Claude Code、OpenCode，或其他能读取 Markdown skill 的 agent 环境：
@@ -137,6 +147,7 @@ paranoia-ai-system-evolver/
 game-design-book-translator/
 game-design-source-curator/
 game-concept-architect/
+game-experience-density-optimizer/
 ```
 
 安装后确认两件事：`SKILL.md` frontmatter 的 `name` 和目录名一致；`references/`、`templates/`、`examples/` 里的相对路径还能打开。
@@ -145,20 +156,23 @@ game-concept-architect/
 
 <table>
   <tr>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer 展示图">
     </td>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver 展示图">
     </td>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator 展示图">
     </td>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator 展示图">
     </td>
-    <td width="20%">
+    <td width="16%">
       <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect 展示图">
+    </td>
+    <td width="16%">
+      <img src="./assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer 展示图">
     </td>
   </tr>
   <tr>
@@ -167,6 +181,7 @@ game-concept-architect/
     <td><b>翻译设计知识</b><br>把严肃的游戏设计书籍和章节，变成自然、专业、可复查的中文设计写作。</td>
     <td><b>策展资料</b><br>把散落在文章、视频、作者、专栏和网站里的内容，变成可长期维护的游戏设计知识库。</td>
     <td><b>架构游戏概念</b><br>把一句话创意拆成 seed、玩家动词、动作-目标、玩家承诺、核心循环、scope gate 和验证计划。</td>
+    <td><b>优化体验浓度</b><br>把留存、节奏、反馈、具身感、氛围感和认知负荷问题，转成一周可验证的 ED 实验。</td>
   </tr>
 </table>
 
@@ -179,6 +194,7 @@ game-concept-architect/
 - **Design Production Layer**
   - [`game-concept-architect/`](./game-concept-architect/)：one-line idea -> verifiable design blueprint。
   - [`game-experience-analyzer/`](./game-experience-analyzer/)：media/sample -> evidence-linked diagnosis。
+  - [`game-experience-density-optimizer/`](./game-experience-density-optimizer/)：retention/pacing/feedback issue -> weekly ED experiment。
 - **Workflow Governance Layer**
   - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/)：prompt/workflow/schema/eval changes -> controlled evolution。
 - **Knowledge Asset Layer**
@@ -196,6 +212,7 @@ game-concept-architect/
 | **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本。 | 术语、章节、图注、表格、QA、来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
+| **Game Experience Concentration Optimizer** | 把体验浓度、留存、节奏、反馈、具身感、氛围感和认知负荷问题转成一周 ED 实验。 | 首局调优、原型手感、LiveOps 小实验、A/B 变体、埋点字典、看板规格、回滚门。 | [`game-experience-density-optimizer/`](./game-experience-density-optimizer/) |
 
 ## 典型用例
 
@@ -207,6 +224,7 @@ game-concept-architect/
 - **专业翻译:** 把游戏设计书籍或长文翻成自然中文，同时保留术语、论证结构和图表语境。
 - **工作流升级:** 把一次有用的 agent 行为升级成候选规则，并用 eval、Human Gate 和 rollback 控制风险。
 - **创意可行性:** 把一句话创意拆成 concept seed、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate、生产可行性和原型验证计划。
+- **体验浓度实验:** 把首局、节奏、反馈、具身感、氛围感或认知负荷问题，转成带指标和回滚门的一周 ED 实验。
 
 ## 项目结构
 
@@ -214,7 +232,7 @@ game-concept-architect/
 
 | 层级 | 路径 | 作用 |
 | --- | --- | --- |
-| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/` | 可复制到 agent 环境里的 skill 包。每个包都有自己的运行入口、方法参考、模板、示例和 eval。 |
+| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | 可复制到 agent 环境里的 skill 包。每个包都有自己的运行入口、方法参考、模板、示例和 eval。 |
 | Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | 说明项目是什么、怎么试用、showcase 边界、release 草稿和公开文档。 |
 | Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | 适配器说明、共享 schema、GitHub workflow/templates 和仓库校验工具。 |
 | Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | 贡献规则、授权信息，以及 README/showcase 使用的公开视觉素材。 |
@@ -247,6 +265,7 @@ evals/       -> 用于回归检查的提示和预期行为
 python scripts/validate_repo.py
 python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
+python scripts/validate_skill.py game-experience-density-optimizer
 ```
 
 ## Star History

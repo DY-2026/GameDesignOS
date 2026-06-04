@@ -34,3 +34,14 @@ This index points new users to the smallest public-facing proof paths for `Paran
 | output artifact | Player promise contract, prototype/media diagnosis, unsupported-claim list, and next validation plan. |
 | what this proves | The same promise can drive both concept architecture and later evidence-linked diagnosis. |
 | link to example or placeholder issue | [Placeholder feedback issue](https://github.com/DY-2026/ParanoiaSkills/issues/new?template=showcase_feedback.md&title=Concept-to-Diagnosis%20Loop%20showcase) |
+
+## Experience Concentration Experiment
+
+| Field | Value |
+| --- | --- |
+| target user | Designers, producers, data analysts, and agent users turning retention, pacing, feedback, embodiment, atmosphere, or cognitive-load issues into experiments. |
+| input material | Prototype notes, playtest summary, evidence report, telemetry snapshot, or synthetic first-session problem. |
+| skill used | `$game-experience-density-optimizer` |
+| output artifact | ED diagnosis with CLP/SF/EB/AR/MD-min levers, weekly A/B variants, instrumentation, dashboard fields, and rollback gates. |
+| what this proves | A fuzzy experience concentration issue can become a bounded weekly experiment without claiming unverified retention uplift. |
+| link to example or placeholder issue | [Synthetic first-session ED plan](../../game-experience-density-optimizer/examples/synthetic-survivors-first-session-ed-plan.md) |

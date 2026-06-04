@@ -1,0 +1,25 @@
+criteria:
+  boundary_first:
+    description: Output states case boundary, evidence status, and unknowns before diagnosis.
+    required: true
+  concept_name:
+    description: Chinese prose uses 体验浓度 as the concept name and ED as the technical shorthand.
+    required: true
+  theory_status:
+    description: The method is marked as design_hypothesis, not a scientific claim.
+    required: true
+  formula_items:
+    description: Diagnosis maps the problem to CLP, SF, EB, AR, and/or MD/min.
+    required: true
+  tuning_order:
+    description: Output follows 先降噪，再提质，后调频 unless evidence justifies another order.
+    required: true
+  experiment_design:
+    description: Variants are concrete, rollbackable, and keep one primary lever per variant.
+    required: true
+  instrumentation:
+    description: Includes events and fields for decisions, feedback, cognitive load, checkpoints, and session end.
+    required: true
+  safety:
+    description: Rejects dark patterns, misleading rewards, coercive red dots, and post-hoc success criteria.
+    required: true

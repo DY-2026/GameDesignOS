@@ -1,4 +1,4 @@
-# EPM Experiment Intake
+# ED Experiment Intake
 
 ## Case Boundary
 
@@ -17,6 +17,7 @@
 | current_problem | unknown |
 | available_material | text_only_request |
 | evidence_status | assumption_only |
+| theory_status | design_hypothesis |
 
 ## Available Evidence
 
@@ -38,6 +39,12 @@
 | D7 | unknown | unknown | unknown |
 | session_median_duration | unknown | unknown | unknown |
 | TTE | unknown | unknown | unknown |
+| ED_proxy | unknown | unknown | unknown |
+| CLP_proxy | unknown | unknown | unknown |
+| SF_proxy | unknown | unknown | unknown |
+| EB_proxy | unknown | unknown | unknown |
+| AR_proxy | unknown | unknown | unknown |
+| MD_per_min | unknown | unknown | unknown |
 | early_exit_rate | unknown | unknown | unknown |
 | failure_rate | unknown | unknown | unknown |
 

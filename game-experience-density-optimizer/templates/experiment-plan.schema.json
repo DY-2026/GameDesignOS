@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/paranoia-skills/game-experience-density-optimizer/experiment-plan.schema.json",
+  "title": "Game Experience Concentration Experiment Plan",
+  "type": "object",
+  "required": [
+    "case_boundary",
+    "theory_status",
+    "diagnosis_summary",
+    "variant_matrix",
+    "metric_plan",
+    "decision_rules"
+  ],
+  "properties": {
+    "case_boundary": {
+      "type": "object"
+    },
+    "theory_status": {
+      "const": "design_hypothesis"
+    },
+    "diagnosis_summary": {
+      "type": "object",
+      "required": ["primary_issue_item", "diagnosis_order"],
+      "properties": {
+        "primary_issue_item": {
+          "enum": ["CLP", "SF", "EB", "AR", "MD/min", "unknown"]
+        },
+        "diagnosis_order": {
+          "type": "string"
+        }
+      }
+    },
+    "variant_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["variant_id", "primary_lever", "concrete_change", "rollback"],
+        "properties": {
+          "variant_id": {
+            "type": "string"
+          },
+          "primary_lever": {
+            "type": "string"
+          },
+          "concrete_change": {
+            "type": "string"
+          },
+          "rollback": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metric_plan": {
+      "type": "object"
+    },
+    "decision_rules": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

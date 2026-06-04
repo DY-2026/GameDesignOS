@@ -13,6 +13,8 @@ All notable changes to ParanoiaSkills will be recorded here.
 - Added issue templates.
 - Added v0.3.0 release draft.
 - Added Star History chart to the README trio.
+- Added `game-experience-density-optimizer` for turning experience concentration, retention, pacing, feedback, embodiment, atmosphere, and cognitive-load problems into weekly ED experiments.
+- Added ED templates, telemetry/dashboard specs, evals, a synthetic public example, and showcase imagery.
 - Reworked the README opening so positioning and value come before specific examples.
 - Added a generated overview banner with title and one-line positioning.
 - Simplified repository layout docs into reader-facing layers instead of a full asset tree.

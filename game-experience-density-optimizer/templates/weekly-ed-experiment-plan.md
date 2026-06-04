@@ -1,4 +1,4 @@
-# Weekly ED / EPM Experiment Plan
+# Weekly ED Experiment Plan
 
 ## 1. Case Boundary
 
@@ -13,6 +13,7 @@
 | session_scope | unknown |
 | available_evidence | unknown |
 | evidence_status | unknown |
+| theory_status | design_hypothesis |
 
 ## 2. ED Diagnosis
 
@@ -25,6 +26,8 @@
 | MD/min | unknown | unknown | unknown |
 
 当前浓度问题：`unknown`
+
+当前段落意图：`高压 / 建立规则 / 放松观察 / 情绪沉淀 / 决策规划 / 爽感释放 / unknown`
 
 建议顺序：`先降噪 / 再提质 / 后调频 / unknown`
 
@@ -39,9 +42,9 @@
 | variant_id | primary_lever | concrete_change | impact_window | owner | risk | rollback |
 | --- | --- | --- | --- | --- | --- | --- |
 | A_control | none | 当前版本 | current session | design/data | none | none |
-| B_clp_or_sf | CLP / SF | unknown | 30-120 sec | design/ui/client | unknown | config off |
-| C_eb_or_ar | EB / AR | unknown | 30-180 sec | design/3c/art/audio | unknown | config off |
-| D_md_frequency | MD/min | unknown | 60-180 sec | design/system/level | unknown | config off |
+| B_reduce_clp | CLP | unknown | 30-120 sec | design/ui/client | missing_information | config off |
+| C_raise_vertical_quality | SF / EB / AR | unknown | 30-180 sec | design/3c/art/audio | sensory_noise | config off |
+| D_tune_md_frequency | MD/min | unknown | 60-180 sec | design/system/level | overload | config off |
 
 ## 5. Instrumentation Dictionary
 
@@ -51,7 +54,7 @@
 
 | 层级 | 指标 | 目标 | 口径 | 分群 |
 | --- | --- | --- | --- | --- |
-| P1 | unknown | unknown | unknown | new/returning/existing |
+| P1 | unknown | unknown | retention/session quality | new/returning/existing |
 | P2 | ED proxy | unknown | same version/session | new/returning/existing |
 | negative | unknown | no spike | pre-registered | all segments |
 

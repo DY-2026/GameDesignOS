@@ -14,6 +14,7 @@ REQUIRED_SKILLS = [
     "paranoia-ai-system-evolver",
     "game-design-book-translator",
     "game-design-source-curator",
+    "game-experience-density-optimizer",
 ]
 
 REQUIRED_PATHS = [

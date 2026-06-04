@@ -7,6 +7,7 @@ This guide helps a new user understand and test `ParanoiaSkills` without adding 
 - Game designers who want evidence-linked diagnosis from screenshots, PVs, trailers, or gameplay recordings.
 - Indie developers who want to turn a one-line idea into a testable concept blueprint.
 - Agent-workflow builders who want portable Markdown skills with validation gates, not one-off prompts.
+- Designers and producers who want to turn retention, pacing, feedback, embodiment, atmosphere, or cognitive-load problems into weekly ED experiments.
 - Teams that want to use real projects privately while keeping public examples synthetic, public, or cleared.
 
 ## Which Skill To Choose
@@ -16,6 +17,7 @@ This guide helps a new user understand and test `ParanoiaSkills` without adding 
 | PV, trailer, gameplay recording, screenshot, or video link | `$game-experience-analyzer` | Evidence index, diagnosis route, issue cards, validation plan |
 | One-line game idea | `$game-concept-architect` | Concept seed, player promise, core loop, scope gate, validation plan |
 | Prompt, workflow, schema, eval, memory, or agent rule | `$paranoia-ai-system-evolver` | VOI/OODA evolution proposal with Human Gate and rollback |
+| Retention, pacing, feedback, embodiment, atmosphere, or cognitive-load problem | `$game-experience-density-optimizer` | ED diagnosis, weekly A/B variants, instrumentation, dashboard fields, rollback gates |
 
 ## Which Folder To Copy
 
@@ -25,6 +27,7 @@ Copy only the skill folder you want to try into your agent's local skill directo
 game-experience-analyzer/
 game-concept-architect/
 paranoia-ai-system-evolver/
+game-experience-density-optimizer/
 ```
 
 For a first test, copy one folder only. After copying, confirm that `SKILL.md`, `references/`, `templates/`, and `examples/` are still in the same relative layout.
@@ -53,6 +56,19 @@ Idea:
 A short tactics game about repairing a drifting lighthouse while storms change the map every night.
 ```
 
+## How To Trigger `$game-experience-density-optimizer`
+
+Use this when you have a playable prototype, live build, test recording, design problem, or telemetry snapshot and want to turn experience concentration into a rollbackable weekly experiment.
+
+```text
+Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience concentration problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
+
+Input material:
+- Source: <private notes, telemetry snapshot, playtest summary, or evidence report>
+- Segment: <first session, return session, fatigue segment, tutorial, combat loop>
+- Current problem: <empty, confusing, soft feedback, not embodied, no atmosphere, choices too weak>
+```
+
 ## Minimal Input Examples
 
 ### PV Or Recording Diagnosis
@@ -78,6 +94,13 @@ Use $paranoia-ai-system-evolver to upgrade this agent workflow:
 When asked for game analysis, first gather evidence, then write conclusions.
 
 Please add VOI, OODA, eval checks, Human Gate, and rollback criteria.
+```
+
+### Experience Concentration Experiment
+
+```text
+Use $game-experience-density-optimizer:
+Our first 8 minutes feel empty. Players understand the controls, but the first meaningful build choice happens too late, combat feedback feels soft, and D1 is weak. We only have a small playtest summary, no telemetry yet.
 ```
 
 ## Expected Output Structure
@@ -109,6 +132,15 @@ Please add VOI, OODA, eval checks, Human Gate, and rollback criteria.
 - Human Gate requirements.
 - Rollback plan.
 
+`$game-experience-density-optimizer` should usually return:
+
+- Case boundary and `theory_status: design_hypothesis`.
+- ED diagnosis across CLP, SF, EB, AR, and MD/min.
+- A "reduce noise -> improve quality -> tune frequency" order.
+- Rollbackable A/B variants.
+- Instrumentation dictionary and dashboard fields.
+- Pre-registered decision and rollback rules.
+
 ## How To Check The Output Did Not Go Out Of Bounds
 
 Ask these checks before trusting or publishing an output:
@@ -134,6 +166,7 @@ For targeted checks:
 python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 python scripts/validate_skill.py paranoia-ai-system-evolver
+python scripts/validate_skill.py game-experience-density-optimizer
 ```
 
 ## How To Avoid Publishing Private Overlay Or Real Project Cases

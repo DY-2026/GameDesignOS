@@ -7,7 +7,7 @@
 实验上线前必须写清：
 
 - `primary_success_metric`：最重要的结果指标，例如 D1、首局关键 checkpoint 到达率。
-- `secondary_metrics`：解释性指标，例如 EPM、TTE、决策后窗口行为。
+- `secondary_metrics`：解释性指标，例如 ED proxy、TTE、CLP、SF、EB、AR、MD/min、决策后窗口行为。
 - `negative_metrics`：任何触发后必须暂停或回滚的指标。
 - `minimum_sample_note`：样本不足时如何解释。
 - `decision_date`：哪一天复盘，不无限延期。
@@ -20,7 +20,7 @@
 | 判断 | 默认条件 |
 | --- | --- |
 | 成功 | D1 提升至少 1.0 个百分点，且会话中位时长提升至少 8%，负向门未触发 |
-| 可迭代 | EPM 提升至少 15%，TTE 降到 20 秒以内，P1 尚未显著改善但负向风险可控 |
+| 可迭代 | ED proxy、TTE、CLP、SF/EB/AR 或 MD/min 中至少两项支持假设，P1 尚未显著改善但负向风险可控 |
 | 观察 | 样本不足、D1 方向不稳定、P2 与 P1 不一致 |
 | 回滚 | 早退、崩溃、失败率、投诉、跳过后流失或经济异常触发负向门 |
 | Kill | 改动提高指标但违背产品承诺、暗黑模式风险高、或需要大范围重构才可能成立 |
@@ -48,7 +48,7 @@
 
 - 会话时长上升，但退出点更靠后只是因为不可跳过流程变长。
 - D1 上升，但失败率、投诉或差评明显上升。
-- EPM 上升，但 meaningful events 实际只是弱弹窗和红点。
+- ED proxy 上升，但 meaningful decisions 或 salient feedback 实际只是弱弹窗和红点。
 - 选择次数上升，但选择没有可见后果。
 - 跳过率下降，只是因为取消了跳过按钮。
 - 付费转化上升，来自误导性 UI 或焦虑式限时。
