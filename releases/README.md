@@ -9,6 +9,17 @@
 - `MINOR`：新增 skill、流程、公开能力、非破坏性行为提升。
 - `PATCH`：修复错误、文档/校验脚本改进、兼容性细化。
 
+## 新增正式 Skill 的发布检查
+
+新增或正式接入一个 public skill 时，不要只改 skill 目录和 README。必须同步检查：
+
+- `CHANGELOG.md` 是否新增对应版本段。
+- `releases/vX.Y.Z.md` 是否新增 release note。
+- README trio 的 skill 数量、Skill 表格、展示图和安装路径是否更新。
+- `docs/try-it-in-10-minutes.md`、`docs/showcases/README.md` 是否补入口。
+- `scripts/validate_repo.py` 是否把新 skill 纳入 required skills。
+- release commit 完成后，Git tag 是否应该新增或更新到对应版本。
+
 ## 发布文件约定
 
 - 发布说明文件放在 `releases/vX.Y.Z.md`
@@ -48,6 +59,7 @@
    - `python scripts/validate_repo.py`
    - `python scripts/validate_skill.py game-concept-architect`
    - `python scripts/validate_skill.py game-experience-analyzer`
+   - `python scripts/validate_skill.py game-experience-density-optimizer`
 3. 提交 release commit
    - `git commit -m "chore(release): prepare vX.Y.Z"`
 4. 创建 Git tag（示例）
@@ -61,8 +73,9 @@
 ## 当前发布状态
 
 - `v0.1.0`（已存在）
-- `v0.2.0`（建议从 `201b24d` 提交打 Tag）
-- `v0.3.0`（本次提交完成后建议打在当前发布提交）
+- `v0.2.0`（已存在）
+- `v0.3.0`（已存在）
+- `v0.4.0`（新增 `game-experience-density-optimizer` 后，建议打在 release commit）
 
 ## 非目标约束
 

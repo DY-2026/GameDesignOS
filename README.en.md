@@ -156,23 +156,17 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
 
 <table>
   <tr>
-    <td width="16%">
+    <td width="25%">
       <img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer showcase">
     </td>
-    <td width="16%">
+    <td width="25%">
       <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver showcase">
     </td>
-    <td width="16%">
+    <td width="25%">
       <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator showcase">
     </td>
-    <td width="16%">
+    <td width="25%">
       <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator showcase">
-    </td>
-    <td width="16%">
-      <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect showcase">
-    </td>
-    <td width="16%">
-      <img src="./assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer showcase">
     </td>
   </tr>
   <tr>
@@ -180,8 +174,22 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
     <td><b>Evolve workflows</b><br>Upgrade prompts, schemas, evals, memory, and tool routing through VOI, OODA, gates, and rollback.</td>
     <td><b>Translate design knowledge</b><br>Transform serious game design books and chapters into professional Chinese design writing.</td>
     <td><b>Curate sources</b><br>Turn scattered articles, videos, creators, columns, and websites into a durable game design knowledge base.</td>
+  </tr>
+  <tr>
+    <td width="25%">
+      <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect showcase">
+    </td>
+    <td width="25%">
+      <img src="./assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer showcase">
+    </td>
+    <td width="25%"></td>
+    <td width="25%"></td>
+  </tr>
+  <tr>
     <td><b>Architect game concepts</b><br>Turn a one-line idea into a seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan.</td>
     <td><b>Optimize experience concentration</b><br>Turn retention, pacing, feedback, embodiment, atmosphere, and cognitive-load issues into weekly ED experiments.</td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 

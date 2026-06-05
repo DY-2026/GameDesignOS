@@ -156,23 +156,17 @@ game-experience-density-optimizer/
 
 <table>
   <tr>
-    <td width="16%">
+    <td width="25%">
       <img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer 展示图">
     </td>
-    <td width="16%">
+    <td width="25%">
       <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver 展示图">
     </td>
-    <td width="16%">
+    <td width="25%">
       <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator 展示图">
     </td>
-    <td width="16%">
+    <td width="25%">
       <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator 展示图">
-    </td>
-    <td width="16%">
-      <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect 展示图">
-    </td>
-    <td width="16%">
-      <img src="./assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer 展示图">
     </td>
   </tr>
   <tr>
@@ -180,8 +174,22 @@ game-experience-density-optimizer/
     <td><b>演化工作流</b><br>用 VOI、OODA、eval、Human Gate 和 rollback 升级 prompt、schema、memory 和 tool routing。</td>
     <td><b>翻译设计知识</b><br>把严肃的游戏设计书籍和章节，变成自然、专业、可复查的中文设计写作。</td>
     <td><b>策展资料</b><br>把散落在文章、视频、作者、专栏和网站里的内容，变成可长期维护的游戏设计知识库。</td>
+  </tr>
+  <tr>
+    <td width="25%">
+      <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect 展示图">
+    </td>
+    <td width="25%">
+      <img src="./assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer 展示图">
+    </td>
+    <td width="25%"></td>
+    <td width="25%"></td>
+  </tr>
+  <tr>
     <td><b>架构游戏概念</b><br>把一句话创意拆成 seed、玩家动词、动作-目标、玩家承诺、核心循环、scope gate 和验证计划。</td>
     <td><b>优化体验浓度</b><br>把留存、节奏、反馈、具身感、氛围感和认知负荷问题，转成一周可验证的 ED 实验。</td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 
