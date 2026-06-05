@@ -1,11 +1,11 @@
 ---
 name: game-experience-density-optimizer
-description: Use when improving game retention, first-session pacing, prototype feel, onboarding clarity, player attention, interaction feedback, or live game engagement through ED (Experience Density, rendered in Chinese as 体验浓度) experiments that tune meaningful decisions per minute, salient feedback, embodiment, atmosphere, cognitive load, instrumentation, dashboards, and rollback-ready A/B plans.
+description: Use when turning game retention, first-session pacing, prototype feel, feedback, embodiment, atmosphere, cognitive-load, or live-engagement problems into rollback-ready ED (Experience Density, 体验浓度) experiments with instrumentation and weekly decision rules.
 metadata:
-  short-description: Design weekly ED experiments for experience concentration
+  short-description: Design weekly ED experiments for experience density
 ---
 
-# Game Experience Concentration Optimizer
+# Game Experience Density Optimizer
 
 Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
@@ -100,6 +100,7 @@ ED = MD/min * (SF + EB + AR) / CLP
 ### 有录屏或截图 `gameplay_recording` / `screenshots`
 
 优先让 `game-experience-analyzer` 建立证据层，再把时间轴和问题卡转换成 ED 实验。不要把静态截图直接当成真实节奏证据。
+当 GEA 已输出 `ed-handoff` 时，优先消费其中的 `issue_cards_for_ed`、`evidence_refs`、`suggested_primary_lever`、`secondary_noise`、`confounder_risk` 和 `unknowns`；不要重新做一遍完整体验分析。
 
 ### 有数据 `telemetry_snapshot`
 
@@ -116,7 +117,7 @@ ED = MD/min * (SF + EB + AR) / CLP
 1. `case_boundary`：材料来源、版本、平台、用户阶段、已有数据和未知项。
 2. `theory_status`：默认 `design_hypothesis`，说明该方法是设计启发式而非科学量表。
 3. `diagnosis_summary`：当前问题主要落在 `CLP`、`SF`、`EB`、`AR`、`MD/min` 哪一项。
-4. `concentration_curve_intent`：当前段落意图是高压、建立规则、放松观察、情绪沉淀、决策规划还是爽感释放。
+4. `density_curve_intent`：当前段落意图是高压、建立规则、放松观察、情绪沉淀、决策规划还是爽感释放。
 5. `experiment_hypothesis`：一句话假设，写清玩家行为、设计改动、目标指标。
 6. `variant_matrix`：A/B/C/D 组，写清主旋钮、具体改动、影响窗口、owner、上线风险。
 7. `instrumentation_dictionary`：事件名、触发时机、字段、示例值、用途、隐私边界。
@@ -153,6 +154,7 @@ ED = MD/min * (SF + EB + AR) / CLP
 - 输入表：`templates/experiment-intake.md`
 - 标准实验方案：`templates/weekly-ed-experiment-plan.md`
 - 变体矩阵：`templates/variant-matrix.md`
+- GEA 到 ED 的交接模板：`../game-experience-analyzer/templates/ed-handoff.md`
 - 埋点字典：`templates/instrumentation-dictionary.md`
 - 看板规格：`templates/dashboard-spec.md`
 - 周复盘：`templates/weekly-review.md`

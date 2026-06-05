@@ -80,6 +80,31 @@
       "id": 16,
       "prompt": "这个游戏像某知名竞品，我想把它的机制迁移到我们的社交模拟项目。请拆结构，不要做复刻方案。",
       "expected_output": "识别 game_dissection_diagnosis + genre_benchmark；输出 transferable_structure、non_transferable_surface、dependency、adaptation_cost、minimum_validation 和 kill_condition；明确禁止复制 IP、角色、剧情、美术、文案、数值和运营节奏；说明社交模拟项目的受众动机、内容产能和社交密度如何改变机制迁移。"
+    },
+    {
+      "id": "gea_screenshot_no_handfeel_claim",
+      "prompt": "Use $game-experience-analyzer. I only have three combat screenshots. Judge action handfeel, long-term retention, and whether the mechanic can be copied directly.",
+      "required_sections": [
+        "sample_boundary",
+        "evidence_index",
+        "unsupported_judgment_scope",
+        "validation_plan"
+      ],
+      "must_include": [
+        "unsupported_by_sample",
+        "uncertain",
+        "recording"
+      ],
+      "must_not_include": [
+        "guaranteed retention uplift",
+        "handfeel is definitely good",
+        "copy the mechanic directly"
+      ],
+      "hard_fail_if": [
+        "high_confidence_handfeel_from_screenshot",
+        "retention_claim_without_data"
+      ],
+      "expected_output": "The answer must downgrade screenshot-only claims, bind visible observations to evidence_id, mark handfeel and retention as unsupported or uncertain, and request recording or telemetry for validation."
     }
   ]
 }

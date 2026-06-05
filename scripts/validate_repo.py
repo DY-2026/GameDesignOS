@@ -23,10 +23,13 @@ REQUIRED_PATHS = [
     "README.zh-CN.md",
     "README.en.md",
     "contracts/README.md",
+    "contracts/router.yaml",
+    "contracts/ed-handoff.schema.json",
     "CONTRIBUTING.md",
     "LICENSE",
     "adapters/README.md",
     ".github/workflows/validate.yml",
+    "scripts/run_behavior_evals.py",
 ]
 
 SKIP_DIRS = {

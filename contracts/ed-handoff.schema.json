@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paranoia.skills/contracts/ed-handoff.schema.json",
+  "title": "ED Handoff",
+  "description": "Cross-skill handoff from game-experience-analyzer to game-experience-density-optimizer.",
+  "type": "object",
+  "required": [
+    "handoff_id",
+    "source_skill",
+    "target_skill",
+    "case_boundary",
+    "issue_cards_for_ed",
+    "unsupported_judgment_scope"
+  ],
+  "properties": {
+    "handoff_id": {
+      "type": "string",
+      "pattern": "^EDH[0-9]{3,}$"
+    },
+    "source_skill": {
+      "const": "game-experience-analyzer"
+    },
+    "target_skill": {
+      "const": "game-experience-density-optimizer"
+    },
+    "case_boundary": {
+      "type": "object",
+      "description": "What the sample can and cannot support."
+    },
+    "issue_cards_for_ed": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "issue_id",
+          "evidence_refs",
+          "ed_terms",
+          "suggested_primary_lever",
+          "confidence",
+          "unknowns"
+        ],
+        "properties": {
+          "issue_id": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "symptom": {
+            "type": "string"
+          },
+          "ed_terms": {
+            "type": "array",
+            "items": {
+              "enum": ["CLP", "SF", "EB", "AR", "MD/min"]
+            }
+          },
+          "suggested_primary_lever": {
+            "type": "string"
+          },
+          "secondary_noise": {
+            "type": "string"
+          },
+          "confounder_risk": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "unknowns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unsupported_by_sample": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "unsupported_judgment_scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_next_step": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

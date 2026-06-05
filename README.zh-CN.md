@@ -71,7 +71,7 @@ Use $paranoia-ai-system-evolver to upgrade this workflow with VOI, OODA, eval ch
 ```
 
 ```text
-Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience concentration problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
+Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience density problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
 ```
 
 完整上手路径见 [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md)。如果你希望继续看到更多公开游戏分析案例和可迁移的 agent skill 模板，欢迎 star 这个仓库；star 越多，我会越优先补更好的公开 demo、adapter 和可复用 skill 模板。
@@ -134,7 +134,7 @@ Use $game-concept-architect to turn this one-line game idea into a concept seed,
 ```
 
 ```text
-Use $game-experience-density-optimizer to turn this first-session experience concentration problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
+Use $game-experience-density-optimizer to turn this first-session experience density problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
 ```
 
 ### 3. 安装到自己的 agent 环境
@@ -180,7 +180,7 @@ game-experience-density-optimizer/
       <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect 展示图">
     </td>
     <td width="25%">
-      <img src="./assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer 展示图">
+      <img src="./assets/showcase-game-experience-density-optimizer.png" alt="Game Experience Density Optimizer 展示图">
     </td>
     <td width="25%"></td>
     <td width="25%"></td>
@@ -220,7 +220,7 @@ game-experience-density-optimizer/
 | **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本。 | 术语、章节、图注、表格、QA、来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
-| **Game Experience Concentration Optimizer** | 把体验浓度、留存、节奏、反馈、具身感、氛围感和认知负荷问题转成一周 ED 实验。 | 首局调优、原型手感、LiveOps 小实验、A/B 变体、埋点字典、看板规格、回滚门。 | [`game-experience-density-optimizer/`](./game-experience-density-optimizer/) |
+| **Game Experience Density Optimizer** | 把体验浓度、留存、节奏、反馈、具身感、氛围感和认知负荷问题转成一周 ED 实验。 | 首局调优、原型手感、LiveOps 小实验、A/B 变体、埋点字典、看板规格、回滚门。 | [`game-experience-density-optimizer/`](./game-experience-density-optimizer/) |
 
 ## 典型用例
 

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Game Experience Concentration Optimizer"
+  display_name: "Game Experience Density Optimizer"
   short_description: "把体验浓度问题转成一周可验证的 ED 实验"
   default_prompt: "使用 $game-experience-density-optimizer，把当前游戏的留存、首局节奏或体验浓度问题拆成 ED 诊断、CLP/SF/EB/AR/MD-min 五个公式项、一周 A/B 变体矩阵、埋点字典、看板字段、预注册判定规则和回滚条件。"

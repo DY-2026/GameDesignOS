@@ -20,7 +20,7 @@ Bad output:
 
 Required correction: diagnose `CLP` first. Do not add events before reducing noise.
 
-## False Concentration
+## False Density
 
 Bad output:
 

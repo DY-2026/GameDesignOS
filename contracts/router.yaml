@@ -1,0 +1,92 @@
+version: 1
+purpose: "Route user requests to the smallest suitable ParanoiaSkills entrypoint before reading long skill bodies."
+status: candidate
+promotion_gate:
+  required_before_enforce:
+    - "Run representative routing replay cases across all public skills."
+    - "Confirm the router reduces mis-triggering without hiding relevant fallback skills."
+    - "Keep manual override available when the user explicitly names a skill."
+default_rules:
+  - id: route_media_sample_to_gea
+    when:
+      any_input_type:
+        - screenshot
+        - gameplay_recording
+        - video_url
+        - trailer_pv
+        - paid_creative
+        - store_page
+    use: game-experience-analyzer
+    reason: "Establish sample_boundary, evidence_index, access_notes, and evidence-linked issue cards first."
+    primary_outputs:
+      - evidence-index
+      - issue-card
+      - ed-handoff
+      - validation-plan
+  - id: route_one_line_idea_to_gca
+    when:
+      user_intent:
+        - one_line_game_idea
+        - concept_seed
+        - game_pitch
+        - design_brief_request
+    use: game-concept-architect
+    reason: "Turn the concept seed into player verbs, design nucleus options, player-promise-contract, scope gate, and validation plan."
+    primary_outputs:
+      - player-promise-contract
+      - validation-plan
+  - id: route_density_experiment_to_edo
+    when:
+      user_intent:
+        - retention_experiment
+        - first_session_pacing
+        - cognitive_load
+        - feedback_strength
+        - embodiment_feel
+        - telemetry_dashboard
+        - weekly_ab_plan
+    use: game-experience-density-optimizer
+    reason: "Convert evidence or hypotheses into one-week ED experiments, instrumentation, dashboards, decision rules, and rollback."
+    preferred_inputs:
+      - ed-handoff
+      - issue-card
+      - telemetry_snapshot
+  - id: route_system_change_to_evolver
+    when:
+      user_intent:
+        - skill_change
+        - prompt_change
+        - workflow_change
+        - schema_change
+        - eval_change
+        - router_change
+        - memory_or_feedback_loop_change
+    use: paranoia-ai-system-evolver
+    reason: "Keep AI-system evolution candidate-gated with VOI/OODA, behavior evals, Human Gate, versioning, and rollback."
+    primary_outputs:
+      - evolution_proposal
+      - ooda_voi_state
+  - id: route_translation_to_book_translator
+    when:
+      user_intent:
+        - translate_game_design_book
+        - polish_translation
+        - terminology_table
+        - pdf_or_ocr_translation
+    use: game-design-book-translator
+    reason: "Handle terminology, copyright/source gates, figure/table structure, chapter packaging, and Chinese editorial quality."
+  - id: route_source_ingest_to_curator
+    when:
+      user_intent:
+        - curate_sources
+        - ingest_source
+        - incremental_source_update
+        - durable_knowledge_base
+    use: game-design-source-curator
+    reason: "Turn sources into traceable, deduplicated, evidence-gated knowledge assets instead of one-off summaries."
+fallback_rule:
+  when: ambiguous_or_multi_skill_request
+  action:
+    - "Select the smallest skill that can produce the next stable artifact."
+    - "Prefer contracts over broad prose handoff."
+    - "State which follow-on skill should consume the artifact."

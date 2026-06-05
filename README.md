@@ -35,7 +35,7 @@
 
 ## What This Is
 
-`ParanoiaSkills` is a game-design skill library that turns game experience analysis, experience-concentration experiments, one-line ideas, AI workflow evolution, professional translation, and source curation into reusable agent instructions, references, templates, and examples.
+`ParanoiaSkills` is a game-design skill library that turns game experience analysis, experience-density experiments, one-line ideas, AI workflow evolution, professional translation, and source curation into reusable agent instructions, references, templates, and examples.
 
 It is not a prompt dump. It is closer to a compact operating system for serious game design work:
 
@@ -71,7 +71,7 @@ Use $paranoia-ai-system-evolver to upgrade this workflow with VOI, OODA, eval ch
 ```
 
 ```text
-Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience concentration problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
+Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience density problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
 ```
 
 For the full onboarding path, see [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md). Star this repo if you want more public game-analysis examples and portable agent-skill templates; more stars help prioritize better public demos, adapters, and reusable skill templates.
@@ -134,7 +134,7 @@ Use $game-concept-architect to turn this one-line game idea into a concept seed,
 ```
 
 ```text
-Use $game-experience-density-optimizer to turn this first-session experience concentration problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
+Use $game-experience-density-optimizer to turn this first-session experience density problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
 ```
 
 ### 3. Install it in your own agent environment
@@ -180,14 +180,14 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
       <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect showcase">
     </td>
     <td width="25%">
-      <img src="./assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer showcase">
+      <img src="./assets/showcase-game-experience-density-optimizer.png" alt="Game Experience Density Optimizer showcase">
     </td>
     <td width="25%"></td>
     <td width="25%"></td>
   </tr>
   <tr>
     <td><b>Architect game concepts</b><br>Turn a one-line idea into a seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan.</td>
-    <td><b>Optimize experience concentration</b><br>Turn retention, pacing, feedback, embodiment, atmosphere, and cognitive-load issues into weekly ED experiments.</td>
+    <td><b>Optimize experience density</b><br>Turn retention, pacing, feedback, embodiment, atmosphere, and cognitive-load issues into weekly ED experiments.</td>
     <td></td>
     <td></td>
   </tr>
@@ -220,7 +220,7 @@ Users may still use these skills with real projects, private projects, client wo
 | **Game Design Book Translator** | Produces professional Chinese game design translations that read like serious design writing. | Terminology, chapters, figures, captions, tables, QA, source-boundary checks. | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | Converts scattered game design sources into a durable local knowledge base. | Source screening, scoring, HTML archives, registries, update history, design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player verbs, action-goal alignment, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
-| **Game Experience Concentration Optimizer** | Turns experience concentration, retention, pacing, feedback, embodiment, atmosphere, and cognitive-load problems into weekly ED experiments. | First-session tuning, prototype feel, live-ops micro tests, A/B variants, telemetry dictionaries, dashboard specs, rollback gates. | [`game-experience-density-optimizer/`](./game-experience-density-optimizer/) |
+| **Game Experience Density Optimizer** | Turns experience density, retention, pacing, feedback, embodiment, atmosphere, and cognitive-load problems into weekly ED experiments. | First-session tuning, prototype feel, live-ops micro tests, A/B variants, telemetry dictionaries, dashboard specs, rollback gates. | [`game-experience-density-optimizer/`](./game-experience-density-optimizer/) |
 
 ## Use Cases
 
@@ -232,7 +232,7 @@ Users may still use these skills with real projects, private projects, client wo
 - **Professional translation:** translate game design books or essays while preserving terminology, argument structure, and figure context.
 - **Workflow evolution:** promote useful agent behavior into candidate rules with evals, Human Gate, and rollback.
 - **Concept feasibility:** turn a one-line idea into concept seed extraction, player verbs, action-goal alignment, player promises, core loop design, scope gate, production feasibility, and prototype validation.
-- **Experience concentration experiments:** turn first-session, pacing, feedback, embodiment, atmosphere, or cognitive-load issues into weekly ED experiments with metrics and rollback gates.
+- **Experience density experiments:** turn first-session, pacing, feedback, embodiment, atmosphere, or cognitive-load issues into weekly ED experiments with metrics and rollback gates.
 
 ## Repository Layout
 

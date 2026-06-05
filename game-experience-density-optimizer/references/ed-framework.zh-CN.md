@@ -41,11 +41,11 @@ ED = MD/min * (SF + EB + AR) / CLP
 
 | 类型 | 症状 | 更可能的公式项 | 优先动作 |
 | --- | --- | --- | --- |
-| unreadable_concentration | 玩家看见变化但不知道意义 | `CLP` 高 / `SF` 低 | 先降噪，统一反馈语言 |
-| thin_concentration | 有流程但没有爽点或质感 | `SF` / `EB` / `AR` 低 | 提升纵向质量 |
+| unreadable_density | 玩家看见变化但不知道意义 | `CLP` 高 / `SF` 低 | 先降噪，统一反馈语言 |
+| thin_density | 有流程但没有爽点或质感 | `SF` / `EB` / `AR` 低 | 提升纵向质量 |
 | empty_window | 30-60 秒没有真正选择或状态变化 | `MD/min` 低 | 在清晰基础上调频 |
-| false_concentration | 事件很多但不影响行为 | `MD/min` 假高 / `CLP` 高 | 合并弱事件，保留少而重 |
-| overload_concentration | 玩家来不及理解或操作 | `CLP` 高 / `MD/min` 过高 | 降噪、减并发、重排节奏 |
+| false_density | 事件很多但不影响行为 | `MD/min` 假高 / `CLP` 高 | 合并弱事件，保留少而重 |
+| overload_density | 玩家来不及理解或操作 | `CLP` 高 / `MD/min` 过高 | 降噪、减并发、重排节奏 |
 
 ## 设计原则
 

@@ -7,7 +7,7 @@
 它不是泛泛的留存建议生成器，也不是“把游戏做得更快”的工具。它的核心任务是把体验问题拆成五个可控项：`MD/min`、`SF`、`EB`、`AR`、`CLP`，再给出可上线变体、埋点字典、看板字段、预注册判定规则和回滚条件。
 
 <p align="center">
-  <img src="../assets/showcase-game-experience-concentration-optimizer.png" alt="Game Experience Concentration Optimizer showcase" width="100%">
+  <img src="../assets/showcase-game-experience-density-optimizer.png" alt="Game Experience Density Optimizer showcase" width="100%">
 </p>
 
 ## 定位

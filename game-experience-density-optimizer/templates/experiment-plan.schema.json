@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.invalid/paranoia-skills/game-experience-density-optimizer/experiment-plan.schema.json",
-  "title": "Game Experience Concentration Experiment Plan",
+  "title": "Game Experience Density Experiment Plan",
   "type": "object",
   "required": [
     "case_boundary",

@@ -63,6 +63,8 @@ Each skill folder should remain focused on one installable skill:
 - Put public examples in `examples/` and regression prompts in `evals/`.
 - Keep `SKILL.md` frontmatter `name`, the folder name, and `agents/openai.yaml` aligned.
 
+For changes to `SKILL.md`, `references/`, `templates/`, schemas, routers, evals, or adapter prompts, include an evolution proposal based on `paranoia-ai-system-evolver/templates/evolution_proposal.md` or an equivalent PR note. It should state why the change is needed, which skills or contracts are affected, which evals/checks ran, what remains candidate, and how to roll back.
+
 ## Session Context Boundary
 
 Commands, temporary Codex instructions, execution details, preference corrections, and one-off context from a working session are not repository documentation by default.
@@ -92,6 +94,7 @@ Before submitting, verify:
 - All private identifiers, paths, budgets, dates, strategy details, and roadmap details are removed.
 - A reader cannot infer a real project, client, team, launch plan, or private workflow.
 - Examples and evals test reusable behavior, not private facts.
+- Behavior assertions are runnable where possible with `scripts/run_behavior_evals.py` against captured outputs, and script tests pass with `python -m unittest discover -s scripts/tests`.
 - Any private overlay, client work, unreleased project, or author-specific context stays outside this repository.
 
 If the answer is unclear, do not submit the material.
