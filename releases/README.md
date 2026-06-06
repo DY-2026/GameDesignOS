@@ -76,6 +76,7 @@
 - `v0.2.0`（已存在）
 - `v0.3.0`（已存在）
 - `v0.4.0`（新增 `game-experience-density-optimizer` 后，建议打在 release commit）
+- `v0.5.0`（contract layer、WOOP workflow governance 与 README 首屏刷新后，建议打在 release commit）
 
 ## 非目标约束
 

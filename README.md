@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v3.png" alt="ParanoiaSkills - interoperable game design agent operating system" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v5.png" alt="ParanoiaSkills - Evidence, contracts, evals, and rollback for AI-assisted game design" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
@@ -24,6 +24,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-6-2ea44f">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.5.0-31e1d6">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">

@@ -4,10 +4,20 @@ All notable changes to ParanoiaSkills will be recorded here.
 
 ## [Unreleased]
 
+No unreleased public changes yet.
+
+## [v0.5.0] - 2026-06-06
+
 ### Changed
 
 - Refreshed the public README introduction around cross-skill contracts, ED experiments, WOOP/VOI/OODA workflow governance, and eval-backed evolution.
-- Added a new overview banner asset for the GitHub landing page.
+- Added a new overview banner asset with project name, one-line positioning, and version marker for the GitHub landing page.
+- Updated the GitHub About description for the new contracted workflow positioning.
+
+### Added
+
+- Added cross-skill routing and handoff language to the public introduction, including concept contracts, evidence indexes, issue cards, ED handoffs, and validation plans.
+- Added WOOP Task Card positioning to the public workflow-evolution language.
 
 ## [v0.4.0] - 2026-06-04
 
@@ -55,7 +65,8 @@ All notable changes to ParanoiaSkills will be recorded here.
 - Released the public base version of `game-experience-analyzer`.
 - Added initial release notes, installation guidance, and validation examples.
 
-[Unreleased]: https://github.com/DY-2026/ParanoiaSkills/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/DY-2026/ParanoiaSkills/compare/v0.5.0...HEAD
+[v0.5.0]: ./releases/v0.5.0.md
 [v0.4.0]: ./releases/v0.4.0.md
 [v0.3.0]: ./releases/v0.3.0.md
 [v0.2.0]: ./releases/v0.2.0.md

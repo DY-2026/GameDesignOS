@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ParanoiaSkills Banner Text Effect</title>
+    <style>
+      :root {
+        --ink: #030912;
+        --white: #f5f8fc;
+        --muted: #dce8ee;
+        --cyan: #31e1d6;
+        --violet: #9a6cff;
+        --amber: #f6b84a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--ink);
+        overflow: hidden;
+      }
+
+      [data-composition-id="paranoia-banner-v5"] {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--ink);
+        color: var(--white);
+        font-family: "Segoe UI", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .readability-veil {
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 360px;
+        background:
+          radial-gradient(740px 210px at 50% 112px, rgba(49, 225, 214, 0.13), transparent 64%),
+          linear-gradient(180deg, rgba(2, 7, 16, 0.94), rgba(2, 7, 16, 0.62) 58%, rgba(2, 7, 16, 0));
+        z-index: 1;
+      }
+
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 82px 120px 0;
+        gap: 18px;
+      }
+
+      .title-wrap {
+        position: relative;
+        width: min(1120px, 82%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        isolation: isolate;
+      }
+
+      .title {
+        position: relative;
+        margin: 0;
+        font-size: 104px;
+        line-height: 0.95;
+        font-weight: 850;
+        letter-spacing: 0;
+        color: var(--white);
+        filter: drop-shadow(0 12px 42px rgba(49, 225, 214, 0.16));
+        text-shadow:
+          0 0 1px rgba(255, 255, 255, 0.95),
+          0 0 22px rgba(49, 225, 214, 0.28),
+          0 0 54px rgba(154, 108, 255, 0.16);
+      }
+
+      .title .accent {
+        color: var(--cyan);
+        text-shadow:
+          0 0 2px rgba(176, 255, 249, 0.95),
+          0 0 28px rgba(49, 225, 214, 0.56),
+          0 0 72px rgba(49, 225, 214, 0.28);
+      }
+
+      .title::before,
+      .title::after {
+        content: "ParanoiaSkills";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.34;
+        mix-blend-mode: screen;
+        z-index: -1;
+      }
+
+      .title::before {
+        color: var(--violet);
+        transform: translate(-5px, 2px);
+        filter: blur(1.2px);
+      }
+
+      .title::after {
+        color: var(--cyan);
+        transform: translate(5px, -1px);
+        filter: blur(1px);
+      }
+
+      .shine {
+        position: absolute;
+        inset: -22px 0 -16px;
+        background: linear-gradient(105deg, transparent 25%, rgba(255, 255, 255, 0.92) 46%, rgba(49, 225, 214, 0.55) 51%, transparent 68%);
+        transform: translateX(-118%) skewX(-16deg);
+        mix-blend-mode: screen;
+        opacity: 0.7;
+        animation: titleSweep 3.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+        z-index: 2;
+        clip-path: inset(0 0 0 0);
+      }
+
+      .still-export .shine {
+        display: none;
+      }
+
+      .beam {
+        width: min(980px, 70%);
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(49, 225, 214, 0.95), rgba(246, 184, 74, 0.7), rgba(154, 108, 255, 0.9), transparent);
+        box-shadow:
+          0 0 18px rgba(49, 225, 214, 0.48),
+          0 0 34px rgba(154, 108, 255, 0.24);
+        transform-origin: center;
+        animation: beamPulse 2.8s ease-in-out infinite;
+      }
+
+      .tagline-shell {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 54px;
+        padding: 9px 30px 11px;
+        border: 1px solid rgba(49, 225, 214, 0.28);
+        border-radius: 16px;
+        background: linear-gradient(180deg, rgba(3, 14, 28, 0.72), rgba(3, 14, 28, 0.34));
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.12),
+          0 0 32px rgba(49, 225, 214, 0.11);
+        overflow: hidden;
+      }
+
+      .tagline-shell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(49, 225, 214, 0.2), transparent);
+        transform: translateX(-115%);
+        animation: scanline 4.4s ease-in-out infinite;
+      }
+
+      .tagline {
+        position: relative;
+        margin: 0;
+        max-width: 1160px;
+        font-size: 31px;
+        line-height: 1.15;
+        font-weight: 400;
+        letter-spacing: 0;
+        color: var(--muted);
+        text-align: center;
+        text-shadow: 0 0 18px rgba(4, 10, 20, 0.88);
+      }
+
+      .version {
+        position: absolute;
+        top: 48px;
+        right: 50px;
+        z-index: 3;
+        padding: 10px 22px 12px;
+        border-radius: 12px;
+        border: 2px solid rgba(49, 225, 214, 0.78);
+        color: #86fff6;
+        background: rgba(4, 19, 32, 0.72);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.16),
+          0 0 28px rgba(49, 225, 214, 0.24);
+        font-size: 25px;
+        line-height: 1;
+        font-weight: 800;
+      }
+
+      .version::after {
+        content: "";
+        position: absolute;
+        inset: -7px;
+        border-radius: 16px;
+        border: 1px solid rgba(49, 225, 214, 0.22);
+        opacity: 0.75;
+        animation: badgeBreath 3s ease-in-out infinite;
+      }
+
+      @keyframes titleSweep {
+        0% { transform: translateX(-118%) skewX(-16deg); opacity: 0; }
+        16% { opacity: 0.72; }
+        46% { opacity: 0.58; }
+        64% { transform: translateX(118%) skewX(-16deg); opacity: 0; }
+        100% { transform: translateX(118%) skewX(-16deg); opacity: 0; }
+      }
+
+      @keyframes scanline {
+        0%, 22% { transform: translateX(-115%); opacity: 0; }
+        34% { opacity: 0.78; }
+        62% { transform: translateX(115%); opacity: 0; }
+        100% { transform: translateX(115%); opacity: 0; }
+      }
+
+      @keyframes beamPulse {
+        0%, 100% { opacity: 0.72; transform: scaleX(0.92); }
+        50% { opacity: 1; transform: scaleX(1); }
+      }
+
+      @keyframes badgeBreath {
+        0%, 100% { opacity: 0.45; transform: scale(0.98); }
+        50% { opacity: 0.9; transform: scale(1.04); }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      data-composition-id="paranoia-banner-v5"
+      data-start="0"
+      data-duration="4"
+      data-width="1920"
+      data-height="1080"
+      data-track-index="0"
+    >
+      <img class="bg" src="../../paranoia-skills-overview-banner-v3.png" alt="" />
+      <div class="readability-veil" data-layout-ignore></div>
+      <div class="version">v0.5.0</div>
+      <main class="scene-content">
+        <div class="title-wrap">
+          <h1 class="title">Paranoia<span class="accent">Skills</span></h1>
+          <div class="shine" data-layout-ignore></div>
+        </div>
+        <div class="beam" data-layout-ignore></div>
+        <div class="tagline-shell">
+          <p class="tagline">Evidence, contracts, evals, and rollback for AI-assisted game design.</p>
+        </div>
+      </main>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+      <script>
+        if (new URLSearchParams(window.location.search).has("still")) {
+          document.body.classList.add("still-export");
+        }
+        window.__timelines = window.__timelines || {};
+        if (window.gsap) {
+          const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+          tl.from(".title", { y: 34, scale: 0.985, opacity: 0, duration: 0.72 }, 0);
+          tl.from(".beam", { scaleX: 0, opacity: 0, duration: 0.64 }, 0.18);
+          tl.from(".tagline-shell", { y: 18, opacity: 0, duration: 0.62 }, 0.32);
+          tl.from(".version", { y: -12, opacity: 0, duration: 0.48 }, 0.45);
+          window.__timelines["paranoia-banner-v5"] = tl;
+          if (new URLSearchParams(window.location.search).has("still")) {
+            tl.progress(1).pause();
+          }
+        } else {
+          window.__timelines["paranoia-banner-v5"] = { duration: () => 4 };
+        }
+      </script>
+    </div>
+  </body>
+</html>
