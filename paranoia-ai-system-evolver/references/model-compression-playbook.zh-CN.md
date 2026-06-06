@@ -36,7 +36,25 @@
 
 如果调节器的模型过细，就会过拟合：规则太多，路径太碎，状态和例外补丁吞掉执行能力。
 
-## 3. 最小描述长度 Gate
+## 3. WOOP 作为最小 harness 模型
+
+WOOP 是一种低成本的 harness 模型压缩方式。它不增加一堆场景脚本，而是把复杂任务压成四个稳定控制点：
+
+```text
+Wish -> Outcome -> Obstacle -> Plan
+= Intent Spec -> Evaluation Rubric -> Failure Pattern -> If-Then Protocol
+```
+
+它降低的不是 `core_model_length` 本身，而是降低后续补丁成本：
+
+- Wish 降低 `routing_rule_length`：入口按真实意图和输出边界路由，而不是按场景名词路由。
+- Outcome 降低 `validation_observation_length`：只观测能判断结果好坏的信号。
+- Obstacle 降低 `exception_patch_length`：把重复失败抽象成可识别模式，而不是每次新增例外补丁。
+- Plan 降低 `failure_recovery_length`：失败后按 if-then 协议恢复，不靠人记忆。
+
+如果一个 WOOP 改动只是让任务前置文本更长，却没有减少路由、验证、例外或恢复成本，就不算有效压缩。
+
+## 4. 最小描述长度 Gate
 
 用这个近似判断模型颗粒度是否合适：
 
@@ -64,7 +82,7 @@ model_score = core_model_length
 | `exception_patch_length` | 每次失败都新增补丁 | 回到模型层修正，而不是继续贴胶布 |
 | `failure_recovery_length` | 失败后恢复靠人记忆 | 固化 retry、rollback、冲突区和退出条件 |
 
-## 4. 动词优先
+## 5. 动词优先
 
 优先按“信息如何被变换”建模，而不是按“这是什么场景”建模。
 
@@ -74,7 +92,7 @@ model_score = core_model_length
 
 好的 skill 更像游戏机制：可重复调用、可组合、可涌现。坏的 skill 更像关卡脚本：服务一个特定场景，失败后只能继续补丁。
 
-## 5. 因果中介 Gate
+## 6. 因果中介 Gate
 
 不要只写：
 
@@ -94,15 +112,15 @@ input -> mediator_1 -> mediator_2 -> final_output
 
 | 终点 | 常见中介 |
 | --- | --- |
-| 高质量答案 | 任务理解、上下文选择、状态保持、工具调用、过程校验、失败恢复 |
-| 好 skill | 触发边界、核心操作、引用路径、模板复用、验证门、回滚路径 |
+| 高质量答案 | 任务理解、WOOP 准入、上下文选择、状态保持、工具调用、过程校验、失败恢复 |
+| 好 skill | 触发边界、核心操作、WOOP Task Card、引用路径、模板复用、验证门、回滚路径 |
 | 好 RAG | source quality、chunk boundary、retrieval intent、rerank、citation discipline、answer synthesis |
-| 好 agent | observe fidelity、orientation model、decision policy、tool affordance、state update、eval signal |
+| 好 agent | observe fidelity、orientation model、decision policy、tool affordance、state update、WOOP obstacle trigger、eval signal |
 | 好管理工作流 | 留存、转化、交付速度、信息流、决策效率、团队协作 |
 
 如果一个改动不能说清楚它优化了哪个中介变量，它通常只是风格偏好，不应直接进入长期系统。
 
-## 6. 控制点 Gate
+## 7. 控制点 Gate
 
 每条中介链都要标出控制点：
 
@@ -121,38 +139,44 @@ mediator:
 
 不可观察、却被当成核心控制点的节点，是高风险黑箱。
 
-## 7. Harness / Agent / Skill 的模型差异
+## 8. Harness / Agent / Skill 的模型差异
 
 可以用同一套问题审计不同结构：
 
 | 结构 | 好模型 | 坏模型 |
 | --- | --- | --- |
-| Harness | 把任务理解、状态保持、工具调用、校验、恢复显式化 | 只包一层外壳，仍靠模型单次发挥 |
+| Harness | 把任务理解、WOOP 准入、状态保持、工具调用、校验、恢复显式化 | 只包一层外壳，仍靠模型单次发挥 |
 | Agent | 明确 OODA、工具边界、状态更新和 eval 信号 | 无限循环、无退出条件、无证据门 |
-| Skill | 把一类操作压缩成可复用机制 | 把一个场景写成越来越长的脚本 |
+| Skill | 把一类操作压缩成可复用机制，并提供 WOOP/模板/验证门 | 把一个场景写成越来越长的脚本 |
 | Workflow | 把上游信息转成下游更容易处理的形式 | 只安排角色、流程和口号 |
-| Prompt | 明确任务模型、输入输出和失败信号 | 堆形容词和风格要求 |
+| Prompt | 明确任务模型、输入输出、Outcome 和失败信号 | 堆形容词和风格要求 |
 
-## 8. 升级流程
+## 9. 升级流程
 
 每次升级按这个顺序走：
 
 1. 写出当前系统隐含模型。
-2. 标出输入、输出、中介变量、控制点。
-3. 估算总描述成本，找出最高成本项。
-4. 判断问题是欠拟合、过拟合，还是中介缺失。
-5. 设计最小改动，让总描述成本下降。
-6. 把改动标记为 `candidate`。
-7. 用 eval 或真实任务样本检查它是否减少补丁、提升控制或降低恢复成本。
-8. 需要长期生效时，经过 Human Gate 后再提升为规则。
+2. 写出 WOOP Task Card，确认 Intent Spec、Evaluation Rubric、Failure Pattern 和 If-Then Protocol。
+3. 标出输入、输出、中介变量、控制点。
+4. 估算总描述成本，找出最高成本项。
+5. 判断问题是欠拟合、过拟合，还是中介缺失。
+6. 设计最小改动，让总描述成本下降。
+7. 把改动标记为 `candidate`。
+8. 用 eval 或真实任务样本检查它是否减少补丁、提升控制或降低恢复成本。
+9. 需要长期生效时，经过 Human Gate 后再提升为规则。
 
-## 9. 输出格式
+## 10. 输出格式
 
 ```yaml
 model_audit:
   current_model: ""
   proposed_model: ""
   compression_claim: ""
+  woop_compression:
+    intent_spec:
+    evaluation_rubric: []
+    failure_patterns: []
+    if_then_protocols: []
   causal_chain:
     - from:
       mediator:

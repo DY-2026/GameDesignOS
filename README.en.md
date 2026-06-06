@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v2.png" alt="ParanoiaSkills - Evidence-first agent skills for game design work" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v3.png" alt="ParanoiaSkills - interoperable game design agent operating system" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  Installable, verifiable, and portable agent skill packages for game-design work.
-  Go from gameplay/PV evidence to reports, from retention and pacing problems to ED experiments, from one-line ideas to validation plans, and from prompt changes to eval-backed workflow evolution.
+  A public base library of installable, verifiable, and portable agent skills for game-design production and AI workflow governance.
+  Turn media evidence into diagnosis, concept seeds into validation contracts, experience-density problems into weekly experiments, and workflow changes into WOOP/VOI/OODA/eval-backed evolution.
 </p>
 
 <p align="center">
@@ -26,33 +26,32 @@
   <img alt="Skills" src="https://img.shields.io/badge/Skills-6-2ea44f">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
-  <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20VOI%20%7C%20OODA-f9a825">
+  <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
 </p>
 
 > License: skill documents and tooling are released under the MIT License. The Paranoia name, logos, visual identity, and project branding are not licensed as trademarks.
 
-> Think of it as a compact operating system for game designers and AI agents: not a prompt collection, but reusable decision loops, evidence rules, quality gates, and output templates packaged as skills.
+> Think of it as a compact operating system for game designers and AI agents: not a prompt collection, but reusable evidence rules, cross-skill contracts, validation gates, rollback paths, and output templates packaged as skills.
 
 ## What This Is
 
-`ParanoiaSkills` is a game-design skill library that turns game experience analysis, experience-density experiments, one-line ideas, AI workflow evolution, professional translation, and source curation into reusable agent instructions, references, templates, and examples.
+`ParanoiaSkills` is a public base library for AI-assisted game design work. It turns game experience analysis, concept architecture, experience-density experiments, workflow evolution, professional translation, and source curation into reusable agent instructions, references, schemas, templates, examples, and evals.
 
-It is not a prompt dump. It is closer to a compact operating system for serious game design work:
+It is not a prompt dump. It is closer to a compact operating system for serious game design work, with contracts that let skills hand work to each other instead of producing isolated prose:
 
 ```text
-Analyze screenshots, recordings, trailers, and video links
--> turn retention, pacing, feedback, embodiment, and cognitive-load problems into weekly ED experiments
--> architect one-line ideas into testable game concepts
--> evolve the agent workflow that performs the work
--> translate and structure design knowledge
--> curate high-quality sources into reusable knowledge
+media evidence -> evidence index -> issue cards -> ED handoff -> weekly experiments
+one-line idea -> player-promise contract -> validation plan -> later media diagnosis
+workflow change -> WOOP Task Card -> VOI/OODA probe -> eval -> Human Gate -> rollback
+books and sources -> structured knowledge assets -> better references for future work
 ```
 
 ## What Makes It Different
 
 - **Evidence-first:** judgments point back to sources, screenshots, timestamps, sample evidence, or validation metrics.
+- **Contract-driven:** concept briefs, evidence indexes, issue cards, ED handoffs, and validation plans can move across skills.
 - **Concept-to-validation:** a promising idea becomes a seed, a player promise, a core loop, a scope gate, and a prototype test.
-- **Workflow-first:** useful behavior is written into `SKILL.md`, `references/`, and `templates/`, not left as one lucky answer.
+- **Workflow-governed:** useful behavior is written into `SKILL.md`, `references/`, `templates/`, evals, Human Gates, and rollback paths.
 - **Agent portable:** Codex, Claude Code, OpenCode, or any Markdown-skill-capable agent can adapt the packages.
 - **Public/private safe:** public examples stay synthetic, public, cleared, or marked `needs_review`; real projects stay in your own environment.
 
@@ -67,7 +66,7 @@ Use $game-concept-architect to turn this one-line game idea into concept seed ex
 ```
 
 ```text
-Use $paranoia-ai-system-evolver to upgrade this workflow with VOI, OODA, eval checks, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to upgrade this workflow with a WOOP Task Card, VOI, OODA, eval checks, Human Gate, and rollback.
 ```
 
 ```text
@@ -100,7 +99,7 @@ The simplest path is three small moves: pick a skill, give the agent your materi
 | --- | --- | --- |
 | Screenshot, recording, PV/trailer, or video link | `$game-experience-analyzer` | A game experience report with timestamps, evidence, issue priorities, game dissection, mechanic transfer boundaries, and validation plans |
 | One-line game idea | `$game-concept-architect` | Concept seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan |
-| Prompt, workflow, schema, or agent rule | `$paranoia-ai-system-evolver` | A VOI/OODA/eval/Human Gate/rollback-backed evolution proposal |
+| Prompt, workflow, schema, or agent rule | `$paranoia-ai-system-evolver` | A WOOP/VOI/OODA/eval/Human Gate/rollback-backed evolution proposal |
 | English game design chapter or essay | `$game-design-book-translator` | Professional Chinese design translation with reviewable terminology |
 | Articles, videos, creators, or websites | `$game-design-source-curator` | Maintainable game design knowledge-base entries |
 | Retention, pacing, feedback, embodiment, atmosphere, or cognitive-load problem | `$game-experience-density-optimizer` | ED diagnosis, weekly A/B variants, instrumentation, dashboard fields, and rollback gates |
@@ -118,7 +117,7 @@ Use $game-experience-analyzer to dissect this game into player verbs, action-goa
 ```
 
 ```text
-Use $paranoia-ai-system-evolver to upgrade this prompt/workflow/schema with VOI, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to upgrade this prompt/workflow/schema with a WOOP Task Card, VOI, OODA, evals, Human Gate, and rollback.
 ```
 
 ```text
@@ -171,7 +170,7 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
   </tr>
   <tr>
     <td><b>Analyze game experience</b><br>Convert screenshots, recordings, trailers, and video links into evidence-first diagnosis, game dissection, and mechanic-transfer judgment.</td>
-    <td><b>Evolve workflows</b><br>Upgrade prompts, schemas, evals, memory, and tool routing through VOI, OODA, gates, and rollback.</td>
+    <td><b>Evolve workflows</b><br>Upgrade prompts, schemas, evals, memory, and tool routing through WOOP, VOI, OODA, gates, and rollback.</td>
     <td><b>Translate design knowledge</b><br>Transform serious game design books and chapters into professional Chinese design writing.</td>
     <td><b>Curate sources</b><br>Turn scattered articles, videos, creators, columns, and websites into a durable game design knowledge base.</td>
   </tr>
@@ -197,7 +196,7 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 
 ## Skill Architecture
 
-`ParanoiaSkills` is organized into three layers. Public repository contains base skills. Private overlays should live outside this repository.
+`ParanoiaSkills` is organized as a public base layer plus a contract layer. Private overlays, real project data, client examples, and local workflow rules should live outside this repository.
 
 - **Design Production Layer**
   - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.
@@ -208,6 +207,8 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 - **Knowledge Asset Layer**
   - [`game-design-book-translator/`](./game-design-book-translator/): design texts -> professional Chinese design writing.
   - [`game-design-source-curator/`](./game-design-source-curator/): scattered sources -> durable knowledge base.
+- **Contract Layer**
+  - [`contracts/`](./contracts/): router rules and shared schemas for player promises, validation plans, evidence indexes, issue cards, and ED handoffs.
 
 Users may still use these skills with real projects, private projects, client work, or synthetic cases in their own environment. The public-case rules apply only to content committed back to this repository.
 
@@ -216,7 +217,7 @@ Users may still use these skills with real projects, private projects, client wo
 | Skill | One-line Use | Best For | Package |
 | --- | --- | --- | --- |
 | **Game Experience Analyzer** | Turns screenshots, gameplay recordings, trailers/PVs, and video links into evidence-first Chinese game design reports. | Early experience, mechanics, game dissection, mechanic transfer, holistic product analysis, MDA, systems-narrative fusion, single-player flow, genre strategy, heat prediction, foresight windows, monetization, UX. | [`game-experience-analyzer/`](./game-experience-analyzer/) |
-| **Paranoia AI System Evolver** | Turns prompt, workflow, memory, schema, tool-routing, and eval changes into controlled system evolution. | VOI/OODA, model compression, causal mediators, Human Gate, rollback, validated upgrades. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
+| **Paranoia AI System Evolver** | Turns prompt, workflow, memory, schema, tool-routing, and eval changes into controlled system evolution. | WOOP Task Cards, VOI/OODA, model compression, causal mediators, Human Gate, rollback, validated upgrades. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | Produces professional Chinese game design translations that read like serious design writing. | Terminology, chapters, figures, captions, tables, QA, source-boundary checks. | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | Converts scattered game design sources into a durable local knowledge base. | Source screening, scoring, HTML archives, registries, update history, design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player verbs, action-goal alignment, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
@@ -231,6 +232,7 @@ Users may still use these skills with real projects, private projects, client wo
 - **Source curation:** turn articles, videos, creators, columns, and websites into searchable, citable, experiment-ready design knowledge.
 - **Professional translation:** translate game design books or essays while preserving terminology, argument structure, and figure context.
 - **Workflow evolution:** promote useful agent behavior into candidate rules with evals, Human Gate, and rollback.
+- **Cross-skill handoff:** move from concept promise to media diagnosis to ED experiment through shared contracts instead of rewriting context by hand.
 - **Concept feasibility:** turn a one-line idea into concept seed extraction, player verbs, action-goal alignment, player promises, core loop design, scope gate, production feasibility, and prototype validation.
 - **Experience density experiments:** turn first-session, pacing, feedback, embodiment, atmosphere, or cognitive-load issues into weekly ED experiments with metrics and rollback gates.
 
@@ -242,7 +244,7 @@ Read the repository as a set of installable skill packages plus supporting publi
 | --- | --- | --- |
 | Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | Copyable agent skills. Each package carries its own runtime instructions, references, templates, examples, and evals. |
 | Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | Explains what the project is, how to try it, showcase boundaries, release drafts, and public-facing docs. |
-| Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | Adapter notes, shared schemas, GitHub workflow/templates, and repository validation tools. |
+| Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | Adapter notes, shared schemas, router contracts, GitHub workflow/templates, behavior evals, and repository validation tools. |
 | Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | Contribution rules, license terms, and public README/showcase visuals. |
 
 Most skills follow this structure:

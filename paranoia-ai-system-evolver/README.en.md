@@ -14,6 +14,7 @@ It helps an agent improve AI systems without turning one successful case into an
 
 - Model compression: judge whether a prompt, skill, agent, workflow, or harness explains more real tasks with a shorter core model
 - Causal mediators: break final outcomes into observable, intervenable, and verifiable intermediate links
+- WOOP harness protocol: translate Wish, Outcome, Obstacle, and Plan into task admission, acceptance, Failure Patterns, and if-then recovery rules
 - VOI: decide what information is worth acquiring
 - OODA: keep a compact Observe / Orient / Decide / Act state
 - Evals: test result quality, process quality, and evolution risk
@@ -28,6 +29,9 @@ agents/openai.yaml
 references/evolution-loop-playbook.md
 references/evolution-loop-playbook.zh-CN.md
 references/evolution-loop-playbook.en.md
+references/woop-harness-protocol.md
+references/woop-harness-protocol.zh-CN.md
+references/woop-harness-protocol.en.md
 references/model-compression-playbook.md
 references/model-compression-playbook.zh-CN.md
 references/model-compression-playbook.en.md
@@ -46,7 +50,7 @@ quick_validate.py
 ## Suggested Prompt
 
 ```text
-Use $paranoia-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with model compression, causal mediators, VOI, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with WOOP Task Card, model compression, causal mediators, VOI, OODA, evals, Human Gate, and rollback.
 ```
 
 ## Boundary Inside ParanoiaSkills

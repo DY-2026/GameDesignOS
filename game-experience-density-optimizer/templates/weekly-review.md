@@ -29,6 +29,7 @@
 | failure_spike | unknown | unknown |
 | complaint/sentiment | unknown | unknown |
 | economy_anomaly | unknown | unknown |
+| overstimulation_or_habituation | unknown | rollback or iterate if boredom_type worsens |
 | dark_pattern_risk | none | kill if triggered |
 
 ## 4. Outcome And Explanation
@@ -36,10 +37,12 @@
 | layer | metric | result | interpretation |
 | --- | --- | --- | --- |
 | P1 | retention/session quality | unknown | unknown |
+| P2 | optimal_stimulation_band / boredom_type_mix | unknown | did the window diagnosis hold |
 | P2 | ED proxy | unknown | unknown |
 | P2 | CLP | unknown | unknown |
 | P2 | SF / EB / AR | unknown | unknown |
 | P2 | MD/min | unknown | unknown |
+| P2 | optimal_novelty_fit / anti_habituation_fit | unknown | required for novelty or long-term fatigue cases |
 
 ## 5. Decision
 
@@ -56,6 +59,7 @@
 ```text
 Next hypothesis:
 Primary lever:
+Optimal stimulation target:
 Smallest change:
 Risk gate:
 Owner:

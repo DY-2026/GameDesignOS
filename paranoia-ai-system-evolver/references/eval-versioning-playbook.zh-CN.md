@@ -9,7 +9,7 @@
 | 表面 | 问题 |
 | --- | --- |
 | 结果 | 输出是否真正解决了任务？ |
-| 过程 | agent 是否正确使用 VOI、工具、记忆和验证？ |
+| 过程 | agent 是否正确使用 WOOP 准入、VOI、工具、记忆和验证？ |
 | 进化 | 候选系统突变是否让未来任务更好，同时没有显著抬高风险？ |
 
 ## 2. Trace 最小字段
@@ -20,12 +20,15 @@
 trace_summary:
   task_id:
   user_goal:
+  woop_task_card:
   context_used:
   tool_calls:
   uncertainties:
   cost:
   result:
   feedback:
+  triggered_obstacles:
+  if_then_actions:
   failure_signals:
   candidate_improvements:
 ```
@@ -42,6 +45,7 @@ target_layer: prompt | memory | rag | tool | workflow | eval | schema | docs | s
 change_summary:
 expected_benefit:
 risk:
+woop_task_card:
 eval_plan:
 human_gate:
 rollback:
@@ -56,9 +60,9 @@ status: candidate
 | memory | 要有证据、置信度、适用范围、过期机制，并至少做一次反例检查 |
 | RAG | 检查来源质量、召回精度、过期风险和引用行为 |
 | tool routing | 检查工具使用是否正确、过早、过晚或缺失 |
-| workflow | 检查 source contract 与 output gate 是否完整 |
+| workflow | 检查 WOOP Task Card、source contract 与 output gate 是否完整 |
 | schema | 验证结构可机器解析，并覆盖边界样本 |
-| skill | 检查 frontmatter、metadata、引用路径、模板可用性、陈旧措辞、真实调用场景和行为回归 |
+| skill | 检查 frontmatter、metadata、WOOP reference、引用路径、模板可用性、陈旧措辞、真实调用场景和行为回归 |
 | README visual | 检查图片路径、alt text、无水印、无误导文字、关键流程有文本版本 |
 
 ## 5. Skill Package 回归清单
@@ -70,6 +74,7 @@ frontmatter name == folder name
 agents/openai.yaml default_prompt uses the same skill name
 all referenced files exist
 templates are non-empty and copy-paste usable
+WOOP Task Card fields exist in templates when the skill controls task admission or recovery
 root README is human-facing
 SKILL.md is agent-facing and lightweight
 no stale old name remains in public entrypoints
@@ -82,6 +87,7 @@ copyright/provenance is explicit
 
 - 选择 2-3 个来自真实任务或高频场景的 `behavior_samples`，写清输入、期望行为和失败信号。
 - 对比改动前后；如果旧版本不可运行，至少对照当前 `SKILL.md` 声称的输出契约。
+- 检查 WOOP 是否改善了任务准入、Outcome 验收、Obstacle 识别和 Plan 恢复，而不是只增加前置文本。
 - 检查是否出现负迁移：更啰嗦、更慢、误触发、跳过 VOI、忽视证据、破坏既有高价值场景。
 - 若行为没有变好，只能保留为 `candidate` 或失败样本；不要因为结构更完整就提升为当前规则。
 - 若行为变好但描述成本明显上升，回到模型压缩 Gate，判断收益是否覆盖新增复杂度。

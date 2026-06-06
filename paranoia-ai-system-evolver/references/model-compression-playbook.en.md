@@ -36,7 +36,25 @@ If the regulator's model is too coarse, it underfits: it watches the final resul
 
 If the regulator's model is too detailed, it overfits: rules, paths, state, and exception patches consume the system's execution capacity.
 
-## 3. Minimum Description Length Gate
+## 3. WOOP as a Minimal Harness Model
+
+WOOP is a low-cost harness compression model. It does not add scenario scripts; it compresses complex tasks into four stable control points:
+
+```text
+Wish -> Outcome -> Obstacle -> Plan
+= Intent Spec -> Evaluation Rubric -> Failure Pattern -> If-Then Protocol
+```
+
+It reduces downstream patch cost:
+
+- Wish reduces `routing_rule_length`: route by real intent and output boundary instead of scenario nouns.
+- Outcome reduces `validation_observation_length`: observe only signals that judge result quality.
+- Obstacle reduces `exception_patch_length`: turn repeated failures into recognizable patterns.
+- Plan reduces `failure_recovery_length`: recover through if-then protocol instead of human memory.
+
+If a WOOP change only adds more pre-task text without lowering routing, validation, exception, or recovery cost, it is not effective compression.
+
+## 4. Minimum Description Length Gate
 
 Use this approximation to judge model granularity:
 
@@ -64,7 +82,7 @@ Default interpretation:
 | `exception_patch_length` | Does every failure add another patch? | Repair the model instead of adding tape |
 | `failure_recovery_length` | Does recovery depend on human memory? | Encode retry, rollback, conflict zones, and exit criteria |
 
-## 4. Verbs Before Nouns
+## 5. Verbs Before Nouns
 
 Model by how information is transformed, not by what scenario it belongs to.
 
@@ -74,7 +92,7 @@ Operations are verbs: filter, archive, translate, compress, route, validate, ali
 
 A good skill behaves like a game mechanic: repeatable, composable, and capable of emergence. A weak skill behaves like a level script: useful for one scene and patch-heavy when conditions change.
 
-## 5. Causal Mediator Gate
+## 6. Causal Mediator Gate
 
 Do not stop at:
 
@@ -94,15 +112,15 @@ Common AI workflow mediators:
 
 | Outcome | Common Mediators |
 | --- | --- |
-| High-quality answer | task understanding, context selection, state retention, tool use, process validation, failure recovery |
-| Good skill | trigger boundary, core operation, reference path, template reuse, validation gate, rollback path |
+| High-quality answer | task understanding, WOOP admission, context selection, state retention, tool use, process validation, failure recovery |
+| Good skill | trigger boundary, core operation, WOOP Task Card, reference path, template reuse, validation gate, rollback path |
 | Good RAG | source quality, chunk boundary, retrieval intent, rerank, citation discipline, answer synthesis |
-| Good agent | observe fidelity, orientation model, decision policy, tool affordance, state update, eval signal |
+| Good agent | observe fidelity, orientation model, decision policy, tool affordance, state update, WOOP obstacle trigger, eval signal |
 | Good management workflow | retention, conversion, delivery speed, information flow, decision efficiency, team coordination |
 
 If a change cannot explain which mediator it improves, it is usually a style preference and should not become a long-term system rule.
 
-## 6. Control Point Gate
+## 7. Control Point Gate
 
 Mark control points for each mediator chain:
 
@@ -121,38 +139,44 @@ Observable but non-intervenable nodes are useful for warnings or diagnosis.
 
 Nodes that cannot be observed but are treated as core control points are high-risk black boxes.
 
-## 7. Harness / Agent / Skill Model Differences
+## 8. Harness / Agent / Skill Model Differences
 
 Use the same questions to audit different structures:
 
 | Structure | Strong Model | Weak Model |
 | --- | --- | --- |
-| Harness | Makes task understanding, state retention, tool use, validation, and recovery explicit | Adds a wrapper while still relying on one-shot model performance |
+| Harness | Makes task understanding, WOOP admission, state retention, tool use, validation, and recovery explicit | Adds a wrapper while still relying on one-shot model performance |
 | Agent | Defines OODA, tool boundaries, state updates, and eval signals | Loops forever with no exit condition or evidence gate |
-| Skill | Compresses a class of operations into a reusable mechanic | Turns one scenario into a longer script |
+| Skill | Compresses a class of operations into a reusable mechanic with WOOP, templates, and validation gates | Turns one scenario into a longer script |
 | Workflow | Transforms upstream information into a form that downstream work can use | Only arranges roles, steps, and slogans |
-| Prompt | Defines task model, inputs, outputs, and failure signals | Stacks adjectives and style requests |
+| Prompt | Defines task model, inputs, outputs, Outcome, and failure signals | Stacks adjectives and style requests |
 
-## 8. Upgrade Flow
+## 9. Upgrade Flow
 
 Use this order for each upgrade:
 
 1. Write the system's current implicit model.
-2. Mark inputs, outputs, mediators, and control points.
-3. Estimate total description cost and find the highest-cost term.
-4. Diagnose whether the issue is underfit, overfit, or a missing mediator.
-5. Design the smallest change that lowers total description cost.
-6. Mark the change as `candidate`.
-7. Use evals or real task samples to check whether it reduces patches, improves control, or lowers recovery cost.
-8. If it should become durable, promote it only after Human Gate.
+2. Write the WOOP Task Card and confirm Intent Spec, Evaluation Rubric, Failure Pattern, and If-Then Protocol.
+3. Mark inputs, outputs, mediators, and control points.
+4. Estimate total description cost and find the highest-cost term.
+5. Diagnose whether the issue is underfit, overfit, or a missing mediator.
+6. Design the smallest change that lowers total description cost.
+7. Mark the change as `candidate`.
+8. Use evals or real task samples to check whether it reduces patches, improves control, or lowers recovery cost.
+9. If it should become durable, promote it only after Human Gate.
 
-## 9. Output Shape
+## 10. Output Shape
 
 ```yaml
 model_audit:
   current_model: ""
   proposed_model: ""
   compression_claim: ""
+  woop_compression:
+    intent_spec:
+    evaluation_rubric: []
+    failure_patterns: []
+    if_then_protocols: []
   causal_chain:
     - from:
       mediator:

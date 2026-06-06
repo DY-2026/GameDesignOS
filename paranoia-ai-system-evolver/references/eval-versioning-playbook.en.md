@@ -9,7 +9,7 @@ Evaluate at least three surfaces:
 | Surface | Question |
 | --- | --- |
 | Result | Did the output actually solve the task? |
-| Process | Did the agent use VOI, tools, memory, and validation correctly? |
+| Process | Did the agent use WOOP admission, VOI, tools, memory, and validation correctly? |
 | Evolution | Does the candidate mutation improve future tasks without raising risk too much? |
 
 ## 2. Minimal Trace Fields
@@ -20,12 +20,15 @@ Each candidate improvement must preserve enough evidence for a future maintainer
 trace_summary:
   task_id:
   user_goal:
+  woop_task_card:
   context_used:
   tool_calls:
   uncertainties:
   cost:
   result:
   feedback:
+  triggered_obstacles:
+  if_then_actions:
   failure_signals:
   candidate_improvements:
 ```
@@ -42,6 +45,7 @@ target_layer: prompt | memory | rag | tool | workflow | eval | schema | docs | s
 change_summary:
 expected_benefit:
 risk:
+woop_task_card:
 eval_plan:
 human_gate:
 rollback:
@@ -56,9 +60,9 @@ status: candidate
 | memory | Include evidence, confidence, scope, expiry, and at least one counterexample check |
 | RAG | Check source quality, retrieval precision, staleness risk, and citation behavior |
 | tool routing | Check whether tools are used correctly, too early, too late, or not at all |
-| workflow | Check source contract and output gate completeness |
+| workflow | Check WOOP Task Card, source contract, and output gate completeness |
 | schema | Validate machine parsing and cover edge samples |
-| skill | Check frontmatter, metadata, reference paths, template usability, stale wording, realistic invocation, and behavior regression |
+| skill | Check frontmatter, metadata, WOOP reference, reference paths, template usability, stale wording, realistic invocation, and behavior regression |
 | README visual | Check image path, alt text, no watermark, no misleading text, and text-backed critical flow |
 
 ## 5. Skill Package Regression Checklist
@@ -70,6 +74,7 @@ frontmatter name == folder name
 agents/openai.yaml default_prompt uses the same skill name
 all referenced files exist
 templates are non-empty and copy-paste usable
+WOOP Task Card fields exist in templates when the skill controls task admission or recovery
 root README is human-facing
 SKILL.md is agent-facing and lightweight
 no stale old name remains in public entrypoints
@@ -82,6 +87,7 @@ Structural checks prove that a skill can be installed. They do not prove that it
 
 - Choose 2-3 `behavior_samples` from real tasks or frequent scenarios, with input, expected behavior, and failure signals.
 - Compare behavior before and after the change. If the old version cannot run, compare against the current `SKILL.md` output contract.
+- Check whether WOOP improves task admission, Outcome evaluation, Obstacle detection, and Plan recovery instead of merely adding pre-task text.
 - Check for negative transfer: more verbosity, slower execution, false triggers, skipped VOI, weaker evidence use, or regression on high-value scenarios.
 - If behavior does not improve, keep the change as `candidate` or a failure sample; do not promote it just because the structure looks cleaner.
 - If behavior improves but description cost rises sharply, return to the model-compression gate and verify that the benefit covers the added complexity.

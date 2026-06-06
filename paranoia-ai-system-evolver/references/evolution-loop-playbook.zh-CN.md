@@ -19,6 +19,7 @@
 
 ```text
 真实任务压力
+-> WOOP Task Card
 -> 信息稀缺
 -> VOI 选择
 -> OODA 探针
@@ -30,7 +31,25 @@
 -> rollback path
 ```
 
-## 2. 稀缺资源
+## 2. WOOP 任务准入
+
+在进入 VOI/OODA 之前，先把任务转成可执行的 `WOOP Task Card`：
+
+- Wish：任务目标、输出物、范围和停止条件。
+- Outcome：验收画面、评价尺和决策收益。
+- Obstacle：人机系统里的内在失败模式，而不是外部困难。
+- Plan：失败模式出现时的 if-then 协议、判断者、重试或 Human Gate。
+
+准入规则：
+
+- Wish 不清楚，先澄清、拆小或进入探索模式。
+- Outcome 不清楚，不进入生产模式，只能补评价标准或做候选草案。
+- Obstacle 不清楚，套用默认失败模式并降低自主性。
+- Plan 不清楚，不自动执行高风险或不可逆动作。
+
+更完整的方法见 `references/woop-harness-protocol.zh-CN.md`。
+
+## 3. 稀缺资源
 
 agent 必须把这些东西当成稀缺资源：
 
@@ -46,7 +65,7 @@ agent 必须把这些东西当成稀缺资源：
 
 稀缺制造选择压力，选择压力逼出 VOI。
 
-## 3. VOI 近似判断
+## 4. VOI 近似判断
 
 使用这个快速估算：
 
@@ -69,7 +88,7 @@ VOI = P(change_decision)
 | 低 | 高 | 做轻量验证 |
 | 低 | 低 | 直接行动 |
 
-## 4. Orient-first OODA
+## 5. Orient-first OODA
 
 不要把 OODA 做成奖励速度的清单。它的目标是刷新认知地图。
 
@@ -81,6 +100,7 @@ Observe 要抓：
 - 工具失败
 - 用户纠偏
 - 成本与延迟
+- 已触发或接近触发的 WOOP Obstacle
 
 Orient 要抓：
 
@@ -89,12 +109,13 @@ Orient 要抓：
 - 应该切换到的模型
 - 关键不确定性
 - 什么信息会改变地图
+- WOOP 的 Outcome 是否仍然是正确评价尺
 
 Decide 不是宣布真理，而是选择一个当前最值得下注验证的假设。
 
 Act 不是结局；当不确定性仍然存在时，行动应当是一个探针或压力测试，用来逼现实表态。
 
-## 5. 模型压缩 Gate
+## 6. 模型压缩 Gate
 
 Orient 阶段必须显式检查当前系统模型。不要只问“要改什么 prompt / workflow / skill”，还要问：
 
@@ -118,7 +139,7 @@ total_description_cost
 
 更完整的方法见 `references/model-compression-playbook.zh-CN.md`。
 
-## 6. 任务循环与元循环
+## 7. 任务循环与元循环
 
 任务循环：
 
@@ -134,7 +155,7 @@ trace -> 失败模式 -> 突变候选 -> eval -> 审批 -> 上线
 
 永远不要让元循环从单个案例自动提升出长期规则。
 
-## 7. 候选突变规则
+## 8. 候选突变规则
 
 一个系统改动只有满足以下条件，才允许进入进化队列：
 
@@ -146,7 +167,7 @@ trace -> 失败模式 -> 突变候选 -> eval -> 审批 -> 上线
 
 否则只保留为任务笔记。
 
-## 8. 行动权限阶梯
+## 9. 行动权限阶梯
 
 | 等级 | 例子 | 默认规则 |
 | --- | --- | --- |
@@ -156,7 +177,7 @@ trace -> 失败模式 -> 突变候选 -> eval -> 审批 -> 上线
 | A3 | 长期记忆、全局 skill 安装、生产策略 | 需要 Human Gate |
 | A4 | 删除、发布、资金、真实用户影响 | 必须明确审批 |
 
-## 9. 公开 Skill 包检查
+## 10. 公开 Skill 包检查
 
 公开给别人使用的 skill 包，至少检查：
 
@@ -165,11 +186,11 @@ trace -> 失败模式 -> 突变候选 -> eval -> 审批 -> 上线
 - 根 README 面向人类；`SKILL.md` 面向 agent，不互相复制污染。
 - `SKILL.md` 保持轻量，只路由到本 skill 自己的 `references/` 与 `templates/`。
 - 参考文件是一层可达，不把一次性 rollout 报告塞进长期 reference。
-- 模板可以直接复制使用，且字段能支持 evidence、model audit、eval、Human Gate 与 rollback。
+- 模板可以直接复制使用，且字段能支持 WOOP Task Card、evidence、model audit、eval、Human Gate 与 rollback。
 - 版权、来源和复用边界清楚。
 - 最后做一次陈旧命名和旧项目措辞扫描。
 
-## 10. README 视觉资产 Gate
+## 11. README 视觉资产 Gate
 
 README 可以使用生成图，但生成图只适合承载氛围、结构隐喻和识别度，不应该承载关键文字信息。
 

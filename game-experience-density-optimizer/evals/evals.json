@@ -5,12 +5,22 @@
     "must_include": [
       "theory_status: design_hypothesis",
       "case_boundary",
+      "metric_horizon",
+      "optimal_stimulation_fit",
+      "boredom_type",
       "CLP",
       "SF",
       "EB",
       "AR",
       "MD/min",
-      "先降噪，再提质，后调频",
+      "free_energy_window",
+      "markov_blanket_coupling",
+      "growth_surprise_ladder",
+      "motivation_flow_gate",
+      "novelty_support",
+      "optimal_novelty_fit",
+      "mobile_liveops",
+      "先判窗口，再降噪，再提质，后调频",
       "rollback"
     ],
     "must_not_include": [
@@ -24,13 +34,111 @@
     "must_include": [
       "SF",
       "EB",
+      "optimal_stimulation_fit",
       "salient_feedback_fired",
       "embodiment_signal_observed",
+      "blanket_coupling_signal",
+      "game_metric_model",
+      "motivation_flow_gate",
+      "optimal_novelty_fit",
+      "novelty_quality",
       "one primary lever"
     ],
     "must_not_include": [
       "add more red dots",
       "increase pay pressure"
+    ]
+  },
+  {
+    "id": "fep_markov_blanket_to_ed_plan",
+    "prompt": "Use $game-experience-density-optimizer. The game feels boring when encounters repeat, but overwhelming when the boss adds random rules. Upgrade this into a weekly ED experiment using FEP/free-energy and Markov blanket thinking.",
+    "must_include": [
+      "theory_status: design_hypothesis",
+      "optimal_stimulation_fit",
+      "boredom_type",
+      "free_energy_window",
+      "too_low",
+      "too_high",
+      "markov_blanket_coupling",
+      "growth_surprise_ladder",
+      "motivation_flow_gate",
+      "novelty_support",
+      "optimal_novelty_fit",
+      "metric_horizon",
+      "optimal_stimulation_window_observed",
+      "prediction_error_window_observed",
+      "blanket_coupling_signal",
+      "可控惊讶",
+      "自由能斜坡",
+      "rollback"
+    ],
+    "must_not_include": [
+      "neuroscience proof",
+      "guaranteed retention uplift"
+    ]
+  },
+  {
+    "id": "premium_single_player_total_journey_metrics",
+    "prompt": "Use $game-experience-density-optimizer. This is a premium single-player Steam demo. Players say the first 20 minutes feel thin, and we want them to keep playing through the demo, not optimize daily login.",
+    "must_include": [
+      "game_metric_model",
+      "premium_single_player",
+      "metric_horizon",
+      "motivation_flow_gate",
+      "novelty_support",
+      "optimal_stimulation_fit",
+      "optimal_novelty_fit",
+      "total_journey",
+      "total_playtime",
+      "completion",
+      "journey_checkpoint_reached",
+      "D1/D7 are not assumed"
+    ],
+    "must_not_include": [
+      "daily login",
+      "consecutive login reward",
+      "D1 uplift as P1"
+    ]
+  },
+  {
+    "id": "olso_overstimulation_boredom_not_add_events",
+    "prompt": "Use $game-experience-density-optimizer. New players say the tutorial is boring, but recordings show they stare at five flashing goals, fail to understand why enemies hit them, and quit before the first real choice. Build an ED experiment.",
+    "must_include": [
+      "optimal_stimulation_fit",
+      "too_high",
+      "over_stimulation",
+      "CLP",
+      "add_familiar_anchor",
+      "reduce_overload",
+      "optimal_stimulation_window_observed",
+      "risk_if_misdiagnosed",
+      "先判窗口，再降噪，再提质，后调频"
+    ],
+    "must_not_include": [
+      "add more events first",
+      "increase encounter frequency first",
+      "guaranteed retention uplift"
+    ]
+  },
+  {
+    "id": "longline_habituation_anti_habituation",
+    "prompt": "Use $game-experience-density-optimizer. This is a mobile looter season. Old players keep logging in but say the loop is numb: rewards are bigger, yet every run is solved after day three. Diagnose and propose a weekly experiment.",
+    "must_include": [
+      "mobile_liveops",
+      "boredom_type",
+      "habituation",
+      "anti_habituation_plan",
+      "alternative_use",
+      "context_shift",
+      "combinatorial_depth",
+      "anti_habituation_signal",
+      "optimal_novelty_fit",
+      "daily_retention"
+    ],
+    "must_not_include": [
+      "only add numeric rewards",
+      "just increase loot amount",
+      "ignore daily fatigue"
     ]
   }
 ]

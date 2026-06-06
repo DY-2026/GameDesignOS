@@ -4,6 +4,26 @@
 
 ```yaml
 ooda_state:
+  woop:
+    wish:
+      intent_spec:
+      output_artifact:
+      scope_boundary:
+      stop_condition:
+    outcome:
+      decision_value:
+      acceptance_rubric: []
+    obstacle:
+      failure_patterns:
+        - pattern:
+          trigger:
+          severity: "low | medium | high"
+    plan:
+      if_then_protocols:
+        - if:
+          then:
+          judge:
+          next_step: "continue | retry | rewrite | verify | ask_human | rollback"
   observe:
     user_goal:
     context_used: []
@@ -50,6 +70,9 @@ ooda_state:
   evaluate:
     result_check:
     process_check:
+    outcome_score:
+    triggered_obstacles: []
+    if_then_actions: []
     failure_signals: []
   evolve:
     candidate_improvements: []

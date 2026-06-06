@@ -8,11 +8,41 @@ criteria:
   theory_status:
     description: The method is marked as design_hypothesis, not a scientific claim.
     required: true
+  metric_horizon:
+    description: Output distinguishes premium_single_player, mobile_liveops, hybrid, or unknown before choosing P1 metrics.
+    required: true
+  game_model_fit:
+    description: Single-player/premium games use total journey, completion, checkpoint, or replay-intent metrics; mobile/liveops uses daily retention and continuity metrics.
+    required: true
+  optimal_stimulation_fit:
+    description: Output first identifies the OLSO/最佳刺激窗口 as too_low, optimal, too_high, uneven, or unknown, and does not equate boredom with too little stimulation by default.
+    required: true
+  boredom_type:
+    description: Output classifies boredom or low engagement as under_stimulation, over_stimulation, habituation, low_agency, low_meaning, mixed, or unknown.
+    required: true
   formula_items:
     description: Diagnosis maps the problem to CLP, SF, EB, AR, and/or MD/min.
     required: true
+  free_energy_window:
+    description: Output identifies the prediction-error/free-energy band as too_low, optimal, too_high, or unknown without scientific overclaim.
+    required: true
+  markov_blanket_coupling:
+    description: Output maps feel/feedback issues to sensory states, action states, coupling breaks, and repair actions.
+    required: true
+  growth_surprise_ladder:
+    description: Output explains how growth or novelty lets players handle higher-order surprise when the case involves progression, fatigue, roguelike, boss, strategy, or exploration systems.
+    required: true
+  motivation_flow_gate:
+    description: Output checks clear goals, feedback, control, challenge-skill fit, autonomy, competence, relatedness, and novelty where applicable.
+    required: true
+  optimal_novelty:
+    description: SDT novelty is treated as optimal/learnable novelty, not novelty amount; output distinguishes too_low, matched, too_high, or unknown.
+    required: true
+  anti_habituation_when_needed:
+    description: Long-term, fatigue, roguelike, looter, season, UGC, old-player, or repeat-loop cases include an anti_habituation_plan with a concrete lever.
+    required: true
   tuning_order:
-    description: Output follows 先降噪，再提质，后调频 unless evidence justifies another order.
+    description: Output follows 先判窗口，再降噪，再提质，后调频 unless evidence justifies another order.
     required: true
   experiment_design:
     description: Variants are concrete, rollbackable, and keep one primary lever per variant.

@@ -15,9 +15,37 @@ evidence:
 change_summary: ""
 expected_benefit: ""
 risk: ""
+woop_task_card:
+  wish:
+    intent_spec: ""      # 真正要完成什么
+    output_artifact: ""  # 交付物是什么
+    scope_boundary: ""   # 到哪里为止，不做什么
+    stop_condition: ""   # 何时停止或交还给人
+  outcome:
+    decision_value: ""   # 成功后帮助人做什么决策或动作
+    acceptance_rubric:
+      - ""
+      - ""
+      - ""
+  obstacle:
+    failure_patterns:
+      - pattern: ""      # 人机系统内在失败模式
+        trigger: ""      # 何时判断它出现
+        severity: "low | medium | high"
+  plan:
+    if_then_protocols:
+      - if: ""           # 触发条件
+        then: ""         # 具体动作
+        judge: ""        # agent | user | validator | test | reviewer
+        next_step: "continue | retry | rewrite | verify | ask_human | rollback"
 model_audit:
   current_model: ""   # 当前隐含模型
   proposed_model: ""  # 新模型如何更短、更稳、更可验证
+  woop_compression:
+    intent_spec:
+    evaluation_rubric: []
+    failure_patterns: []
+    if_then_protocols: []
   causal_chain: []    # input -> mediator -> output
   control_points: []  # 可观察、可干预、可验证的中介节点
   description_cost:

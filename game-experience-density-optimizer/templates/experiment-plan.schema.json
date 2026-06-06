@@ -5,8 +5,14 @@
   "type": "object",
   "required": [
     "case_boundary",
+    "metric_horizon",
     "theory_status",
     "diagnosis_summary",
+    "optimal_stimulation_fit",
+    "free_energy_window",
+    "markov_blanket_coupling",
+    "growth_surprise_ladder",
+    "motivation_flow_gate",
     "variant_matrix",
     "metric_plan",
     "decision_rules"
@@ -14,6 +20,30 @@
   "properties": {
     "case_boundary": {
       "type": "object"
+    },
+    "metric_horizon": {
+      "type": "object",
+      "required": ["game_metric_model", "primary_time_horizon", "p1_metric_family"],
+      "properties": {
+        "game_metric_model": {
+          "enum": ["premium_single_player", "mobile_liveops", "hybrid", "unknown"]
+        },
+        "primary_time_horizon": {
+          "enum": ["total_journey", "chapter_segment", "run_based", "daily_retention", "event_cycle", "hybrid_split", "unknown"]
+        },
+        "p1_metric_family": {
+          "enum": ["total_playtime", "completion_progress", "replay_intent", "daily_retention", "liveops_continuity", "hybrid_split", "unknown"]
+        },
+        "excluded_metrics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rationale": {
+          "type": "string"
+        }
+      }
     },
     "theory_status": {
       "const": "design_hypothesis"
@@ -30,6 +60,129 @@
         }
       }
     },
+    "optimal_stimulation_fit": {
+      "type": "object",
+      "required": ["band", "boredom_type", "design_direction"],
+      "properties": {
+        "band": {
+          "enum": ["too_low", "optimal", "too_high", "uneven", "unknown"]
+        },
+        "boredom_type": {
+          "enum": ["under_stimulation", "over_stimulation", "habituation", "low_agency", "low_meaning", "mixed", "unknown"]
+        },
+        "player_resource_profile": {
+          "type": ["string", "object"]
+        },
+        "stimulus_profile": {
+          "type": ["string", "object"]
+        },
+        "context_stimulation": {
+          "type": ["string", "object"]
+        },
+        "evidence_for_window": {
+          "type": "string"
+        },
+        "risk_if_misdiagnosed": {
+          "type": "string"
+        },
+        "design_direction": {
+          "enum": ["add_semi_novelty", "add_familiar_anchor", "reduce_overload", "anti_habituation", "repair_agency", "add_meaning", "preserve_curve", "unknown"]
+        }
+      }
+    },
+    "free_energy_window": {
+      "type": "object",
+      "required": ["band", "intervention_direction"],
+      "properties": {
+        "band": {
+          "enum": ["too_low", "optimal", "too_high", "unknown"]
+        },
+        "prediction_error_source": {
+          "type": "string"
+        },
+        "tolerance_reason": {
+          "type": "string"
+        },
+        "intervention_direction": {
+          "enum": ["reduce_noise", "improve_quality", "tune_frequency", "preserve_curve", "unknown"]
+        }
+      }
+    },
+    "markov_blanket_coupling": {
+      "type": "object",
+      "required": ["coupling_break", "repair_action"],
+      "properties": {
+        "sensory_state_quality": {
+          "type": "string"
+        },
+        "action_state_quality": {
+          "type": "string"
+        },
+        "coupling_break": {
+          "enum": ["none", "latency", "noise", "unclear_mapping", "weak_agency", "overload", "unknown"]
+        },
+        "repair_action": {
+          "type": "string"
+        }
+      }
+    },
+    "growth_surprise_ladder": {
+      "type": "object",
+      "required": ["current_model_level", "next_learnable_surprise"],
+      "properties": {
+        "current_model_level": {
+          "enum": ["explicit", "system", "strategy", "meta", "unknown"]
+        },
+        "next_learnable_surprise": {
+          "type": "string"
+        },
+        "evidence_that_player_can_recover": {
+          "type": "string"
+        },
+        "risk_if_too_steep": {
+          "type": "string"
+        }
+      }
+    },
+    "motivation_flow_gate": {
+      "type": "object",
+      "required": ["challenge_skill_fit", "autonomy_support", "competence_support", "novelty_support", "optimal_novelty_fit"],
+      "properties": {
+        "clear_goal_quality": {
+          "type": "string"
+        },
+        "feedback_timeliness": {
+          "type": "string"
+        },
+        "challenge_skill_fit": {
+          "enum": ["too_easy", "matched", "too_hard", "uneven", "unknown"]
+        },
+        "player_control_quality": {
+          "type": "string"
+        },
+        "autonomy_support": {
+          "type": "string"
+        },
+        "competence_support": {
+          "type": "string"
+        },
+        "relatedness_support": {
+          "enum": ["not_applicable", "weak", "adequate", "strong", "unknown"]
+        },
+        "novelty_support": {
+          "enum": ["weak", "adequate", "strong", "noisy", "unknown"]
+        },
+        "optimal_novelty_fit": {
+          "enum": ["too_low", "matched", "too_high", "unknown"]
+        },
+        "novelty_quality": {
+          "enum": ["learnable", "cosmetic", "random_noise", "overwhelming", "unknown"]
+        },
+        "risk_if_optimized_only_for_density": {
+          "type": "string"
+        }
+      }
+    },
     "variant_matrix": {
       "type": "array",
       "items": {
@@ -40,6 +193,9 @@
             "type": "string"
           },
           "primary_lever": {
+            "type": "string"
+          },
+          "optimal_stimulation_target": {
             "type": "string"
           },
           "concrete_change": {
@@ -53,6 +209,29 @@
     },
     "metric_plan": {
       "type": "object"
+    },
+    "anti_habituation_plan": {
+      "type": "object",
+      "properties": {
+        "applicable": {
+          "enum": ["yes", "no", "unknown"]
+        },
+        "selected_lever": {
+          "enum": ["alternative_use", "attention_investment", "conscious_reframing", "context_shift", "combinatorial_depth", "not_applicable", "unknown"]
+        },
+        "familiar_anchor": {
+          "type": "string"
+        },
+        "novel_delta": {
+          "type": "string"
+        },
+        "attribution_plan": {
+          "type": "string"
+        },
+        "risk_if_only_add_rewards": {
+          "type": "string"
+        }
+      }
     },
     "decision_rules": {
       "type": "object"

@@ -4,7 +4,7 @@ Use GitHub repository settings to set the public metadata manually.
 
 ## Description
 
-Evidence-first agent skills for game design analysis, concept architecture, and AI workflow evolution.
+Portable agent skills for game design: evidence diagnosis, concept contracts, ED experiments, and eval-backed AI workflow evolution.
 
 ## Website
 

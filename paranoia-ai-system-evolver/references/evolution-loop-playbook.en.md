@@ -19,6 +19,7 @@ The loop is:
 
 ```text
 real task pressure
+-> WOOP Task Card
 -> information scarcity
 -> VOI choice
 -> OODA probe
@@ -30,7 +31,25 @@ real task pressure
 -> rollback path
 ```
 
-## 2. Scarce Resources
+## 2. WOOP Task Admission
+
+Before VOI/OODA, translate the task into an executable `WOOP Task Card`:
+
+- Wish: task goal, artifact, scope, and stop condition.
+- Outcome: acceptance picture, evaluation rubric, and decision value.
+- Obstacle: internal human-AI system Failure Pattern, not external difficulty.
+- Plan: if-then protocol, judge, retry, fallback, or Human Gate.
+
+Admission rules:
+
+- If Wish is unclear, clarify, split, or enter exploration mode.
+- If Outcome is unclear, do not enter production mode; define the rubric or draft only.
+- If Obstacle is unclear, apply default Failure Patterns and lower autonomy.
+- If Plan is unclear, do not automate high-risk or irreversible actions.
+
+For the deeper method, read `references/woop-harness-protocol.en.md`.
+
+## 3. Scarce Resources
 
 An agent must treat these as scarce:
 
@@ -46,7 +65,7 @@ An agent must treat these as scarce:
 
 Scarcity creates selection pressure. Selection pressure makes VOI necessary.
 
-## 3. Quick VOI Estimate
+## 4. Quick VOI Estimate
 
 Use this approximate formula:
 
@@ -69,7 +88,7 @@ Default actions:
 | Low | High | Run a lightweight check |
 | Low | Low | Act directly |
 
-## 4. Orient-first OODA
+## 5. Orient-first OODA
 
 Do not turn OODA into a speed checklist. Its purpose is to refresh the cognitive map.
 
@@ -81,6 +100,7 @@ Observe should capture:
 - tool failures
 - user corrections
 - cost and latency
+- triggered or near-triggered WOOP Obstacles
 
 Orient should capture:
 
@@ -89,12 +109,13 @@ Orient should capture:
 - the model that should replace it
 - key uncertainties
 - which information would change the map
+- whether the WOOP Outcome is still the right evaluation rubric
 
 Decide is not declaring truth. It is choosing the most valuable hypothesis to test now.
 
 Act is not the end. When uncertainty remains, action should be a probe or pressure test that forces reality to answer.
 
-## 5. Model Compression Gate
+## 6. Model Compression Gate
 
 The Orient phase must explicitly inspect the current system model. Do not only ask "which prompt / workflow / skill should change?" Also ask:
 
@@ -118,7 +139,7 @@ total_description_cost
 
 For the deeper method, read `references/model-compression-playbook.en.md`.
 
-## 6. Task Loop and Meta Loop
+## 7. Task Loop and Meta Loop
 
 Task loop:
 
@@ -134,7 +155,7 @@ trace -> failure mode -> mutation candidate -> eval -> approval -> promotion
 
 Never promote a long-term rule from a single case automatically.
 
-## 7. Candidate Mutation Rules
+## 8. Candidate Mutation Rules
 
 A system change may enter the evolution queue only when it is:
 
@@ -146,7 +167,7 @@ A system change may enter the evolution queue only when it is:
 
 Otherwise, keep it as a task note.
 
-## 8. Permission Ladder
+## 9. Permission Ladder
 
 | Level | Examples | Default Rule |
 | --- | --- | --- |
@@ -156,7 +177,7 @@ Otherwise, keep it as a task note.
 | A3 | Long-term memory, global skill installation, production strategy | Human Gate required |
 | A4 | Deletion, publishing, money, real-user impact | Explicit approval required |
 
-## 9. Public Skill Package Check
+## 10. Public Skill Package Check
 
 For a public skill package, check at least:
 
@@ -165,11 +186,11 @@ For a public skill package, check at least:
 - The root README is human-facing; `SKILL.md` is agent-facing.
 - `SKILL.md` stays lightweight and routes only to this skill's own `references/` and `templates/`.
 - Reference files are one hop away and do not contain one-off rollout reports.
-- Templates can be copied directly and support evidence, model audit, eval, Human Gate, and rollback.
+- Templates can be copied directly and support WOOP Task Card, evidence, model audit, eval, Human Gate, and rollback.
 - Copyright, provenance, and reuse boundaries are explicit.
 - A final stale-name and old-project wording sweep has run.
 
-## 10. README Visual Asset Gate
+## 11. README Visual Asset Gate
 
 README files can use generated images, but generated images should carry atmosphere, structure metaphors, and recognition, not critical text.
 

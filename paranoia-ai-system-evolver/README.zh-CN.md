@@ -14,6 +14,7 @@
 
 - 模型压缩：判断 prompt、skill、agent、workflow 或 harness 是否用更短的核心模型解释更多真实任务。
 - 因果中介：把最终结果拆成可观察、可干预、可验证的中间链路。
+- WOOP harness protocol：把 Wish、Outcome、Obstacle、Plan 转成任务准入、验收、失败模式和 if-then 恢复规则。
 - VOI：判断哪些信息值得获取。
 - OODA：维护紧凑的 Observe / Orient / Decide / Act 状态。
 - Evals：检查结果质量、过程质量和进化风险。
@@ -28,6 +29,9 @@ agents/openai.yaml
 references/evolution-loop-playbook.md
 references/evolution-loop-playbook.zh-CN.md
 references/evolution-loop-playbook.en.md
+references/woop-harness-protocol.md
+references/woop-harness-protocol.zh-CN.md
+references/woop-harness-protocol.en.md
 references/model-compression-playbook.md
 references/model-compression-playbook.zh-CN.md
 references/model-compression-playbook.en.md
@@ -46,7 +50,7 @@ quick_validate.py
 ## 推荐提示词
 
 ```text
-使用 $paranoia-ai-system-evolver，把这个 AI workflow 问题整理成带模型压缩、因果中介、VOI、OODA、eval、Human Gate 和 rollback 的受控进化提案。
+使用 $paranoia-ai-system-evolver，把这个 AI workflow 问题整理成带 WOOP Task Card、模型压缩、因果中介、VOI、OODA、eval、Human Gate 和 rollback 的受控进化提案。
 ```
 
 ## 在 ParanoiaSkills 里的边界

@@ -15,9 +15,37 @@ evidence:
 change_summary: ""
 expected_benefit: ""
 risk: ""
+woop_task_card:
+  wish:
+    intent_spec: ""      # what the task is really trying to complete
+    output_artifact: ""  # deliverable
+    scope_boundary: ""   # what is in scope and out of scope
+    stop_condition: ""   # when to stop or hand back to a human
+  outcome:
+    decision_value: ""   # decision or action this should enable
+    acceptance_rubric:
+      - ""
+      - ""
+      - ""
+  obstacle:
+    failure_patterns:
+      - pattern: ""      # internal human-AI system failure pattern
+        trigger: ""      # observable trigger
+        severity: "low | medium | high"
+  plan:
+    if_then_protocols:
+      - if: ""           # trigger condition
+        then: ""         # concrete action
+        judge: ""        # agent | user | validator | test | reviewer
+        next_step: "continue | retry | rewrite | verify | ask_human | rollback"
 model_audit:
   current_model: ""   # current implicit model
   proposed_model: ""  # how the new model is shorter, steadier, and more verifiable
+  woop_compression:
+    intent_spec:
+    evaluation_rubric: []
+    failure_patterns: []
+    if_then_protocols: []
   causal_chain: []    # input -> mediator -> output
   control_points: []  # observable, intervenable, verifiable mediator nodes
   description_cost:

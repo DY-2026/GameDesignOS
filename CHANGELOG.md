@@ -4,7 +4,10 @@ All notable changes to ParanoiaSkills will be recorded here.
 
 ## [Unreleased]
 
-No unreleased public changes yet.
+### Changed
+
+- Refreshed the public README introduction around cross-skill contracts, ED experiments, WOOP/VOI/OODA workflow governance, and eval-backed evolution.
+- Added a new overview banner asset for the GitHub landing page.
 
 ## [v0.4.0] - 2026-06-04
 
