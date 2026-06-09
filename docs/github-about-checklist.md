@@ -4,7 +4,7 @@ Use GitHub repository settings to set the public metadata manually.
 
 ## Description
 
-Portable agent skills for game design: evidence diagnosis, concept contracts, ED experiments, and eval-backed AI workflow evolution.
+Verifiable agent skills for game design: evidence diagnosis, concept contracts, proposal writing, ED experiments, and workflow governance.
 
 ## Website
 

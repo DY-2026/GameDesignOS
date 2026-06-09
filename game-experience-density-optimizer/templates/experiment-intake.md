@@ -4,6 +4,7 @@
 
 | 字段 | 值 |
 | --- | --- |
+| output_mode | quick_ed_triage / weekly_ab_plan / instrumentation_plan / review_and_decide / full_client_delivery / schema_json |
 | case_visibility | unknown |
 | data_sensitivity | unknown |
 | output_destination | private_notes |
@@ -19,8 +20,21 @@
 | session_scope | first_session |
 | current_problem | unknown |
 | available_material | text_only_request |
+| evidence_level | L0_text_only / L1_static_assets / L2_recording / L3_playtest_notes / L4_telemetry_snapshot / L5_ab_result / unknown |
 | evidence_status | assumption_only |
 | theory_status | design_hypothesis |
+
+## Evidence Gate
+
+| 字段 | 值 |
+| --- | --- |
+| evidence_level | L0_text_only / L1_static_assets / L2_recording / L3_playtest_notes / L4_telemetry_snapshot / L5_ab_result / unknown |
+| evidence_status | assumption_only / partial_evidence / directional_evidence / measured_evidence |
+| confidence | low / medium / high / unknown |
+| allowed_claims | unknown |
+| forbidden_claims | unknown |
+| missing_evidence | unknown |
+| confounder_risks | version_mismatch / channel_mix / player_segment_mix / economy_change / difficulty_change / instrumentation_missing / unknown |
 
 ## Optimal Stimulation Fit
 

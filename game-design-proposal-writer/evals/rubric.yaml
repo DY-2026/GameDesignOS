@@ -1,0 +1,128 @@
+skill: game-design-proposal-writer
+version: 0.1.0
+passing_score: 80
+criteria:
+  proposal_intake:
+    weight: 8
+    pass:
+      - "明确文档受众、使用场景、输出模式、平台/商业/阶段假设和材料来源"
+      - "输入不足时最多问三个会改变文档方向的问题，或输出 assumption draft"
+    fail:
+      - "不判断读者，直接写通用 GDD"
+      - "因为信息不足而完全停下"
+  source_artifact_inventory:
+    weight: 7
+    pass:
+      - "列出 concept brief、player promise、validation plan、evidence index、issue cards、ED handoff、market/source notes、production profile 的可用状态"
+      - "不把缺失材料伪装成已有证据"
+    fail:
+      - "混淆上游产物和模型自造内容"
+      - "没有材料边界"
+  evidence_assumption_boundary:
+    weight: 10
+    pass:
+      - "关键判断标注 provided、derived、external_evidence、assumption、unknown、needs_research 或 not_run"
+      - "没有当前证据时不写确定市场、收入、渠道、愿望单或买量结论"
+    fail:
+      - "把假设写成事实"
+      - "为了专业感编造市场判断"
+  proposal_spine:
+    weight: 9
+    pass:
+      - "先写一句话定位、玩家承诺、核心循环、目标玩家和差异化边界"
+      - "系统和商业内容回连玩家承诺"
+    fail:
+      - "先堆功能列表"
+      - "题材包装替代设计核"
+  commercial_product_proposal:
+    weight: 8
+    pass:
+      - "商业案包含目标玩家、平台/商业适配、scope、生产可行性、指标、风险和决策请求"
+      - "指标能对应玩家承诺或商业假设"
+    fail:
+      - "商业模式和核心体验互相打架但不提示"
+      - "只写愿景，没有投决请求"
+  indie_design_dossier:
+    weight: 8
+    pass:
+      - "独游案包含创作命题、商店页承诺、目标 niche、内容最小化、制作边界和 vertical slice proof"
+      - "保护创作锋利度，不套商业大项目模板"
+    fail:
+      - "把独游写成手游商业案"
+      - "承诺大量内容但不评估产能"
+  scope_gate:
+    weight: 10
+    pass:
+      - "清楚区分 MVP、First Playable、Vertical Slice、Demo、Release、Post-launch、Parked 和 Cut"
+      - "能解释为什么暂不做或砍掉某些系统"
+    fail:
+      - "MVP 接近完整正式版"
+      - "所有想法都保留"
+  milestone_and_validation:
+    weight: 10
+    pass:
+      - "包含里程碑、owner、产出、通过标准、失败标准和下一步决策"
+      - "验证计划针对最大假设，而不是泛泛测试"
+    fail:
+      - "只说后续测试"
+      - "没有失败标准或 Go/No-Go"
+  risk_register:
+    weight: 8
+    pass:
+      - "风险包含设计、生产、技术、内容、市场、商业、团队等维度中的关键项"
+      - "每个高风险项有早期信号、缓解方式和验证门"
+    fail:
+      - "风险只有时间不够或资金不足"
+      - "风险不影响决策"
+  decision_request:
+    weight: 8
+    pass:
+      - "最终明确建议批准、验证、改范围、暂停或拒绝"
+      - "说明下一步需要什么资源和什么条件才能继续"
+    fail:
+      - "只有文档，没有请求"
+      - "结论被长篇细节淹没"
+  publisher_platform_proof:
+    weight: 8
+    pass:
+      - "发行/投资/平台 pitch 明确 proof of play、publisher/platform fit、ask、budget、timeline 和投递前 recheck 状态"
+      - "没有 playable build、gameplay video、demo、玩家反馈或指标时，明确写 missing，并转为 proof-building plan"
+    fail:
+      - "只靠概念图、世界观或 AI 视觉稿证明项目"
+      - "未确认目标发行方/平台当前要求，却写成可直接投递"
+      - "预算请求和团队/时间线脱节"
+  chained_concept_to_proposal:
+    weight: 8
+    pass:
+      - "一句话创意要求策划案时，先生成 game-concept-architect 上游产物，再由本 skill 成案"
+      - "明确标注 generated_this_turn、assumption 和 needs_research，不把自动生成概念当作用户已提供证据"
+    fail:
+      - "直接把一句话创意扩写成完整策划案"
+      - "没有 player-promise-contract、scope gate 或 validation plan"
+  mindmap_to_implementation:
+    weight: 8
+    pass:
+      - "xmind/脑图/系统图输入先做结构清点，再转成玩家行为、系统责任、scope、里程碑、风险和验证项"
+      - "读取失败或只能看到截图时，输出 access_notes 和证据边界"
+    fail:
+      - "原样照抄节点当正文"
+      - "不区分 MVP、Vertical Slice、Demo、Release 和 Cut"
+  existing_proposal_review:
+    weight: 8
+    pass:
+      - "审核已有策划案时先给 review 和 revision plan，再给可选改写版"
+      - "指出读者、证据、scope、生产、proof、决策请求和 remaining unknowns"
+    fail:
+      - "只做语言润色"
+      - "不指出无法立项评审的结构性问题"
+  repo_example_safety:
+    weight: 0
+    pass:
+      - "当 output_destination=repo_example 时，遵守 CONTRIBUTING.md，只使用 synthetic、public 或 cleared materials"
+    fail:
+      - "公开仓库示例包含真实项目代号、客户材料、预算、路线图或可反推出真实项目的信息"
+score_bands:
+  excellent: "90-100: 可直接用于评审、发行沟通或下一阶段制作 planning"
+  pass: "80-89: 结构完整，少量证据或措辞可继续补"
+  revise: "60-79: 有文档形状，但缺少关键 gate、证据边界或决策请求"
+  fail: "0-59: 幻想型 GDD、泛文案或没有验证路径的方案"

@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v5.png" alt="ParanoiaSkills - Evidence, contracts, evals, and rollback for AI-assisted game design" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="ParanoiaSkills v0.6.0 - A verifiable agent-skill operating system for game design production" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  一套面向游戏设计生产与 AI 工作流治理的公开基础 Skill 库。
-  把媒体证据转成诊断，把创意 seed 转成验证契约，把体验浓度问题转成一周实验，把 workflow 改动转成带 WOOP/VOI/OODA/eval 的受控演化。
+  一套面向游戏设计生产与 AI 工作流治理的可验证 agent-skill 操作系统。
+  它把证据转成诊断，把概念转成验证契约，把生产约束转成可评审策划案，把 ED 问题转成一周实验，把 workflow 改动转成带 eval 的受控演化。
 </p>
 
 <p align="center">
@@ -23,8 +23,8 @@
 </p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/Skills-6-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.5.0-31e1d6">
+  <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.6.0-31e1d6">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -36,13 +36,14 @@
 
 ## 这个项目是什么
 
-`ParanoiaSkills` 是一套 AI 辅助游戏设计工作的公开基础 Skill 库，把游戏体验分析、概念架构、体验浓度实验、工作流演化、专业翻译和资料策展，沉淀成可复用的 agent instructions、references、schemas、templates、examples 和 evals。
+`ParanoiaSkills` 是一套 AI 辅助游戏设计工作的公开基础 Skill 库，把游戏体验分析、概念架构、策划案写作、体验浓度实验、工作流演化、专业翻译和资料策展，沉淀成可复用的 agent instructions、references、schemas、templates、examples 和 evals。
 
 它不是一堆提示词合集。它更像一套小型游戏设计操作系统，并用契约让不同 skill 之间能交接工作，而不是各自输出孤立长文：
 
 ```text
 媒体证据 -> evidence index -> issue cards -> ED handoff -> 一周实验
 一句话创意 -> player-promise contract -> validation plan -> 后续媒体诊断
+概念/证据/生产约束 -> 可评审策划案 -> pitch 或 milestone gate
 workflow 改动 -> WOOP Task Card -> VOI/OODA probe -> eval -> Human Gate -> rollback
 书籍与资料 -> 结构化知识资产 -> 未来任务可复用 reference
 ```
@@ -56,7 +57,7 @@ workflow 改动 -> WOOP Task Card -> VOI/OODA probe -> eval -> Human Gate -> rol
 - **Agent portable:** Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
 - **Public/private safe:** 公开示例只使用 synthetic、public、cleared 或 `needs_review` 材料；真实项目留在你自己的环境中。
 
-## Try It in 4 Prompts
+## Try It in 5 Prompts
 
 ```text
 Use $game-experience-analyzer to diagnose this PV or gameplay recording into sample boundary, timestamped evidence, Hook/Loop/Link/Surprise diagnosis, issue cards, and validation recommendations.
@@ -64,6 +65,10 @@ Use $game-experience-analyzer to diagnose this PV or gameplay recording into sam
 
 ```text
 Use $game-concept-architect to turn this one-line game idea into concept seed extraction, design nucleus options, player promise contract, core loop, scope gate, and prototype validation plan.
+```
+
+```text
+Use $game-design-proposal-writer to turn this concept brief, validation plan, evidence notes, and production constraints into a decision-ready commercial proposal, indie dossier, publisher pitch, or vertical-slice document.
 ```
 
 ```text
@@ -100,6 +105,7 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 | --- | --- | --- |
 | 截图、录屏、PV、视频链接 | `$game-experience-analyzer` | 带时间戳/证据/问题优先级的体验报告，或游戏拆解、机制迁移和验证计划 |
 | 一句话游戏创意 | `$game-concept-architect` | concept seed、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate、验证计划 |
+| 概念案、证据、验证计划或生产约束 | `$game-design-proposal-writer` | 可评审的商业策划案、独游设计案、发行 pitch、一页决策 memo 或 vertical slice 文档 |
 | 一段 prompt、workflow、schema 或 agent 规则 | `$paranoia-ai-system-evolver` | 带 WOOP/VOI/OODA/eval/Human Gate/rollback 的系统演化提案 |
 | 英文游戏设计章节或长文 | `$game-design-book-translator` | 专业、自然、可复查的中文设计翻译 |
 | 一批文章、视频、作者或网站 | `$game-design-source-curator` | 可长期维护的游戏设计知识库条目 |
@@ -134,6 +140,10 @@ Use $game-concept-architect to turn this one-line game idea into a concept seed,
 ```
 
 ```text
+Use $game-design-proposal-writer to assemble this research, concept brief, evidence index, validation plan, and team constraints into a publisher pitch outline with proof of play, scope gate, budget assumptions, risks, and decision request.
+```
+
+```text
 Use $game-experience-density-optimizer to turn this first-session experience density problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
 ```
 
@@ -148,6 +158,7 @@ game-design-book-translator/
 game-design-source-curator/
 game-concept-architect/
 game-experience-density-optimizer/
+game-design-proposal-writer/
 ```
 
 安装后确认两件事：`SKILL.md` frontmatter 的 `name` 和目录名一致；`references/`、`templates/`、`examples/` 里的相对路径还能打开。
@@ -201,6 +212,7 @@ game-experience-density-optimizer/
 
 - **Design Production Layer**
   - [`game-concept-architect/`](./game-concept-architect/)：one-line idea -> verifiable design blueprint。
+  - [`game-design-proposal-writer/`](./game-design-proposal-writer/)：research/concept/evidence/production notes -> decision-ready proposal or pitch。
   - [`game-experience-analyzer/`](./game-experience-analyzer/)：media/sample -> evidence-linked diagnosis。
   - [`game-experience-density-optimizer/`](./game-experience-density-optimizer/)：retention/pacing/feedback issue -> weekly ED experiment。
 - **Workflow Governance Layer**
@@ -223,6 +235,7 @@ game-experience-density-optimizer/
 | **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
 | **Game Experience Density Optimizer** | 把体验浓度、留存、节奏、反馈、具身感、氛围感和认知负荷问题转成一周 ED 实验。 | 首局调优、原型手感、LiveOps 小实验、A/B 变体、埋点字典、看板规格、回滚门。 | [`game-experience-density-optimizer/`](./game-experience-density-optimizer/) |
+| **Game Design Proposal Writer** | 把调研、概念契约、证据、验证计划、生产约束和商业目标整理成可决策的游戏策划案。 | 商业游戏策划案、独游设计案、发行/投资 pitch、一页决策 memo、Demo/Vertical Slice 规划。 | [`game-design-proposal-writer/`](./game-design-proposal-writer/) |
 
 ## 典型用例
 
@@ -235,6 +248,7 @@ game-experience-density-optimizer/
 - **工作流升级:** 把一次有用的 agent 行为升级成候选规则，并用 eval、Human Gate 和 rollback 控制风险。
 - **跨 skill 交接:** 用共享 contract 从概念承诺走到媒体诊断，再走到 ED 实验，而不是每一步都重新解释上下文。
 - **创意可行性:** 把一句话创意拆成 concept seed、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate、生产可行性和原型验证计划。
+- **策划案成案:** 把已验证概念、资料、证据、风险和生产约束整理成可评审的商业策划案、独游设计案、pitch outline 或 vertical slice 文档。
 - **体验浓度实验:** 把首局、节奏、反馈、具身感、氛围感或认知负荷问题，转成带指标和回滚门的一周 ED 实验。
 
 ## 项目结构
@@ -243,7 +257,7 @@ game-experience-density-optimizer/
 
 | 层级 | 路径 | 作用 |
 | --- | --- | --- |
-| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | 可复制到 agent 环境里的 skill 包。每个包都有自己的运行入口、方法参考、模板、示例和 eval。 |
+| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | 可复制到 agent 环境里的 skill 包。每个包都有自己的运行入口、方法参考、模板、示例和 eval。 |
 | Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | 说明项目是什么、怎么试用、showcase 边界、release 草稿和公开文档。 |
 | Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | 适配器说明、共享 schema、router contract、GitHub workflow/templates、行为 eval 和仓库校验工具。 |
 | Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | 贡献规则、授权信息，以及 README/showcase 使用的公开视觉素材。 |
@@ -277,6 +291,7 @@ python scripts/validate_repo.py
 python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 python scripts/validate_skill.py game-experience-density-optimizer
+python scripts/validate_skill.py game-design-proposal-writer
 ```
 
 ## Star History

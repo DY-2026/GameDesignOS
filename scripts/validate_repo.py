@@ -15,6 +15,7 @@ REQUIRED_SKILLS = [
     "game-design-book-translator",
     "game-design-source-curator",
     "game-experience-density-optimizer",
+    "game-design-proposal-writer",
 ]
 
 REQUIRED_PATHS = [

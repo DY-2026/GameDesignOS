@@ -6,7 +6,7 @@ Canonical checklist: [github-about-checklist.md](./github-about-checklist.md)
 
 ## Description
 
-Portable agent skills for game design: evidence diagnosis, concept contracts, ED experiments, and eval-backed AI workflow evolution.
+Verifiable agent skills for game design: evidence diagnosis, concept contracts, proposal writing, ED experiments, and workflow governance.
 
 ## Website
 

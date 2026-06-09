@@ -1,0 +1,240 @@
+[
+  {
+    "id": "commercial_proposal_from_concept",
+    "prompt": "Use $game-design-proposal-writer. 把这个机械植物防守创意写成商业游戏策划案，给老板和制作人看。平台和商业模式还没定。",
+    "required_sections": [
+      "Case Visibility",
+      "Proposal Intake",
+      "Source Artifact Inventory",
+      "Executive Summary",
+      "Product Positioning",
+      "Target Player and Desire",
+      "Player Promise",
+      "Core Loop and Key Systems",
+      "Platform and Business Fit",
+      "Scope Gate",
+      "Production Feasibility",
+      "Milestone and Gate Plan",
+      "Metrics and Validation Plan",
+      "Risk Register",
+      "Decision Request",
+      "Evidence and Assumption Ledger"
+    ],
+    "must_include": [
+      "commercial_product_proposal",
+      "assumption",
+      "unknown",
+      "scope gate",
+      "Decision Request",
+      "通过标准",
+      "失败标准"
+    ],
+    "must_not_include": [
+      "确定平台窗口",
+      "一定能提高留存",
+      "完整 LiveOps 计划",
+      "未标注 assumption 的商业结论"
+    ]
+  },
+  {
+    "id": "indie_dossier_steam_demo",
+    "prompt": "Use $game-design-proposal-writer. 把梦境城市投递信件、用卡牌改变街区规则的方案写成独游设计案，目标是 Steam Demo 和发行沟通。",
+    "required_sections": [
+      "Creative Thesis",
+      "Store-Page Promise",
+      "Target Player and Niche",
+      "Player Verbs and Core Loop",
+      "Design Pillars",
+      "Content Minimalism Strategy",
+      "Art and Audio Direction Boundary",
+      "Vertical Slice Plan",
+      "Release and Community Validation",
+      "Risk Register",
+      "Next Investment Decision",
+      "Evidence and Assumption Ledger"
+    ],
+    "must_include": [
+      "indie_design_dossier",
+      "Steam",
+      "Demo",
+      "content minimalism",
+      "vertical slice",
+      "needs_research",
+      "制作边界"
+    ],
+    "must_not_include": [
+      "手游广告变现",
+      "大型开放世界",
+      "大量剧情分支",
+      "确定愿望单成绩"
+    ]
+  },
+  {
+    "id": "one_page_decision_memo_sparse_input",
+    "prompt": "Use $game-design-proposal-writer. 老板下午要看，先把这个项目压成一页判断：值不值得花两周做 first playable。",
+    "required_sections": [
+      "Decision Memo",
+      "Why This, Why Now",
+      "Core Promise",
+      "Biggest Assumptions",
+      "Minimum Validation",
+      "Scope and Cost Boundary",
+      "Recommendation",
+      "Decision Needed"
+    ],
+    "must_include": [
+      "one_page_decision_memo",
+      "first playable",
+      "两周",
+      "最大假设",
+      "最小验证",
+      "决策"
+    ],
+    "must_not_include": [
+      "完整 GDD",
+      "大段世界观",
+      "没有结论"
+    ]
+  },
+  {
+    "id": "publisher_pitch_no_fake_market_claims",
+    "prompt": "Use $game-design-proposal-writer. 给发行看的 pitch outline，项目还没有商店页和数据，但希望看起来专业。",
+    "required_sections": [
+      "Pitch Goal",
+      "One-Line Pitch",
+      "Market / Reference Boundary",
+      "Player Promise",
+      "Proof of Play",
+      "Publisher / Platform Fit",
+      "Demo or Vertical Slice Plan",
+      "Production Credibility",
+      "Ask, Budget, and Timeline",
+      "Risk and Validation",
+      "Materials Checklist",
+      "Recheck Before Submission"
+    ],
+    "must_include": [
+      "publisher_pitch_outline",
+      "Proof of Play",
+      "playable build",
+      "gameplay video",
+      "budget",
+      "publisher fit",
+      "missing",
+      "needs_research",
+      "Materials Checklist"
+    ],
+    "must_not_include": [
+      "市场验证充分",
+      "愿望单一定增长",
+      "发行一定感兴趣",
+      "只靠概念图"
+    ]
+  },
+  {
+    "id": "vertical_slice_doc_cut_full_release_scope",
+    "prompt": "Use $game-design-proposal-writer. 我们要做 vertical slice 文档，但想把正式版的养成、剧情、社交、商业化都写进去。",
+    "required_sections": [
+      "Slice Goal",
+      "Experience Path",
+      "Must-Prove Assumptions",
+      "Build Scope",
+      "Feature Priority",
+      "Asset and Content Scope",
+      "Milestones",
+      "Playtest Protocol",
+      "Go/No-Go Criteria",
+      "Handoff Checklist"
+    ],
+    "must_include": [
+      "vertical_slice_design_doc",
+      "excluded",
+      "cut",
+      "Go/No-Go",
+      "must-prove",
+      "scope"
+    ],
+    "must_not_include": [
+      "正式版完整功能",
+      "全部都先做",
+      "没有失败标准"
+    ]
+  },
+  {
+    "id": "one_line_idea_auto_gca_then_proposal",
+    "prompt": "Use $game-design-proposal-writer. 我只有一句话创意：在废弃商场里用声音引导影子顾客完成交易。先自动走 concept architect，再写一版独游设计案。",
+    "required_sections": [
+      "Source Artifact Inventory",
+      "Creative Thesis",
+      "Player Verbs and Core Loop",
+      "Scope Gate",
+      "Validation Plan",
+      "Evidence and Assumption Ledger"
+    ],
+    "must_include": [
+      "game-concept-architect",
+      "generated_this_turn_by_game-concept-architect",
+      "player-promise-contract",
+      "validation plan",
+      "assumption",
+      "indie_design_dossier"
+    ],
+    "must_not_include": [
+      "用户已提供完整 concept brief",
+      "确定市场机会"
+    ]
+  },
+  {
+    "id": "xmind_system_map_to_implementable_proposal",
+    "prompt": "Use $game-design-proposal-writer. 把这个 xmind 玩法/系统脑图做成可落地商业游戏策划案，重点补 scope、里程碑、风险和验证标准。",
+    "required_sections": [
+      "Mindmap Structure Inventory",
+      "Implementation Translation",
+      "Scope Conversion",
+      "Milestone and Gate Plan",
+      "Risk Register",
+      "Evidence and Assumption Ledger"
+    ],
+    "must_include": [
+      "xmind",
+      "脑图",
+      "scope",
+      "MVP",
+      "Vertical Slice",
+      "owner",
+      "验证标准",
+      "access_notes"
+    ],
+    "must_not_include": [
+      "原样照抄节点",
+      "全部都做"
+    ]
+  },
+  {
+    "id": "existing_gdd_review_and_rewrite",
+    "prompt": "Use $game-design-proposal-writer. 审核这份已有 GDD，指出不能立项评审的问题，并给一版改写方案。",
+    "required_sections": [
+      "Review Target",
+      "Reader and Decision Fit",
+      "Structure Diagnosis",
+      "Evidence and Assumption Problems",
+      "Scope and Production Risks",
+      "Revision Plan",
+      "Suggested Rewrite",
+      "Change Log",
+      "Remaining Unknowns"
+    ],
+    "must_include": [
+      "proposal_review_and_rewrite",
+      "review",
+      "rewrite",
+      "scope",
+      "Decision Request",
+      "unknown"
+    ],
+    "must_not_include": [
+      "只润色语言",
+      "原案已经足够正式"
+    ]
+  }
+]

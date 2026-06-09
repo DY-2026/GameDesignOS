@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v5.png" alt="ParanoiaSkills - Evidence, contracts, evals, and rollback for AI-assisted game design" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="ParanoiaSkills v0.6.0 - A verifiable agent-skill operating system for game design production" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
 
 <p align="center">
-  A public base library of installable, verifiable, and portable agent skills for game-design production and AI workflow governance.
-  Turn media evidence into diagnosis, concept seeds into validation contracts, experience-density problems into weekly experiments, and workflow changes into WOOP/VOI/OODA/eval-backed evolution.
+  A verifiable agent-skill operating system for game-design production and AI workflow governance.
+  It turns evidence into diagnosis, concepts into validation contracts, production notes into reviewable proposals, ED problems into weekly experiments, and workflow changes into eval-backed evolution.
 </p>
 
 <p align="center">
@@ -23,8 +23,8 @@
 </p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/Skills-6-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.5.0-31e1d6">
+  <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.6.0-31e1d6">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -36,13 +36,14 @@
 
 ## What This Is
 
-`ParanoiaSkills` is a public base library for AI-assisted game design work. It turns game experience analysis, concept architecture, experience-density experiments, workflow evolution, professional translation, and source curation into reusable agent instructions, references, schemas, templates, examples, and evals.
+`ParanoiaSkills` is a public base library for AI-assisted game design work. It turns game experience analysis, concept architecture, proposal writing, experience-density experiments, workflow evolution, professional translation, and source curation into reusable agent instructions, references, schemas, templates, examples, and evals.
 
 It is not a prompt dump. It is closer to a compact operating system for serious game design work, with contracts that let skills hand work to each other instead of producing isolated prose:
 
 ```text
 media evidence -> evidence index -> issue cards -> ED handoff -> weekly experiments
 one-line idea -> player-promise contract -> validation plan -> later media diagnosis
+concept/evidence/production notes -> decision-ready proposal -> pitch or milestone gate
 workflow change -> WOOP Task Card -> VOI/OODA probe -> eval -> Human Gate -> rollback
 books and sources -> structured knowledge assets -> better references for future work
 ```
@@ -56,7 +57,7 @@ books and sources -> structured knowledge assets -> better references for future
 - **Agent portable:** Codex, Claude Code, OpenCode, or any Markdown-skill-capable agent can adapt the packages.
 - **Public/private safe:** public examples stay synthetic, public, cleared, or marked `needs_review`; real projects stay in your own environment.
 
-## Try It in 4 Prompts
+## Try It in 5 Prompts
 
 ```text
 Use $game-experience-analyzer to diagnose this PV or gameplay recording into sample boundary, timestamped evidence, Hook/Loop/Link/Surprise diagnosis, issue cards, and validation recommendations.
@@ -64,6 +65,10 @@ Use $game-experience-analyzer to diagnose this PV or gameplay recording into sam
 
 ```text
 Use $game-concept-architect to turn this one-line game idea into concept seed extraction, design nucleus options, player promise contract, core loop, scope gate, and prototype validation plan.
+```
+
+```text
+Use $game-design-proposal-writer to turn this concept brief, validation plan, evidence notes, and production constraints into a decision-ready commercial proposal, indie dossier, publisher pitch, or vertical-slice document.
 ```
 
 ```text
@@ -100,6 +105,7 @@ The simplest path is three small moves: pick a skill, give the agent your materi
 | --- | --- | --- |
 | Screenshot, recording, PV/trailer, or video link | `$game-experience-analyzer` | A game experience report with timestamps, evidence, issue priorities, game dissection, mechanic transfer boundaries, and validation plans |
 | One-line game idea | `$game-concept-architect` | Concept seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan |
+| Concept, evidence, validation notes, or production constraints | `$game-design-proposal-writer` | Decision-ready commercial proposal, indie design dossier, publisher pitch, one-page memo, or vertical-slice document |
 | Prompt, workflow, schema, or agent rule | `$paranoia-ai-system-evolver` | A WOOP/VOI/OODA/eval/Human Gate/rollback-backed evolution proposal |
 | English game design chapter or essay | `$game-design-book-translator` | Professional Chinese design translation with reviewable terminology |
 | Articles, videos, creators, or websites | `$game-design-source-curator` | Maintainable game design knowledge-base entries |
@@ -134,6 +140,10 @@ Use $game-concept-architect to turn this one-line game idea into a concept seed,
 ```
 
 ```text
+Use $game-design-proposal-writer to assemble this research, concept brief, evidence index, validation plan, and team constraints into a publisher pitch outline with proof of play, scope gate, budget assumptions, risks, and decision request.
+```
+
+```text
 Use $game-experience-density-optimizer to turn this first-session experience density problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
 ```
 
@@ -148,6 +158,7 @@ game-design-book-translator/
 game-design-source-curator/
 game-concept-architect/
 game-experience-density-optimizer/
+game-design-proposal-writer/
 ```
 
 After installation, check that the `SKILL.md` frontmatter `name` matches the folder name, and that relative links inside `references/`, `templates/`, and `examples/` still resolve.
@@ -201,6 +212,7 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 
 - **Design Production Layer**
   - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.
+  - [`game-design-proposal-writer/`](./game-design-proposal-writer/): research/concept/evidence/production notes -> decision-ready proposal or pitch.
   - [`game-experience-analyzer/`](./game-experience-analyzer/): media/sample -> evidence-linked diagnosis.
   - [`game-experience-density-optimizer/`](./game-experience-density-optimizer/): retention/pacing/feedback issue -> weekly ED experiment.
 - **Workflow Governance Layer**
@@ -223,6 +235,7 @@ Users may still use these skills with real projects, private projects, client wo
 | **Game Design Source Curator** | Converts scattered game design sources into a durable local knowledge base. | Source screening, scoring, HTML archives, registries, update history, design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player verbs, action-goal alignment, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
 | **Game Experience Density Optimizer** | Turns experience density, retention, pacing, feedback, embodiment, atmosphere, and cognitive-load problems into weekly ED experiments. | First-session tuning, prototype feel, live-ops micro tests, A/B variants, telemetry dictionaries, dashboard specs, rollback gates. | [`game-experience-density-optimizer/`](./game-experience-density-optimizer/) |
+| **Game Design Proposal Writer** | Turns research, concept contracts, evidence notes, validation plans, production constraints, and business goals into decision-ready game proposals. | Commercial product proposals, indie design dossiers, publisher/investor pitches, one-page decision memos, demo and vertical-slice planning. | [`game-design-proposal-writer/`](./game-design-proposal-writer/) |
 
 ## Use Cases
 
@@ -235,6 +248,7 @@ Users may still use these skills with real projects, private projects, client wo
 - **Workflow evolution:** promote useful agent behavior into candidate rules with evals, Human Gate, and rollback.
 - **Cross-skill handoff:** move from concept promise to media diagnosis to ED experiment through shared contracts instead of rewriting context by hand.
 - **Concept feasibility:** turn a one-line idea into concept seed extraction, player verbs, action-goal alignment, player promises, core loop design, scope gate, production feasibility, and prototype validation.
+- **Proposal assembly:** turn validated concepts, source notes, evidence, risks, and production constraints into reviewable commercial proposals, indie dossiers, pitch outlines, or vertical-slice documents.
 - **Experience density experiments:** turn first-session, pacing, feedback, embodiment, atmosphere, or cognitive-load issues into weekly ED experiments with metrics and rollback gates.
 
 ## Repository Layout
@@ -243,7 +257,7 @@ Read the repository as a set of installable skill packages plus supporting publi
 
 | Layer | Paths | Purpose |
 | --- | --- | --- |
-| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | Copyable agent skills. Each package carries its own runtime instructions, references, templates, examples, and evals. |
+| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | Copyable agent skills. Each package carries its own runtime instructions, references, templates, examples, and evals. |
 | Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | Explains what the project is, how to try it, showcase boundaries, release drafts, and public-facing docs. |
 | Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | Adapter notes, shared schemas, router contracts, GitHub workflow/templates, behavior evals, and repository validation tools. |
 | Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | Contribution rules, license terms, and public README/showcase visuals. |
@@ -277,6 +291,7 @@ python scripts/validate_repo.py
 python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 python scripts/validate_skill.py game-experience-density-optimizer
+python scripts/validate_skill.py game-design-proposal-writer
 ```
 
 ## Star History

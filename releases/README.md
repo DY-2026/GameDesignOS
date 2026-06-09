@@ -60,6 +60,7 @@
    - `python scripts/validate_skill.py game-concept-architect`
    - `python scripts/validate_skill.py game-experience-analyzer`
    - `python scripts/validate_skill.py game-experience-density-optimizer`
+   - `python scripts/validate_skill.py game-design-proposal-writer`
 3. 提交 release commit
    - `git commit -m "chore(release): prepare vX.Y.Z"`
 4. 创建 Git tag（示例）
@@ -77,6 +78,7 @@
 - `v0.3.0`（已存在）
 - `v0.4.0`（新增 `game-experience-density-optimizer` 后，建议打在 release commit）
 - `v0.5.0`（contract layer、WOOP workflow governance 与 README 首屏刷新后，建议打在 release commit）
+- `v0.6.0`（新增 `game-design-proposal-writer`、ED experiment compiler、七 skill GitHub 首屏后，建议打在 release commit）
 
 ## 非目标约束
 

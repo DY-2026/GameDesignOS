@@ -6,6 +6,26 @@ All notable changes to ParanoiaSkills will be recorded here.
 
 No unreleased public changes yet.
 
+## [v0.6.0] - 2026-06-09
+
+### Added
+
+- Added `game-design-proposal-writer` as the seventh public skill package for turning research, concept contracts, evidence notes, validation plans, production constraints, and business goals into reviewable proposals, pitch outlines, decision memos, and vertical-slice documents.
+- Added proposal-writing references, templates, evals, negative cases, synthetic outputs, and public synthetic examples.
+- Added `game-experience-density-optimizer` evidence-gate and scorecard surfaces for weekly ED experiment planning, schema output, hybrid-conflict review, instrumentation, and decision rules.
+- Added a new GitHub landing banner asset for the seven-skill architecture: `assets/paranoia-skills-overview-banner-v6.png`.
+
+### Changed
+
+- Updated the README trio, showcase index, router contracts, and repository validation for the seven-skill architecture.
+- Repositioned the public GitHub intro around a verifiable agent-skill operating system for game design: evidence diagnosis, concept contracts, proposal writing, ED experiments, and workflow governance.
+- Upgraded `game-experience-density-optimizer` from a methods-heavy skill into an evidence-gated experiment compiler with explicit modes, templates, schemas, examples, and eval coverage.
+
+### Safety
+
+- Kept public examples synthetic or explicitly bounded by the repository contribution policy.
+- Generated the new banner from a no-text background and overlaid exact project/version text locally to avoid model-generated typo artifacts.
+
 ## [v0.5.0] - 2026-06-06
 
 ### Changed
@@ -65,7 +85,8 @@ No unreleased public changes yet.
 - Released the public base version of `game-experience-analyzer`.
 - Added initial release notes, installation guidance, and validation examples.
 
-[Unreleased]: https://github.com/DY-2026/ParanoiaSkills/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/DY-2026/ParanoiaSkills/compare/v0.6.0...HEAD
+[v0.6.0]: ./releases/v0.6.0.md
 [v0.5.0]: ./releases/v0.5.0.md
 [v0.4.0]: ./releases/v0.4.0.md
 [v0.3.0]: ./releases/v0.3.0.md

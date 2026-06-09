@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Design Proposal Writer"
+  short_description: "把调研、创意和验证材料整理成商业游戏策划案或独游设计案"
+  default_prompt: "使用 $game-design-proposal-writer，把已有调研、concept brief、player-promise-contract、validation plan、体验诊断、xmind/脑图/系统大纲、已有策划案或生产约束，整理成 commercial_product_proposal、indie_design_dossier、one_page_decision_memo、publisher_pitch_outline、vertical_slice_design_doc 或 proposal_review_and_rewrite。若只有一句话创意但用户要策划案，先走 game-concept-architect 再成案。必须标注证据边界、assumptions、scope gate、风险、里程碑和下一步决策。"

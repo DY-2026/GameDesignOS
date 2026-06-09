@@ -1,4 +1,10 @@
 criteria:
+  mode_router:
+    description: Output selects the smallest suitable mode before expanding content; one-line requests do not default to a full delivery report.
+    required: true
+  evidence_gate:
+    description: Output declares evidence_level, evidence_status, allowed/forbidden claims, confidence, missing evidence, and confounder risks before diagnosis.
+    required: true
   boundary_first:
     description: Output states case boundary, evidence status, and unknowns before diagnosis.
     required: true
@@ -47,8 +53,17 @@ criteria:
   experiment_design:
     description: Variants are concrete, rollbackable, and keep one primary lever per variant.
     required: true
+  production_handoff:
+    description: Experiment variants include owner, config or implementation surface, QA checks, and rollback method at assignable granularity.
+    required: true
   instrumentation:
     description: Includes events and fields for decisions, feedback, cognitive load, checkpoints, and session end.
+    required: true
+  review_decision_order:
+    description: Experiment result review checks data quality and negative gates before P1/P2 interpretation and decision.
+    required: true
+  schema_json_contract:
+    description: Structured output includes output_mode, evidence_gate, metric_horizon, theory_status, variant_matrix, metric_plan, and decision_rules.
     required: true
   safety:
     description: Rejects dark patterns, misleading rewards, coercive red dots, and post-hoc success criteria.

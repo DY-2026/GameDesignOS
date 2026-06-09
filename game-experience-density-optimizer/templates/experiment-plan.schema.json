@@ -4,22 +4,114 @@
   "title": "Game Experience Density Experiment Plan",
   "type": "object",
   "required": [
+    "output_mode",
     "case_boundary",
+    "evidence_gate",
     "metric_horizon",
     "theory_status",
     "diagnosis_summary",
     "optimal_stimulation_fit",
-    "free_energy_window",
-    "markov_blanket_coupling",
-    "growth_surprise_ladder",
-    "motivation_flow_gate",
     "variant_matrix",
     "metric_plan",
     "decision_rules"
   ],
   "properties": {
+    "output_mode": {
+      "enum": [
+        "quick_ed_triage",
+        "weekly_ab_plan",
+        "instrumentation_plan",
+        "review_and_decide",
+        "full_client_delivery",
+        "schema_json"
+      ]
+    },
     "case_boundary": {
-      "type": "object"
+      "type": "object",
+      "required": ["case_visibility", "game_metric_model", "target_user_segment"],
+      "properties": {
+        "case_visibility": {
+          "enum": ["private_user_work", "public_repo_example", "client_confidential", "synthetic_case", "unknown"]
+        },
+        "data_sensitivity": {
+          "enum": ["none", "telemetry_summary", "raw_user_data", "revenue_sensitive", "unknown"]
+        },
+        "output_destination": {
+          "enum": ["private_notes", "client_delivery", "repo_example", "public_post", "unknown"]
+        },
+        "game_metric_model": {
+          "enum": ["premium_single_player", "mobile_liveops", "hybrid", "unknown"]
+        },
+        "target_user_segment": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "evidence_gate": {
+      "type": "object",
+      "required": ["evidence_level", "evidence_status", "confidence", "allowed_claims", "forbidden_claims"],
+      "properties": {
+        "evidence_level": {
+          "enum": [
+            "L0_text_only",
+            "L1_static_assets",
+            "L2_recording",
+            "L3_playtest_notes",
+            "L4_telemetry_snapshot",
+            "L5_ab_result",
+            "unknown"
+          ]
+        },
+        "evidence_status": {
+          "enum": ["assumption_only", "partial_evidence", "directional_evidence", "measured_evidence", "unknown"]
+        },
+        "confidence": {
+          "enum": ["low", "medium", "high", "unknown"]
+        },
+        "available_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowed_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confounder_risks": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "version_mismatch",
+              "channel_mix",
+              "player_segment_mix",
+              "economy_change",
+              "difficulty_change",
+              "novelty_decay",
+              "instrumentation_missing",
+              "post_hoc_success",
+              "dark_pattern_contamination",
+              "unknown"
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
     },
     "metric_horizon": {
       "type": "object",
@@ -43,7 +135,8 @@
         "rationale": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": true
     },
     "theory_status": {
       "const": "design_hypothesis"
@@ -55,10 +148,20 @@
         "primary_issue_item": {
           "enum": ["CLP", "SF", "EB", "AR", "MD/min", "unknown"]
         },
+        "primary_lever": {
+          "enum": ["CLP", "SF", "EB", "AR", "MD/min", "anti_habituation", "unknown"]
+        },
         "diagnosis_order": {
           "type": "string"
+        },
+        "unsupported_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
-      }
+      },
+      "additionalProperties": true
     },
     "optimal_stimulation_fit": {
       "type": "object",
@@ -88,11 +191,55 @@
         "design_direction": {
           "enum": ["add_semi_novelty", "add_familiar_anchor", "reduce_overload", "anti_habituation", "repair_agency", "add_meaning", "preserve_curve", "unknown"]
         }
-      }
+      },
+      "additionalProperties": true
+    },
+    "ed_scorecard": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "object"
+        },
+        "scores": {
+          "type": "object",
+          "properties": {
+            "MD_min": {"$ref": "#/$defs/score_item"},
+            "SF": {"$ref": "#/$defs/score_item"},
+            "EB": {"$ref": "#/$defs/score_item"},
+            "AR": {"$ref": "#/$defs/score_item"},
+            "CLP": {"$ref": "#/$defs/score_item"}
+          },
+          "additionalProperties": true
+        },
+        "normalized_ed_proxy": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": ["relative_only", "not_applicable", "unknown"]
+            },
+            "confidence": {
+              "enum": ["low", "medium", "high", "unknown"]
+            }
+          },
+          "additionalProperties": true
+        },
+        "priority": {
+          "type": "object",
+          "properties": {
+            "primary_lever": {
+              "enum": ["CLP", "SF", "EB", "AR", "MD/min", "anti_habituation", "unknown"]
+            },
+            "next_lever": {
+              "enum": ["CLP", "SF", "EB", "AR", "MD/min", "not_yet", "unknown"]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
     },
     "free_energy_window": {
       "type": "object",
-      "required": ["band", "intervention_direction"],
       "properties": {
         "band": {
           "enum": ["too_low", "optimal", "too_high", "unknown"]
@@ -106,11 +253,11 @@
         "intervention_direction": {
           "enum": ["reduce_noise", "improve_quality", "tune_frequency", "preserve_curve", "unknown"]
         }
-      }
+      },
+      "additionalProperties": true
     },
     "markov_blanket_coupling": {
       "type": "object",
-      "required": ["coupling_break", "repair_action"],
       "properties": {
         "sensory_state_quality": {
           "type": "string"
@@ -124,14 +271,14 @@
         "repair_action": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": true
     },
     "growth_surprise_ladder": {
       "type": "object",
-      "required": ["current_model_level", "next_learnable_surprise"],
       "properties": {
         "current_model_level": {
-          "enum": ["explicit", "system", "strategy", "meta", "unknown"]
+          "enum": ["explicit", "system", "strategy", "meta", "not_applicable", "unknown"]
         },
         "next_learnable_surprise": {
           "type": "string"
@@ -142,11 +289,11 @@
         "risk_if_too_steep": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": true
     },
     "motivation_flow_gate": {
       "type": "object",
-      "required": ["challenge_skill_fit", "autonomy_support", "competence_support", "novelty_support", "optimal_novelty_fit"],
       "properties": {
         "clear_goal_quality": {
           "type": "string"
@@ -181,19 +328,20 @@
         "risk_if_optimized_only_for_density": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": true
     },
     "variant_matrix": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["variant_id", "primary_lever", "concrete_change", "rollback"],
+        "required": ["variant_id", "primary_lever", "concrete_change", "owner", "rollback"],
         "properties": {
           "variant_id": {
             "type": "string"
           },
           "primary_lever": {
-            "type": "string"
+            "enum": ["none", "CLP", "SF", "EB", "AR", "MD/min", "anti_habituation", "system_depth", "unknown"]
           },
           "optimal_stimulation_target": {
             "type": "string"
@@ -201,13 +349,75 @@
           "concrete_change": {
             "type": "string"
           },
+          "config_keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "asset_changes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "engineering_scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "owner": {
+            "type": ["string", "object"]
+          },
+          "qa_checks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confounder_risk": {
+            "type": "string"
+          },
           "rollback": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": true
+      }
+    },
+    "instrumentation_dictionary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["event_name", "trigger", "required_fields", "purpose"],
+        "properties": {
+          "event_name": {
+            "type": "string"
+          },
+          "trigger": {
+            "type": "string"
+          },
+          "required_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "privacy_boundary": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
       }
     },
     "metric_plan": {
+      "type": "object"
+    },
+    "dashboard_spec": {
       "type": "object"
     },
     "anti_habituation_plan": {
@@ -231,10 +441,39 @@
         "risk_if_only_add_rewards": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": true
     },
     "decision_rules": {
-      "type": "object"
+      "type": "object",
+      "required": ["success", "observe", "rollback", "kill"],
+      "additionalProperties": true
+    },
+    "weekly_schedule": {
+      "type": ["array", "object"]
+    },
+    "handoff_checklist": {
+      "type": ["array", "object"]
+    }
+  },
+  "$defs": {
+    "score_item": {
+      "type": "object",
+      "required": ["score", "evidence"],
+      "properties": {
+        "score": {
+          "type": ["number", "string"],
+          "minimum": 0,
+          "maximum": 5
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "risk": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
     }
   },
   "additionalProperties": true

@@ -109,3 +109,53 @@ Bad output:
 ```
 
 Required correction: when the case involves seasons, looters, roguelikes, UGC, old players, repeat loops, or long-term fatigue, output `anti_habituation_plan` with a lever such as `alternative_use`, `attention_investment`, `conscious_reframing`, `context_shift`, or `combinatorial_depth`.
+
+## No Evidence Gate
+
+Bad output:
+
+```text
+玩家说首局空，所以真实原因是事件太少，直接提高首局怪物和奖励频率。
+```
+
+Required correction: first declare `evidence_gate`. With only text, use `L0_text_only` and `evidence_status: assumption_only`; output a hypothesis and minimum validation plan, not a factual cause.
+
+## Static Screenshot Tempo Claim
+
+Bad output:
+
+```text
+从截图可以看出玩家会在第 90 秒退出，所以 B 组调整 90 秒后的节奏。
+```
+
+Required correction: screenshots can support static UI and visual-noise judgments, but cannot prove real pacing, feel, or exit timing. Request recording/playtest/telemetry or downgrade the claim.
+
+## Wrong Output Density
+
+Bad output:
+
+```text
+用户只问“首局太空，快速看一下”，于是输出完整 19 个模块和 4 页报告。
+```
+
+Required correction: use `quick_ed_triage` for one-line quick requests. Output one boundary, one stimulation-window judgment, one primary lever, two minimal changes, three metrics, and one rollback condition.
+
+## Hybrid Single-Win Fallacy
+
+Bad output:
+
+```text
+活动 D7 上升，所以 hybrid 项目整体成功，主线完成率下降可以忽略。
+```
+
+Required correction: `hybrid` must split total-journey P1 and liveops P1. If either critical horizon is harmed, do not declare overall success; review negative gates and choose iterate, rollback, or a split experiment.
+
+## Review Without Negative Gates
+
+Bad output:
+
+```text
+P1 上升了，直接放大，不需要看投诉、失败率、经济或数据质量。
+```
+
+Required correction: `review_and_decide` must check data quality and negative gates before P1/P2 interpretation. A P1 lift contaminated by technical, economy, fairness, fatigue, or dark-pattern risk is not a clean win.

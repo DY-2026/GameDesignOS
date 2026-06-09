@@ -3,6 +3,10 @@
     "id": "text_only_retention_to_ed_plan",
     "prompt": "Use $game-experience-density-optimizer. Our first session feels empty and D1 is low. We only have a short description, no telemetry yet.",
     "must_include": [
+      "output_mode",
+      "evidence_gate",
+      "L0_text_only",
+      "evidence_status: assumption_only",
       "theory_status: design_hypothesis",
       "case_boundary",
       "metric_horizon",
@@ -26,6 +30,41 @@
     "must_not_include": [
       "guaranteed D1 uplift",
       "dark pattern"
+    ]
+  },
+  {
+    "id": "quick_triage_one_sentence_not_full_report",
+    "prompt": "Use $game-experience-density-optimizer. 首局太空，快速看一下。",
+    "must_include": [
+      "output_mode: quick_ed_triage",
+      "evidence_gate",
+      "primary_lever",
+      "two_minimal_changes",
+      "verification_metrics",
+      "rollback_condition"
+    ],
+    "must_not_include": [
+      "full 19-part report",
+      "complete client delivery",
+      "guaranteed retention uplift"
+    ]
+  },
+  {
+    "id": "static_assets_no_tempo_claim",
+    "prompt": "Use $game-experience-density-optimizer. We only have screenshots of the tutorial UI. It looks busy. Build a quick ED diagnosis.",
+    "must_include": [
+      "evidence_gate",
+      "L1_static_assets",
+      "partial_evidence",
+      "cannot judge real pacing",
+      "cannot judge feel",
+      "CLP",
+      "unsupported_claims"
+    ],
+    "must_not_include": [
+      "recording proves",
+      "players quit at",
+      "guaranteed D1 uplift"
     ]
   },
   {
@@ -139,6 +178,41 @@
       "only add numeric rewards",
       "just increase loot amount",
       "ignore daily fatigue"
+    ]
+  },
+  {
+    "id": "hybrid_conflict_no_single_success",
+    "prompt": "Use $game-experience-density-optimizer. Hybrid game: the event D7 went up, but main story completion and refund comments got worse. Decide what to do.",
+    "must_include": [
+      "output_mode: review_and_decide",
+      "game_metric_model: hybrid",
+      "hybrid_split",
+      "negative gate",
+      "cannot declare success",
+      "rollback",
+      "iterate"
+    ],
+    "must_not_include": [
+      "overall success",
+      "D7 alone wins",
+      "ignore main story"
+    ]
+  },
+  {
+    "id": "schema_json_contract",
+    "prompt": "Use $game-experience-density-optimizer. Return a schema_json ED experiment plan for a text-only premium demo pacing issue.",
+    "must_include": [
+      "\"output_mode\": \"schema_json\"",
+      "\"evidence_gate\"",
+      "\"L0_text_only\"",
+      "\"game_metric_model\": \"premium_single_player\"",
+      "\"theory_status\": \"design_hypothesis\"",
+      "\"variant_matrix\"",
+      "\"decision_rules\""
+    ],
+    "must_not_include": [
+      "D1 uplift as P1",
+      "guaranteed completion uplift"
     ]
   }
 ]

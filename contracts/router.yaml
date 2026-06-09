@@ -32,9 +32,60 @@ default_rules:
         - design_brief_request
     use: game-concept-architect
     reason: "Turn the concept seed into player verbs, design nucleus options, player-promise-contract, scope gate, and validation plan."
+    follow_on:
+      when_user_also_intends:
+        - game_proposal
+        - commercial_product_proposal
+        - indie_design_dossier
+        - gdd_assembly
+        - publisher_pitch
+        - vertical_slice_doc
+      use: game-design-proposal-writer
+      reason: "When the user asks for a proposal from a one-line idea, first create the concept contract, then assemble the decision-ready document."
     primary_outputs:
       - player-promise-contract
       - validation-plan
+  - id: route_proposal_assembly_to_gdpw
+    when:
+      user_intent:
+        - game_proposal
+        - commercial_product_proposal
+        - indie_design_dossier
+        - gdd_assembly
+        - publisher_pitch
+        - investor_pitch
+        - vertical_slice_doc
+        - one_page_decision_memo
+        - formal_project_review_doc
+        - mindmap_to_game_proposal
+        - xmind_to_game_proposal
+        - gameplay_system_mindmap_to_proposal
+        - existing_proposal_review
+        - proposal_rewrite
+        - gdd_review
+    use: game-design-proposal-writer
+    reason: "Assemble existing research, concept contracts, evidence, validation plans, production constraints, and business goals into a decision-ready proposal, pitch, dossier, memo, or vertical-slice document."
+    preferred_inputs:
+      - player-promise-contract
+      - validation-plan
+      - evidence-index
+      - issue-card
+      - ed-handoff
+      - mindmap/xmind/opml/markdown outline
+      - existing proposal or GDD
+      - market/source notes
+      - production profile
+    guardrails:
+      - "Do not override game-concept-architect when the user only has a one-line idea and wants concept viability."
+      - "Do not override game-experience-analyzer when the task is media/sample diagnosis."
+      - "Do not override game-experience-density-optimizer when the task is a retention, pacing, feedback, or instrumentation experiment."
+    primary_outputs:
+      - commercial_product_proposal
+      - indie_design_dossier
+      - one_page_decision_memo
+      - publisher_pitch_outline
+      - vertical_slice_design_doc
+      - proposal_review_and_rewrite
   - id: route_density_experiment_to_edo
     when:
       user_intent:
@@ -43,6 +94,11 @@ default_rules:
         - cognitive_load
         - feedback_strength
         - embodiment_feel
+        - atmosphere_pacing
+        - demo_completion_quality
+        - single_player_total_journey
+        - return_session_rehook
+        - old_player_habituation
         - telemetry_dashboard
         - weekly_ab_plan
     use: game-experience-density-optimizer
@@ -51,6 +107,17 @@ default_rules:
       - ed-handoff
       - issue-card
       - telemetry_snapshot
+    guardrails:
+      - "If the input is a screenshot, recording, PV, store page, or other media sample without an evidence layer, route to game-experience-analyzer first."
+      - "If the input is only a one-line concept without a core loop or player promise, route to game-concept-architect first."
+      - "If the user asks for a proposal, pitch, GDD assembly, or decision memo from existing ED results, route to game-design-proposal-writer after the ED experiment artifact exists."
+      - "Do not route ED tasks to external/global design skills; this contract only coordinates skills inside this repository."
+    primary_outputs:
+      - weekly_ed_experiment_plan
+      - instrumentation_dictionary
+      - dashboard_spec
+      - decision_rules
+      - experiment-plan.schema.json
   - id: route_system_change_to_evolver
     when:
       user_intent:
@@ -90,3 +157,39 @@ fallback_rule:
     - "Select the smallest skill that can produce the next stable artifact."
     - "Prefer contracts over broad prose handoff."
     - "State which follow-on skill should consume the artifact."
+
+collaboration_rules:
+  - id: project_internal_only
+    rule: "Route only among skills shipped inside this repository. Do not introduce external/global design-master skills into this collaboration graph."
+  - id: concept_to_evidence_to_experiment
+    flow:
+      - skill: game-concept-architect
+        stable_outputs:
+          - player-promise-contract
+          - validation-plan
+      - skill: game-experience-analyzer
+        stable_inputs:
+          - player-promise-contract
+          - media sample
+        stable_outputs:
+          - evidence-index
+          - issue-card
+          - ed-handoff
+      - skill: game-experience-density-optimizer
+        stable_inputs:
+          - ed-handoff
+          - issue-card
+          - telemetry_snapshot
+        stable_outputs:
+          - weekly_ed_experiment_plan
+          - instrumentation_dictionary
+          - dashboard_spec
+          - decision_rules
+  - id: proposal_after_artifacts
+    rule: "Use game-design-proposal-writer only after concept, evidence, ED, source, or production artifacts already exist; it assembles decisions rather than replacing upstream diagnosis or experiment design."
+  - id: evolver_only_for_system_mutation
+    rule: "Use paranoia-ai-system-evolver only when changing skills, schemas, evals, router contracts, workflow policy, or promotion/rollback behavior."
+  - id: source_curator_as_knowledge_input
+    rule: "Use game-design-source-curator to create traceable knowledge assets; it may enrich references but should not replace concept architecture, evidence diagnosis, ED experiments, or proposal assembly."
+  - id: translator_as_knowledge_production
+    rule: "Use game-design-book-translator for translation and polishing of design sources; translated knowledge becomes reference input, not a runtime routing target for ED experiments."

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Game Design Proposal",
+  "type": "object",
+  "required": [
+    "document_mode",
+    "case_visibility",
+    "proposal_intake",
+    "source_artifact_inventory",
+    "player_promise",
+    "scope_gate",
+    "validation_plan",
+    "risk_register",
+    "decision_request",
+    "evidence_and_assumption_ledger"
+  ],
+  "properties": {
+    "document_mode": {
+      "type": "string",
+      "enum": [
+        "commercial_product_proposal",
+        "indie_design_dossier",
+        "one_page_decision_memo",
+        "publisher_pitch_outline",
+        "vertical_slice_design_doc"
+      ]
+    },
+    "case_visibility": {
+      "type": "object",
+      "required": ["case_visibility", "output_destination", "redaction_required"],
+      "properties": {
+        "case_visibility": {"type": "string"},
+        "output_destination": {"type": "string"},
+        "redaction_required": {"type": "string"}
+      }
+    },
+    "proposal_intake": {"type": "object"},
+    "source_artifact_inventory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["artifact", "status"],
+        "properties": {
+          "artifact": {"type": "string"},
+          "status": {"type": "string", "enum": ["available", "missing", "partial", "unknown"]},
+          "usable_in_this_doc": {"type": "boolean"},
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "player_promise": {
+      "type": "object",
+      "properties": {
+        "external_promise": {"type": "string"},
+        "first_10_minutes_promise": {"type": "string"},
+        "long_term_promise": {"type": "string"}
+      }
+    },
+    "scope_gate": {"type": "object"},
+    "validation_plan": {"type": "array"},
+    "risk_register": {"type": "array"},
+    "decision_request": {"type": "object"},
+    "evidence_and_assumption_ledger": {"type": "array"}
+  }
+}

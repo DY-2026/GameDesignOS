@@ -1,4 +1,4 @@
 interface:
   display_name: "Game Experience Density Optimizer"
-  short_description: "把最佳刺激窗口、体验浓度、指标周期和手感边界问题转成一周 ED 实验"
-  default_prompt: "使用 $game-experience-density-optimizer，先区分 game_metric_model 和 metric_horizon：单机/买断制看总游戏时长、完成率和章节推进，手游/liveops 看 D1/D7、每日活跃和持续天数；再输出 optimal_stimulation_fit，区分低刺激无聊、过载无聊、习惯化、低能动性、低意义感或 unknown；然后把当前游戏的体验浓度问题拆成 ED 诊断、CLP/SF/EB/AR/MD-min 五个公式项、free_energy_window、markov_blanket_coupling、growth_surprise_ladder、motivation_flow_gate（含 autonomy/competence/relatedness/最佳新颖性）、必要时的 anti_habituation_plan、一周 A/B 变体矩阵、埋点字典、看板字段、预注册判定规则和回滚条件。"
+  short_description: "把体验浓度问题编译成可上线、可埋点、可复盘、可回滚的一周 ED 实验"
+  default_prompt: "使用 $game-experience-density-optimizer。先选择 output_mode：一句话问题用 quick_ed_triage；本周怎么改、A/B、留存实验用 weekly_ab_plan；埋点/看板用 instrumentation_plan；实验结果用 review_and_decide；完整交付用 full_client_delivery；结构化消费用 schema_json。所有输出先写 evidence_gate 和 case_boundary，再区分 game_metric_model 与 metric_horizon：单机/买断制看总旅程、总时长、完成率和章节推进，手游/liveops 看 D1/D7、每日会话和持续活跃，hybrid 分开判断。再判断 optimal_stimulation_fit，区分低刺激无聊、过载无聊、习惯化、低能动性、低意义感或 unknown；把问题落到 CLP/SF/EB/AR/MD-min，遵守先判窗口、再降噪、再提质、后调频；每个变体只改一个 primary_lever，并输出埋点、看板、预注册决策、负向门和回滚条件。"
