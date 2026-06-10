@@ -4,7 +4,15 @@ All notable changes to ParanoiaSkills will be recorded here.
 
 ## [Unreleased]
 
-No unreleased public changes yet.
+Re-added repository `.gitignore` after it was removed from tracked files, fixing repository validation required-path checks in CI and preparing the patch release notes.
+
+## [v0.6.1] - 2026-06-10
+
+### Fixed
+
+- Re-added repository `.gitignore` as a required tracked file so CI validation can pass without repository-local exceptions.
+
+- Documented the release housekeeping so the versioning sequence remains accurate after the hotfix.
 
 ## [v0.6.0] - 2026-06-09
 
@@ -85,7 +93,8 @@ No unreleased public changes yet.
 - Released the public base version of `game-experience-analyzer`.
 - Added initial release notes, installation guidance, and validation examples.
 
-[Unreleased]: https://github.com/DY-2026/ParanoiaSkills/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/DY-2026/ParanoiaSkills/compare/v0.6.1...HEAD
+[v0.6.1]: ./releases/v0.6.1.md
 [v0.6.0]: ./releases/v0.6.0.md
 [v0.5.0]: ./releases/v0.5.0.md
 [v0.4.0]: ./releases/v0.4.0.md

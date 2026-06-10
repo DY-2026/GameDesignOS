@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="ParanoiaSkills v0.6.0 - A verifiable agent-skill operating system for game design production" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="ParanoiaSkills v0.6.1 - A verifiable agent-skill operating system for game design production" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
@@ -16,6 +16,7 @@
   <a href="./docs/try-it-in-10-minutes.md">10 分钟试用</a> ·
   <a href="#轻松上手">轻松上手</a> ·
   <a href="#60-秒-demo">60 秒 demo</a> ·
+  <a href="#github-案例">GitHub 案例</a> ·
   <a href="#当前-skill">当前 Skill</a> ·
   <a href="#图文展示">图文展示</a> ·
   <a href="#star-history">Star History</a> ·
@@ -24,7 +25,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.6.0-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.6.1-31e1d6">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -94,6 +95,14 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 ```
 
 当前可查看示例是 [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md)：一个录屏样本会被拆成时间戳证据、功能暴露/解锁/首用账本、前期循环诊断、UI/引导风险和可验证修改建议。该示例在正式作为 public material 展示前已标为 `needs_review`。
+
+## GitHub 案例
+
+如果只是打开 GitHub 页面想快速看懂这次新增的体验浓度 proof path，先看这一个案例即可。`game-experience-analyzer` 已经在自己的 package 和上面的 60 秒 demo 里有示例，不在这里重复加入口。
+
+| 案例 | Skill 路线 | 重点看什么 | 链接 |
+| --- | --- | --- | --- |
+| `《冒险家艾略特的千年奇谭》Demo` | `$game-experience-analyzer -> $game-experience-density-optimizer` | 公开视频关键帧如何变成 ED 证据门、指标周期、截图证据卡、变体矩阵、埋点和回滚规则。 | [打开案例](./docs/showcases/elliot-experience-density-report/README.md) |
 
 ## 轻松上手
 
@@ -259,6 +268,7 @@ game-design-proposal-writer/
 | --- | --- | --- |
 | Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | 可复制到 agent 环境里的 skill 包。每个包都有自己的运行入口、方法参考、模板、示例和 eval。 |
 | Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | 说明项目是什么、怎么试用、showcase 边界、release 草稿和公开文档。 |
+| GitHub 可读案例 | `docs/showcases/elliot-experience-density-report/` | 可直接点击阅读的体验浓度案例页，展示公开视频证据如何转成 ED 实验方案。 |
 | Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | 适配器说明、共享 schema、router contract、GitHub workflow/templates、行为 eval 和仓库校验工具。 |
 | Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | 贡献规则、授权信息，以及 README/showcase 使用的公开视觉素材。 |
 

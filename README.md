@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="ParanoiaSkills v0.6.0 - A verifiable agent-skill operating system for game design production" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="ParanoiaSkills v0.6.1 - A verifiable agent-skill operating system for game design production" width="100%">
 </p>
 
 <h1 align="center">ParanoiaSkills</h1>
@@ -16,6 +16,7 @@
   <a href="./docs/try-it-in-10-minutes.md">Try in 10 Minutes</a> ·
   <a href="#easy-start">Easy Start</a> ·
   <a href="#60-second-demo">60-Second Demo</a> ·
+  <a href="#featured-github-case">Case</a> ·
   <a href="#current-skills">Current Skills</a> ·
   <a href="#showcase">Showcase</a> ·
   <a href="#star-history">Star History</a> ·
@@ -24,7 +25,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.6.0-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.6.1-31e1d6">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -94,6 +95,14 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 ```
 
 The strongest current example is [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md): a gameplay recording sample becomes a timestamped report with visual evidence, feature ledger, early-loop diagnosis, UI/guide risks, and validation-ready fixes. Its source status is marked `needs_review` before public-material promotion.
+
+## Featured GitHub Case
+
+If you are browsing on GitHub, start here to see the new experience-density proof path. The Game Experience Analyzer already has examples in its own package and in the 60-second demo section above.
+
+| Case | Skill Route | What To Look For | Link |
+| --- | --- | --- | --- |
+| `《冒险家艾略特的千年奇谭》Demo` | `$game-experience-analyzer -> $game-experience-density-optimizer` | Public video frames become an ED evidence gate, metric horizon, screenshot evidence cards, variant matrix, instrumentation, and rollback rules. | [Open case](./docs/showcases/elliot-experience-density-report/README.md) |
 
 ## Easy Start
 
@@ -259,6 +268,7 @@ Read the repository as a set of installable skill packages plus supporting publi
 | --- | --- | --- |
 | Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | Copyable agent skills. Each package carries its own runtime instructions, references, templates, examples, and evals. |
 | Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | Explains what the project is, how to try it, showcase boundaries, release drafts, and public-facing docs. |
+| Readable GitHub case | `docs/showcases/elliot-experience-density-report/` | A clickable case page showing how public video evidence becomes an ED experiment plan. |
 | Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | Adapter notes, shared schemas, router contracts, GitHub workflow/templates, behavior evals, and repository validation tools. |
 | Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | Contribution rules, license terms, and public README/showcase visuals. |
 
