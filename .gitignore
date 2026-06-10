@@ -1,0 +1,29 @@
+# Local/private workspaces
+_private_translations/
+
+# Local runtime and tool caches
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Logs and OS/editor noise
+*.log
+.DS_Store
+Thumbs.db
+
+# Local project deliverables, not committed unless explicitly requested
+docs/*foresight-report*.md
+docs/*research-report*.md
+docs/*project-report*.md
+
+# Local/generated task deliverables
+docs/2026-06-03-phantom-blade-zero-state-of-play-pv/
+docs/_local_deliverables/
+
+# Generated/non-process outputs
+reports/
+outputs/
+artifacts/
+analysis_reports/
