@@ -1,8 +1,16 @@
-# Showcase 路由报告
+# Showcase Index
 
-这个目录用来给新用户展示 `ParanoiaSkills` 的最小 proof path：每个 showcase 都必须说明输入材料、使用哪个项目内 skill、稳定输出是什么、不能声称什么，以及下一个 skill 如何消费它。
+这个目录用来给 GitHub 读者展示 `ParanoiaSkills` 的最小 proof path：每个 showcase 都必须说明输入材料、使用哪个项目内 skill、稳定输出是什么、不能声称什么，以及下一个 skill 如何消费它。
 
 公开 showcase 只能使用 synthetic、public、explicitly cleared，或标记为 `needs_review` 的材料。真实项目、客户项目、未公开路线图、后台数据、收入数据和私有素材不要放进本公开仓库。
+
+## 先看这个 GitHub 案例
+
+| 案例 | 对应 showcase 位 | Skill 路线 | 读者能快速看懂什么 |
+| --- | --- | --- | --- |
+| [《冒险家艾略特的千年奇谭》Demo 体验浓度 GitHub 案例](./elliot-experience-density-report/README.md) | `Experience Density Experiment Compiler` | `$game-experience-analyzer -> $game-experience-density-optimizer` | 公开视频关键帧如何进入 evidence gate、metric horizon、ED 诊断、变体矩阵、埋点和回滚规则。 |
+
+`game-experience-analyzer` 已经在自己的 package examples 和根 README 的 60 秒 demo 里有案例，这里不重复新增 GEA 入口。
 
 ## 项目内协作链
 
@@ -44,7 +52,7 @@ game-concept-architect
 | 使用 skill | `$game-experience-analyzer` |
 | 输出 artifact | 带样本边界、证据索引、诊断路径、issue cards 和验证建议的体验报告。 |
 | 证明什么 | 媒体样本可以变成可复查诊断，但不假装知道留存、收入或私有遥测。 |
-| 示例 | [Survival 33 Days gameplay experience report](../../game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md) |
+| 录屏示例 | [Survival 33 Days gameplay experience report](../../game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md) |
 
 ### 通过门
 
@@ -101,6 +109,7 @@ game-concept-architect
 | 第一步 | 输出 `output_mode`、`case_boundary`、`evidence_gate`。 |
 | 输出 artifact | Weekly ED experiment：`CLP/SF/EB/AR/MD-min` 诊断、每个变体一个 primary lever、埋点字典、看板字段、预注册决策规则、rollback gates。 |
 | 证明什么 | 模糊体验浓度问题可以变成一周内可上线、可埋点、可复盘、可回滚的实验，而不是未验证的留存承诺。 |
+| GitHub 案例 | [《冒险家艾略特的千年奇谭》Demo 体验浓度案例](./elliot-experience-density-report/README.md) |
 | 首局示例 | [Synthetic first-session ED plan](../../game-experience-density-optimizer/examples/synthetic-survivors-first-session-ed-plan.md) |
 | 买断制 Demo 示例 | [Synthetic premium Demo ED plan](../../game-experience-density-optimizer/examples/synthetic-premium-demo-completion-ed-plan.md) |
 | Hybrid 复盘示例 | [Synthetic hybrid conflict review](../../game-experience-density-optimizer/examples/synthetic-hybrid-conflict-review.md) |
