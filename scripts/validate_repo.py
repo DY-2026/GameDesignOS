@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the public ParanoiaSkills repository."""
+"""Validate the public GameDesignOS repository."""
 
 from __future__ import annotations
 

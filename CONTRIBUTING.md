@@ -1,6 +1,6 @@
 # Contributing
 
-`ParanoiaSkills` is a public skill repository. Contributions should improve reusable public base skills, not publish private project context.
+`GameDesignOS` is a public game-design workflow system packaged as reusable skills. Contributions should improve the public base layer, not publish private project context.
 
 ## Runtime vs Repository Boundary
 

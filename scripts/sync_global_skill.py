@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate and sync a ParanoiaSkills package into the OpenCode global skill dir."""
+"""Validate and sync a GameDesignOS package into the OpenCode global skill dir."""
 
 from __future__ import annotations
 

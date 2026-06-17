@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate one ParanoiaSkills skill folder."""
+"""Validate one GameDesignOS skill folder."""
 
 from __future__ import annotations
 
@@ -269,7 +269,7 @@ def validate_skill(skill_dir: Path) -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Validate one ParanoiaSkills skill folder.")
+    parser = argparse.ArgumentParser(description="Validate one GameDesignOS skill folder.")
     parser.add_argument("skill_folder", help="Skill folder path, for example game-experience-analyzer")
     args = parser.parse_args(argv)
 

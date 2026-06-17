@@ -1,6 +1,6 @@
 # Try It in 10 Minutes
 
-This guide helps a new user understand and test `ParanoiaSkills` without adding private material to the public repository.
+This guide helps a new user understand and test `GameDesignOS` without adding private material to the public repository.
 
 ## Who This Project Is For
 

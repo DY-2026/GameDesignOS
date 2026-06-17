@@ -109,7 +109,7 @@ def evaluate(evals_payload: Any, outputs_payload: Any) -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run static ParanoiaSkills behavior eval assertions.")
+    parser = argparse.ArgumentParser(description="Run static GameDesignOS behavior eval assertions.")
     parser.add_argument("--evals", required=True, help="Path to evals JSON.")
     parser.add_argument("--outputs", required=True, help="Path to captured outputs JSON.")
     args = parser.parse_args(argv)

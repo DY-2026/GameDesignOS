@@ -4,7 +4,21 @@ Use GitHub repository settings to set the public metadata manually.
 
 ## Description
 
-Verifiable agent skills for game design: evidence diagnosis, concept contracts, proposal writing, ED experiments, and workflow governance.
+AI-native GameDesignOS for concept validation, experience diagnosis, proposal writing, ED experiments, and agent workflow governance.
+
+## Repository URL
+
+Keep the existing repository URL for compatibility with published articles:
+
+https://github.com/DY-2026/ParanoiaSkills#readme
+
+Do not rename the GitHub repository just to match the display name.
+
+## Display Name
+
+Short project name: `GameDesignOS`
+
+Display signature: `GameDesignOS by Paranoia`
 
 ## Website
 

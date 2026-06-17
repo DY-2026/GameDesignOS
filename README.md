@@ -1,12 +1,17 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="ParanoiaSkills v0.6.1 - A verifiable agent-skill operating system for game design production" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="GameDesignOS v0.6.1 - AI-native game design, concept validation, and prototyping system by Paranoia" width="100%">
 </p>
 
-<h1 align="center">ParanoiaSkills</h1>
+<h1 align="center">GameDesignOS</h1>
 
 <p align="center">
-  A verifiable agent-skill operating system for game-design production and AI workflow governance.
-  It turns evidence into diagnosis, concepts into validation contracts, production notes into reviewable proposals, ED problems into weekly experiments, and workflow changes into eval-backed evolution.
+  <strong>AI-native game design, concept validation, and prototyping system by Paranoia</strong><br>
+  游戏设计操作系统 / 游思考 GameDesignOS
+</p>
+
+<p align="center">
+  GameDesignOS turns expert game-design methods, competitive analysis, experience diagnosis, player-motivation modeling, Steam page optimization, demo validation metrics, and AI workflows into reusable skills, templates, and evidence-backed operating procedures.
+  It helps game ideas become project proposals that can be judged, shown, tested, and iterated.
 </p>
 
 <p align="center">
@@ -33,13 +38,13 @@
 
 > License: skill documents and tooling are released under the MIT License. The Paranoia name, logos, visual identity, and project branding are not licensed as trademarks.
 
-> Think of it as a compact operating system for game designers and AI agents: not a prompt collection, but reusable evidence rules, cross-skill contracts, validation gates, rollback paths, and output templates packaged as skills.
+> GameDesignOS is the public-facing system name. Paranoia is the author identity and brand signature; the current installable modules remain packaged as Markdown skills.
 
 ## What This Is
 
-`ParanoiaSkills` is a public base library for AI-assisted game design work. It turns game experience analysis, concept architecture, proposal writing, experience-density experiments, workflow evolution, professional translation, and source curation into reusable agent instructions, references, schemas, templates, examples, and evals.
+`GameDesignOS` is an AI-native workflow system for game design, concept validation, and prototype planning. It turns game experience analysis, concept architecture, proposal writing, experience-density experiments, workflow evolution, professional translation, source curation, and Steam-facing product judgment into reusable agent instructions, references, schemas, templates, examples, and eval-backed contracts.
 
-It is not a prompt dump. It is closer to a compact operating system for serious game design work, with contracts that let skills hand work to each other instead of producing isolated prose:
+It is not a scattered skill list or a prompt dump. It is closer to a compact operating system for serious game design work, with contracts that let skills hand work to each other instead of producing isolated prose:
 
 ```text
 media evidence -> evidence index -> issue cards -> ED handoff -> weekly experiments
@@ -217,7 +222,7 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 
 ## Skill Architecture
 
-`ParanoiaSkills` is organized as a public base layer plus a contract layer. Private overlays, real project data, client examples, and local workflow rules should live outside this repository.
+`GameDesignOS` is organized as a public base layer plus a contract layer. The public layer is currently packaged as installable skills. Private overlays, real project data, client examples, and local workflow rules should live outside this repository.
 
 - **Design Production Layer**
   - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.

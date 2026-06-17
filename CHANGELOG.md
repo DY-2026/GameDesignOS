@@ -1,10 +1,16 @@
 # Changelog
 
-All notable changes to ParanoiaSkills will be recorded here.
+All notable changes to GameDesignOS will be recorded here.
 
 ## [Unreleased]
 
-Re-added repository `.gitignore` after it was removed from tracked files, fixing repository validation required-path checks in CI and preparing the patch release notes.
+### Changed
+
+- Repositioned the public project identity from `ParanoiaSkills` to `GameDesignOS by Paranoia`, while keeping the installable skill package layer and existing repository links intact for published-article compatibility.
+
+### Fixed
+
+- Re-added repository `.gitignore` after it was removed from tracked files, fixing repository validation required-path checks in CI and preparing the patch release notes.
 
 ## [v0.6.1] - 2026-06-10
 

@@ -1,12 +1,16 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="ParanoiaSkills v0.6.1 - A verifiable agent-skill operating system for game design production" width="100%">
+  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="GameDesignOS v0.6.1 - AI 原生游戏设计与立项验证操作系统" width="100%">
 </p>
 
-<h1 align="center">ParanoiaSkills</h1>
+<h1 align="center">GameDesignOS</h1>
 
 <p align="center">
-  一套面向游戏设计生产与 AI 工作流治理的可验证 agent-skill 操作系统。
-  它把证据转成诊断，把概念转成验证契约，把生产约束转成可评审策划案，把 ED 问题转成一周实验，把 workflow 改动转成带 eval 的受控演化。
+  <strong>AI 原生游戏设计、立项验证与原型构建操作系统 by Paranoia / 游思考</strong>
+</p>
+
+<p align="center">
+  GameDesignOS 是一套面向游戏设计、立项验证与原型构建的 AI 原生工作流系统。
+  它把资深游戏策划的方法论、竞品分析、体验诊断、玩家动机拆解、Steam 页面优化、Demo 验证指标与 AI 工作流，沉淀为可复用的工具、模板和分析框架，帮助游戏创意更快变成可判断、可展示、可测试的项目方案。
 </p>
 
 <p align="center">
@@ -33,13 +37,13 @@
 
 > License: skill documents and tooling are released under the MIT License. Paranoia 名称、logo、视觉识别和项目品牌不作为商标授权。
 
-> 像给游戏设计师和 AI agent 用的“小型操作系统”：不是收集提示词，而是把可复用的证据规则、跨 skill 契约、验证门、回滚路径和输出模板打包成 skill。
+> GameDesignOS 是对外项目主体；Paranoia / 游思考是作者背书。当前模块仍以可安装 skill 形式组织，方便 Codex、Claude Code、OpenCode 等 agent 复用。
 
 ## 这个项目是什么
 
-`ParanoiaSkills` 是一套 AI 辅助游戏设计工作的公开基础 Skill 库，把游戏体验分析、概念架构、策划案写作、体验浓度实验、工作流演化、专业翻译和资料策展，沉淀成可复用的 agent instructions、references、schemas、templates、examples 和 evals。
+`GameDesignOS` 是一套 AI 原生游戏设计、立项验证与原型构建工作流系统。它把游戏体验分析、概念架构、策划案写作、体验浓度实验、工作流演化、专业翻译、资料策展和面向 Steam 的产品判断，沉淀成可复用的 agent instructions、references、schemas、templates、examples 和带 eval 的契约。
 
-它不是一堆提示词合集。它更像一套小型游戏设计操作系统，并用契约让不同 skill 之间能交接工作，而不是各自输出孤立长文：
+它不是一张零散 skill 清单，也不是一堆提示词合集。它更像一套小型游戏设计操作系统，并用契约让不同 skill 之间能交接工作，而不是各自输出孤立长文：
 
 ```text
 媒体证据 -> evidence index -> issue cards -> ED handoff -> 一周实验
@@ -217,7 +221,7 @@ game-design-proposal-writer/
 
 ## Skill Architecture
 
-`ParanoiaSkills` 分为公开基础层和契约层。本仓库只包含公开基础 skill。私有项目规则、客户材料、真实案例和个人工作室偏好应放在仓库外的 private overlay。
+`GameDesignOS` 分为公开基础层和契约层。公开层当前以可安装 skill 的形式组织。私有项目规则、客户材料、真实案例和个人工作室偏好应放在仓库外的 private overlay。
 
 - **Design Production Layer**
   - [`game-concept-architect/`](./game-concept-architect/)：one-line idea -> verifiable design blueprint。
