@@ -20,6 +20,18 @@
 - `scripts/validate_repo.py` 是否把新 skill 纳入 required skills。
 - release commit 完成后，Git tag 是否应该新增或更新到对应版本。
 
+## Runtime / Workspace 发布检查
+
+新增或改变 Runtime Foundation 时，还必须检查：
+
+- `runtime/workspace-template/` 是否仍可独立复制。
+- `game.designos.yaml` 与 workspace schema 是否同步。
+- `contracts/README.md` 是否区分 skill-level 与 workspace-level contract。
+- `docs/product/`、`docs/workflows/` 与 README trio 是否同步。
+- `scripts/validate_repo.py` 是否覆盖新增必需路径与 workspace 约定。
+- 是否明确兼容现有 skill 直接安装方式。
+- 是否避免把 private workspace、客户材料或真实项目输出提交到公开仓库。
+
 ## 发布文件约定
 
 - 发布说明文件放在 `releases/vX.Y.Z.md`
@@ -81,6 +93,7 @@
 - `v0.6.0`（新增 `game-design-proposal-writer`、ED experiment compiler、七 skill GitHub 首屏后，建议打在 release commit）
 - `v0.6.1`（仓库校验修复与 README 版本同步）
 - `v0.7.0`（GameDesignOS by Paranoia 公开品牌、GitHub URL、v7 README 封面和案例入口整理后，建议打在 release commit）
+- `v0.8.0`（Runtime Foundation、Project Workspace、workspace contracts、Decision-to-Information 工作流与 VOI Decision Gate）
 
 ## 非目标约束
 

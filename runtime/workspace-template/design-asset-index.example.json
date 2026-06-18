@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.8.0",
+  "workspace_id": "untitled-game",
+  "assets": [
+    {
+      "asset_id": "ASSET-DECISION-001",
+      "asset_type": "decision",
+      "title": "First Prototype Decision Brief",
+      "path": "06-decisions/decision-brief.md",
+      "format": "markdown",
+      "created_by": "human-agent",
+      "source_status": "private",
+      "review_status": "draft",
+      "upstream_assets": [],
+      "downstream_assets": [
+        "ASSET-VOI-001",
+        "ASSET-CONCEPT-001"
+      ],
+      "notes": "Defines options, current default action, deadline, stakes, reversibility, and decision boundary."
+    },
+    {
+      "asset_id": "ASSET-VOI-001",
+      "asset_type": "information-assessment",
+      "title": "First Prototype VOI Assessment",
+      "path": "06-decisions/information-value-assessment.json",
+      "format": "json",
+      "created_by": "human-agent",
+      "source_status": "private",
+      "review_status": "draft",
+      "upstream_assets": [
+        "ASSET-DECISION-001"
+      ],
+      "downstream_assets": [
+        "ASSET-VALIDATION-001"
+      ],
+      "source_skill": "paranoia-ai-system-evolver",
+      "notes": "Selects the smallest information action that can change the prototype choice and records the stop rule."
+    },
+    {
+      "asset_id": "ASSET-CONCEPT-001",
+      "asset_type": "concept",
+      "title": "Concept Seed",
+      "path": "01-concept/concept-seed.md",
+      "format": "markdown",
+      "created_by": "human-agent",
+      "source_status": "private",
+      "review_status": "draft",
+      "upstream_assets": [
+        "ASSET-DECISION-001"
+      ],
+      "downstream_assets": [
+        "ASSET-VALIDATION-001"
+      ],
+      "source_skill": "game-concept-architect",
+      "notes": "Replace this synthetic placeholder after creating the first concept package."
+    },
+    {
+      "asset_id": "ASSET-VALIDATION-001",
+      "asset_type": "validation",
+      "title": "Prototype Validation Plan",
+      "path": "01-concept/validation-plan.json",
+      "format": "json",
+      "created_by": "human-agent",
+      "source_status": "private",
+      "review_status": "draft",
+      "upstream_assets": [
+        "ASSET-CONCEPT-001",
+        "ASSET-VOI-001"
+      ],
+      "downstream_assets": [],
+      "source_skill": "game-concept-architect"
+    }
+  ]
+}

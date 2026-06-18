@@ -4,6 +4,34 @@ All notable changes to GameDesignOS will be recorded here.
 
 ## [Unreleased]
 
+## [v0.8.0] - 2026-06-18
+
+### Added
+
+- Added the GameDesignOS Runtime Foundation: product vision, four-layer architecture, MVP boundary, and capability-gated roadmap.
+- Added a copyable project workspace template with a manifest, lifecycle directories, design-asset index example, and Human Gate decision-log example.
+- Added workspace-level schemas for project manifests, design-asset indexes, and decision logs.
+- Added four workspace-aware workflow guides: idea-to-validation, media-to-diagnosis, weekly ED experiment, and evidence-to-proposal.
+- Added planned local CLI command contracts without claiming that a complete CLI ships in this version.
+- Added a complete VOI Decision Gate for Decision Object, current default action, decision boundary, signal-to-action mapping, EVPI/EVSI, information costs, smallest probes, and stop rules.
+- Added `information-value-assessment` as a workspace contract and durable decision asset.
+- Added VOI behavior evals for FOMO research, branch explosion, local negative evidence, irreversible changes, and high-structure/low-value output.
+
+### Changed
+
+- Repositioned the README trio around `Skill Kernel + Contract Layer + Project Workspace + Runtime Interface`.
+- Reused the existing no-text hero background so the v0.7.0 title layer is not shown on a v0.8.0 page.
+- Upgraded adapter guidance from direct skill loading to workspace-aware routing and asset writeback.
+- Extended repository validation to protect runtime paths, workspace conventions, schemas, examples, and the VOI Decision Gate.
+- Upgraded `paranoia-ai-system-evolver` so research, retrieval, tests, memory reads, and AI branches must justify how they can change action.
+- Preserved direct installation and invocation of all seven existing skill packages.
+
+### Safety
+
+- Kept real project material in private workspaces or overlays outside the public repository.
+- Kept Human Gates for project commitments and publication.
+- Kept API keys, credentials, billing, and host permissions outside GameDesignOS.
+
 ## [v0.7.0] - 2026-06-18
 
 ### Added
@@ -107,7 +135,8 @@ All notable changes to GameDesignOS will be recorded here.
 - Released the public base version of `game-experience-analyzer`.
 - Added initial release notes, installation guidance, and validation examples.
 
-[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v0.7.0...HEAD
+[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v0.8.0...HEAD
+[v0.8.0]: ./releases/v0.8.0.md
 [v0.7.0]: ./releases/v0.7.0.md
 [v0.6.1]: ./releases/v0.6.1.md
 [v0.6.0]: ./releases/v0.6.0.md

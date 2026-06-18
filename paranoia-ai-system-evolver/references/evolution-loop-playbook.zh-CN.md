@@ -4,28 +4,20 @@
 
 ## 1. 系统定义
 
-自我进化 AI 不等于模型权重失控地自己改自己。它指的是 AI 应用在稳定目标下，持续改进外部系统：
+自我进化 AI 不等于模型权重失控地自己改自己。它指 AI 应用在稳定目标下持续改进外部系统：prompt、memory、retrieval、tool routing、workflow、schema、eval set 与 skill reference。
 
-- prompt
-- memory
-- retrieval
-- tool routing
-- workflow
-- schema
-- eval set
-- skill reference
-
-闭环是：
+闭环：
 
 ```text
 真实任务压力
 -> WOOP Task Card
--> 信息稀缺
--> VOI 选择
--> OODA 探针
+-> Decision Object
+-> VOI 决策门
+-> 最小信息探针
+-> Orient-first OODA
 -> 结果反馈
 -> 候选改进
--> eval
+-> behavior eval
 -> Human Gate
 -> 版本化上线
 -> rollback path
@@ -33,99 +25,113 @@
 
 ## 2. WOOP 任务准入
 
-在进入 VOI/OODA 之前，先把任务转成可执行的 `WOOP Task Card`：
+在进入 VOI/OODA 前，把任务转成 `WOOP Task Card`：
 
-- Wish：任务目标、输出物、范围和停止条件。
-- Outcome：验收画面、评价尺和决策收益。
-- Obstacle：人机系统里的内在失败模式，而不是外部困难。
-- Plan：失败模式出现时的 if-then 协议、判断者、重试或 Human Gate。
+- Wish：任务目标、输出物、范围和停止条件；
+- Outcome：验收画面、评价尺和决策收益；
+- Obstacle：人机系统内在失败模式，而不是外部困难；
+- Plan：失败出现时的 If-Then Protocol、判断者、重试或 Human Gate。
 
-准入规则：
+准入规则：Wish 不清楚先拆小；Outcome 不清楚不进入生产；Obstacle 不清楚降低自主性；Plan 不清楚不执行高风险或不可逆动作。
 
-- Wish 不清楚，先澄清、拆小或进入探索模式。
-- Outcome 不清楚，不进入生产模式，只能补评价标准或做候选草案。
-- Obstacle 不清楚，套用默认失败模式并降低自主性。
-- Plan 不清楚，不自动执行高风险或不可逆动作。
+## 3. Decision Object
 
-更完整的方法见 `references/woop-harness-protocol.zh-CN.md`。
+VOI 之前必须声明：
 
-## 3. 稀缺资源
+```yaml
+decision:
+  decision_question:
+  options: []
+  current_default_action:
+  owner:
+  deadline:
+  stakes:
+  reversibility:
+  boundary_status: "undefined | far | near | locked"
+```
 
-agent 必须把这些东西当成稀缺资源：
+没有默认行动，就无法判断信息是否改变行动。没有真实选项，就无法比较信息后的最优选择。没有截止时间，就容易把调研变成拖延。
 
-- token
-- 时间
-- 用户注意力
-- 工具调用
-- 上下文窗口
-- 可信反馈
-- 标注样本
-- 金钱
-- 信任额度
+## 4. 稀缺资源
 
-稀缺制造选择压力，选择压力逼出 VOI。
+agent 必须把 token、时间、用户注意力、工具调用、上下文窗口、可信反馈、标注样本、金钱、信任额度和决策窗口当成稀缺资源。
 
-## 4. VOI 近似判断
+AI 让生成信息变便宜，却可能让人的评估和收束成本上升。系统优化目标不是生成最多方案，而是在有限认知带宽内关闭低 VOI 分支。
 
-使用这个快速估算：
+## 5. VOI 决策门
+
+完整方法见 `references/value-of-information-playbook.zh-CN.md`。快速门如下：
 
 ```text
-VOI = P(change_decision)
-    x decision_delta_value
-    x reuse_count
-    - acquisition_cost
-    - latency_cost
-    - risk_cost
-    - contamination_cost
+1. 当前决策是什么？
+2. 没有新信息时采取什么行动？
+3. 哪些不确定性会改变选项排序？
+4. 哪些具体信息行动能降低这些不确定性？
+5. 每种可能信号会触发什么不同动作？
+6. EVPI 上界和现实 EVSI 大约多大？
+7. 获取、延迟、注意力、隐私与污染成本是多少？
+8. 最小高价值探针和停止规则是什么？
 ```
+
+操作性近似：
+
+```text
+approx_net_voi
+= P(action_switch)
+× decision_delta
+× reuse_or_scale
+× reversibility_factor
+- acquisition_cost
+- latency_cost
+- attention_cost
+- risk_cost
+- contamination_cost
+```
+
+这只是排序启发式。若所有合理信号都不会改变行动，则停止调研或标记为 `model_learning` / `information_consumption`。
 
 四种默认行动：
 
 | 不确定性 | 影响 | 行动 |
 | --- | --- | --- |
-| 高 | 高 | 查证、实验或请人审批 |
-| 高 | 低 | 用默认假设推进，并记录风险 |
-| 低 | 高 | 做轻量验证 |
+| 高 | 高 | 设计最小 EVSI 探针或请人审批 |
+| 高 | 低 | 用默认假设推进并记录风险 |
+| 低 | 高 | 做轻量确认 |
 | 低 | 低 | 直接行动 |
 
-## 5. Orient-first OODA
+## 6. Orient-first OODA
 
-不要把 OODA 做成奖励速度的清单。它的目标是刷新认知地图。
+Observe 抓取目标、证据、惊讶信号、失败、用户纠偏、成本、延迟和触发的 Obstacle。
 
-Observe 要抓：
+Orient 刷新：
 
-- 惊讶信号
-- 上一轮行动带来的后果
-- 缺失的真源
-- 工具失败
-- 用户纠偏
-- 成本与延迟
-- 已触发或接近触发的 WOOP Obstacle
+- 当前叙事和可能已过期的旧叙事；
+- 决策边界是否移动；
+- 哪个信号真正改变选项排序；
+- 用户、领域和 operating model；
+- WOOP Outcome 是否仍是正确评价尺；
+- 已获得的信息属于决策、模型还是消费价值。
 
-Orient 要抓：
+Decide 选择一个当前最值得下注的行动或探针，同时拒绝低 VOI 分支。
 
-- 当前叙事
-- 可能已经错误的旧叙事
-- 应该切换到的模型
-- 关键不确定性
-- 什么信息会改变地图
-- WOOP 的 Outcome 是否仍然是正确评价尺
+Act 产生 artifact、tool call、probe 或 test。若行动是信息获取，必须绑定 `target_uncertainty`、`expected_signals` 和 `action_if_seen`。
 
-Decide 不是宣布真理，而是选择一个当前最值得下注验证的假设。
+Evaluate 记录：
 
-Act 不是结局；当不确定性仍然存在时，行动应当是一个探针或压力测试，用来逼现实表态。
+```text
+prior -> observed signal -> posterior -> action_before -> action_after -> stop reason
+```
 
-## 6. 模型压缩 Gate
+## 7. 模型压缩 Gate
 
-Orient 阶段必须显式检查当前系统模型。不要只问“要改什么 prompt / workflow / skill”，还要问：
+Orient 阶段检查当前系统模型：
 
-- 当前模型是不是太短，导致只盯终点、无法定位中介？
-- 当前模型是不是太长，导致路由、状态、例外补丁和恢复规则吞掉执行能力？
-- 这个改动优化的是哪个中介变量？
-- 这个中介是否可观察、可干预、可验证？
-- 改动后，总描述成本是下降，还是只是把复杂度挪到了别处？
-
-总描述成本的近似公式：
+- 模型是否太短，导致只盯终点、无法定位中介？
+- 模型是否太长，导致路由、状态和例外补丁吞掉执行能力？
+- 改动优化哪个中介变量？
+- 中介是否可观察、可干预、可验证？
+- 新增规则是否减少未来决策成本，还是制造更多待处理分支？
+- 总描述成本是下降，还是把复杂度转移到别处？
 
 ```text
 total_description_cost
@@ -137,67 +143,84 @@ total_description_cost
 + failure_recovery_length
 ```
 
-更完整的方法见 `references/model-compression-playbook.zh-CN.md`。
-
-## 7. 任务循环与元循环
+## 8. 任务循环与元循环
 
 任务循环：
 
 ```text
-用户目标 -> 上下文 -> 定向 -> 行动 -> 结果
+Decision Object
+-> VOI Gate
+-> smallest probe or direct action
+-> result
+-> Human Gate / stop
 ```
 
 元循环：
 
 ```text
-trace -> 失败模式 -> 突变候选 -> eval -> 审批 -> 上线
+trace
+-> repeated or high-impact failure
+-> mutation candidate
+-> behavior eval
+-> approval
+-> promotion / rollback
 ```
 
-永远不要让元循环从单个案例自动提升出长期规则。
+永远不要让元循环从单个案例自动提升长期规则。一次输出看起来更完整，不代表它降低了决策错误或注意力成本。
 
-## 8. 候选突变规则
+## 9. 候选突变规则
 
-一个系统改动只有满足以下条件，才允许进入进化队列：
+系统改动只有满足以下条件才进入进化队列：
 
-- 重复出现或高影响
-- 可修复
-- 可复用
-- 有证据
-- 可回滚
+- 重复出现或高影响；
+- 会改变系统决策或显著降低高影响风险；
+- 可修复、可复用、有证据、可回滚；
+- 新增复杂度低于预期收益；
+- 有至少一个反例或负迁移检查；
+- 有停止条件，而不是永久增加研究步骤。
 
-否则只保留为任务笔记。
+否则只保留为任务笔记、模型学习或消费记录。
 
-## 9. 行动权限阶梯
+## 10. AI 疲劳与反 AI 味 Gate
+
+### AI 疲劳
+
+```text
+open_branches
+-> map to decisions
+-> keep action-changing branches
+-> archive model-learning branches
+-> close consumption branches
+-> choose one next probe
+```
+
+不要让每个 AI 对话都成为一个永久待办。
+
+### 反 AI 味
+
+改写、总结和提案必须保留本地事实、负反馈、失败细节、来源、约束和行动影响。若文本只增加标题、结构和抽象概念，却没有增加决策边界、信号、成本或动作，它属于高结构低 VOI 输出。
+
+## 11. 行动权限阶梯
 
 | 等级 | 例子 | 默认规则 |
 | --- | --- | --- |
-| A0 | 分析、草稿文本 | 可自动 |
-| A1 | 只读调研、本地检查 | 可自动，但要记录 |
-| A2 | 文档、模板、候选 skill 文件、模型审计字段 | 可自动，但要可回滚 |
+| A0 | 分析、草稿、VOI 审计 | 可自动 |
+| A1 | 只读调研、本地检查、日志采样 | 可自动，但记录目标决策与成本 |
+| A2 | 文档、模板、候选 skill 文件、可回滚实验 | 可自动，但要备份、验证和停止规则 |
 | A3 | 长期记忆、全局 skill 安装、生产策略 | 需要 Human Gate |
 | A4 | 删除、发布、资金、真实用户影响 | 必须明确审批 |
 
-## 10. 公开 Skill 包检查
+## 12. 公开 Skill 包检查
 
-公开给别人使用的 skill 包，至少检查：
+- `SKILL.md` frontmatter `name` 与文件夹名一致；
+- `agents/openai.yaml` 与 `SKILL.md` 一致；
+- `SKILL.md` 轻量并路由到本 skill 的 references/templates；
+- VOI 模板包含 decision、current_default_action、signal-to-action、cost 与 stop rule；
+- 行为 eval 包含无决策 FOMO、决策边界、高价值负反馈、低价值重复调研和不可逆动作案例；
+- 参考文件是一层可达，不把一次性 rollout 塞入长期 reference；
+- 版权、来源、公开/私有边界和 rollback 清楚；
+- 最后扫描陈旧命名和旧项目措辞。
 
-- `SKILL.md` frontmatter `name` 与文件夹名一致。
-- `agents/openai.yaml` 的展示名、默认提示与 `SKILL.md` 一致。
-- 根 README 面向人类；`SKILL.md` 面向 agent，不互相复制污染。
-- `SKILL.md` 保持轻量，只路由到本 skill 自己的 `references/` 与 `templates/`。
-- 参考文件是一层可达，不把一次性 rollout 报告塞进长期 reference。
-- 模板可以直接复制使用，且字段能支持 WOOP Task Card、evidence、model audit、eval、Human Gate 与 rollback。
-- 版权、来源和复用边界清楚。
-- 最后做一次陈旧命名和旧项目措辞扫描。
+## 13. README 视觉资产 Gate
 
-## 11. README 视觉资产 Gate
-
-README 可以使用生成图，但生成图只适合承载氛围、结构隐喻和识别度，不应该承载关键文字信息。
-
-发布前检查：
-
-- 图片文件保存在仓库内，不引用临时生成目录。
-- README 使用相对路径和明确 alt text。
-- 关键流程另有 Markdown、表格或 Mermaid 版本。
-- 图片没有水印、明显错字、品牌侵权或误导性 UI 文案。
-- 图片体积和尺寸适合 GitHub 阅读。
+生成图只承载氛围、结构隐喻和识别度，不承载关键文字。关键流程必须另有 Markdown、表格或 Mermaid 版本；图片路径、alt text、水印、错字、品牌边界和体积均需检查。

@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/project-workspace.schema.json",
+  "title": "GameDesignOS Project Workspace",
+  "description": "Workspace manifest contract for game.designos.yaml.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workspace_type",
+    "project",
+    "designos",
+    "assets",
+    "rules"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.8.0"
+    },
+    "workspace_type": {
+      "type": "string",
+      "const": "gamedesignos-project"
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "codename",
+        "status",
+        "visibility",
+        "owner"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,63}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "codename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "concept",
+            "prototype",
+            "demo",
+            "vertical-slice",
+            "production",
+            "paused",
+            "archived"
+          ]
+        },
+        "visibility": {
+          "enum": [
+            "private",
+            "public-synthetic",
+            "public-cleared"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_platforms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "designos": {
+      "type": "object",
+      "required": [
+        "version",
+        "public_base_repo",
+        "private_overlay"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "string",
+          "const": "0.8.0"
+        },
+        "public_base_repo": {
+          "type": "string",
+          "const": "DY-2026/GameDesignOS"
+        },
+        "private_overlay": {
+          "type": "boolean"
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "required": [
+        "index",
+        "inbox_dir",
+        "concept_dir",
+        "evidence_dir",
+        "analysis_dir",
+        "proposals_dir",
+        "experiments_dir",
+        "decisions_dir",
+        "retrospectives_dir"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inbox_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "concept_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "analysis_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proposals_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "experiments_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decisions_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retrospectives_dir": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "required": [
+        "evidence_before_opinion",
+        "feasibility_before_scope",
+        "workflow_before_one_off_prompts",
+        "voi_before_research",
+        "eval_before_promotion",
+        "rollback_before_confidence",
+        "human_gate_for_commitments",
+        "decision_before_information",
+        "action_change_before_research",
+        "sample_before_scale",
+        "stop_when_marginal_voi_nonpositive",
+        "preserve_local_negative_evidence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "evidence_before_opinion": {
+          "type": "boolean",
+          "const": true
+        },
+        "feasibility_before_scope": {
+          "type": "boolean",
+          "const": true
+        },
+        "workflow_before_one_off_prompts": {
+          "type": "boolean",
+          "const": true
+        },
+        "voi_before_research": {
+          "type": "boolean",
+          "const": true
+        },
+        "eval_before_promotion": {
+          "type": "boolean",
+          "const": true
+        },
+        "rollback_before_confidence": {
+          "type": "boolean",
+          "const": true
+        },
+        "human_gate_for_commitments": {
+          "type": "boolean",
+          "const": true
+        },
+        "decision_before_information": {
+          "type": "boolean",
+          "const": true
+        },
+        "action_change_before_research": {
+          "type": "boolean",
+          "const": true
+        },
+        "sample_before_scale": {
+          "type": "boolean",
+          "const": true
+        },
+        "stop_when_marginal_voi_nonpositive": {
+          "type": "boolean",
+          "const": true
+        },
+        "preserve_local_negative_evidence": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  }
+}

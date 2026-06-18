@@ -2,130 +2,76 @@
 
 > Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
-## 1. System Definition
+## 1. Controlled Evolution
 
-Self-evolving AI does not mean a model secretly changing its own weights. It means an AI application improving external system layers under stable goals:
-
-- prompt
-- memory
-- retrieval
-- tool routing
-- workflow
-- schema
-- eval set
-- skill reference
-
-The loop is:
+Self-evolving AI means improving external system layers under stable goals: prompts, memory, retrieval, tool routing, workflows, schemas, eval sets, and skill references. It does not mean uncontrolled model-weight mutation.
 
 ```text
 real task pressure
 -> WOOP Task Card
--> information scarcity
--> VOI choice
--> OODA probe
+-> Decision Object
+-> VOI decision gate
+-> smallest information probe
+-> Orient-first OODA
 -> result feedback
--> candidate improvement
--> eval
+-> candidate mutation
+-> behavior eval
 -> Human Gate
 -> versioned promotion
 -> rollback path
 ```
 
-## 2. WOOP Task Admission
+## 2. WOOP Admission
 
-Before VOI/OODA, translate the task into an executable `WOOP Task Card`:
+Wish defines intent, artifact, scope, and stop condition. Outcome defines the acceptance rubric and decision value. Obstacle identifies internal human-agent Failure Patterns. Plan defines executable If-Then Protocols, judges, retries, handoff, and rollback.
 
-- Wish: task goal, artifact, scope, and stop condition.
-- Outcome: acceptance picture, evaluation rubric, and decision value.
-- Obstacle: internal human-AI system Failure Pattern, not external difficulty.
-- Plan: if-then protocol, judge, retry, fallback, or Human Gate.
+Unclear Wish means clarify or shrink. Unclear Outcome means draft only. Unclear Obstacle lowers autonomy. Unclear Plan blocks high-risk and irreversible actions.
 
-Admission rules:
+## 3. Decision Object
 
-- If Wish is unclear, clarify, split, or enter exploration mode.
-- If Outcome is unclear, do not enter production mode; define the rubric or draft only.
-- If Obstacle is unclear, apply default Failure Patterns and lower autonomy.
-- If Plan is unclear, do not automate high-risk or irreversible actions.
+Before VOI, declare the decision question, real options, current default action, owner, deadline, stakes, reversibility, and boundary status. Without a default action there is no action-change test; without options there is no decision comparison; without a deadline research can become avoidance.
 
-For the deeper method, read `references/woop-harness-protocol.en.md`.
+## 4. Scarce Resources
 
-## 3. Scarce Resources
+Treat tokens, time, attention, tool calls, context, trustworthy feedback, labeled samples, money, trust, and decision windows as scarce. AI makes information generation cheap while increasing evaluation and closure costs. Optimize for closing low-value branches, not maximizing output volume.
 
-An agent must treat these as scarce:
+## 5. VOI Gate
 
-- tokens
-- time
-- user attention
-- tool calls
-- context window
-- trustworthy feedback
-- labeled samples
-- money
-- trust budget
-
-Scarcity creates selection pressure. Selection pressure makes VOI necessary.
-
-## 4. Quick VOI Estimate
-
-Use this approximate formula:
+Use `references/value-of-information-playbook.en.md` for the full method.
 
 ```text
-VOI = P(change_decision)
-    x decision_delta_value
-    x reuse_count
-    - acquisition_cost
-    - latency_cost
-    - risk_cost
-    - contamination_cost
+1. What decision is being supported?
+2. What action is taken with current information?
+3. Which uncertainties can change the option ranking?
+4. Which concrete information actions target them?
+5. What action follows each plausible signal?
+6. What are the EVPI ceiling and realistic EVSI?
+7. What are acquisition, delay, attention, privacy, and contamination costs?
+8. What is the smallest high-value probe and its stop rule?
 ```
 
-Default actions:
+```text
+approx_net_voi
+= P(action_switch)
+× decision_delta
+× reuse_or_scale
+× reversibility_factor
+- total_information_cost
+```
 
-| Uncertainty | Impact | Action |
-| --- | --- | --- |
-| High | High | Verify, experiment, or ask for approval |
-| High | Low | Proceed with a default assumption and record the risk |
-| Low | High | Run a lightweight check |
-| Low | Low | Act directly |
+This is a triage heuristic. If all plausible signals lead to the same action, stop or classify the work as model learning or information consumption.
 
-## 5. Orient-first OODA
+## 6. Orient-First OODA
 
-Do not turn OODA into a speed checklist. Its purpose is to refresh the cognitive map.
+Observe goals, evidence, surprise, failures, corrections, costs, latency, and triggered Obstacles. Orient around the current frame, obsolete narratives, decision boundary, user/domain/operating models, and whether the information is decision, model, or consumption value. Decide one action or probe and explicitly reject low-VOI branches. Act through an artifact, tool call, or bounded test. Evaluate the chain:
 
-Observe should capture:
+```text
+prior -> signal -> posterior -> action_before -> action_after -> stop reason
+```
 
-- surprising signals
-- consequences of the last action
-- missing source of truth
-- tool failures
-- user corrections
-- cost and latency
-- triggered or near-triggered WOOP Obstacles
+## 7. Model Compression Gate
 
-Orient should capture:
-
-- the current frame
-- the old frame that may now be wrong
-- the model that should replace it
-- key uncertainties
-- which information would change the map
-- whether the WOOP Outcome is still the right evaluation rubric
-
-Decide is not declaring truth. It is choosing the most valuable hypothesis to test now.
-
-Act is not the end. When uncertainty remains, action should be a probe or pressure test that forces reality to answer.
-
-## 6. Model Compression Gate
-
-The Orient phase must explicitly inspect the current system model. Do not only ask "which prompt / workflow / skill should change?" Also ask:
-
-- Is the current model too short, so it only watches the endpoint and cannot locate mediators?
-- Is the current model too long, so routing, state, exception patches, and recovery rules consume execution capacity?
-- Which mediator variable does this change improve?
-- Is that mediator observable, intervenable, and verifiable?
-- After the change, did total description cost fall, or did complexity move somewhere else?
-
-Approximate total description cost:
+Check whether the model is too short to expose mediators, too long to execute, or merely moving complexity. Every new rule should name its mediator, control point, observation, validation, and effect on future decision cost.
 
 ```text
 total_description_cost
@@ -137,67 +83,40 @@ total_description_cost
 + failure_recovery_length
 ```
 
-For the deeper method, read `references/model-compression-playbook.en.md`.
-
-## 7. Task Loop and Meta Loop
-
-Task loop:
+## 8. Task and Meta Loops
 
 ```text
-user goal -> context -> orientation -> action -> result
+Decision Object -> VOI Gate -> smallest probe or direct action -> result -> Human Gate / stop
 ```
-
-Meta loop:
 
 ```text
-trace -> failure mode -> mutation candidate -> eval -> approval -> promotion
+trace -> repeated/high-impact failure -> mutation candidate -> behavior eval -> approval -> promotion/rollback
 ```
 
-Never promote a long-term rule from a single case automatically.
+Never promote a permanent rule from one attractive case. More complete prose is not evidence of lower decision error or lower attention cost.
 
-## 8. Candidate Mutation Rules
+## 9. Candidate Mutation Gate
 
-A system change may enter the evolution queue only when it is:
+A mutation enters the queue only when it is repeated or high-impact, can change a system decision or reduce major risk, is repairable, reusable, evidenced, reversible, cheaper than its expected benefit, tested against a counterexample, and has a stop rule.
 
-- repeated or high-impact
-- fixable
-- reusable
-- evidence-backed
-- reversible
+## 10. AI Fatigue and Anti-Generic Output
 
-Otherwise, keep it as a task note.
+```text
+open branches -> map to decisions -> keep action-changing branches -> archive model learning -> close consumption -> choose one probe
+```
 
-## 9. Permission Ladder
+Preserve local facts, negative feedback, failure details, provenance, constraints, and action impact. Added headings and abstract structure without added decision boundaries, signals, costs, or actions are high-structure/low-VOI output.
 
-| Level | Examples | Default Rule |
+## 11. Permission Ladder
+
+| Level | Example | Default |
 | --- | --- | --- |
-| A0 | Analysis, draft text | Automatic |
-| A1 | Read-only research, local checks | Automatic, but record it |
-| A2 | Docs, templates, candidate skill files, model-audit fields | Automatic, but reversible |
-| A3 | Long-term memory, global skill installation, production strategy | Human Gate required |
-| A4 | Deletion, publishing, money, real-user impact | Explicit approval required |
+| A0 | analysis, draft, VOI audit | automatic |
+| A1 | read-only research, local inspection, log sampling | automatic with decision/cost trace |
+| A2 | docs, templates, candidate skill files, reversible experiment | automatic with backup, validation, and stop rule |
+| A3 | long-term memory, global skill install, production policy | Human Gate |
+| A4 | deletion, publishing, money, real-user impact | explicit approval |
 
-## 10. Public Skill Package Check
+## 12. Public Skill Checks
 
-For a public skill package, check at least:
-
-- `SKILL.md` frontmatter `name` matches the folder name.
-- `agents/openai.yaml` display name and default prompt match `SKILL.md`.
-- The root README is human-facing; `SKILL.md` is agent-facing.
-- `SKILL.md` stays lightweight and routes only to this skill's own `references/` and `templates/`.
-- Reference files are one hop away and do not contain one-off rollout reports.
-- Templates can be copied directly and support WOOP Task Card, evidence, model audit, eval, Human Gate, and rollback.
-- Copyright, provenance, and reuse boundaries are explicit.
-- A final stale-name and old-project wording sweep has run.
-
-## 11. README Visual Asset Gate
-
-README files can use generated images, but generated images should carry atmosphere, structure metaphors, and recognition, not critical text.
-
-Before publishing, check:
-
-- The image is stored inside the repository, not in a temporary generation folder.
-- README uses relative paths and clear alt text.
-- Critical process information also has Markdown, table, or Mermaid representation.
-- The image has no watermark, obvious typo, brand infringement, or misleading UI text.
-- Size and dimensions are appropriate for GitHub reading.
+The package must keep names aligned, keep `SKILL.md` lightweight, route to one-hop references and templates, include decision/default-action/signal-to-action/cost/stop fields, cover VOI failure cases in behavior evals, preserve public/private boundaries, and retain rollback.

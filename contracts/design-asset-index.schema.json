@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/design-asset-index.schema.json",
+  "title": "GameDesignOS Design Asset Index",
+  "description": "Workspace-level registry for durable design assets and their review/dependency state.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workspace_id",
+    "assets"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.8.0"
+    },
+    "workspace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    }
+  },
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "required": [
+        "asset_id",
+        "asset_type",
+        "title",
+        "path",
+        "format",
+        "created_by",
+        "source_status",
+        "review_status",
+        "upstream_assets",
+        "downstream_assets"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "pattern": "^ASSET-[A-Z0-9-]{3,}$"
+        },
+        "asset_type": {
+          "enum": [
+            "inbox",
+            "concept",
+            "validation",
+            "evidence",
+            "analysis",
+            "proposal",
+            "experiment",
+            "information-assessment",
+            "decision",
+            "retrospective",
+            "knowledge"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*\\.\\./).+"
+        },
+        "format": {
+          "enum": [
+            "markdown",
+            "json",
+            "yaml",
+            "csv",
+            "image",
+            "video",
+            "audio",
+            "binary",
+            "external-link"
+          ]
+        },
+        "created_by": {
+          "enum": [
+            "human",
+            "agent",
+            "human-agent",
+            "import"
+          ]
+        },
+        "source_status": {
+          "enum": [
+            "private",
+            "synthetic",
+            "public",
+            "cleared",
+            "needs_review"
+          ]
+        },
+        "review_status": {
+          "enum": [
+            "draft",
+            "needs_review",
+            "reviewed",
+            "accepted",
+            "rejected",
+            "superseded"
+          ]
+        },
+        "upstream_assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "downstream_assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "source_skill": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

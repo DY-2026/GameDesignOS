@@ -1,0 +1,116 @@
+{
+  "schema_version": "0.8.0",
+  "assessment_id": "VOI-EXAMPLE-001",
+  "workspace_id": "untitled-game",
+  "information_mode": "decision_information",
+  "decision": {
+    "decision_id": "DEC-CONCEPT-001",
+    "owner": "designer",
+    "deadline": "before prototype sprint",
+    "decision_question": "Which player promise should receive the first playable prototype?",
+    "options": [
+      {
+        "option_id": "A",
+        "action": "Prototype the high-agency systemic promise",
+        "expected_benefit": "Tests the differentiating interaction early",
+        "main_risk": "Higher implementation cost"
+      },
+      {
+        "option_id": "B",
+        "action": "Prototype the low-cost narrative promise",
+        "expected_benefit": "Faster to communicate and build",
+        "main_risk": "May not prove the core play value"
+      }
+    ],
+    "current_default_action": "Prototype option B because it is cheaper",
+    "stakes": "high",
+    "reversibility": "costly_to_reverse",
+    "boundary_status": "near"
+  },
+  "utility_model": {
+    "objective": "Learn which promise justifies the next prototype investment",
+    "decision_delta_if_wrong": "One sprint and a misleading concept direction",
+    "key_payoffs_or_losses": [
+      "learning speed",
+      "prototype cost",
+      "strength of proof"
+    ],
+    "assumptions": [
+      "A paper prototype can expose whether option A produces meaningful agency"
+    ]
+  },
+  "uncertainty_map": [
+    {
+      "uncertainty_id": "U-AGENCY-001",
+      "uncertainty": "Players can understand and value the systemic agency promise in a minimal interaction",
+      "current_belief_or_range": "Plausible but untested",
+      "confidence": "low",
+      "impact_if_wrong": "high",
+      "affected_options": [
+        "A",
+        "B"
+      ],
+      "could_change_option_ranking": true,
+      "observable": true,
+      "controllable": true
+    }
+  ],
+  "candidate_information_actions": [
+    {
+      "action_id": "INFO-PAPER-001",
+      "action": "Run an eight-player paper-prototype test focused on one agency decision",
+      "target_uncertainty": "U-AGENCY-001",
+      "information_type": "sample",
+      "expected_signals": [
+        {
+          "signal": "At least six players predict the consequence and ask to try another strategy",
+          "posterior_update": "Agency promise becomes more credible",
+          "action_if_seen": "Prototype option A"
+        },
+        {
+          "signal": "Most players cannot explain why their choice matters",
+          "posterior_update": "Agency promise or presentation is weaker than assumed",
+          "action_if_seen": "Revise option A or prototype option B"
+        }
+      ],
+      "could_change_action": true,
+      "reliability_and_bias": "Small convenience sample; useful for comprehension and desire, not market-size claims",
+      "evpi_upper_bound": "No more than the avoided cost of one misdirected prototype sprint",
+      "evsi_estimate": "Medium to high because the decision is near the boundary",
+      "approximate_net_voi": "Positive",
+      "costs": {
+        "acquisition": "One day",
+        "latency": "Low",
+        "attention": "Moderate facilitation and review",
+        "privacy_or_contamination": "Use synthetic or cleared material"
+      },
+      "conclusion": "do"
+    }
+  ],
+  "selected_probe": {
+    "action_id": "INFO-PAPER-001",
+    "why_smallest_high_value_probe": "It can reverse the prototype choice without building either full option",
+    "sample_or_evidence_gate": "Eight sessions; stop early only for a repeated blocking misunderstanding",
+    "owner": "designer",
+    "due": "before prototype sprint"
+  },
+  "stop_rule": {
+    "stop_when": [
+      "The preferred option is robust across the observed response range",
+      "The eight-session evidence gate is reached",
+      "The prototype sprint deadline arrives"
+    ],
+    "fallback_action": "Use the current default action and record residual uncertainty"
+  },
+  "outcome": {
+    "observed_signal": "",
+    "prior": "Option B is the default because it is cheaper",
+    "posterior": "",
+    "action_before_information": "Prototype option B",
+    "action_after_information": "",
+    "decision_changed": false,
+    "residual_uncertainty": [],
+    "stop_reason": "",
+    "decision_log_ref": "06-decisions/decision-log.json"
+  }
+}

@@ -15,6 +15,9 @@ REQUIRED_FILES = [
     "README.zh-CN.md",
     "README.en.md",
     "agents/openai.yaml",
+    "references/value-of-information-playbook.md",
+    "references/value-of-information-playbook.zh-CN.md",
+    "references/value-of-information-playbook.en.md",
     "references/evolution-loop-playbook.md",
     "references/evolution-loop-playbook.zh-CN.md",
     "references/evolution-loop-playbook.en.md",
@@ -27,12 +30,31 @@ REQUIRED_FILES = [
     "references/eval-versioning-playbook.md",
     "references/eval-versioning-playbook.zh-CN.md",
     "references/eval-versioning-playbook.en.md",
+    "templates/voi_decision_gate.md",
+    "templates/voi_decision_gate.zh-CN.md",
+    "templates/voi_decision_gate.en.md",
     "templates/evolution_proposal.md",
     "templates/evolution_proposal.zh-CN.md",
     "templates/evolution_proposal.en.md",
     "templates/ooda_voi_state.md",
     "templates/ooda_voi_state.zh-CN.md",
     "templates/ooda_voi_state.en.md",
+    "evals/voi-decision-gate-cases.md",
+    "evals/voi-decision-gate-cases.en.md",
+]
+
+VOI_FIELDS = [
+    "decision_question",
+    "options",
+    "current_default_action",
+    "boundary_status",
+    "candidate_information_actions",
+    "expected_signals",
+    "action_if_seen",
+    "acquisition_cost",
+    "latency_cost",
+    "attention_cost",
+    "stop_rule",
 ]
 
 
@@ -53,71 +75,74 @@ def validate(root: Path) -> list[str]:
 
     for rel in REQUIRED_FILES:
         require((root / rel).is_file(), f"missing required file: {rel}", failures)
-
     if failures:
         return failures
 
     skill = read_text(root / "SKILL.md")
     require("name: paranoia-ai-system-evolver" in skill, "SKILL.md name mismatch", failures)
+    require("references/value-of-information-playbook" in skill, "SKILL.md does not route to VOI playbook", failures)
     require("references/model-compression-playbook" in skill, "SKILL.md does not route to model compression playbook", failures)
-    require("model compression" in skill.lower(), "SKILL.md lacks model-compression language", failures)
     require("WOOP" in skill, "SKILL.md lacks WOOP language", failures)
-    require("If-Then Protocol" in skill, "SKILL.md lacks if-then protocol language", failures)
+    require("EVPI" in skill and "EVSI" in skill, "SKILL.md lacks EVPI/EVSI distinction", failures)
+    require("current_default_action" in skill, "SKILL.md lacks current default action gate", failures)
+    require("停止" in skill or "stop" in skill.lower(), "SKILL.md lacks stop-rule language", failures)
 
     agent = read_text(root / "agents/openai.yaml")
     require("Paranoia AI System Evolver" in agent, "agents/openai.yaml display name mismatch", failures)
-    require("WOOP Task Card" in agent, "agents/openai.yaml default prompt lacks WOOP Task Card", failures)
+    require("current default action" in agent.lower(), "agents/openai.yaml lacks decision-default language", failures)
+    require("EVPI/EVSI" in agent, "agents/openai.yaml lacks EVPI/EVSI", failures)
 
     for rel in ["README.md", "README.zh-CN.md", "README.en.md"]:
         text = read_text(root / rel)
-        require("model-compression-playbook" in text, f"{rel} does not list model-compression references", failures)
-        require("woop-harness-protocol" in text, f"{rel} does not list WOOP harness references", failures)
+        require("value-of-information-playbook" in text, f"{rel} does not list VOI reference", failures)
+        require("voi_decision_gate" in text, f"{rel} does not list VOI template", failures)
+        require("model-compression-playbook" in text, f"{rel} does not list model-compression reference", failures)
+        require("woop-harness-protocol" in text, f"{rel} does not list WOOP harness reference", failures)
 
     for rel in [
-        "templates/evolution_proposal.md",
-        "templates/evolution_proposal.zh-CN.md",
-        "templates/evolution_proposal.en.md",
+        "templates/voi_decision_gate.md",
+        "templates/voi_decision_gate.zh-CN.md",
+        "templates/voi_decision_gate.en.md",
         "templates/ooda_voi_state.md",
         "templates/ooda_voi_state.zh-CN.md",
         "templates/ooda_voi_state.en.md",
-    ]:
-        text = read_text(root / rel)
-        require("model_audit" in text or "operating_model" in text, f"{rel} lacks model audit fields", failures)
-        require("woop_task_card" in text or "woop:" in text, f"{rel} lacks WOOP task card fields", failures)
-
-    for rel in [
-        "references/evolution-loop-playbook.zh-CN.md",
-        "references/evolution-loop-playbook.en.md",
-        "references/model-compression-playbook.zh-CN.md",
-        "references/model-compression-playbook.en.md",
-    ]:
-        text = read_text(root / rel)
-        require("description_cost" in text or "总描述成本" in text, f"{rel} lacks description cost gate", failures)
-        require("WOOP" in text, f"{rel} lacks WOOP integration", failures)
-
-    woop_zh = read_text(root / "references/woop-harness-protocol.zh-CN.md")
-    woop_en = read_text(root / "references/woop-harness-protocol.en.md")
-    require("Failure Pattern" in woop_zh, "Chinese WOOP playbook lacks Failure Pattern language", failures)
-    require("If-Then Protocol" in woop_zh, "Chinese WOOP playbook lacks If-Then Protocol language", failures)
-    require("Failure Pattern" in woop_en, "English WOOP playbook lacks Failure Pattern language", failures)
-    require("If-Then Protocol" in woop_en, "English WOOP playbook lacks If-Then Protocol language", failures)
-
-    eval_zh = read_text(root / "references/eval-versioning-playbook.zh-CN.md")
-    eval_en = read_text(root / "references/eval-versioning-playbook.en.md")
-    require("行为回归门" in eval_zh, "Chinese eval playbook lacks skill behavior regression gate", failures)
-    require("Behavior Regression Gate" in eval_en, "English eval playbook lacks skill behavior regression gate", failures)
-    require("woop_task_card" in eval_zh, "Chinese eval playbook lacks WOOP trace fields", failures)
-    require("woop_task_card" in eval_en, "English eval playbook lacks WOOP trace fields", failures)
-
-    for rel in [
         "templates/evolution_proposal.md",
         "templates/evolution_proposal.zh-CN.md",
         "templates/evolution_proposal.en.md",
     ]:
         text = read_text(root / rel)
-        require("behavior_samples" in text, f"{rel} lacks behavior_samples eval field", failures)
+        for field in VOI_FIELDS:
+            require(field in text, f"{rel} lacks VOI field: {field}", failures)
+        require("woop_task_card" in text or "woop:" in text or "voi_decision_gate" in text, f"{rel} lacks task/VOI control structure", failures)
 
-    duplicate_keys = re.findall(r"^\s{4,}([a-zA-Z_]+):", read_text(root / "templates/evolution_proposal.en.md"), re.MULTILINE)
+    voi_zh = read_text(root / "references/value-of-information-playbook.zh-CN.md")
+    voi_en = read_text(root / "references/value-of-information-playbook.en.md")
+    for token in ["EVPI", "EVPPI", "EVSI", "current_default_action", "signal", "stop"]:
+        require(token.lower() in voi_zh.lower(), f"Chinese VOI playbook lacks {token}", failures)
+        require(token.lower() in voi_en.lower(), f"English VOI playbook lacks {token}", failures)
+    require("信息消费" in voi_zh, "Chinese VOI playbook lacks information-consumption classification", failures)
+    require("AI 疲劳" in voi_zh, "Chinese VOI playbook lacks AI fatigue gate", failures)
+    require("高结构" in voi_zh, "Chinese VOI playbook lacks high-structure/low-VOI gate", failures)
+
+    evolution_zh = read_text(root / "references/evolution-loop-playbook.zh-CN.md")
+    evolution_en = read_text(root / "references/evolution-loop-playbook.en.md")
+    require("Decision Object" in evolution_zh, "Chinese evolution playbook lacks Decision Object", failures)
+    require("Decision Object" in evolution_en, "English evolution playbook lacks Decision Object", failures)
+    require("description_cost" in evolution_zh or "总描述成本" in evolution_zh, "Chinese evolution playbook lacks description cost", failures)
+    require("total_description_cost" in evolution_en, "English evolution playbook lacks description cost", failures)
+
+    eval_zh = read_text(root / "evals/voi-decision-gate-cases.md")
+    eval_en = read_text(root / "evals/voi-decision-gate-cases.en.md")
+    for marker in ["FOMO", "决策边界", "负反馈", "分支爆炸", "不可逆"]:
+        require(marker in eval_zh, f"Chinese VOI evals lack case marker: {marker}", failures)
+    require(eval_zh.count("## Case") >= 8, "Chinese VOI evals need at least 8 cases", failures)
+    require(eval_en.count("## ") >= 8, "English VOI evals need at least 8 cases", failures)
+
+    duplicate_keys = re.findall(
+        r"^\s{4,}([a-zA-Z_]+):",
+        read_text(root / "templates/evolution_proposal.en.md"),
+        re.MULTILINE,
+    )
     require(
         duplicate_keys.count("failure_recovery_length") == 1,
         "templates/evolution_proposal.en.md has duplicate failure_recovery_length",

@@ -1,0 +1,475 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/information-value-assessment.schema.json",
+  "title": "GameDesignOS Information Value Assessment",
+  "description": "Workspace-level VOI decision gate for deciding whether to search, ask, inspect, experiment, or act with current information.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "workspace_id",
+    "information_mode",
+    "decision",
+    "uncertainty_map",
+    "candidate_information_actions",
+    "stop_rule"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.8.0"
+    },
+    "assessment_id": {
+      "type": "string",
+      "pattern": "^VOI-[A-Z0-9-]{3,}$"
+    },
+    "workspace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "information_mode": {
+      "enum": [
+        "decision_information",
+        "model_learning",
+        "information_consumption"
+      ]
+    },
+    "decision": {
+      "$ref": "#/$defs/decision"
+    },
+    "utility_model": {
+      "$ref": "#/$defs/utility_model"
+    },
+    "uncertainty_map": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/uncertainty"
+      }
+    },
+    "candidate_information_actions": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/information_action"
+      }
+    },
+    "selected_probe": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/selected_probe"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stop_rule": {
+      "$ref": "#/$defs/stop_rule"
+    },
+    "outcome": {
+      "$ref": "#/$defs/outcome"
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "required": [
+        "decision_id",
+        "owner",
+        "decision_question",
+        "options",
+        "current_default_action",
+        "stakes",
+        "reversibility",
+        "boundary_status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "pattern": "^DEC-[A-Z0-9-]{3,}$"
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deadline": {
+          "type": "string"
+        },
+        "decision_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/option"
+          }
+        },
+        "current_default_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stakes": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "reversibility": {
+          "enum": [
+            "reversible",
+            "costly_to_reverse",
+            "irreversible"
+          ]
+        },
+        "boundary_status": {
+          "enum": [
+            "undefined",
+            "far",
+            "near",
+            "locked"
+          ]
+        }
+      }
+    },
+    "option": {
+      "type": "object",
+      "required": [
+        "option_id",
+        "action"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "option_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_benefit": {
+          "type": "string"
+        },
+        "main_risk": {
+          "type": "string"
+        }
+      }
+    },
+    "utility_model": {
+      "type": "object",
+      "required": [
+        "objective",
+        "decision_delta_if_wrong",
+        "assumptions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "objective": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_delta_if_wrong": {
+          "type": "string",
+          "minLength": 1
+        },
+        "key_payoffs_or_losses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "required": [
+        "uncertainty_id",
+        "uncertainty",
+        "current_belief_or_range",
+        "confidence",
+        "impact_if_wrong",
+        "affected_options",
+        "could_change_option_ranking"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "uncertainty_id": {
+          "type": "string",
+          "pattern": "^U-[A-Z0-9-]{3,}$"
+        },
+        "uncertainty": {
+          "type": "string",
+          "minLength": 1
+        },
+        "current_belief_or_range": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "impact_if_wrong": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "affected_options": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "could_change_option_ranking": {
+          "type": "boolean"
+        },
+        "observable": {
+          "type": "boolean"
+        },
+        "controllable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "information_action": {
+      "type": "object",
+      "required": [
+        "action_id",
+        "action",
+        "target_uncertainty",
+        "information_type",
+        "expected_signals",
+        "could_change_action",
+        "reliability_and_bias",
+        "costs",
+        "conclusion"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "type": "string",
+          "pattern": "^INFO-[A-Z0-9-]{3,}$"
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_uncertainty": {
+          "type": "string",
+          "pattern": "^U-[A-Z0-9-]{3,}$"
+        },
+        "information_type": {
+          "enum": [
+            "perfect",
+            "partial_perfect",
+            "sample",
+            "proxy",
+            "expert",
+            "internal_record"
+          ]
+        },
+        "expected_signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/signal_action"
+          }
+        },
+        "could_change_action": {
+          "type": "boolean"
+        },
+        "reliability_and_bias": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evpi_upper_bound": {
+          "type": "string"
+        },
+        "evsi_estimate": {
+          "type": "string"
+        },
+        "approximate_net_voi": {
+          "type": "string"
+        },
+        "costs": {
+          "$ref": "#/$defs/costs"
+        },
+        "conclusion": {
+          "enum": [
+            "do",
+            "skip",
+            "timebox_learning",
+            "ask_human"
+          ]
+        }
+      }
+    },
+    "signal_action": {
+      "type": "object",
+      "required": [
+        "signal",
+        "posterior_update",
+        "action_if_seen"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "signal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "posterior_update": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_if_seen": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "costs": {
+      "type": "object",
+      "required": [
+        "acquisition",
+        "latency",
+        "attention",
+        "privacy_or_contamination"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "acquisition": {
+          "type": "string"
+        },
+        "latency": {
+          "type": "string"
+        },
+        "attention": {
+          "type": "string"
+        },
+        "privacy_or_contamination": {
+          "type": "string"
+        }
+      }
+    },
+    "selected_probe": {
+      "type": "object",
+      "required": [
+        "action_id",
+        "why_smallest_high_value_probe",
+        "sample_or_evidence_gate",
+        "owner"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "type": "string",
+          "pattern": "^INFO-[A-Z0-9-]{3,}$"
+        },
+        "why_smallest_high_value_probe": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sample_or_evidence_gate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "due": {
+          "type": "string"
+        }
+      }
+    },
+    "stop_rule": {
+      "type": "object",
+      "required": [
+        "stop_when",
+        "fallback_action"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "stop_when": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "fallback_action": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "required": [
+        "observed_signal",
+        "prior",
+        "posterior",
+        "action_before_information",
+        "action_after_information",
+        "decision_changed",
+        "residual_uncertainty",
+        "stop_reason"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "observed_signal": {
+          "type": "string"
+        },
+        "prior": {
+          "type": "string"
+        },
+        "posterior": {
+          "type": "string"
+        },
+        "action_before_information": {
+          "type": "string"
+        },
+        "action_after_information": {
+          "type": "string"
+        },
+        "decision_changed": {
+          "type": "boolean"
+        },
+        "residual_uncertainty": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "stop_reason": {
+          "type": "string"
+        },
+        "decision_log_ref": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

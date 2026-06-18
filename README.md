@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/gamedesignos-overview-banner-v7.png" alt="GameDesignOS by Paranoia v0.7.0 - AI-native game design operating system for evidence, experiments, proposals, and workflow governance" width="100%">
+  <img src="./assets/gamedesignos-overview-banner-v7-background.png" alt="GameDesignOS by Paranoia - AI-native game design operating system for evidence, experiments, proposals, and workflow governance" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
@@ -10,27 +10,26 @@
 </p>
 
 <p align="center">
-  GameDesignOS turns expert game-design methods, competitive analysis, experience diagnosis, player-motivation modeling, Steam page optimization, demo validation metrics, and AI workflows into reusable skills, templates, and evidence-backed operating procedures.
-  It helps game ideas become project proposals that can be judged, shown, tested, and iterated.
+  GameDesignOS turns expert game-design methods, evidence, experiments, proposals, and human decisions into reusable skills, stable contracts, and workspace-backed operating procedures.
+  It helps game projects move from idea to validation without losing context between agent calls, documents, and milestones.
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
-  <a href="#what-this-is">What This Is</a> ·
-  <a href="./docs/try-it-in-10-minutes.md">Try in 10 Minutes</a> ·
-  <a href="#easy-start">Easy Start</a> ·
-  <a href="#60-second-demo">60-Second Demo</a> ·
+  <a href="#runtime-foundation">Runtime Foundation</a> ·
+  <a href="./runtime/workspace-template/">Workspace</a> ·
+  <a href="./docs/workflows/">Workflows</a> ·
+  <a href="./docs/product/roadmap.md">Roadmap</a> ·
+  <a href="#current-skills">Skills</a> ·
   <a href="#featured-cases">Cases</a> ·
-  <a href="#current-skills">Current Skills</a> ·
-  <a href="#showcase">Showcase</a> ·
-  <a href="#star-history">Star History</a> ·
   <a href="#license">License</a>
 </p>
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.7.0-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.8.0-31e1d6">
+  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Foundation-8a63d2">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -40,9 +39,39 @@
 
 > GameDesignOS is the public-facing system name. Paranoia is the author identity and brand signature; the current installable modules remain packaged as Markdown skills.
 
+## Runtime Foundation
+
+v0.8.0 adds the optional project layer that turns the existing skill packages into a workspace-backed operating system.
+
+| Layer | Purpose | Entry |
+| --- | --- | --- |
+| **Skill Kernel** | Seven bounded specialist workflows | [`Current Skills`](#current-skills) |
+| **Contract Layer** | Stable handoffs, schemas, and routing boundaries | [`contracts/`](./contracts/) |
+| **Project Workspace** | Durable concept, evidence, analysis, experiment, proposal, and decision assets | [`runtime/workspace-template/`](./runtime/workspace-template/) |
+| **Runtime Interface** | Host-agent integration and planned local CLI semantics | [`runtime/`](./runtime/) |
+
+Start a private workspace:
+
+```bash
+cp -R runtime/workspace-template ../my-game-designos
+cd ../my-game-designos
+```
+
+Then edit `game.designos.yaml`. Existing skill folders remain independently installable; the workspace layer is additive and backward compatible.
+
+Read the [product architecture](./docs/product/architecture.md), [v0.8.0 MVP boundary](./docs/product/mvp-definition.md), [workflow routes](./docs/workflows/), and [roadmap](./docs/product/roadmap.md).
+
+Decision-first research prompt:
+
+```text
+Use $paranoia-ai-system-evolver to audit this research or AI workflow with a Decision Object, current default action, decision boundary, EVPI/EVSI, signal-to-action map, the smallest high-VOI probe, and a stop rule.
+```
+
 ## What This Is
 
-`GameDesignOS` is an AI-native workflow system for game design, concept validation, and prototype planning. It turns game experience analysis, concept architecture, proposal writing, experience-density experiments, workflow evolution, professional translation, source curation, and Steam-facing product judgment into reusable agent instructions, references, schemas, templates, examples, and eval-backed contracts.
+`GameDesignOS` is an AI-native workflow system for game design, concept validation, and prototype planning. Its public base now consists of a **Skill Kernel**, **Contract Layer**, **Project Workspace**, and **Runtime Interface**.
+
+The skills provide bounded expert behavior. Contracts make outputs interoperable. The workspace preserves project context. The runtime layer defines how a host agent or future CLI reads, routes, writes, validates, and stops at Human Gates.
 
 It is not a scattered skill list or a prompt dump. It is closer to a compact operating system for serious game design work, with contracts that let skills hand work to each other instead of producing isolated prose:
 
@@ -58,6 +87,9 @@ books and sources -> structured knowledge assets -> better references for future
 
 - **Evidence-first:** judgments point back to sources, screenshots, timestamps, sample evidence, or validation metrics.
 - **Contract-driven:** concept briefs, evidence indexes, issue cards, ED handoffs, and validation plans can move across skills.
+- **Workspace-native:** concepts, evidence, analysis, experiments, proposals, decisions, and retrospectives remain connected inside one project.
+- **Human-gated:** agents can propose and structure work, but commitment-changing decisions are recorded by people.
+- **Decision-first information:** before broad research, the system names the decision, current default action, decision boundary, signal-to-action map, information costs, and stop rule.
 - **Concept-to-validation:** a promising idea becomes a seed, a player promise, a core loop, a scope gate, and a prototype test.
 - **Workflow-governed:** useful behavior is written into `SKILL.md`, `references/`, `templates/`, evals, Human Gates, and rollback paths.
 - **Agent portable:** Codex, Claude Code, OpenCode, or any Markdown-skill-capable agent can adapt the packages.
@@ -112,9 +144,18 @@ If you are browsing on GitHub, start with these two cases. The first shows a sin
 
 ## Easy Start
 
-The simplest path is three small moves: pick a skill, give the agent your material, and ask for a reviewable output.
+For ongoing work, start a project workspace so context persists. For a one-off task, you can still call a skill directly.
 
-### 1. Pick the right skill
+### 1. Start a project workspace
+
+```bash
+cp -R runtime/workspace-template ../my-game-designos
+cd ../my-game-designos
+```
+
+Edit `game.designos.yaml`, keep private material outside this public repository, and use the workflow guides to decide which assets should be created next.
+
+### 2. Pick the right skill
 
 | What you have | Use this skill | What you get |
 | --- | --- | --- |
@@ -126,7 +167,7 @@ The simplest path is three small moves: pick a skill, give the agent your materi
 | Articles, videos, creators, or websites | `$game-design-source-curator` | Maintainable game design knowledge-base entries |
 | Retention, pacing, feedback, embodiment, atmosphere, or cognitive-load problem | `$game-experience-density-optimizer` | ED diagnosis, weekly A/B variants, instrumentation, dashboard fields, and rollback gates |
 
-### 2. Copy a minimal prompt
+### 3. Copy a minimal prompt
 
 Call a skill directly in an agent environment that supports skill loading:
 
@@ -162,7 +203,7 @@ Use $game-design-proposal-writer to assemble this research, concept brief, evide
 Use $game-experience-density-optimizer to turn this first-session experience density problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
 ```
 
-### 3. Install it in your own agent environment
+### 4. Install a skill in your own agent environment
 
 If your tool supports local skills, copy the target folder into that tool's skill directory:
 
@@ -226,24 +267,28 @@ Seven visible entry points cover the full GameDesignOS path: concept, evidence, 
 
 For the compact proof-path list, see the [showcase index](./docs/showcases/README.md).
 
-## Skill Architecture
+## System Architecture
 
-`GameDesignOS` is organized as a public base layer plus a contract layer. The public layer is currently packaged as installable skills. Private overlays, real project data, client examples, and local workflow rules should live outside this repository.
+`GameDesignOS` v0.8.0 is organized as four product layers plus cross-cutting governance:
 
-- **Design Production Layer**
+- **Skill Kernel**
   - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.
-  - [`game-design-proposal-writer/`](./game-design-proposal-writer/): research/concept/evidence/production notes -> decision-ready proposal or pitch.
   - [`game-experience-analyzer/`](./game-experience-analyzer/): media/sample -> evidence-linked diagnosis.
-  - [`game-experience-density-optimizer/`](./game-experience-density-optimizer/): retention/pacing/feedback issue -> weekly ED experiment.
-- **Workflow Governance Layer**
-  - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/): prompt/workflow/schema/eval changes -> controlled evolution.
-- **Knowledge Asset Layer**
+  - [`game-experience-density-optimizer/`](./game-experience-density-optimizer/): bounded experience problem -> weekly experiment.
+  - [`game-design-proposal-writer/`](./game-design-proposal-writer/): concept/evidence/constraints -> decision-ready proposal.
+  - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/): workflow/schema/eval change -> controlled evolution.
   - [`game-design-book-translator/`](./game-design-book-translator/): design texts -> professional Chinese design writing.
   - [`game-design-source-curator/`](./game-design-source-curator/): scattered sources -> durable knowledge base.
 - **Contract Layer**
-  - [`contracts/`](./contracts/): router rules and shared schemas for player promises, validation plans, evidence indexes, issue cards, and ED handoffs.
+  - [`contracts/`](./contracts/): routing, skill handoffs, project manifests, asset indexes, and decision logs.
+- **Project Workspace**
+  - [`runtime/workspace-template/`](./runtime/workspace-template/): project identity, lifecycle directories, asset registry, and Human Gates.
+- **Runtime Interface**
+  - [`runtime/`](./runtime/) and [`adapters/`](./adapters/): workspace lifecycle, host integration, and planned CLI contracts.
+- **Governance**
+  - evidence boundaries, public/private separation, evals, Human Gates, and rollback apply across every layer.
 
-Users may still use these skills with real projects, private projects, client work, or synthetic cases in their own environment. The public-case rules apply only to content committed back to this repository.
+Private overlays, real project data, client examples, credentials, and local studio rules should live outside this public repository. Users may still run any skill directly without adopting a workspace.
 
 ## Current Skills
 
@@ -273,15 +318,17 @@ Users may still use these skills with real projects, private projects, client wo
 
 ## Repository Layout
 
-Read the repository as a set of installable skill packages plus supporting public infrastructure.
+Read the repository as a GameDesignOS public base rather than a normal asset folder.
 
 | Layer | Paths | Purpose |
 | --- | --- | --- |
-| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | Copyable agent skills. Each package carries its own runtime instructions, references, templates, examples, and evals. |
-| Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | Explains what the project is, how to try it, showcase boundaries, release drafts, and public-facing docs. |
-| Readable GitHub case | `docs/showcases/elliot-experience-density-report/` | A clickable case page showing how public video evidence becomes an ED experiment plan. |
-| Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | Adapter notes, shared schemas, router contracts, GitHub workflow/templates, behavior evals, and repository validation tools. |
-| Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | Contribution rules, license terms, and public README/showcase visuals. |
+| Skill Kernel | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | Independently installable specialist packages. |
+| Contract Layer | `contracts/` | Skill handoffs, routing, project manifest, asset index, and decision-log schemas. |
+| Runtime Foundation | `runtime/` | Workspace template, lifecycle rules, and planned CLI command contracts. |
+| Product and workflows | `docs/product/`, `docs/workflows/` | Product boundary, architecture, roadmap, and end-to-end project routes. |
+| Public onboarding and proof | `README*`, `docs/`, `releases/` | Onboarding, release history, public-safe examples, and proof paths. |
+| Adapters and validation | `adapters/`, `.github/`, `scripts/` | Host integration, CI, repository checks, and behavior evals. |
+| Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | Contribution boundary, licensing, and public visual assets. |
 
 Most skills follow this structure:
 
@@ -296,12 +343,24 @@ evals/       -> regression prompts and expected behavior
 
 ## Install And Use
 
-These packages are portable skill folders. A typical setup:
+GameDesignOS supports two compatible modes.
+
+### Project Workspace Mode
+
+Copy the workspace template outside this public repository, edit `game.designos.yaml`, and use the workflow guides to route work and save durable project assets.
+
+```bash
+cp -R runtime/workspace-template ../my-game-designos
+```
+
+### Direct Skill Mode
 
 1. Copy or sync a skill folder into your agent skill directory.
 2. Confirm the `SKILL.md` frontmatter `name` matches the folder name.
 3. Trigger the skill by `$skill-name` or natural language.
 4. Validate JSON/YAML, reference paths, and examples according to the skill README or `SKILL.md`.
+
+The workspace layer does not prevent direct skill use.
 
 ## Validation
 
@@ -314,6 +373,14 @@ python scripts/validate_skill.py game-concept-architect
 python scripts/validate_skill.py game-experience-density-optimizer
 python scripts/validate_skill.py game-design-proposal-writer
 ```
+
+## Roadmap
+
+- **v0.8.0 — Runtime Foundation:** workspace template, workspace contracts, product architecture, workflow routes, and validation.
+- **v0.9.0 — Local Runtime Prototype:** initialize, inspect, route, create, validate, and pack local workspaces.
+- **v1.0.0 — Project-Ready GameDesignOS:** asset graph, Human Gate queue, project dashboard, private overlays, and end-to-end cases.
+
+See the capability-gated [product roadmap](./docs/product/roadmap.md).
 
 ## Star History
 

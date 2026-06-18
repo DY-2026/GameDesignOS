@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/decision-log.schema.json",
+  "title": "GameDesignOS Decision Log",
+  "description": "Workspace-level record of Human Gates, accepted commitments, reversals, and rollback conditions.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workspace_id",
+    "decisions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.8.0"
+    },
+    "workspace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "required": [
+        "decision_id",
+        "date",
+        "decision_type",
+        "status",
+        "decision",
+        "context",
+        "options_considered",
+        "evidence_refs",
+        "assumptions",
+        "risks",
+        "owner",
+        "rollback_trigger"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "pattern": "^DEC-[A-Z0-9-]{3,}$"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "decision_type": {
+          "enum": [
+            "concept_gate",
+            "scope_gate",
+            "validation",
+            "experiment",
+            "milestone",
+            "proposal",
+            "release",
+            "workflow",
+            "information"
+          ]
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "accepted",
+            "rejected",
+            "reversed",
+            "superseded"
+          ]
+        },
+        "decision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options_considered": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rollback_trigger": {
+          "type": "string",
+          "minLength": 1
+        },
+        "next_review": {
+          "type": "string"
+        },
+        "supersedes": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_deadline": {
+          "type": "string"
+        },
+        "current_default_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_boundary": {
+          "enum": [
+            "undefined",
+            "far",
+            "near",
+            "locked"
+          ]
+        },
+        "voi_assessment_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "action_before_information": {
+          "type": "string"
+        },
+        "action_after_information": {
+          "type": "string"
+        },
+        "information_stop_reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

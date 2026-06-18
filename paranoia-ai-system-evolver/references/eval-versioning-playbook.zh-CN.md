@@ -9,7 +9,7 @@
 | 表面 | 问题 |
 | --- | --- |
 | 结果 | 输出是否真正解决了任务？ |
-| 过程 | agent 是否正确使用 WOOP 准入、VOI、工具、记忆和验证？ |
+| 过程 | agent 是否正确使用 WOOP 准入、Decision Object、VOI、工具、记忆和验证？ |
 | 进化 | 候选系统突变是否让未来任务更好，同时没有显著抬高风险？ |
 
 ## 2. Trace 最小字段
@@ -21,6 +21,8 @@ trace_summary:
   task_id:
   user_goal:
   woop_task_card:
+  decision_object:
+  voi_decision_gate:
   context_used:
   tool_calls:
   uncertainties:
@@ -35,8 +37,6 @@ trace_summary:
 
 ## 3. 突变提案
 
-使用这个结构：
-
 ```yaml
 proposal_id:
 trigger:
@@ -46,6 +46,7 @@ change_summary:
 expected_benefit:
 risk:
 woop_task_card:
+voi_decision_gate:
 eval_plan:
 human_gate:
 rollback:
@@ -56,25 +57,24 @@ status: candidate
 
 | 层级 | 最低检查 |
 | --- | --- |
-| prompt | 回放代表任务，对比指令遵循和风格匹配 |
+| prompt | 回放代表任务，对比指令遵循、信息密度和行动收束 |
 | memory | 要有证据、置信度、适用范围、过期机制，并至少做一次反例检查 |
-| RAG | 检查来源质量、召回精度、过期风险和引用行为 |
-| tool routing | 检查工具使用是否正确、过早、过晚或缺失 |
-| workflow | 检查 WOOP Task Card、source contract 与 output gate 是否完整 |
+| RAG | 检查来源质量、召回精度、过期风险、引用行为和检索是否会改变行动 |
+| tool routing | 检查工具使用是否正确、过早、过晚、缺失或低 VOI |
+| workflow | 检查 WOOP Task Card、Decision Object、source contract、output gate 与停止规则 |
 | schema | 验证结构可机器解析，并覆盖边界样本 |
-| skill | 检查 frontmatter、metadata、WOOP reference、引用路径、模板可用性、陈旧措辞、真实调用场景和行为回归 |
+| skill | 检查 frontmatter、metadata、VOI/WOOP reference、引用路径、模板可用性、陈旧措辞、真实调用场景和行为回归 |
 | README visual | 检查图片路径、alt text、无水印、无误导文字、关键流程有文本版本 |
 
 ## 5. Skill Package 回归清单
-
-改 skill 包时，至少跑这些检查：
 
 ```text
 frontmatter name == folder name
 agents/openai.yaml default_prompt uses the same skill name
 all referenced files exist
 templates are non-empty and copy-paste usable
-WOOP Task Card fields exist in templates when the skill controls task admission or recovery
+Decision Object and VOI stop-rule fields exist when the skill can trigger research or tools
+WOOP Task Card fields exist when the skill controls task admission or recovery
 root README is human-facing
 SKILL.md is agent-facing and lightweight
 no stale old name remains in public entrypoints
@@ -92,28 +92,25 @@ copyright/provenance is explicit
 - 若行为没有变好，只能保留为 `candidate` 或失败样本；不要因为结构更完整就提升为当前规则。
 - 若行为变好但描述成本明显上升，回到模型压缩 Gate，判断收益是否覆盖新增复杂度。
 
+### VOI 决策门行为回归
+
+至少回放这些场景：
+
+- 没有决策对象的 FOMO 调研：应限制探索，而不是生成长资料清单。
+- 接近决策边界的高影响选择：应提出不超过 3 个信息行动并写信号—行动映射。
+- 所有信号都不会改变行动：应停止调研或归类为模型学习/信息消费。
+- 完全信息不可得：应比较 EVPI 上界和现实 EVSI，选择最小样本。
+- 本地负反馈与宏观趋势冲突：应保留具体负反馈，不能被通用总结洗平。
+- 多个 AI 对话同时打开：应把每个分支映射到决策，关闭低 VOI 分支。
+
+通过条件：输出明确 `current_default_action`、`boundary_status`、目标不确定性、成本、停止规则，以及获取信息前后的行动变化。若新增框架只让文本更长，却没有更快收敛到行动，判为回归。
+
 ## 6. 版本管理
 
-每个被接受的突变都需要：
-
-- version id
-- 改动文件
-- 改动理由
-- eval 证据
-- 风险
-- 回滚路径
-- 提升日期
-
-被拒绝的突变在有复盘价值时，应保留为可搜索的失败样本。
+每个被接受的突变都需要：version id、改动文件、改动理由、eval 证据、风险、回滚路径和提升日期。被拒绝的突变在有复盘价值时，应保留为可搜索的失败样本。
 
 ## 7. 提升与回滚
 
-以下情况不得提升为当前规则：
-
-- 缺少 eval
-- 高价值任务出现回退
-- 复杂度增加但质量没有提升
-- Human Gate 尚未完成
-- 回滚方案不清楚
+以下情况不得提升为当前规则：缺少 eval；高价值任务回退；复杂度增加但质量没有提升；Human Gate 尚未完成；回滚方案不清楚；VOI gate 只增加表单却没有减少无效调研。
 
 回滚应恢复上一个 prompt、memory 记录、skill 版本、workflow 文档、schema 或 eval 规则，不得触碰无关项目状态。

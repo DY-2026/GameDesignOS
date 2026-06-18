@@ -1,0 +1,42 @@
+schema_version: "0.8.0"
+workspace_type: "gamedesignos-project"
+
+project:
+  id: "untitled-game"
+  title: "Untitled Game Project"
+  codename: "untitled"
+  status: "concept"
+  visibility: "private"
+  owner: "designer"
+  target_platforms: []
+  tags: []
+
+designos:
+  version: "0.8.0"
+  public_base_repo: "DY-2026/GameDesignOS"
+  private_overlay: true
+
+assets:
+  index: "design-asset-index.json"
+  inbox_dir: "00-inbox"
+  concept_dir: "01-concept"
+  evidence_dir: "02-evidence"
+  analysis_dir: "03-analysis"
+  proposals_dir: "04-proposals"
+  experiments_dir: "05-experiments"
+  decisions_dir: "06-decisions"
+  retrospectives_dir: "07-retrospectives"
+
+rules:
+  evidence_before_opinion: true
+  feasibility_before_scope: true
+  workflow_before_one_off_prompts: true
+  voi_before_research: true
+  eval_before_promotion: true
+  rollback_before_confidence: true
+  human_gate_for_commitments: true
+  decision_before_information: true
+  action_change_before_research: true
+  sample_before_scale: true
+  stop_when_marginal_voi_nonpositive: true
+  preserve_local_negative_evidence: true

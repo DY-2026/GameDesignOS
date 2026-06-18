@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/gamedesignos-overview-banner-v7.png" alt="GameDesignOS by Paranoia v0.7.0 - AI 原生游戏设计操作系统：证据、实验、策划案与工作流治理" width="100%">
+  <img src="./assets/gamedesignos-overview-banner-v7-background.png" alt="GameDesignOS by Paranoia - AI 原生游戏设计操作系统：证据、实验、策划案与工作流治理" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
@@ -9,27 +9,26 @@
 </p>
 
 <p align="center">
-  GameDesignOS 是一套面向游戏设计、立项验证与原型构建的 AI 原生工作流系统。
-  它把资深游戏策划的方法论、竞品分析、体验诊断、玩家动机拆解、Steam 页面优化、Demo 验证指标与 AI 工作流，沉淀为可复用的工具、模板和分析框架，帮助游戏创意更快变成可判断、可展示、可测试的项目方案。
+  GameDesignOS 是一套由 skill、contract、project workspace 与 runtime 组成的 AI 原生游戏设计操作系统。
+  它把创意、证据、分析、实验、策划案和人类决策沉淀为可追踪项目资产，让项目在多次 agent 调用、文档和里程碑之间不再丢失上下文。
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
-  <a href="#这个项目是什么">这个项目是什么</a> ·
-  <a href="./docs/try-it-in-10-minutes.md">10 分钟试用</a> ·
-  <a href="#轻松上手">轻松上手</a> ·
-  <a href="#60-秒-demo">60 秒 demo</a> ·
-  <a href="#github-案例">GitHub 案例</a> ·
-  <a href="#当前-skill">当前 Skill</a> ·
-  <a href="#图文展示">图文展示</a> ·
-  <a href="#star-history">Star History</a> ·
+  <a href="#v080-runtime-foundation">Runtime Foundation</a> ·
+  <a href="./runtime/workspace-template/">项目 Workspace</a> ·
+  <a href="./docs/workflows/">工作流</a> ·
+  <a href="./docs/product/roadmap.md">路线图</a> ·
+  <a href="#当前-skill">Skills</a> ·
+  <a href="#github-案例">案例</a> ·
   <a href="#license">License</a>
 </p>
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.7.0-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.8.0-31e1d6">
+  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Foundation-8a63d2">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -39,9 +38,39 @@
 
 > GameDesignOS 是对外项目主体；Paranoia / 游思考是作者背书。当前模块仍以可安装 skill 形式组织，方便 Codex、Claude Code、OpenCode 等 agent 复用。
 
+## v0.8.0 Runtime Foundation
+
+v0.8.0 新增可选的项目层，把现有七个 skill 从独立工具包推进为由 workspace 承载的游戏设计操作系统。
+
+| 层级 | 作用 | 入口 |
+| --- | --- | --- |
+| **Skill Kernel** | 七个边界清楚的专家工作流 | [`当前 Skill`](#当前-skill) |
+| **Contract Layer** | 稳定交接、schema 与路由边界 | [`contracts/`](./contracts/) |
+| **Project Workspace** | 长期保存概念、证据、分析、实验、策划案与决策 | [`runtime/workspace-template/`](./runtime/workspace-template/) |
+| **Runtime Interface** | 宿主 agent 接入方式与未来本地 CLI 语义 | [`runtime/`](./runtime/) |
+
+创建私有项目空间：
+
+```bash
+cp -R runtime/workspace-template ../my-game-designos
+cd ../my-game-designos
+```
+
+随后修改 `game.designos.yaml`。原有 skill 仍可独立安装；workspace 是向后兼容的增量层。
+
+详细内容见 [产品架构](./docs/product/architecture.md)、[v0.8.0 MVP 边界](./docs/product/mvp-definition.md)、[核心工作流](./docs/workflows/) 和 [路线图](./docs/product/roadmap.md)。
+
+决策优先的信息审计提示词：
+
+```text
+Use $paranoia-ai-system-evolver to audit this research or AI workflow with a Decision Object, current default action, decision boundary, EVPI/EVSI, signal-to-action map, the smallest high-VOI probe, and a stop rule.
+```
+
 ## 这个项目是什么
 
-`GameDesignOS` 是一套 AI 原生游戏设计、立项验证与原型构建工作流系统。它把游戏体验分析、概念架构、策划案写作、体验浓度实验、工作流演化、专业翻译、资料策展和面向 Steam 的产品判断，沉淀成可复用的 agent instructions、references、schemas、templates、examples 和带 eval 的契约。
+`GameDesignOS` 是一套 AI 原生游戏设计、立项验证与原型构建工作系统。它的公开基础层由 **Skill Kernel**、**Contract Layer**、**Project Workspace** 和 **Runtime Interface** 组成。
+
+skill 提供边界清楚的专家能力，contract 让产物可以交接，workspace 保存长期项目上下文，runtime 则规定宿主 agent 或未来 CLI 如何读取、路由、写回、校验并停在 Human Gate。
 
 它不是一张零散 skill 清单，也不是一堆提示词合集。它更像一套小型游戏设计操作系统，并用契约让不同 skill 之间能交接工作，而不是各自输出孤立长文：
 
@@ -57,6 +86,9 @@ workflow 改动 -> WOOP Task Card -> VOI/OODA probe -> eval -> Human Gate -> rol
 
 - **Evidence-first:** 判断尽量绑定到来源、截图区域、时间戳、样本证据或验证指标。
 - **Contract-driven:** concept brief、evidence index、issue card、ED handoff 和 validation plan 可以跨 skill 流转。
+- **Workspace-native:** 概念、证据、分析、实验、策划案、决策和复盘保存在同一个项目上下文中。
+- **Human-gated:** agent 可以提出和组织方案，但改变项目承诺的决策必须由人记录。
+- **决策优先的信息门：** 在广泛调研前，先声明决策、当前默认行动、决策边界、信号—行动映射、信息成本和停止规则。
 - **Concept-to-validation:** 不把“绝妙点子”直接扩写成 GDD，而是拆成 seed、玩家承诺、核心循环、scope gate 和原型验证计划。
 - **Workflow-governed:** 不追求一次漂亮回答，而是把可复用流程沉淀到 `SKILL.md`、`references/`、`templates/`、eval、Human Gate 和 rollback。
 - **Agent portable:** Codex、Claude Code、OpenCode 或其他能读取 Markdown skill 的 agent 环境都可以迁移。
@@ -111,9 +143,18 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 
 ## 轻松上手
 
-最简单的用法只有三步：选一个 skill，把材料交给 agent，要求它按 skill 输出可复查的结果。
+持续项目建议先创建 workspace，让上下文长期保留；一次性任务仍可直接调用单个 skill。
 
-### 1. 不知道选哪个？先看这张表
+### 1. 创建项目 Workspace
+
+```bash
+cp -R runtime/workspace-template ../my-game-designos
+cd ../my-game-designos
+```
+
+先修改 `game.designos.yaml`，把真实项目保存在公开仓库外，再按 workflow 文档决定下一项设计资产。
+
+### 2. 不知道选哪个？先看这张表
 
 | 你手里的材料 | 该用哪个 skill | 你会得到什么 |
 | --- | --- | --- |
@@ -125,7 +166,7 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 | 一批文章、视频、作者或网站 | `$game-design-source-curator` | 可长期维护的游戏设计知识库条目 |
 | 留存、节奏、反馈、具身感、氛围感或认知负荷问题 | `$game-experience-density-optimizer` | ED 诊断、一周 A/B 变体、埋点字典、看板字段和回滚门 |
 
-### 2. 复制一句最小提示词
+### 3. 复制一句最小提示词
 
 在支持 skill 的 agent 环境里，直接点名对应 skill：
 
@@ -161,7 +202,7 @@ Use $game-design-proposal-writer to assemble this research, concept brief, evide
 Use $game-experience-density-optimizer to turn this first-session experience density problem into CLP/SF/EB/AR/MD-min diagnosis, rollbackable weekly variants, telemetry events, dashboard fields, and pre-registered decision rules.
 ```
 
-### 3. 安装到自己的 agent 环境
+### 4. 安装 Skill 到自己的 agent 环境
 
 如果你的工具支持本地 skill / Markdown skill package，把对应目录复制或同步到它的 skill 目录即可。常见宿主可以是 Codex、Claude Code、OpenCode，或其他能读取 Markdown skill 的 agent 环境：
 
@@ -225,24 +266,28 @@ game-design-proposal-writer/
 
 更小的 proof-path 列表见 [showcase index](./docs/showcases/README.md)。
 
-## Skill Architecture
+## System Architecture
 
-`GameDesignOS` 分为公开基础层和契约层。公开层当前以可安装 skill 的形式组织。私有项目规则、客户材料、真实案例和个人工作室偏好应放在仓库外的 private overlay。
+`GameDesignOS` v0.8.0 由四层产品结构和贯穿全局的治理规则组成：
 
-- **Design Production Layer**
-  - [`game-concept-architect/`](./game-concept-architect/)：one-line idea -> verifiable design blueprint。
-  - [`game-design-proposal-writer/`](./game-design-proposal-writer/)：research/concept/evidence/production notes -> decision-ready proposal or pitch。
-  - [`game-experience-analyzer/`](./game-experience-analyzer/)：media/sample -> evidence-linked diagnosis。
-  - [`game-experience-density-optimizer/`](./game-experience-density-optimizer/)：retention/pacing/feedback issue -> weekly ED experiment。
-- **Workflow Governance Layer**
-  - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/)：prompt/workflow/schema/eval changes -> controlled evolution。
-- **Knowledge Asset Layer**
-  - [`game-design-book-translator/`](./game-design-book-translator/)：design texts -> professional Chinese design writing。
-  - [`game-design-source-curator/`](./game-design-source-curator/)：scattered sources -> durable knowledge base。
+- **Skill Kernel**
+  - [`game-concept-architect/`](./game-concept-architect/)：一句话创意 -> 可验证概念蓝图。
+  - [`game-experience-analyzer/`](./game-experience-analyzer/)：媒体/样本 -> 证据化诊断。
+  - [`game-experience-density-optimizer/`](./game-experience-density-optimizer/)：明确体验问题 -> 一周实验。
+  - [`game-design-proposal-writer/`](./game-design-proposal-writer/)：概念/证据/约束 -> 可决策策划案。
+  - [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/)：workflow/schema/eval 改动 -> 受控演化。
+  - [`game-design-book-translator/`](./game-design-book-translator/)：设计文本 -> 专业中文设计写作。
+  - [`game-design-source-curator/`](./game-design-source-curator/)：散落资料 -> 长期知识资产。
 - **Contract Layer**
-  - [`contracts/`](./contracts/)：router rules，以及 player promise、validation plan、evidence index、issue card、ED handoff 的共享 schema。
+  - [`contracts/`](./contracts/)：路由、skill 交接、项目 manifest、资产索引与决策日志。
+- **Project Workspace**
+  - [`runtime/workspace-template/`](./runtime/workspace-template/)：项目身份、生命周期目录、资产 registry 与 Human Gate。
+- **Runtime Interface**
+  - [`runtime/`](./runtime/) 与 [`adapters/`](./adapters/)：workspace 生命周期、宿主接入和未来 CLI 契约。
+- **Governance**
+  - 证据边界、公开/私有隔离、eval、Human Gate 与 rollback 贯穿每一层。
 
-用户仍然可以在自己的环境中用这些 skill 处理真实项目、私有项目、客户项目或 synthetic cases。公开案例规则只约束提交回本仓库的内容。
+私有项目数据、客户材料、凭据与工作室本地规则应留在公开仓库外。用户也仍然可以不使用 workspace，直接调用任一 skill。
 
 ## 当前 Skill
 
@@ -272,15 +317,17 @@ game-design-proposal-writer/
 
 ## 项目结构
 
-可以把这个仓库理解成“一组可安装 skill 包 + 支撑公开发布的基础设施”，而不是一个普通素材目录。
+可以把这个仓库理解成 GameDesignOS 的公开基础层，而不是普通素材目录。
 
 | 层级 | 路径 | 作用 |
 | --- | --- | --- |
-| Skill packages | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | 可复制到 agent 环境里的 skill 包。每个包都有自己的运行入口、方法参考、模板、示例和 eval。 |
-| Public onboarding | `README.md`, `README.zh-CN.md`, `README.en.md`, `docs/`, `releases/` | 说明项目是什么、怎么试用、showcase 边界、release 草稿和公开文档。 |
-| GitHub 可读案例 | `docs/showcases/elliot-experience-density-report/` | 可直接点击阅读的体验浓度案例页，展示公开视频证据如何转成 ED 实验方案。 |
-| Integration and contracts | `adapters/`, `contracts/`, `.github/`, `scripts/` | 适配器说明、共享 schema、router contract、GitHub workflow/templates、行为 eval 和仓库校验工具。 |
-| Governance and media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | 贡献规则、授权信息，以及 README/showcase 使用的公开视觉素材。 |
+| Skill Kernel | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | 可独立安装的专家能力包。 |
+| Contract Layer | `contracts/` | skill 交接、路由、项目 manifest、资产索引和决策日志 schema。 |
+| Runtime Foundation | `runtime/` | workspace 模板、生命周期规则和未来 CLI 命令契约。 |
+| Product 与 workflows | `docs/product/`, `docs/workflows/` | 产品边界、架构、路线图和端到端项目路径。 |
+| 公开 onboarding 与 proof | `README*`, `docs/`, `releases/` | 上手、版本历史、公开安全案例和 proof path。 |
+| Adapters 与 validation | `adapters/`, `.github/`, `scripts/` | 宿主接入、CI、仓库校验与行为 eval。 |
+| Governance 与 media | `CONTRIBUTING.md`, `LICENSE`, `assets/` | 贡献边界、授权和公开视觉素材。 |
 
 每个 skill 通常使用同一套结构：
 
@@ -295,12 +342,24 @@ evals/       -> 用于回归检查的提示和预期行为
 
 ## 安装与使用
 
-这个仓库里的 skill 是可迁移包。典型使用方式：
+GameDesignOS 支持两种兼容模式。
 
-1. 将某个 skill 目录复制或同步到你的 agent skill 目录。
+### Project Workspace 模式
+
+把 workspace 模板复制到公开仓库外，修改 `game.designos.yaml`，再按 workflow 文档路由任务并保存长期项目资产。
+
+```bash
+cp -R runtime/workspace-template ../my-game-designos
+```
+
+### 直接使用 Skill
+
+1. 将某个 skill 目录复制或同步到 agent skill 目录。
 2. 确认 `SKILL.md` frontmatter 的 `name` 与目录名一致。
-3. 在 agent 中用 `$skill-name` 或自然语言触发。
-4. 按对应 README 或 `SKILL.md` 的验证方式检查 JSON/YAML、引用路径和示例。
+3. 用 `$skill-name` 或自然语言触发。
+4. 按 README 或 `SKILL.md` 检查 JSON/YAML、引用路径和示例。
+
+使用 workspace 不会破坏原有 skill 的独立调用方式。
 
 ## 验证
 
@@ -313,6 +372,14 @@ python scripts/validate_skill.py game-concept-architect
 python scripts/validate_skill.py game-experience-density-optimizer
 python scripts/validate_skill.py game-design-proposal-writer
 ```
+
+## 路线图
+
+- **v0.8.0 — Runtime Foundation：** workspace 模板、workspace contract、产品架构、工作流和校验。
+- **v0.9.0 — Local Runtime Prototype：** 初始化、查看、路由、创建、校验和打包本地 workspace。
+- **v1.0.0 — Project-Ready GameDesignOS：** 资产图、Human Gate 队列、项目看板、private overlay 与端到端案例。
+
+完整路线见按能力门推进的 [产品 Roadmap](./docs/product/roadmap.md)。
 
 ## Star History
 

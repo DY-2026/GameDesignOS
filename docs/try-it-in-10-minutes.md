@@ -9,6 +9,20 @@ This guide helps a new user understand and test `GameDesignOS` without adding pr
 - Agent-workflow builders who want portable Markdown skills with validation gates, not one-off prompts.
 - Designers and producers who want to turn retention, pacing, feedback, embodiment, atmosphere, or cognitive-load problems into weekly ED experiments.
 - Teams that want to use real projects privately while keeping public examples synthetic, public, or cleared.
+- Teams that want a durable project workspace for concepts, evidence, experiments, proposals, decisions, and retrospectives.
+
+## Start A Project Workspace
+
+For ongoing work, copy the workspace template outside the public repository:
+
+```bash
+cp -R runtime/workspace-template ../my-game-designos
+cd ../my-game-designos
+```
+
+Edit `game.designos.yaml`, then use the workflow guides in [`docs/workflows/`](./workflows/) to decide which project assets to create.
+
+For a one-off task, you may skip the workspace and call a skill directly.
 
 ## Which Skill To Choose
 
@@ -16,21 +30,48 @@ This guide helps a new user understand and test `GameDesignOS` without adding pr
 | --- | --- | --- |
 | PV, trailer, gameplay recording, screenshot, or video link | `$game-experience-analyzer` | Evidence index, diagnosis route, issue cards, validation plan |
 | One-line game idea | `$game-concept-architect` | Concept seed, player promise, core loop, scope gate, validation plan |
-| Prompt, workflow, schema, eval, memory, or agent rule | `$paranoia-ai-system-evolver` | VOI/OODA evolution proposal with Human Gate and rollback |
+| Concept, evidence, validation, source, ED, or production assets need a formal document | `$game-design-proposal-writer` | Proposal, pitch, decision memo, or vertical-slice document |
+| Research choice, FOMO, information overload, AI branch pruning, prompt, workflow, schema, eval, memory, or agent rule | `$paranoia-ai-system-evolver` | Decision Object, information-value assessment, controlled evolution proposal, Human Gate, and rollback |
 | Retention, pacing, feedback, embodiment, atmosphere, or cognitive-load problem | `$game-experience-density-optimizer` | ED diagnosis, weekly A/B variants, instrumentation, dashboard fields, rollback gates |
+| Design chapter or long-form English material | `$game-design-book-translator` | Professional Chinese design translation |
+| Articles, videos, creators, columns, or websites | `$game-design-source-curator` | Traceable, maintainable knowledge assets |
 
 ## Which Folder To Copy
 
-Copy only the skill folder you want to try into your agent's local skill directory:
+For an ongoing project, copy `runtime/workspace-template/` outside the repository.
+
+For direct skill mode, copy only the skill folder you want to try:
 
 ```text
 game-experience-analyzer/
 game-concept-architect/
+game-design-proposal-writer/
 paranoia-ai-system-evolver/
 game-experience-density-optimizer/
+game-design-book-translator/
+game-design-source-curator/
 ```
 
-For a first test, copy one folder only. After copying, confirm that `SKILL.md`, `references/`, `templates/`, and `examples/` are still in the same relative layout.
+For a first direct-skill test, copy one folder only. Confirm that `SKILL.md`, `references/`, `templates/`, and `examples/` remain in the same relative layout.
+
+## How To Run A VOI Decision Gate
+
+Use this before broad research, more AI conversations, memory reads, or experiments.
+
+```text
+Use $paranoia-ai-system-evolver to decide whether this information action is worth doing.
+
+Decision: <what must be decided>
+Options: <real actions still available>
+Current default action: <what I will do without more information>
+Deadline: <when the decision must be made>
+Stakes and reversibility: <cost of being wrong>
+Candidate information action: <search / ask / inspect / test>
+
+Return the decision boundary, target uncertainty, possible signals, action for each signal, EVPI ceiling, practical EVSI, total information cost, smallest positive-net-VOI probe, and stop rule.
+```
+
+If every plausible signal leads to the same action, stop the research or classify it as model learning / information consumption. For durable projects, save the result as `06-decisions/information-value-assessment.json`.
 
 ## How To Trigger `$game-experience-analyzer`
 
@@ -167,6 +208,7 @@ python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 python scripts/validate_skill.py paranoia-ai-system-evolver
 python scripts/validate_skill.py game-experience-density-optimizer
+python scripts/validate_skill.py game-design-proposal-writer
 ```
 
 ## How To Avoid Publishing Private Overlay Or Real Project Cases

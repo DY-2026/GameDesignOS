@@ -4,50 +4,96 @@
 
 ```yaml
 proposal_id: "mutation-YYYYMMDD-001"
-trigger: ""          # repeated failure, high-impact feedback, tool error, style rework, etc.
+trigger: ""
 target_layer: "prompt | memory | rag | tool | workflow | eval | schema | docs | skill"
 affected_files: []
+
 evidence:
-  traces: []         # reconstructable task traces
-  user_feedback: []  # user feedback or revision evidence
-  failed_evals: []   # failed samples or low-score evals
+  traces: []
+  user_feedback: []
+  failed_evals: []
   repeated_pattern: ""
+  local_negative_evidence: []
+
 change_summary: ""
 expected_benefit: ""
 risk: ""
+
 woop_task_card:
   wish:
-    intent_spec: ""      # what the task is really trying to complete
-    output_artifact: ""  # deliverable
-    scope_boundary: ""   # what is in scope and out of scope
-    stop_condition: ""   # when to stop or hand back to a human
+    intent_spec: ""
+    output_artifact: ""
+    scope_boundary: ""
+    stop_condition: ""
   outcome:
-    decision_value: ""   # decision or action this should enable
-    acceptance_rubric:
-      - ""
-      - ""
-      - ""
+    decision_value: ""
+    acceptance_rubric: ["", "", ""]
   obstacle:
     failure_patterns:
-      - pattern: ""      # internal human-AI system failure pattern
-        trigger: ""      # observable trigger
+      - pattern: ""
+        trigger: ""
         severity: "low | medium | high"
   plan:
     if_then_protocols:
-      - if: ""           # trigger condition
-        then: ""         # concrete action
-        judge: ""        # agent | user | validator | test | reviewer
+      - if: ""
+        then: ""
+        judge: "agent | user | validator | test | reviewer"
         next_step: "continue | retry | rewrite | verify | ask_human | rollback"
+
+voi_decision_gate:
+  assessment_id: "VOI-YYYYMMDD-001"
+  information_mode: "decision_information | model_learning | information_consumption"
+  decision:
+    decision_id: "DEC-..."
+    owner: ""
+    deadline: ""
+    decision_question: ""
+    options: []
+    current_default_action: ""
+    stakes: "low | medium | high | critical"
+    reversibility: "reversible | costly_to_reverse | irreversible"
+    boundary_status: "undefined | far | near | locked"
+  uncertainty_map:
+    - uncertainty_id: "U-001"
+      uncertainty: ""
+      current_belief_or_range: ""
+      confidence: "low | medium | high"
+      impact_if_wrong: "low | medium | high | critical"
+      could_change_option_ranking: true
+  candidate_information_actions:
+    - action_id: "INFO-001"
+      action: ""
+      target_uncertainty: "U-001"
+      expected_signals:
+        - signal: ""
+          posterior_update: ""
+          action_if_seen: ""
+      could_change_action: true
+      evpi_upper_bound: ""
+      evsi_estimate: ""
+      acquisition_cost: ""
+      latency_cost: ""
+      attention_cost: ""
+      privacy_or_contamination_cost: ""
+      approximate_net_voi: ""
+      conclusion: "do | skip | timebox_learning | ask_human"
+  selected_probe:
+    action_id: "INFO-001"
+    sample_or_evidence_gate: ""
+  stop_rule:
+    stop_when: []
+    fallback_action: ""
+
 model_audit:
-  current_model: ""   # current implicit model
-  proposed_model: ""  # how the new model is shorter, steadier, and more verifiable
+  current_model: ""
+  proposed_model: ""
   woop_compression:
     intent_spec:
     evaluation_rubric: []
     failure_patterns: []
     if_then_protocols: []
-  causal_chain: []    # input -> mediator -> output
-  control_points: []  # observable, intervenable, verifiable mediator nodes
+  causal_chain: []
+  control_points: []
   description_cost:
     core_model_length: "low | medium | high"
     data_patch_length: "low | medium | high"
@@ -58,16 +104,19 @@ model_audit:
     failure_recovery_length: "low | medium | high"
   diagnosis: "underfit | overfit | missing_mediator | balanced"
   expected_cost_delta: ""
-voi_reason:
-  decision_changed_if_known: ""  # what decision this information or change would affect
-  expected_value: "high | medium | low"
-  cost: "high | medium | low"
-  conclusion: "do | skip | ask_human"
+
 eval_plan:
   samples: []
-  behavior_samples: []  # for target_layer=skill: real/frequent invocation, expected behavior, failure signals
+  behavior_samples: []
+  voi_behavior_checks:
+    - "decision object and default action are explicit"
+    - "signal-to-action mapping exists"
+    - "low-VOI branches are closed"
+    - "local negative evidence is preserved"
+    - "stop rule prevents research theater"
   graders: []
   regression_checks: []
+
 acceptance_criteria: []
 human_gate:
   required: true

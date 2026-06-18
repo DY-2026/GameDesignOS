@@ -6,26 +6,36 @@
 
 > Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
-This is one installable skill inside `GameDesignOS`. It owns the controlled AI system evolution capability; it is not the whole skill library.
+This installable GameDesignOS skill upgrades prompts, memory, RAG, tool routing, workflows, schemas, evals, and skills while using a VOI decision gate to prevent FOMO research, AI branch explosion, and high-structure/low-value output.
 
-## What This Skill Does
+## What It Combines
 
-It helps an agent improve AI systems without turning one successful case into an uncontrolled permanent rule. It combines:
+- WOOP harness protocol for intent, acceptance, Failure Patterns, and if-then recovery;
+- a VOI decision gate that declares the decision, options, default action, and boundary before acquiring information;
+- EVPI, EVPPI, and EVSI distinctions for value ceilings, target uncertainty, and concrete sample/experiment value;
+- model compression and causal mediators for shorter, intervenable, verifiable operating models;
+- Orient-first OODA for reality-driven frame updates;
+- evals, Human Gates, versioning, and rollback for controlled promotion.
 
-- Model compression: judge whether a prompt, skill, agent, workflow, or harness explains more real tasks with a shorter core model
-- Causal mediators: break final outcomes into observable, intervenable, and verifiable intermediate links
-- WOOP harness protocol: translate Wish, Outcome, Obstacle, and Plan into task admission, acceptance, Failure Patterns, and if-then recovery rules
-- VOI: decide what information is worth acquiring
-- OODA: keep a compact Observe / Orient / Decide / Act state
-- Evals: test result quality, process quality, and evolution risk
-- Human Gate: require approval for high-impact changes
-- Rollback: keep every promoted change reversible
+## New VOI Hard Rules
+
+```text
+No decision object -> no open-ended research.
+No current default action -> no action-change test.
+All plausible signals lead to the same action -> current decision VOI is approximately zero.
+EVPI is the value ceiling; EVSI is the value of a concrete sample or experiment.
+Net VOI subtracts acquisition, delay, attention, privacy, and contamination costs.
+Stop when the marginal information value no longer exceeds its cost.
+```
 
 ## Package Contents
 
 ```text
 SKILL.md
 agents/openai.yaml
+references/value-of-information-playbook.md
+references/value-of-information-playbook.zh-CN.md
+references/value-of-information-playbook.en.md
 references/evolution-loop-playbook.md
 references/evolution-loop-playbook.zh-CN.md
 references/evolution-loop-playbook.en.md
@@ -38,34 +48,33 @@ references/model-compression-playbook.en.md
 references/eval-versioning-playbook.md
 references/eval-versioning-playbook.zh-CN.md
 references/eval-versioning-playbook.en.md
+templates/voi_decision_gate.md
+templates/voi_decision_gate.zh-CN.md
+templates/voi_decision_gate.en.md
 templates/evolution_proposal.md
 templates/evolution_proposal.zh-CN.md
 templates/evolution_proposal.en.md
 templates/ooda_voi_state.md
 templates/ooda_voi_state.zh-CN.md
 templates/ooda_voi_state.en.md
+evals/voi-decision-gate-cases.md
+evals/voi-decision-gate-cases.en.md
 quick_validate.py
 ```
 
 ## Suggested Prompt
 
 ```text
-Use $paranoia-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with WOOP Task Card, model compression, causal mediators, VOI, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to declare the decision, options, current default action, and decision boundary first. Apply VOI/EVPI/EVSI to choose which searches, questions, logs, experiments, or AI branches are worth running, then package the system change as a candidate with WOOP, OODA, evals, Human Gate, and rollback.
 ```
 
-## Boundary Inside GameDesignOS
+## Boundary
 
-- The root README manages the whole `GameDesignOS` catalog, structure, and governance rules.
-- This README explains only the `paranoia-ai-system-evolver` skill.
-- `SKILL.md` is the lightweight agent entrypoint.
-- `references/` contains methodology loaded as needed.
-- `templates/` contains reusable working forms.
+- Domain skills still own concept, diagnosis, ED experiments, and proposal work; this skill owns system mutation and explicit VOI audits.
+- VOI distinguishes `decision_information`, `model_learning`, and `information_consumption` rather than declaring all non-immediate learning useless.
+- Qualitative scores are triage aids, not substitutes for quantified high-stakes decision models.
+- Real project data remains in private workspaces.
 
-## Maintenance Rules
+## Maintenance
 
-- Keep `SKILL.md` as the lightweight routing layer.
-- Put durable methodology in `references/`.
-- Put copy-paste working forms in `templates/`.
-- After changes, run `python scripts/validate_skill.py paranoia-ai-system-evolver` from the repository root, then sync the runtime copy and verify both copies match.
-- Keep the frontmatter `name`, folder name, `agents/openai.yaml`, and public README naming aligned.
-- Treat global installation, long-term memory writes, and production-impacting changes as Human Gate actions.
+Run `python scripts/validate_skill.py paranoia-ai-system-evolver` and `python paranoia-ai-system-evolver/quick_validate.py paranoia-ai-system-evolver` after changes. Skill-level mutations require behavior regression and must remain candidate-gated until evidence, approval, and rollback exist.

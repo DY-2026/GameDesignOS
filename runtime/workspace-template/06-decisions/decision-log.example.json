@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.8.0",
+  "workspace_id": "untitled-game",
+  "decisions": [
+    {
+      "decision_id": "DEC-CONCEPT-001",
+      "date": "2026-06-18",
+      "decision_type": "information",
+      "status": "accepted",
+      "decision": "Run the smallest agency-comprehension sample before choosing the first playable prototype.",
+      "context": "The cheaper narrative prototype is the current default, but the systemic-agency promise may justify a different first investment.",
+      "options_considered": [
+        "Prototype the systemic-agency promise",
+        "Prototype the cheaper narrative promise",
+        "Continue broad market research"
+      ],
+      "evidence_refs": [
+        "ASSET-DECISION-001",
+        "ASSET-VOI-001"
+      ],
+      "assumptions": [
+        "An eight-player paper prototype can update comprehension and desire without supporting market-size claims."
+      ],
+      "risks": [
+        "A convenience sample may overrepresent experienced strategy players."
+      ],
+      "owner": "designer",
+      "rollback_trigger": "Cancel or redesign the probe if it cannot expose the named player decision or if private material cannot be protected.",
+      "next_review": "After the eight-session evidence gate or at the prototype-sprint deadline",
+      "decision_deadline": "Before the first prototype sprint",
+      "current_default_action": "Prototype the cheaper narrative promise",
+      "decision_boundary": "near",
+      "voi_assessment_refs": [
+        "ASSET-VOI-001"
+      ],
+      "action_before_information": "Prototype the cheaper narrative promise",
+      "action_after_information": "Pending observed signal",
+      "information_stop_reason": "Stop after the evidence gate, when the option ranking is robust, or when the sprint deadline arrives."
+    }
+  ]
+}
