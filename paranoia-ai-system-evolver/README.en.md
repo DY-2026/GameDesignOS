@@ -1,12 +1,12 @@
 # Paranoia AI System Evolver
 
-**Parent project:** [ParanoiaSkills](../README.en.md)
+**Parent project:** [GameDesignOS by Paranoia](../README.en.md)
 
 **Languages:** [简体中文](./README.zh-CN.md) | [English](./README.en.md)
 
 > Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
-This is one installable skill inside `ParanoiaSkills`. It owns the controlled AI system evolution capability; it is not the whole skill library.
+This is one installable skill inside `GameDesignOS`. It owns the controlled AI system evolution capability; it is not the whole skill library.
 
 ## What This Skill Does
 
@@ -53,9 +53,9 @@ quick_validate.py
 Use $paranoia-ai-system-evolver to turn this AI workflow problem into a controlled evolution proposal with WOOP Task Card, model compression, causal mediators, VOI, OODA, evals, Human Gate, and rollback.
 ```
 
-## Boundary Inside ParanoiaSkills
+## Boundary Inside GameDesignOS
 
-- The root README manages the whole `ParanoiaSkills` catalog, structure, and governance rules.
+- The root README manages the whole `GameDesignOS` catalog, structure, and governance rules.
 - This README explains only the `paranoia-ai-system-evolver` skill.
 - `SKILL.md` is the lightweight agent entrypoint.
 - `references/` contains methodology loaded as needed.

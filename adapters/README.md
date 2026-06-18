@@ -1,6 +1,6 @@
 # Adapters
 
-`ParanoiaSkills` is not an API service. It does not hold, request, proxy, store, or manage API keys.
+`GameDesignOS` is not an API service. It does not hold, request, proxy, store, or manage API keys.
 
 This repository is a set of Markdown skill packages:
 
@@ -36,4 +36,4 @@ When packaging examples, evals, demos, or public adapter fixtures, follow [`../C
 
 **Q: 支持 API key 调用吗？**
 
-**A:** ParanoiaSkills 本身不是 API 服务，也不持有 API key。它是一组 Markdown skill 包。你可以在任意 OpenAI-compatible、Claude Code、Codex、OpenCode 或本地 agent harness 中加载这些 skill，由宿主环境管理 API key 和模型调用。
+**A:** GameDesignOS 本身不是 API 服务，也不持有 API key。它是一组 Markdown skill 包。你可以在任意 OpenAI-compatible、Claude Code、Codex、OpenCode 或本地 agent harness 中加载这些 skill，由宿主环境管理 API key 和模型调用。

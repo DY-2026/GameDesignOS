@@ -1,6 +1,6 @@
 # Game Design Source Curator
 
-**Parent project:** [ParanoiaSkills](../README.en.md)
+**Parent project:** [GameDesignOS by Paranoia](../README.en.md)
 
 This installable skill turns game design articles, videos, creators, columns, and websites into durable local knowledge-base assets.
 

@@ -1,12 +1,12 @@
 # Paranoia AI System Evolver
 
-**所属项目:** [ParanoiaSkills](../README.zh-CN.md)
+**所属项目:** [GameDesignOS by Paranoia](../README.zh-CN.md)
 
 **语言:** 简体中文 | [English](./README.en.md)
 
 > Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
-这是 `ParanoiaSkills` 里的一个具体可安装 skill。它负责“AI 系统受控进化”这个能力，不代表整个技能库。
+这是 `GameDesignOS` 里的一个具体可安装 skill。它负责“AI 系统受控进化”这个能力，不代表整个技能库。
 
 ## 这个 Skill 做什么
 
@@ -53,9 +53,9 @@ quick_validate.py
 使用 $paranoia-ai-system-evolver，把这个 AI workflow 问题整理成带 WOOP Task Card、模型压缩、因果中介、VOI、OODA、eval、Human Gate 和 rollback 的受控进化提案。
 ```
 
-## 在 ParanoiaSkills 里的边界
+## 在 GameDesignOS 里的边界
 
-- 根目录 README 负责整个 `ParanoiaSkills` 的目录、索引和管理规则。
+- 根目录 README 负责整个 `GameDesignOS` 的目录、索引和管理规则。
 - 本目录 README 只解释 `paranoia-ai-system-evolver` 这个 skill。
 - `SKILL.md` 是 agent 入口，保持轻量。
 - `references/` 是方法论，按需读取。

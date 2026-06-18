@@ -1,6 +1,6 @@
 # Codex Adapter
 
-Codex-style environments can load `ParanoiaSkills` as local Markdown skill folders.
+Codex-style environments can load `GameDesignOS` as local Markdown skill folders.
 
 ## Install Shape
 
@@ -9,9 +9,11 @@ Copy or sync one skill folder into the host skill directory:
 ```text
 game-concept-architect/
 game-experience-analyzer/
+game-design-proposal-writer/
 paranoia-ai-system-evolver/
 game-design-book-translator/
 game-design-source-curator/
+game-experience-density-optimizer/
 ```
 
 Each folder should keep:
@@ -29,7 +31,7 @@ Not every skill needs every subfolder, but `SKILL.md` and `README.md` are requir
 
 ## Runtime Boundary
 
-`ParanoiaSkills` does not manage API keys, credentials, billing, shell permissions, browser access, or memory writes. Those remain controlled by the Codex host and the user's current session policy.
+`GameDesignOS` does not manage API keys, credentials, billing, shell permissions, browser access, or memory writes. Those remain controlled by the Codex host and the user's current session policy.
 
 ## Minimal Flow
 

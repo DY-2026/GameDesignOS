@@ -1,6 +1,6 @@
 # Claude Code Adapter
 
-Claude Code can use `ParanoiaSkills` as project instructions or local documentation.
+Claude Code can use `GameDesignOS` as project instructions or local documentation.
 
 ## Minimal Flow
 
@@ -13,7 +13,7 @@ Claude Code can use `ParanoiaSkills` as project instructions or local documentat
 ## Prompt Shape
 
 ```text
-Read ParanoiaSkills/game-experience-analyzer/SKILL.md.
+Read GameDesignOS/game-experience-analyzer/SKILL.md.
 Use only the references/templates needed for this task.
 The user material is private unless explicitly marked repo-safe.
 Produce an evidence-linked diagnosis and validate structured outputs before saving.
@@ -21,4 +21,4 @@ Produce an evidence-linked diagnosis and validate structured outputs before savi
 
 ## Boundary
 
-`ParanoiaSkills` does not provide API keys or model credentials. Claude Code or the host environment owns model access, tool permissions, file writes, and any connected services.
+`GameDesignOS` does not provide API keys or model credentials. Claude Code or the host environment owns model access, tool permissions, file writes, and any connected services.

@@ -9,12 +9,16 @@ All notable changes to GameDesignOS will be recorded here.
 ### Added
 
 - Added the `GameDesignOS by Paranoia` v7 README banner assets with a no-text background and deterministic local title/signature layer: `assets/gamedesignos-overview-banner-v7-background.png` and `assets/gamedesignos-overview-banner-v7.png`.
+- Added the Dreamina-generated `assets/showcase-game-design-proposal-writer.png` so all seven public skills now have visible README showcase art.
 
 ### Changed
 
 - Updated canonical public repository references to `DY-2026/GameDesignOS`, including README Star History, GitHub About metadata, showcase feedback links, and schema identifiers.
 - Refined the public visual direction toward `GameDesignOS` as an AI-native game design operating system rather than a skill-list wrapper.
 - Consolidated the `《生存33天》` Game Experience Analyzer report and the `《冒险家艾略特的千年奇谭》` ED proof path into the featured cases table so the 60-second demo stays a quick interaction example.
+- Reorganized the README showcase grid into seven clickable module cards following the GameDesignOS product path: concept, evidence, proposal, ED iteration, workflow governance, translation, and source curation.
+- Updated current adapter docs, skill sub-README parent links, and the ED experiment schema id from the old `ParanoiaSkills` name to `GameDesignOS` / `GameDesignOS by Paranoia`.
+- Marked the older public article as a historical `ParanoiaSkills` draft so it does not conflict with the v0.7.0 identity.
 
 ## [v0.6.1] - 2026-06-10
 

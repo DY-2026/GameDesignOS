@@ -1,10 +1,10 @@
 # Game Design Source Curator
 
-**父项目:** [ParanoiaSkills](../README.zh-CN.md)
+**父项目:** [GameDesignOS by Paranoia](../README.zh-CN.md)
 
 **语言:** 简体中文 | [English](./README.en.md)
 
-这是 `ParanoiaSkills` 里的一个可安装 skill，用于把零散的游戏设计来源沉淀成可维护的知识资产。
+这是 `GameDesignOS` 里的一个可安装 skill，用于把零散的游戏设计来源沉淀成可维护的知识资产。
 
 ## 适用场景
 

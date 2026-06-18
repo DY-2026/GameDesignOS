@@ -180,42 +180,47 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
 
 ## Showcase
 
+Seven visible entry points cover the full GameDesignOS path: concept, evidence, proposal, experience-density iteration, workflow governance, and durable knowledge assets.
+
 <table>
   <tr>
     <td width="25%">
-      <img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer showcase">
+      <a href="./game-concept-architect/"><img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect showcase"></a>
     </td>
     <td width="25%">
-      <img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver showcase">
+      <a href="./game-experience-analyzer/"><img src="./assets/showcase-game-experience-analyzer.png" alt="Game Experience Analyzer showcase"></a>
     </td>
     <td width="25%">
-      <img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator showcase">
+      <a href="./game-design-proposal-writer/"><img src="./assets/showcase-game-design-proposal-writer.png" alt="Game Design Proposal Writer showcase"></a>
     </td>
     <td width="25%">
-      <img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator showcase">
+      <a href="./game-experience-density-optimizer/"><img src="./assets/showcase-game-experience-density-optimizer.png" alt="Game Experience Density Optimizer showcase"></a>
     </td>
   </tr>
   <tr>
-    <td><b>Analyze game experience</b><br>Convert screenshots, recordings, trailers, and video links into evidence-first diagnosis, game dissection, and mechanic-transfer judgment.</td>
-    <td><b>Evolve workflows</b><br>Upgrade prompts, schemas, evals, memory, and tool routing through WOOP, VOI, OODA, gates, and rollback.</td>
-    <td><b>Translate design knowledge</b><br>Transform serious game design books and chapters into professional Chinese design writing.</td>
-    <td><b>Curate sources</b><br>Turn scattered articles, videos, creators, columns, and websites into a durable game design knowledge base.</td>
+    <td><a href="./game-concept-architect/"><b>Architect game concepts</b></a><br>Turn a one-line idea into a seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan.</td>
+    <td><a href="./game-experience-analyzer/"><b>Analyze game experience</b></a><br>Convert screenshots, recordings, trailers, and video links into evidence-first diagnosis, game dissection, and mechanic-transfer judgment.</td>
+    <td><a href="./game-design-proposal-writer/"><b>Assemble proposals</b></a><br>Turn research, concept contracts, evidence notes, validation plans, and production constraints into review-ready proposals and pitches.</td>
+    <td><a href="./game-experience-density-optimizer/"><b>Optimize experience density</b></a><br>Turn retention, pacing, feedback, embodiment, atmosphere, and cognitive-load issues into weekly ED experiments.</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="33%">
+      <a href="./paranoia-ai-system-evolver/"><img src="./assets/showcase-voi-ooda.png" alt="Paranoia AI System Evolver showcase"></a>
+    </td>
+    <td width="33%">
+      <a href="./game-design-book-translator/"><img src="./assets/showcase-book-translator.png" alt="Game Design Book Translator showcase"></a>
+    </td>
+    <td width="33%">
+      <a href="./game-design-source-curator/"><img src="./assets/showcase-source-curator.png" alt="Game Design Source Curator showcase"></a>
+    </td>
   </tr>
   <tr>
-    <td width="25%">
-      <img src="./assets/showcase-game-concept-architect.png" alt="Game Concept Architect showcase">
-    </td>
-    <td width="25%">
-      <img src="./assets/showcase-game-experience-density-optimizer.png" alt="Game Experience Density Optimizer showcase">
-    </td>
-    <td width="25%"></td>
-    <td width="25%"></td>
-  </tr>
-  <tr>
-    <td><b>Architect game concepts</b><br>Turn a one-line idea into a seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan.</td>
-    <td><b>Optimize experience density</b><br>Turn retention, pacing, feedback, embodiment, atmosphere, and cognitive-load issues into weekly ED experiments.</td>
-    <td></td>
-    <td></td>
+    <td><a href="./paranoia-ai-system-evolver/"><b>Evolve workflows</b></a><br>Upgrade prompts, schemas, evals, memory, and tool routing through WOOP, VOI, OODA, gates, and rollback.</td>
+    <td><a href="./game-design-book-translator/"><b>Translate design knowledge</b></a><br>Transform serious game design books and chapters into professional Chinese design writing.</td>
+    <td><a href="./game-design-source-curator/"><b>Curate sources</b></a><br>Turn scattered articles, videos, creators, columns, and websites into a durable game design knowledge base.</td>
   </tr>
 </table>
 

@@ -2,7 +2,7 @@
 
 This adapter sketch is intentionally pseudocode. Do not hard-code API keys in this repository.
 
-`ParanoiaSkills` provides Markdown skill instructions. The host harness owns credentials, model selection, network calls, logging, and safety policy.
+`GameDesignOS` provides Markdown skill instructions. The host harness owns credentials, model selection, network calls, logging, and safety policy.
 
 ## Minimal Flow
 
@@ -10,7 +10,7 @@ This adapter sketch is intentionally pseudocode. Do not hard-code API keys in th
 from pathlib import Path
 
 
-REPO = Path("ParanoiaSkills")
+REPO = Path("GameDesignOS")
 
 
 def load_text(path: Path) -> str:

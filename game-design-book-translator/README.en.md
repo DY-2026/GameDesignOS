@@ -1,6 +1,6 @@
 # Game Design Book Translator
 
-**Parent project:** [ParanoiaSkills](../README.en.md)
+**Parent project:** [GameDesignOS by Paranoia](../README.en.md)
 
 Use this skill to translate, polish, structure, and QA-check English game design, game development, Game Studies, system design, numeric design, UX, and design theory materials into professional Chinese for designers, developers, producers, and researchers.
 

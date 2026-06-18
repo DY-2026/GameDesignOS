@@ -1,10 +1,10 @@
 # Game Design Book Translator
 
-**父项目：** [ParanoiaSkills](../README.zh-CN.md)
+**父项目：** [GameDesignOS by Paranoia](../README.zh-CN.md)
 
 **语言：** 简体中文 | [English](./README.en.md)
 
-这是 `ParanoiaSkills` 里的一个可安装 skill，用于把游戏设计、游戏研发、Game Studies、系统设计、UX/design theory 材料翻译、精修和审校成专业中文。
+这是 `GameDesignOS` 里的一个可安装 skill，用于把游戏设计、游戏研发、Game Studies、系统设计、UX/design theory 材料翻译、精修和审校成专业中文。
 
 ## 能力边界
 

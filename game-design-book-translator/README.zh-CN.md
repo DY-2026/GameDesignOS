@@ -1,6 +1,6 @@
 # Game Design Book Translator
 
-**父项目：** [ParanoiaSkills](../README.zh-CN.md)
+**父项目：** [GameDesignOS by Paranoia](../README.zh-CN.md)
 
 用于翻译、精修、结构化和审校英文游戏设计书、游戏开发书、Game Studies、系统设计、数值设计、UX/design theory 材料，让输出适合中文策划、研发、制作人和研究者阅读。
 

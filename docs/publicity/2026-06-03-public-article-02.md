@@ -3,6 +3,7 @@
 > 面向游戏设计师、独立开发者和 AI agent workflow builder 的公开介绍稿。  
 > 建议发布渠道：公众号、知乎、即刻、GitHub Release / README 引流帖。  
 > 更新依据：2026-05-28 至 2026-06-03 的仓库更新。
+> 说明：本文是 `ParanoiaSkills` 时期的历史宣传稿；v0.7.0 起项目公开名为 `GameDesignOS by Paranoia`，当前入口见仓库根目录 README。
 
 如果第一篇介绍 `ParanoiaSkills`，重点是让大家看到一个能力：AI 可以把游戏录屏、PV、截图拆成有证据的设计诊断，而不是写一篇泛泛的观后感。
 

@@ -1,6 +1,6 @@
 # Local Agent Harness Adapter
 
-This is a minimal design sketch for loading `ParanoiaSkills` in a local agent harness. It is not a full SDK.
+This is a minimal design sketch for loading `GameDesignOS` in a local agent harness. It is not a full SDK.
 
 ## Components
 

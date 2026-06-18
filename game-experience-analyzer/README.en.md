@@ -1,6 +1,6 @@
 # Game Experience Analyzer
 
-**Parent project:** [ParanoiaSkills](../README.en.md)
+**Parent project:** [GameDesignOS by Paranoia](../README.en.md)
 
 **Languages:** [简体中文](./README.md) | English
 
