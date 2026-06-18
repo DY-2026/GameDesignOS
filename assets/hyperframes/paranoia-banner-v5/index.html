@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ParanoiaSkills Banner Text Effect</title>
+    <title>GameDesignOS Banner Text Effect</title>
     <style>
       :root {
         --ink: #030912;
@@ -24,7 +24,7 @@
         overflow: hidden;
       }
 
-      [data-composition-id="paranoia-banner-v5"] {
+      [data-composition-id="gamedesignos-banner-v7"] {
         position: relative;
         width: 1920px;
         height: 1080px;
@@ -100,7 +100,7 @@
 
       .title::before,
       .title::after {
-        content: "ParanoiaSkills";
+        content: "GameDesignOS";
         position: absolute;
         inset: 0;
         pointer-events: none;
@@ -119,6 +119,17 @@
         color: var(--cyan);
         transform: translate(5px, -1px);
         filter: blur(1px);
+      }
+
+      .byline {
+        margin: 2px 0 0;
+        color: var(--muted);
+        font-size: 34px;
+        font-weight: 500;
+        line-height: 1;
+        text-shadow:
+          0 0 18px rgba(49, 225, 214, 0.2),
+          0 0 34px rgba(154, 108, 255, 0.12);
       }
 
       .shine {
@@ -242,24 +253,25 @@
   </head>
   <body>
     <div
-      data-composition-id="paranoia-banner-v5"
+      data-composition-id="gamedesignos-banner-v7"
       data-start="0"
       data-duration="4"
       data-width="1920"
       data-height="1080"
       data-track-index="0"
     >
-      <img class="bg" src="../../paranoia-skills-overview-banner-v3.png" alt="" />
+      <img class="bg" src="../../gamedesignos-overview-banner-v7-background.png" alt="" />
       <div class="readability-veil" data-layout-ignore></div>
-      <div class="version">v0.5.0</div>
+      <div class="version">v0.7.0 | GameDesignOS by Paranoia</div>
       <main class="scene-content">
         <div class="title-wrap">
-          <h1 class="title">Paranoia<span class="accent">Skills</span></h1>
+          <h1 class="title">GameDesign<span class="accent">OS</span></h1>
           <div class="shine" data-layout-ignore></div>
         </div>
+        <p class="byline">by Paranoia</p>
         <div class="beam" data-layout-ignore></div>
         <div class="tagline-shell">
-          <p class="tagline">Evidence, contracts, evals, and rollback for AI-assisted game design.</p>
+          <p class="tagline">Evidence, contracts, experiments, and proposals for AI-native game design.</p>
         </div>
       </main>
       <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -274,12 +286,12 @@
           tl.from(".beam", { scaleX: 0, opacity: 0, duration: 0.64 }, 0.18);
           tl.from(".tagline-shell", { y: 18, opacity: 0, duration: 0.62 }, 0.32);
           tl.from(".version", { y: -12, opacity: 0, duration: 0.48 }, 0.45);
-          window.__timelines["paranoia-banner-v5"] = tl;
+          window.__timelines["gamedesignos-banner-v7"] = tl;
           if (new URLSearchParams(window.location.search).has("still")) {
             tl.progress(1).pause();
           }
         } else {
-          window.__timelines["paranoia-banner-v5"] = { duration: () => 4 };
+          window.__timelines["gamedesignos-banner-v7"] = { duration: () => 4 };
         }
       </script>
     </div>

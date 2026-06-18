@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/DY-2026/ParanoiaSkills/game-experience-analyzer/templates/structured-output.schema.json",
+  "$id": "https://github.com/DY-2026/GameDesignOS/game-experience-analyzer/templates/structured-output.schema.json",
   "title": "Game Experience Analyzer Structured Output",
   "description": "Strict core schema for evidence-linked game diagnosis outputs. For a filled example contract, see structured-output.example.json.",
   "type": "object",

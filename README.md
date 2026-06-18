@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="GameDesignOS v0.6.1 - AI-native game design, concept validation, and prototyping system by Paranoia" width="100%">
+  <img src="./assets/gamedesignos-overview-banner-v7.png" alt="GameDesignOS by Paranoia v0.7.0 - AI-native game design operating system for evidence, experiments, proposals, and workflow governance" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
@@ -21,7 +21,7 @@
   <a href="./docs/try-it-in-10-minutes.md">Try in 10 Minutes</a> ·
   <a href="#easy-start">Easy Start</a> ·
   <a href="#60-second-demo">60-Second Demo</a> ·
-  <a href="#featured-github-case">Case</a> ·
+  <a href="#featured-cases">Cases</a> ·
   <a href="#current-skills">Current Skills</a> ·
   <a href="#showcase">Showcase</a> ·
   <a href="#star-history">Star History</a> ·
@@ -30,7 +30,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.6.1-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.7.0-31e1d6">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -99,14 +99,15 @@ Start with one screenshot, gameplay recording, trailer/PV, or video link. Ask th
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
 ```
 
-The strongest current example is [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md): a gameplay recording sample becomes a timestamped report with visual evidence, feature ledger, early-loop diagnosis, UI/guide risks, and validation-ready fixes. Its source status is marked `needs_review` before public-material promotion.
+For concrete proof paths, continue to the cases below. The demo above shows the fast interaction pattern; the cases show reviewable outputs and their evidence boundaries.
 
-## Featured GitHub Case
+## Featured Cases
 
-If you are browsing on GitHub, start here to see the new experience-density proof path. The Game Experience Analyzer already has examples in its own package and in the 60-second demo section above.
+If you are browsing on GitHub, start with these two cases. The first shows a single gameplay recording turning into a Game Experience Analyzer report; the second shows how public video evidence flows into an Experience Density experiment package.
 
 | Case | Skill Route | What To Look For | Link |
 | --- | --- | --- | --- |
+| `《生存33天》41 min gameplay recording` | `$game-experience-analyzer` | A recording sample becomes timestamped evidence, visual evidence cards, feature exposure/unlock/first-use ledger, early-loop diagnosis, UI/guide risks, and validation-ready fixes. Source status: `needs_review`. | [Open report](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md) |
 | `《冒险家艾略特的千年奇谭》Demo` | `$game-experience-analyzer -> $game-experience-density-optimizer` | Public video frames become an ED evidence gate, metric horizon, screenshot evidence cards, variant matrix, instrumentation, and rollback rules. | [Open case](./docs/showcases/elliot-experience-density-report/README.md) |
 
 ## Easy Start
@@ -311,11 +312,11 @@ python scripts/validate_skill.py game-design-proposal-writer
 
 ## Star History
 
-<a href="https://star-history.com/#DY-2026/ParanoiaSkills&Date">
+<a href="https://star-history.com/#DY-2026/GameDesignOS&Date">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date&theme=dark">
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date">
-    <img alt="Star History Chart for DY-2026/ParanoiaSkills" src="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date">
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date&theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date">
+    <img alt="Star History Chart for DY-2026/GameDesignOS" src="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date">
   </picture>
 </a>
 

@@ -4,13 +4,17 @@ All notable changes to GameDesignOS will be recorded here.
 
 ## [Unreleased]
 
+## [v0.7.0] - 2026-06-18
+
+### Added
+
+- Added the `GameDesignOS by Paranoia` v7 README banner assets with a no-text background and deterministic local title/signature layer: `assets/gamedesignos-overview-banner-v7-background.png` and `assets/gamedesignos-overview-banner-v7.png`.
+
 ### Changed
 
-- Repositioned the public project identity from `ParanoiaSkills` to `GameDesignOS by Paranoia`, while keeping the installable skill package layer and existing repository links intact for published-article compatibility.
-
-### Fixed
-
-- Re-added repository `.gitignore` after it was removed from tracked files, fixing repository validation required-path checks in CI and preparing the patch release notes.
+- Updated canonical public repository references to `DY-2026/GameDesignOS`, including README Star History, GitHub About metadata, showcase feedback links, and schema identifiers.
+- Refined the public visual direction toward `GameDesignOS` as an AI-native game design operating system rather than a skill-list wrapper.
+- Consolidated the `《生存33天》` Game Experience Analyzer report and the `《冒险家艾略特的千年奇谭》` ED proof path into the featured cases table so the 60-second demo stays a quick interaction example.
 
 ## [v0.6.1] - 2026-06-10
 
@@ -99,7 +103,8 @@ All notable changes to GameDesignOS will be recorded here.
 - Released the public base version of `game-experience-analyzer`.
 - Added initial release notes, installation guidance, and validation examples.
 
-[Unreleased]: https://github.com/DY-2026/ParanoiaSkills/compare/v0.6.1...HEAD
+[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v0.7.0...HEAD
+[v0.7.0]: ./releases/v0.7.0.md
 [v0.6.1]: ./releases/v0.6.1.md
 [v0.6.0]: ./releases/v0.6.0.md
 [v0.5.0]: ./releases/v0.5.0.md

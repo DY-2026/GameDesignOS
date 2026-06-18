@@ -8,11 +8,9 @@ AI-native GameDesignOS for concept validation, experience diagnosis, proposal wr
 
 ## Repository URL
 
-Keep the existing repository URL for compatibility with published articles:
+Canonical repository URL:
 
-https://github.com/DY-2026/ParanoiaSkills#readme
-
-Do not rename the GitHub repository just to match the display name.
+https://github.com/DY-2026/GameDesignOS#readme
 
 ## Display Name
 
@@ -22,7 +20,7 @@ Display signature: `GameDesignOS by Paranoia`
 
 ## Website
 
-https://github.com/DY-2026/ParanoiaSkills#readme
+https://github.com/DY-2026/GameDesignOS#readme
 
 ## Topics
 

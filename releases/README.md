@@ -79,6 +79,8 @@
 - `v0.4.0`（新增 `game-experience-density-optimizer` 后，建议打在 release commit）
 - `v0.5.0`（contract layer、WOOP workflow governance 与 README 首屏刷新后，建议打在 release commit）
 - `v0.6.0`（新增 `game-design-proposal-writer`、ED experiment compiler、七 skill GitHub 首屏后，建议打在 release commit）
+- `v0.6.1`（仓库校验修复与 README 版本同步）
+- `v0.7.0`（GameDesignOS by Paranoia 公开品牌、GitHub URL、v7 README 封面和案例入口整理后，建议打在 release commit）
 
 ## 非目标约束
 

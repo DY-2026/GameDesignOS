@@ -1,5 +1,5 @@
 version: 1
-purpose: "Route user requests to the smallest suitable ParanoiaSkills entrypoint before reading long skill bodies."
+purpose: "Route user requests to the smallest suitable GameDesignOS entrypoint before reading long skill bodies."
 status: candidate
 promotion_gate:
   required_before_enforce:

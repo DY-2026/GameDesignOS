@@ -4,13 +4,14 @@
 
 公开 showcase 只能使用 synthetic、public、explicitly cleared，或标记为 `needs_review` 的材料。真实项目、客户项目、未公开路线图、后台数据、收入数据和私有素材不要放进本公开仓库。
 
-## 先看这个 GitHub 案例
+## 先看这两个 GitHub 案例
 
 | 案例 | 对应 showcase 位 | Skill 路线 | 读者能快速看懂什么 |
 | --- | --- | --- | --- |
+| [《生存33天》41 分钟试玩录屏前期体验复盘示例](../../game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md) | `Game Experience Analyzer report` | `$game-experience-analyzer` | 录屏样本如何进入时间戳证据、截图证据卡、功能账本、前期循环诊断、UI/引导风险和可验证修改建议；来源状态为 `needs_review`。 |
 | [《冒险家艾略特的千年奇谭》Demo 体验浓度 GitHub 案例](./elliot-experience-density-report/README.md) | `Experience Density Experiment Compiler` | `$game-experience-analyzer -> $game-experience-density-optimizer` | 公开视频关键帧如何进入 evidence gate、metric horizon、ED 诊断、变体矩阵、埋点和回滚规则。 |
 
-`game-experience-analyzer` 已经在自己的 package examples 和根 README 的 60 秒 demo 里有案例，这里不重复新增 GEA 入口。
+根 README 的 60 秒 demo 只保留快速交互说明；可点击案例统一从这里和 README 的案例表进入。
 
 ## 项目内协作链
 
@@ -87,7 +88,7 @@ game-concept-architect
 | 使用 skill | `$game-concept-architect` -> `$game-experience-analyzer` |
 | 输出 artifact | 玩家承诺、prototype/media diagnosis、unsupported-claim list、next validation plan。 |
 | 证明什么 | 同一个玩家承诺可以驱动概念架构，也可以驱动后续证据化诊断。 |
-| 占位反馈 | [Concept-to-Diagnosis Loop feedback issue](https://github.com/DY-2026/ParanoiaSkills/issues/new?template=showcase_feedback.md&title=Concept-to-Diagnosis%20Loop%20showcase) |
+| 占位反馈 | [Concept-to-Diagnosis Loop feedback issue](https://github.com/DY-2026/GameDesignOS/issues/new?template=showcase_feedback.md&title=Concept-to-Diagnosis%20Loop%20showcase) |
 
 ### 通过门
 

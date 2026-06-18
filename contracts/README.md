@@ -1,6 +1,6 @@
 # Skill Contracts
 
-`contracts/` defines stable cross-skill artifact shapes for `ParanoiaSkills`.
+`contracts/` defines stable cross-skill artifact shapes for `GameDesignOS`.
 
 The goal is interoperability: skills can pass structured artifacts to one another instead of producing isolated prose documents.
 

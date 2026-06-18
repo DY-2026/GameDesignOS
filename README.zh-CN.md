@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/paranoia-skills-overview-banner-v6.png" alt="GameDesignOS v0.6.1 - AI 原生游戏设计与立项验证操作系统" width="100%">
+  <img src="./assets/gamedesignos-overview-banner-v7.png" alt="GameDesignOS by Paranoia v0.7.0 - AI 原生游戏设计操作系统：证据、实验、策划案与工作流治理" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
@@ -29,7 +29,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.6.1-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.7.0-31e1d6">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -98,14 +98,15 @@ Use $game-experience-density-optimizer to turn this first-session retention, pac
 Use $game-experience-analyzer to analyze this gameplay recording into timestamped evidence, feature exposure/unlock/first-use ledger, Hook/Loop/Link/Surprise diagnosis, and actionable fixes.
 ```
 
-当前可查看示例是 [`《生存33天》41 分钟试玩录屏前期体验复盘示例`](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md)：一个录屏样本会被拆成时间戳证据、功能暴露/解锁/首用账本、前期循环诊断、UI/引导风险和可验证修改建议。该示例在正式作为 public material 展示前已标为 `needs_review`。
+具体 proof path 统一放在下面的案例表里。上面的 demo 展示最快交互方式；下面的案例展示可复查输出和证据边界。
 
 ## GitHub 案例
 
-如果只是打开 GitHub 页面想快速看懂这次新增的体验浓度 proof path，先看这一个案例即可。`game-experience-analyzer` 已经在自己的 package 和上面的 60 秒 demo 里有示例，不在这里重复加入口。
+如果只是打开 GitHub 页面想快速判断项目是否有实际产物，先看这两个案例即可：第一个展示单条录屏如何进入 Game Experience Analyzer 报告；第二个展示公开视频证据如何继续进入体验浓度实验包。
 
 | 案例 | Skill 路线 | 重点看什么 | 链接 |
 | --- | --- | --- | --- |
+| `《生存33天》41 分钟试玩录屏` | `$game-experience-analyzer` | 录屏样本如何变成时间戳证据、截图证据卡、功能暴露/解锁/首用账本、前期循环诊断、UI/引导风险和可验证修改建议。来源状态：`needs_review`。 | [打开报告](./game-experience-analyzer/examples/survival-33-days-gameplay-experience-report.md) |
 | `《冒险家艾略特的千年奇谭》Demo` | `$game-experience-analyzer -> $game-experience-density-optimizer` | 公开视频关键帧如何变成 ED 证据门、指标周期、截图证据卡、变体矩阵、埋点和回滚规则。 | [打开案例](./docs/showcases/elliot-experience-density-report/README.md) |
 
 ## 轻松上手
@@ -310,11 +311,11 @@ python scripts/validate_skill.py game-design-proposal-writer
 
 ## Star History
 
-<a href="https://star-history.com/#DY-2026/ParanoiaSkills&Date">
+<a href="https://star-history.com/#DY-2026/GameDesignOS&Date">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date&theme=dark">
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date">
-    <img alt="Star History Chart for DY-2026/ParanoiaSkills" src="https://api.star-history.com/svg?repos=DY-2026/ParanoiaSkills&type=Date">
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date&theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date">
+    <img alt="Star History Chart for DY-2026/GameDesignOS" src="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date">
   </picture>
 </a>
 
