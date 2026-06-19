@@ -4,7 +4,7 @@ GameDesignOS is an AI-native game design operating system for turning ideas, evi
 
 > 中文摘要：GameDesignOS 不是自动替代策划的写稿机器，而是一套帮助策划保存判断、证据、实验与决策，并让不同 AI skill 在同一项目上下文中协作的工作系统。
 
-It is not an automated game designer, a prompt collection, or a hosted model service. It is a public method and runtime foundation that helps human designers preserve judgment, route work through suitable expert skills, and keep project context reviewable across iterations.
+It is not an automated game designer, a prompt collection, or a hosted model service. It is a public method, skill system, and local runtime foundation that helps human designers preserve judgment, route work through suitable expert skills, and keep project context reviewable across iterations.
 
 ## Why It Exists
 
@@ -82,7 +82,7 @@ Real projects should use a private workspace or private overlay for proprietary 
 The product evolves through three milestones:
 
 1. **Runtime Foundation:** workspace template, contracts, workflow routes, and validation conventions.
-2. **Local Runtime:** project initialization, routing, asset creation, and validation through a local CLI or agent harness.
+2. **Local Runtime:** project initialization, routing, asset creation, validation, VOI review, and review-safe packing through a local CLI or agent harness.
 3. **Project-Ready Operating System:** asset graph, review gates, project dashboard, private overlays, and validated end-to-end cases.
 
 The long-term test is simple: GameDesignOS should help a designer make a more traceable decision, run a smaller and more valuable experiment, and preserve what the project learned.

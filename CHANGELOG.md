@@ -4,6 +4,30 @@ All notable changes to GameDesignOS will be recorded here.
 
 ## [Unreleased]
 
+## [v0.9.0] - 2026-06-19
+
+### Added
+
+- Added the first executable `gamedesignos` local runtime with `init`, `status`, `voi`, `route`, `new`, `validate`, `pack`, and `doctor` commands.
+- Added an installable Python package with both `gamedesignos` and `python -m gamedesignos` entrypoints.
+- Added deterministic workspace initialization, draft asset creation, qualitative VOI assessment/review, route recommendation, structural validation, and review-safe packaging.
+- Added runtime tests covering private and public-synthetic workspace flows, missing-upstream routing, VOI boundaries, validation failures, and pack filtering.
+- Added a generated v0.9.0 runtime hero image for the README trio: `assets/gamedesignos-runtime-v09-hero.png`.
+
+### Changed
+
+- Decoupled workspace schema version `0.8.0` from runtime implementation version `0.9.0`.
+- Updated the project-workspace schema to accept v0.8 and v0.9 runtime declarations.
+- Updated runtime documentation from planned command contracts to executable CLI behavior.
+- Updated the README trio to present v0.9.0 as an executable local runtime rather than only a Runtime Foundation.
+- Preserved direct installation and invocation of all seven existing skill packages.
+
+### Safety
+
+- Kept model calls, credentials, uploads, automatic skill execution, and Human Gate decisions outside the runtime.
+- Kept `--force` from overwriting existing GameDesignOS workspaces.
+- Kept draft assets unaccepted by default and packed outputs limited by registered asset source status.
+
 ## [v0.8.0] - 2026-06-18
 
 ### Added
@@ -135,7 +159,8 @@ All notable changes to GameDesignOS will be recorded here.
 - Released the public base version of `game-experience-analyzer`.
 - Added initial release notes, installation guidance, and validation examples.
 
-[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v0.9.0...HEAD
+[v0.9.0]: ./releases/v0.9.0.md
 [v0.8.0]: ./releases/v0.8.0.md
 [v0.7.0]: ./releases/v0.7.0.md
 [v0.6.1]: ./releases/v0.6.1.md

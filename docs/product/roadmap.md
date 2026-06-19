@@ -26,7 +26,7 @@ Exit gate:
 
 ## v0.9.0 — Local Runtime Prototype
 
-Candidate capabilities:
+Delivered prototype capabilities:
 
 ```text
 gamedesignos init <project>
@@ -39,7 +39,7 @@ gamedesignos pack
 gamedesignos doctor
 ```
 
-Expected behavior:
+Delivered behavior:
 
 - initialize a workspace from the template;
 - inspect manifest, asset index, accepted decisions, and current default actions;
@@ -54,6 +54,11 @@ Exit gate:
 - commands are tested on at least two synthetic projects;
 - routing failures and missing-upstream behavior are covered by evals;
 - no credential or hosted-service responsibilities leak into the CLI.
+
+Release bookkeeping:
+
+- Runtime code and tests are on `main`;
+- the public release should still be completed with the matching Git tag and GitHub Release after maintainer review.
 
 ## v1.0.0 — Project-Ready GameDesignOS
 

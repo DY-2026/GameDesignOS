@@ -1,22 +1,22 @@
 <p align="center">
-  <img src="./assets/gamedesignos-overview-banner-v7-background.png" alt="GameDesignOS by Paranoia - AI 原生游戏设计操作系统：证据、实验、策划案与工作流治理" width="100%">
+  <img src="./assets/gamedesignos-runtime-v09-hero.png" alt="GameDesignOS v0.9.0 本地 runtime 连接 skill、contract、workspace asset 与校验" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
 
 <p align="center">
-  <strong>AI 原生游戏设计、立项验证与原型构建操作系统 by Paranoia / 游思考</strong>
+  <strong>带可执行本地 runtime 的 AI 原生游戏设计操作系统 by Paranoia / 游思考</strong>
 </p>
 
 <p align="center">
-  GameDesignOS 是一套由 skill、contract、project workspace 与 runtime 组成的 AI 原生游戏设计操作系统。
-  它把创意、证据、分析、实验、策划案和人类决策沉淀为可追踪项目资产，让项目在多次 agent 调用、文档和里程碑之间不再丢失上下文。
+  GameDesignOS 把游戏设计方法、证据、实验、策划案和人类决策沉淀为可复用 skill、稳定 contract、workspace 操作规程和确定性的本地命令。
+  v0.9.0 已能初始化、查看、路由、创建、校验和打包项目 workspace，全程不调用模型、不保存凭据、不上传文件，也不替人越过 Human Gate。
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
-  <a href="#v080-runtime-foundation">Runtime Foundation</a> ·
+  <a href="#v090-local-runtime-prototype">Local Runtime</a> ·
   <a href="./runtime/workspace-template/">项目 Workspace</a> ·
   <a href="./docs/workflows/">工作流</a> ·
   <a href="./docs/product/roadmap.md">路线图</a> ·
@@ -27,8 +27,8 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.8.0-31e1d6">
-  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Foundation-8a63d2">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v0.9.0-31e1d6">
+  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local%20CLI-8a63d2">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
   <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
@@ -38,27 +38,28 @@
 
 > GameDesignOS 是对外项目主体；Paranoia / 游思考是作者背书。当前模块仍以可安装 skill 形式组织，方便 Codex、Claude Code、OpenCode 等 agent 复用。
 
-## v0.8.0 Runtime Foundation
+## v0.9.0 Local Runtime Prototype
 
-v0.8.0 新增可选的项目层，把现有七个 skill 从独立工具包推进为由 workspace 承载的游戏设计操作系统。
+v0.9.0 把 v0.8 的 workspace 与 contract foundation 推进成第一版可执行的本地 `gamedesignos` runtime。CLI 是确定性、本地优先的：它能创建项目 workspace、推荐路由、写入草稿资产、复查定性 VOI gate、校验 contract，并生成可评审 pack，不会调用模型。
 
 | 层级 | 作用 | 入口 |
 | --- | --- | --- |
 | **Skill Kernel** | 七个边界清楚的专家工作流 | [`当前 Skill`](#当前-skill) |
 | **Contract Layer** | 稳定交接、schema 与路由边界 | [`contracts/`](./contracts/) |
 | **Project Workspace** | 长期保存概念、证据、分析、实验、策划案与决策 | [`runtime/workspace-template/`](./runtime/workspace-template/) |
-| **Runtime Interface** | 宿主 agent 接入方式与未来本地 CLI 语义 | [`runtime/`](./runtime/) |
+| **Runtime Interface** | 可执行本地命令与宿主 agent 接入边界 | [`runtime/`](./runtime/) / [`gamedesignos/`](./gamedesignos/) |
 
 创建私有项目空间：
 
 ```bash
-cp -R runtime/workspace-template ../my-game-designos
-cd ../my-game-designos
+python -m pip install -e .
+gamedesignos init "My Game" --destination ../my-game-designos
+gamedesignos status --workspace ../my-game-designos
 ```
 
-随后修改 `game.designos.yaml`。原有 skill 仍可独立安装；workspace 是向后兼容的增量层。
+随后定义 Decision Object，路由下一项任务，并在分享任何 pack 前校验 workspace。原有 skill 仍可独立安装；runtime 是向后兼容的增量层。
 
-详细内容见 [产品架构](./docs/product/architecture.md)、[v0.8.0 MVP 边界](./docs/product/mvp-definition.md)、[核心工作流](./docs/workflows/) 和 [路线图](./docs/product/roadmap.md)。
+详细内容见 [v0.9.0 定义](./docs/product/v0.9.0-definition.md)、[CLI 指南](./runtime/cli/README.md)、[命令参考](./runtime/cli/commands.md) 和 [路线图](./docs/product/roadmap.md)。
 
 决策优先的信息审计提示词：
 
@@ -68,9 +69,9 @@ Use $paranoia-ai-system-evolver to audit this research or AI workflow with a Dec
 
 ## 这个项目是什么
 
-`GameDesignOS` 是一套 AI 原生游戏设计、立项验证与原型构建工作系统。它的公开基础层由 **Skill Kernel**、**Contract Layer**、**Project Workspace** 和 **Runtime Interface** 组成。
+`GameDesignOS` 是一套 AI 原生游戏设计、立项验证与原型构建工作系统。它的公开基础层由 **Skill Kernel**、**Contract Layer**、**Project Workspace** 和可执行 **Runtime Interface** 组成。
 
-skill 提供边界清楚的专家能力，contract 让产物可以交接，workspace 保存长期项目上下文，runtime 则规定宿主 agent 或未来 CLI 如何读取、路由、写回、校验并停在 Human Gate。
+skill 提供边界清楚的专家能力，contract 让产物可以交接，workspace 保存长期项目上下文，runtime 则给宿主 agent 或本地 CLI 提供确定性的读取、路由、写回、校验、打包和 Human Gate 停止能力。
 
 它不是一张零散 skill 清单，也不是一堆提示词合集。它更像一套小型游戏设计操作系统，并用契约让不同 skill 之间能交接工作，而不是各自输出孤立长文：
 
@@ -268,7 +269,7 @@ game-design-proposal-writer/
 
 ## System Architecture
 
-`GameDesignOS` v0.8.0 由四层产品结构和贯穿全局的治理规则组成：
+`GameDesignOS` v0.9.0 由四层产品结构和贯穿全局的治理规则组成：
 
 - **Skill Kernel**
   - [`game-concept-architect/`](./game-concept-architect/)：一句话创意 -> 可验证概念蓝图。
@@ -283,7 +284,7 @@ game-design-proposal-writer/
 - **Project Workspace**
   - [`runtime/workspace-template/`](./runtime/workspace-template/)：项目身份、生命周期目录、资产 registry 与 Human Gate。
 - **Runtime Interface**
-  - [`runtime/`](./runtime/) 与 [`adapters/`](./adapters/)：workspace 生命周期、宿主接入和未来 CLI 契约。
+  - [`gamedesignos/`](./gamedesignos/)、[`runtime/`](./runtime/) 与 [`adapters/`](./adapters/)：本地 CLI 命令、workspace 生命周期、宿主接入和命令契约。
 - **Governance**
   - 证据边界、公开/私有隔离、eval、Human Gate 与 rollback 贯穿每一层。
 
@@ -323,7 +324,7 @@ game-design-proposal-writer/
 | --- | --- | --- |
 | Skill Kernel | `game-experience-analyzer/`, `game-concept-architect/`, `game-design-proposal-writer/`, `paranoia-ai-system-evolver/`, `game-design-book-translator/`, `game-design-source-curator/`, `game-experience-density-optimizer/` | 可独立安装的专家能力包。 |
 | Contract Layer | `contracts/` | skill 交接、路由、项目 manifest、资产索引和决策日志 schema。 |
-| Runtime Foundation | `runtime/` | workspace 模板、生命周期规则和未来 CLI 命令契约。 |
+| Runtime / CLI | `gamedesignos/`, `runtime/` | 可执行本地命令、workspace 模板、生命周期规则和 CLI 命令契约。 |
 | Product 与 workflows | `docs/product/`, `docs/workflows/` | 产品边界、架构、路线图和端到端项目路径。 |
 | 公开 onboarding 与 proof | `README*`, `docs/`, `releases/` | 上手、版本历史、公开安全案例和 proof path。 |
 | Adapters 与 validation | `adapters/`, `.github/`, `scripts/` | 宿主接入、CI、仓库校验与行为 eval。 |
@@ -346,10 +347,12 @@ GameDesignOS 支持两种兼容模式。
 
 ### Project Workspace 模式
 
-把 workspace 模板复制到公开仓库外，修改 `game.designos.yaml`，再按 workflow 文档路由任务并保存长期项目资产。
+安装本地 runtime，把 workspace 初始化到公开仓库外，再按 workflow 文档路由任务并保存长期项目资产。
 
 ```bash
-cp -R runtime/workspace-template ../my-game-designos
+python -m pip install -e .
+gamedesignos init "My Game" --destination ../my-game-designos
+gamedesignos route "turn this idea into a validation plan" --workspace ../my-game-designos
 ```
 
 ### 直接使用 Skill
@@ -371,6 +374,9 @@ python scripts/validate_skill.py game-experience-analyzer
 python scripts/validate_skill.py game-concept-architect
 python scripts/validate_skill.py game-experience-density-optimizer
 python scripts/validate_skill.py game-design-proposal-writer
+python -m unittest discover -s scripts/tests
+gamedesignos --version
+gamedesignos doctor
 ```
 
 ## 路线图

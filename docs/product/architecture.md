@@ -1,6 +1,6 @@
 # GameDesignOS System Architecture
 
-GameDesignOS v0.8.0 formalizes four product layers and one cross-cutting governance plane.
+GameDesignOS v0.9.0 formalizes four product layers and one cross-cutting governance plane, with the first executable local runtime sitting at the interface layer.
 
 > 中文摘要：四层分别是 Skill Kernel、Contract Layer、Project Workspace 与 Runtime Interface；Human Gate、验证、来源边界和回滚规则贯穿所有层。
 
@@ -37,7 +37,7 @@ A skill owns a bounded expert workflow. It should not silently replace another s
 
 The Contract Layer defines stable artifact shapes and routing boundaries. Existing skill-level contracts include player promises, validation plans, evidence indexes, issue cards, and ED handoffs.
 
-v0.8.0 adds a cross-cutting decision-information contract and workspace-level contracts:
+v0.8.0 introduced a cross-cutting decision-information contract and workspace-level contracts, and v0.9.0 makes them operable through local runtime commands:
 
 - `information-value-assessment.schema.json`
 - `project-workspace.schema.json`
@@ -97,17 +97,17 @@ Agents must surface conflicts instead of silently choosing whichever file is eas
 
 ## 4. Runtime Interface
 
-The Runtime Interface connects a host agent or future CLI to the workspace, contracts, and skills.
+The Runtime Interface connects a host agent or local CLI to the workspace, contracts, and skills.
 
-In v0.8.0 it is documentation-first:
+In v0.9.0 it includes:
 
 - a copyable workspace template;
 - a defined workspace lifecycle;
-- a planned CLI command surface;
+- an executable `gamedesignos` CLI for `init`, `status`, `voi`, `route`, `new`, `validate`, `pack`, and `doctor`;
 - workspace-aware adapter guidance;
 - repository validation coverage.
 
-v0.8.0 does not ship a hosted API, model gateway, credential store, or full CLI binary.
+v0.9.0 still does not ship a hosted API, model gateway, credential store, automatic skill execution, or project-commitment authority.
 
 ## 5. Governance Plane
 
