@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gamedesignos"
+version = "0.9.0"
+description = "Local runtime prototype for workspace-backed AI-native game design workflows"
+readme = "runtime/cli/README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "Paranoia" }
+]
+dependencies = [
+  "PyYAML>=6.0",
+  "jsonschema>=4.20"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Games/Entertainment",
+  "Topic :: Software Development :: Libraries :: Application Frameworks"
+]
+
+[project.scripts]
+gamedesignos = "gamedesignos.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["gamedesignos*"]
+
+[tool.ruff]
+line-length = 100

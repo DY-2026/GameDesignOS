@@ -1,41 +1,33 @@
-# Planned GameDesignOS CLI
+# GameDesignOS v0.9.0 Local Runtime
 
-This directory defines the intended local command surface for a future GameDesignOS runtime.
+This directory contains the executable local runtime prototype introduced in v0.9.0.
 
-> v0.8.0 does **not** ship a complete CLI binary. These documents freeze command semantics before implementation so the workspace and contracts do not drift around ad hoc scripts.
+Install from the repository root:
 
-See [commands.md](./commands.md) for command contracts.
+```bash
+python -m pip install -e .
+```
 
-## Design Goals
+Run either entrypoint:
 
-A future CLI should be:
+```bash
+gamedesignos --version
+python -m gamedesignos --version
+```
 
-- local-first;
-- workspace-aware;
-- model-provider neutral;
-- safe around private material;
-- explicit about Human Gates;
-- deterministic for initialization and validation;
-- replaceable by another host or harness.
+Implemented commands:
 
-## Non-Goals
+```text
+init
+status
+voi
+route
+new
+validate
+pack
+doctor
+```
 
-The CLI should not:
+The runtime is deterministic and local-first. It does not call a model, store credentials, upload workspace files, execute a skill automatically, or approve a Human Gate.
 
-- store API keys;
-- become a hosted proxy;
-- silently upload project files;
-- choose irreversible project decisions;
-- execute production changes without an explicit host permission model;
-- hide missing evidence behind generated prose.
-
-## Implementation Gate
-
-A command moves from specification to implementation only when it has:
-
-1. a stable input/output contract;
-2. fixture workspaces;
-3. failure and rollback behavior;
-4. cross-platform path handling;
-5. tests;
-6. documentation that distinguishes local file operations from model calls.
+See [commands.md](./commands.md) for command semantics and [`../../docs/product/v0.9.0-definition.md`](../../docs/product/v0.9.0-definition.md) for the product boundary.

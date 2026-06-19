@@ -1,0 +1,93 @@
+"""Stable runtime constants and conservative default mappings."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+RUNTIME_VERSION = "0.9.0"
+WORKSPACE_SCHEMA_VERSION = "0.8.0"
+SUPPORTED_WORKSPACE_SCHEMAS = {"0.8.0"}
+SUPPORTED_RUNTIME_VERSIONS = {"0.8.0", "0.9.0"}
+PUBLIC_BASE_REPO = "DY-2026/GameDesignOS"
+WORKSPACE_TYPE = "gamedesignos-project"
+
+LIFECYCLE_DIRS = {
+    "inbox_dir": "00-inbox",
+    "concept_dir": "01-concept",
+    "evidence_dir": "02-evidence",
+    "analysis_dir": "03-analysis",
+    "proposals_dir": "04-proposals",
+    "experiments_dir": "05-experiments",
+    "decisions_dir": "06-decisions",
+    "retrospectives_dir": "07-retrospectives",
+}
+
+REQUIRED_RULES = {
+    "evidence_before_opinion": True,
+    "feasibility_before_scope": True,
+    "workflow_before_one_off_prompts": True,
+    "voi_before_research": True,
+    "eval_before_promotion": True,
+    "rollback_before_confidence": True,
+    "human_gate_for_commitments": True,
+    "decision_before_information": True,
+    "action_change_before_research": True,
+    "sample_before_scale": True,
+    "stop_when_marginal_voi_nonpositive": True,
+    "preserve_local_negative_evidence": True,
+}
+
+VALID_PROJECT_STATUSES = {"concept", "prototype", "demo", "vertical-slice", "production", "paused", "archived"}
+VALID_VISIBILITIES = {"private", "public-synthetic", "public-cleared"}
+VALID_SOURCE_STATUSES = {"private", "synthetic", "public", "cleared", "needs_review"}
+VALID_ASSET_TYPES = {"inbox", "concept", "validation", "evidence", "analysis", "proposal", "experiment", "information-assessment", "decision", "retrospective", "knowledge"}
+VALID_ASSET_FORMATS = {"markdown", "json", "yaml", "csv", "image", "video", "audio", "binary", "external-link"}
+VALID_CREATED_BY = {"human", "agent", "human-agent", "import"}
+VALID_DECISION_TYPES = {"concept_gate", "scope_gate", "validation", "experiment", "milestone", "proposal", "release", "workflow", "information"}
+VALID_DECISION_STATUSES = {"proposed", "accepted", "rejected", "reversed", "superseded"}
+VALID_REVIEW_STATUSES = {"draft", "needs_review", "reviewed", "accepted", "rejected", "superseded"}
+
+
+@dataclass(frozen=True)
+class AssetSpec:
+    command_name: str
+    index_type: str
+    directory_key: str
+    extension: str
+    id_prefix: str
+    source_skill: str | None
+    default_title: str
+
+
+ASSET_SPECS = {
+    "concept": AssetSpec("concept", "concept", "concept_dir", "md", "CONCEPT", "game-concept-architect", "Concept Seed"),
+    "evidence-index": AssetSpec("evidence-index", "evidence", "evidence_dir", "json", "EVIDENCE", "game-experience-analyzer", "Evidence Index"),
+    "issue-card": AssetSpec("issue-card", "analysis", "analysis_dir", "json", "ISSUE", "game-experience-analyzer", "Issue Card"),
+    "validation-plan": AssetSpec("validation-plan", "validation", "concept_dir", "json", "VALIDATION", "game-concept-architect", "Validation Plan"),
+    "information-assessment": AssetSpec("information-assessment", "information-assessment", "decisions_dir", "json", "VOI", "paranoia-ai-system-evolver", "Information Value Assessment"),
+    "ed-handoff": AssetSpec("ed-handoff", "experiment", "experiments_dir", "json", "EDH", "game-experience-analyzer", "ED Handoff"),
+    "experiment": AssetSpec("experiment", "experiment", "experiments_dir", "md", "EXPERIMENT", "game-experience-density-optimizer", "Weekly Experiment Plan"),
+    "proposal": AssetSpec("proposal", "proposal", "proposals_dir", "md", "PROPOSAL", "game-design-proposal-writer", "Decision-Ready Proposal"),
+    "decision": AssetSpec("decision", "decision", "decisions_dir", "json", "DECISION", None, "Decision Record"),
+    "retrospective": AssetSpec("retrospective", "retrospective", "retrospectives_dir", "md", "RETRO", "paranoia-ai-system-evolver", "Retrospective"),
+}
+
+PACK_ALLOWED_SOURCE_STATUSES = {
+    "internal-review": VALID_SOURCE_STATUSES,
+    "publisher": {"synthetic", "public", "cleared"},
+    "public-synthetic": {"synthetic"},
+}
+
+SENSITIVE_BASENAMES = {".env", ".env.local", "credentials.json", "secrets.json", "host-config.json", "api-keys.json"}
+SENSITIVE_SUFFIXES = {".pem", ".key", ".p12", ".pfx"}
+
+WORKSPACE_GUIDES = {
+    "00-inbox": "Unreviewed intake only. Move accepted material into a durable asset before treating it as design truth.",
+    "01-concept": "Concept seed, player promise, core loop, scope gate, and validation plans.",
+    "02-evidence": "Source boundaries, timestamped observations, screenshots, and evidence indexes.",
+    "03-analysis": "Interpretation, diagnosis, issue cards, and transfer boundaries.",
+    "04-proposals": "Decision-facing memos, pitches, dossiers, and vertical-slice plans.",
+    "05-experiments": "Sample-information plans, instrumentation, dashboards, results, and rollback rules.",
+    "06-decisions": "Human authority, Decision Objects, VOI gates, accepted commitments, and reversals.",
+    "07-retrospectives": "What changed, what failed, what is reusable, and what remains only a candidate rule.",
+}
