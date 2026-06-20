@@ -18,12 +18,14 @@ All notable changes to GameDesignOS will be recorded here.
 - Added Decision Graph Mermaid export and graph inspection.
 - Added a complete runtime behavior test for the chain: Decision -> Assumption -> Experiment Plan -> Evidence -> Result -> Review -> Assumption validation -> Decision accept -> Workflow validation.
 - Added Chinese-first Project-Ready documentation for runtime, CLI commands, contracts, roadmap, v1 workspace template, and release notes.
+- Added a formal v1.0 vector README hero with crisp English project name, core positioning, asset counts, and safety boundary: `assets/gamedesignos-v1-hero.svg`.
 
 ### Changed
 
 - Changed the runtime package version to `1.0.0`.
 - New workspaces now default to schema `1.0.0`; legacy schema `0.8.0` remains available through `--workspace-version 0.8.0`.
 - Updated README entrypoints to present v1.0.0 as Project-Ready rather than a local prototype.
+- Updated the README trio to use the formal v1.0 SVG hero instead of the v0.9 runtime hero.
 - Updated repository validation to require the v1 contract and workspace-template surfaces.
 
 ### Safety

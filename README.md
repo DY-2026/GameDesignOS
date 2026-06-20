@@ -1,17 +1,18 @@
 <p align="center">
-  <img src="./assets/gamedesignos-runtime-v09-hero.png" alt="GameDesignOS v1.0.0 local runtime connects decisions, assumptions, evidence, experiments, workflows, and validation" width="100%">
+  <img src="./assets/gamedesignos-v1-hero.svg" alt="GameDesignOS v1.0.0 formal Project-Ready release hero: 7 skills, 17 contracts, 5 workflows, and 1 local runtime" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
 
 <p align="center">
-  <strong>AI-native game design operating system with an executable local runtime by Paranoia</strong><br>
+  <strong>Turn a single AI-agent session into a project-ready game design operating system.</strong><br>
   游戏设计操作系统 / 游思考 GameDesignOS
 </p>
 
 <p align="center">
-  GameDesignOS turns expert game-design methods, evidence, experiments, proposals, and human decisions into reusable skills, stable contracts, workspace-backed operating procedures, and deterministic local commands.
-  v1.0.0 is Project-Ready: projects can initialize v1 workspaces and manage Decisions, Assumptions, Evidence, Experiments, Gates, Workflows, and Learning without model calls, credentials, uploads, or hosted services.
+  GameDesignOS is a local-first operating system for AI-assisted game design.
+  It turns AI-agent sessions into structured decisions, assumptions, evidence, experiments, proposals, workflows, and learning records, so teams can validate ideas, diagnose gameplay, and evolve production workflows without losing context or bypassing human judgment.
+  v1.0.0 ships 7 specialist skills, 17 contract schemas, 5 end-to-end workflows, v1 project workspaces, and 1 deterministic local runtime.
 </p>
 
 <p align="center">
@@ -39,9 +40,29 @@
 
 > GameDesignOS is the public-facing system name. Paranoia is the author identity and brand signature; the current installable modules remain packaged as Markdown skills.
 
+## Why This Exists
+
+AI can draft faster than a team can decide. In game design, that often creates more fragments: chat logs, screenshots, one-off prompts, competitor notes, GDD drafts, experiment ideas, and half-remembered decisions.
+
+GameDesignOS adds the missing operating layer. It turns agent output into reviewable project assets with provenance, contracts, gates, and rollback, so a designer can move from idea to evidence to experiment to decision without rebuilding context every session.
+
+You still make the calls. The system supplies specialist workflows, shared handoffs, local state, and the discipline to stop at Human Gates.
+
+## What's Included
+
+| Category | Count | What It Gives You |
+| --- | ---: | --- |
+| Specialist skills | 7 | Concept architecture, experience analysis, ED optimization, proposal writing, workflow evolution, book translation, and source curation |
+| Contract schemas | 17 | Stable handoffs for decisions, assumptions, evidence, experiments, learning, gates, workflows, issues, player promises, and project assets |
+| v1 workspace sections | 9 | A durable private project space for Decisions, Assumptions, Evidence, Experiments, Design Assets, Workflows, Learning, Exports, and runtime state |
+| Workflow guides | 5 | Idea-to-validation, media-to-diagnosis, weekly ED experiment, evidence-to-proposal, and decision-to-information paths |
+| Host adapters | 4 | Codex, Claude Code, OpenAI-compatible agents, and local harness integration notes |
+| Public proof cases | 2 | Evidence-linked game-analysis and experience-density examples with explicit source boundaries |
+| Runtime | 1 | Deterministic local CLI for routing, workspace creation, validation, health checks, graphs, gates, and review-safe packs |
+
 ## Project-Ready Runtime
 
-v1.0.0 turns the local `gamedesignos` runtime into a Project-Ready design operating system. The CLI is deterministic and local-first: it creates v1 workspaces, manages Decisions, Assumptions, Evidence, Experiments, Gates, Workflows, and Learning, exports decision graphs, scans project health, and builds review-safe packs without calling a model.
+v1.0.0 turns the local `gamedesignos` runtime into a formal Project-Ready design operating system. The CLI is deterministic and local-first: it creates v1 workspaces, manages Decisions, Assumptions, Evidence, Experiments, Gates, Workflows, and Learning, exports decision graphs, scans project health, and builds review-safe packs without calling a model.
 
 | Layer | Purpose | Entry |
 | --- | --- | --- |
@@ -69,7 +90,9 @@ Use $paranoia-ai-system-evolver to audit this research or AI workflow with a Dec
 
 ## What This Is
 
-`GameDesignOS` is an AI-native workflow system for game design, concept validation, and prototype planning. Its public base now consists of a **Skill Kernel**, **Contract Layer**, **Project Workspace**, and executable **Runtime Interface**.
+`GameDesignOS` is a local-first operating system for AI-assisted game design. It turns AI-agent sessions into durable design assets: decisions, assumptions, evidence, experiments, proposals, workflows, and learning records.
+
+Its public base consists of a **Skill Kernel**, **Contract Layer**, **Project Workspace**, and executable **Runtime Interface** for concept validation, gameplay diagnosis, proposal writing, and workflow evolution.
 
 The skills provide bounded expert behavior. Contracts make outputs interoperable. The workspace preserves project context. The runtime layer gives a host agent or local CLI deterministic commands for reading, routing, writing, validating, packing, and stopping at Human Gates.
 
@@ -282,7 +305,7 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 - **Contract Layer**
   - [`contracts/`](./contracts/): routing, skill handoffs, project manifests, asset indexes, and decision logs.
 - **Project Workspace**
-  - [`runtime/workspace-template/`](./runtime/workspace-template/): project identity, lifecycle directories, asset registry, and Human Gates.
+  - [`runtime/workspace-template-v1/`](./runtime/workspace-template-v1/): project identity, lifecycle directories, asset registry, learning records, exports, and Human Gates.
 - **Runtime Interface**
   - [`gamedesignos/`](./gamedesignos/), [`runtime/`](./runtime/), and [`adapters/`](./adapters/): local CLI commands, workspace lifecycle, host integration, and command contracts.
 - **Governance**
@@ -382,7 +405,8 @@ gamedesignos doctor
 
 - **v0.8.0 — Runtime Foundation:** workspace template, workspace contracts, product architecture, workflow routes, and validation.
 - **v0.9.0 — Local Runtime Prototype:** initialize, inspect, route, create, validate, and pack local workspaces.
-- **v1.0.0 — Project-Ready GameDesignOS:** Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning chain, decision graph, health scan, Human Gate, and v1 workspace.
+- **v1.0.0 — Project-Ready GameDesignOS:** formal release with the Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning chain, decision graph, health scan, Human Gate, and v1 workspace.
+- **v1.x — Proof and adoption:** more public cases, adapter hardening, runtime dashboards, and validated real-project playbooks.
 
 See the capability-gated [product roadmap](./docs/product/roadmap.md).
 

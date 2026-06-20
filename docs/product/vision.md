@@ -1,10 +1,10 @@
 # GameDesignOS Product Vision
 
-GameDesignOS is an AI-native game design operating system for turning ideas, evidence, analysis, experiments, proposals, and decisions into durable project assets.
+GameDesignOS is a local-first operating system for AI-assisted game design. It turns AI-agent sessions into structured decisions, assumptions, evidence, experiments, proposals, workflows, and learning records, so teams can validate ideas, diagnose gameplay, and evolve production workflows without losing context or bypassing human judgment.
 
 > 中文摘要：GameDesignOS 不是自动替代策划的写稿机器，而是一套帮助策划保存判断、证据、实验与决策，并让不同 AI skill 在同一项目上下文中协作的工作系统。
 
-It is not an automated game designer, a prompt collection, or a hosted model service. It is a public method, skill system, and local runtime foundation that helps human designers preserve judgment, route work through suitable expert skills, and keep project context reviewable across iterations.
+It is not an automated game designer, a prompt collection, or a hosted model service. It is a public method, seven-skill system, contract layer, v1 project workspace, and deterministic local runtime that helps human designers preserve judgment, route work through suitable expert skills, and keep project context reviewable across iterations.
 
 ## Why It Exists
 
@@ -79,10 +79,12 @@ Real projects should use a private workspace or private overlay for proprietary 
 
 ## Product Direction
 
-The product evolves through three milestones:
+v1.0.0 is the formal Project-Ready baseline. The product reached the first three milestones:
 
 1. **Runtime Foundation:** workspace template, contracts, workflow routes, and validation conventions.
 2. **Local Runtime:** project initialization, routing, asset creation, validation, VOI review, and review-safe packing through a local CLI or agent harness.
 3. **Project-Ready Operating System:** asset graph, review gates, project dashboard, private overlays, and validated end-to-end cases.
 
-The long-term test is simple: GameDesignOS should help a designer make a more traceable decision, run a smaller and more valuable experiment, and preserve what the project learned.
+The v1.x direction is proof and adoption: more public evidence-linked cases, stronger adapters, clearer runtime dashboards, private-overlay playbooks, and real-project validation without weakening Human Gate, public/private separation, or local-first safety.
+
+The long-term test remains simple: GameDesignOS should help a designer make a more traceable decision, run a smaller and more valuable experiment, and preserve what the project learned.

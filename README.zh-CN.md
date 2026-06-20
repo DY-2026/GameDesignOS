@@ -1,23 +1,25 @@
 <p align="center">
-  <img src="./assets/gamedesignos-runtime-v09-hero.png" alt="GameDesignOS v1.0.0 本地 runtime 连接决策、假设、证据、实验、工作流与校验" width="100%">
+  <img src="./assets/gamedesignos-v1-hero.svg" alt="GameDesignOS v1.0.0 正式 Project-Ready 首页图：7 个 skill、17 个 contract、5 条 workflow 和 1 个本地 runtime" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
 
 <p align="center">
-  <strong>带可执行本地 runtime 的 AI 原生游戏设计操作系统 by Paranoia / 游思考</strong>
+  <strong>把一次 AI agent 会话，变成可持续推进真实项目的游戏设计操作系统。</strong><br>
+  GameDesignOS by Paranoia / 游思考
 </p>
 
 <p align="center">
-  GameDesignOS 把游戏设计方法、证据、实验、策划案和人类决策沉淀为可复用 skill、稳定 contract、workspace 操作规程和确定性的本地命令。
-  v1.0.0 已进入 Project-Ready：可以初始化 v1 项目 workspace，管理 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，全程不调用模型、不保存凭据、不上传文件，也不替人越过 Human Gate。
+  GameDesignOS 是一层 local-first 的 AI 辅助游戏设计操作系统。
+  它把 AI-agent session 转成结构化的 Decision、Assumption、Evidence、Experiment、Proposal、Workflow 和 Learning Record，让团队能验证创意、诊断体验、撰写策划案、演化生产工作流，同时不丢上下文，也不越过 Human Gate。
+  v1.0.0 包含 7 个专家 skill、17 个 contract schema、5 条端到端工作流、v1 项目 workspace 和 1 个确定性本地 runtime。
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
-  <a href="#v090-local-runtime-prototype">Local Runtime</a> ·
-  <a href="./runtime/workspace-template/">项目 Workspace</a> ·
+  <a href="#v100-project-ready-runtime">Project-Ready Runtime</a> ·
+  <a href="./runtime/workspace-template-v1/">v1 Workspace</a> ·
   <a href="./docs/workflows/">工作流</a> ·
   <a href="./docs/product/roadmap.md">路线图</a> ·
   <a href="#当前-skill">Skills</a> ·
@@ -38,9 +40,29 @@
 
 > GameDesignOS 是对外项目主体；Paranoia / 游思考是作者背书。当前模块仍以可安装 skill 形式组织，方便 Codex、Claude Code、OpenCode 等 agent 复用。
 
+## 为什么需要它
+
+AI 写得越来越快，但团队做决策没有同样变快。游戏设计工作常常散在聊天记录、截图、录屏、竞品笔记、GDD 草稿、实验想法和个人记忆里；更多 AI 输出只会制造更多碎片。
+
+GameDesignOS 补的是中间那层操作系统：把 agent 输出转成有来源、有契约、有质量门、有 rollback 的项目资产，让设计者从创意、证据、实验走到决策时，不用每一轮都重新解释上下文。
+
+决定权仍然在人手里。系统提供的是专家工作流、可交接 contract、本地状态和 Human Gate 前停住的纪律。
+
+## 包含什么
+
+| 类别 | 数量 | 它给你什么 |
+| --- | ---: | --- |
+| 专家 skill | 7 | 概念架构、体验分析、ED 优化、策划案写作、工作流演化、书籍翻译和资料策展 |
+| Contract schema | 17 | 决策、假设、证据、实验、学习记录、质量门、工作流、issue、玩家承诺和项目资产的稳定交接格式 |
+| v1 workspace 分区 | 9 | 用于保存 Decision、Assumption、Evidence、Experiment、Design Asset、Workflow、Learning、Export 和 runtime 状态的长期私有项目空间 |
+| 端到端工作流 | 5 | idea-to-validation、media-to-diagnosis、weekly ED experiment、evidence-to-proposal、decision-to-information |
+| 宿主 adapter | 4 | Codex、Claude Code、OpenAI-compatible agent 和本地 harness 接入说明 |
+| 公开 proof case | 2 | 带证据边界的游戏体验分析与体验浓度实验案例 |
+| Runtime | 1 | 用于路由、创建 workspace、校验、健康扫描、决策图、gate 和可评审 pack 的确定性本地 CLI |
+
 ## v1.0.0 Project-Ready Runtime
 
-v1.0.0 把本地 `gamedesignos` runtime 推进到 Project-Ready。CLI 是确定性、本地优先的：它能创建 v1 项目 workspace，管理 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，导出决策图，扫描项目健康，并生成可评审 pack，不会调用模型。
+v1.0.0 把本地 `gamedesignos` runtime 推进到正式 Project-Ready。CLI 是确定性、本地优先的：它能创建 v1 项目 workspace，管理 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，导出决策图，扫描项目健康，并生成可评审 pack，不会调用模型。
 
 | 层级 | 作用 | 入口 |
 | --- | --- | --- |
@@ -75,7 +97,9 @@ Use $paranoia-ai-system-evolver to audit this research or AI workflow with a Dec
 
 ## 这个项目是什么
 
-`GameDesignOS` 是一套 AI 原生游戏设计、立项验证与原型构建工作系统。它的公开基础层由 **Skill Kernel**、**Contract Layer**、**Project Workspace** 和可执行 **Runtime Interface** 组成。
+`GameDesignOS` 是一套 local-first 的 AI 辅助游戏设计操作系统。它把 AI-agent session 转成可持续使用的设计资产：Decision、Assumption、Evidence、Experiment、Proposal、Workflow 和 Learning Record。
+
+它的公开基础层由 **Skill Kernel**、**Contract Layer**、**Project Workspace** 和可执行 **Runtime Interface** 组成，用于立项验证、体验诊断、策划案写作和工作流演化。
 
 skill 提供边界清楚的专家能力，contract 让产物可以交接，workspace 保存长期项目上下文，runtime 则给宿主 agent 或本地 CLI 提供确定性的读取、路由、写回、校验、打包和 Human Gate 停止能力。
 
@@ -293,7 +317,7 @@ game-design-proposal-writer/
 - **Contract Layer**
   - [`contracts/`](./contracts/)：路由、skill 交接、项目 manifest、资产索引与决策日志。
 - **Project Workspace**
-  - [`runtime/workspace-template/`](./runtime/workspace-template/)：项目身份、生命周期目录、资产 registry 与 Human Gate。
+  - [`runtime/workspace-template-v1/`](./runtime/workspace-template-v1/)：项目身份、生命周期目录、资产 registry、学习记录、导出物与 Human Gate。
 - **Runtime Interface**
   - [`gamedesignos/`](./gamedesignos/)、[`runtime/`](./runtime/) 与 [`adapters/`](./adapters/)：本地 CLI 命令、workspace 生命周期、宿主接入和命令契约。
 - **Governance**
@@ -393,7 +417,8 @@ gamedesignos doctor
 
 - **v0.8.0 — Runtime Foundation：** workspace 模板、workspace contract、产品架构、工作流和校验。
 - **v0.9.0 — Local Runtime Prototype：** 初始化、查看、路由、创建、校验和打包本地 workspace。
-- **v1.0.0 — Project-Ready GameDesignOS：** Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、决策图、健康扫描、Human Gate 与 v1 workspace。
+- **v1.0.0 — Project-Ready GameDesignOS：** 正式版，包含 Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、决策图、健康扫描、Human Gate 与 v1 workspace。
+- **v1.x — Proof and adoption：** 补更多公开案例、强化 adapter、推进 runtime dashboard，并沉淀真实项目 playbook。
 
 完整路线见按能力门推进的 [产品 Roadmap](./docs/product/roadmap.md)。
 

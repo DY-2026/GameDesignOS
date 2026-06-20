@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "gamedesignos"
 version = "1.0.0"
-description = "Project-ready local runtime for decision-bound game design workflows"
+description = "Local-first OS and Markdown skill system for AI-assisted game design workflows"
 readme = "runtime/cli/README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
@@ -17,7 +17,7 @@ dependencies = [
   "jsonschema>=4.20"
 ]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",

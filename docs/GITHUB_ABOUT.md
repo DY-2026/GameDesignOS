@@ -6,7 +6,7 @@ Canonical checklist: [github-about-checklist.md](./github-about-checklist.md)
 
 ## Description
 
-AI-native GameDesignOS for concept validation, experience diagnosis, proposal writing, ED experiments, and agent workflow governance.
+Local-first OS for AI-assisted game design: turn AI-agent sessions into decisions, evidence, experiments, proposals, and durable project memory.
 
 ## Repository URL
 
@@ -41,4 +41,9 @@ indie-game
 game-research
 markdown-skills
 game-design-tools
+game-design-os
+local-first
+evidence-based
+decision-support
+human-in-the-loop
 ```
