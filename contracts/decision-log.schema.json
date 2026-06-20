@@ -13,7 +13,7 @@
   "properties": {
     "schema_version": {
       "type": "string",
-      "const": "0.8.0"
+      "enum": ["0.8.0", "1.0.0"]
     },
     "workspace_id": {
       "type": "string",
@@ -43,7 +43,7 @@
         "owner",
         "rollback_trigger"
       ],
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "decision_id": {
           "type": "string",
@@ -63,7 +63,8 @@
             "proposal",
             "release",
             "workflow",
-            "information"
+            "information",
+            "prototype_direction"
           ]
         },
         "status": {

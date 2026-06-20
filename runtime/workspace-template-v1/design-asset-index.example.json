@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "workspace_id": "untitled-game",
+  "assets": [
+    {
+      "asset_id": "ASSET-DECISION-001",
+      "asset_type": "decision",
+      "title": "原型方向决策",
+      "path": "01-decisions/DEC-PROTOTYPE-001.json",
+      "format": "json",
+      "created_by": "human-agent",
+      "source_status": "private",
+      "review_status": "draft",
+      "upstream_assets": [],
+      "downstream_assets": ["ASSET-ASSUMPTION-001"],
+      "notes": "Project-Ready 工作从 Decision Object 开始。"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "decision_id": "DEC-PROTOTYPE-001",
+  "title": "选择下一轮两周原型方向",
+  "decision_question": "下一轮两周冲刺应该优先验证哪条核心玩法路线？",
+  "owner": "designer",
+  "status": "proposed",
+  "decision_type": "prototype_direction",
+  "boundary_status": "near",
+  "stakes": "high",
+  "reversibility": "costly_to_reverse",
+  "current_default_action": "制作路线战斗原型",
+  "options": [
+    {
+      "option_id": "OPT-001",
+      "action": "制作路线战斗原型",
+      "expected_benefit": "验证差异化战斗表达。",
+      "main_risk": "规则可能过于复杂，难以适配小游戏化表达。"
+    },
+    {
+      "option_id": "OPT-002",
+      "action": "制作关系循环原型",
+      "expected_benefit": "验证留存和关系感。",
+      "main_risk": "社交模拟成本可能超过当前生产边界。"
+    }
+  ],
+  "evidence_refs": [],
+  "assumption_refs": ["ASM-COMPREHENSION-001"],
+  "experiment_refs": ["EXP-COMPREHENSION-001"],
+  "gate_refs": [],
+  "decision_result": null,
+  "rollback_trigger": "两周后仍无法形成三分钟可读的战斗循环。"
+}

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/gamedesignos-runtime-v09-hero.png" alt="GameDesignOS v0.9.0 本地 runtime 连接 skill、contract、workspace asset 与校验" width="100%">
+  <img src="./assets/gamedesignos-runtime-v09-hero.png" alt="GameDesignOS v1.0.0 本地 runtime 连接决策、假设、证据、实验、工作流与校验" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
@@ -10,7 +10,7 @@
 
 <p align="center">
   GameDesignOS 把游戏设计方法、证据、实验、策划案和人类决策沉淀为可复用 skill、稳定 contract、workspace 操作规程和确定性的本地命令。
-  v0.9.0 已能初始化、查看、路由、创建、校验和打包项目 workspace，全程不调用模型、不保存凭据、不上传文件，也不替人越过 Human Gate。
+  v1.0.0 已进入 Project-Ready：可以初始化 v1 项目 workspace，管理 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，全程不调用模型、不保存凭据、不上传文件，也不替人越过 Human Gate。
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.9.0-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v1.0.0-31e1d6">
   <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local%20CLI-8a63d2">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
@@ -38,28 +38,34 @@
 
 > GameDesignOS 是对外项目主体；Paranoia / 游思考是作者背书。当前模块仍以可安装 skill 形式组织，方便 Codex、Claude Code、OpenCode 等 agent 复用。
 
-## v0.9.0 Local Runtime Prototype
+## v1.0.0 Project-Ready Runtime
 
-v0.9.0 把 v0.8 的 workspace 与 contract foundation 推进成第一版可执行的本地 `gamedesignos` runtime。CLI 是确定性、本地优先的：它能创建项目 workspace、推荐路由、写入草稿资产、复查定性 VOI gate、校验 contract，并生成可评审 pack，不会调用模型。
+v1.0.0 把本地 `gamedesignos` runtime 推进到 Project-Ready。CLI 是确定性、本地优先的：它能创建 v1 项目 workspace，管理 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，导出决策图，扫描项目健康，并生成可评审 pack，不会调用模型。
 
 | 层级 | 作用 | 入口 |
 | --- | --- | --- |
 | **Skill Kernel** | 七个边界清楚的专家工作流 | [`当前 Skill`](#当前-skill) |
 | **Contract Layer** | 稳定交接、schema 与路由边界 | [`contracts/`](./contracts/) |
-| **Project Workspace** | 长期保存概念、证据、分析、实验、策划案与决策 | [`runtime/workspace-template/`](./runtime/workspace-template/) |
+| **Project Workspace** | 长期保存概念、证据、分析、实验、策划案与决策 | [`runtime/workspace-template-v1/`](./runtime/workspace-template-v1/) |
 | **Runtime Interface** | 可执行本地命令与宿主 agent 接入边界 | [`runtime/`](./runtime/) / [`gamedesignos/`](./gamedesignos/) |
 
-创建私有项目空间：
+拉取项目后，如果是在 Codex、Claude Code、OpenCode 这类支持 `AGENTS.md` 的 agent 环境里，用户直接发一句需求即可；agent 会自己路由、追问缺失材料或调用具体 skill，并在需要时创建 Project-Ready workspace。
+
+命令行用户可以不安装，直接在仓库根目录验证同一条入口：
 
 ```bash
-python -m pip install -e .
-gamedesignos init "My Game" --destination ../my-game-designos
-gamedesignos status --workspace ../my-game-designos
+python -m gamedesignos "我想做一款修灯塔的策略游戏"
 ```
 
-随后定义 Decision Object，路由下一项任务，并在分享任何 pack 前校验 workspace。原有 skill 仍可独立安装；runtime 是向后兼容的增量层。
+如果想显式创建长期项目空间：
 
-详细内容见 [v0.9.0 定义](./docs/product/v0.9.0-definition.md)、[CLI 指南](./runtime/cli/README.md)、[命令参考](./runtime/cli/commands.md) 和 [路线图](./docs/product/roadmap.md)。
+```bash
+python -m gamedesignos start "My Game" --destination ../my-game-designos --owner your-name
+```
+
+`ask/start` 会自动准备 workspace、第一条决策、第一条假设、三分钟验证实验和工作流。CLI 负责本地路由和状态审计；宿主 agent 负责继续读取并执行选中的 skill，不把提示词再丢给用户。随后先做一次小测试，再用终端输出里的 `gamedesignos evidence add ...` 记录观察。原有 skill 仍可独立安装；runtime 保持 v0.8/v0.9 workspace 兼容。
+
+详细内容见 [怎么用](./docs/how-to-use.zh-CN.md)、[v1.0 开发计划](./docs/product/v1.0-development-plan.md)、[CLI 指南](./runtime/cli/README.md)、[命令参考](./runtime/cli/commands.md) 和 [路线图](./docs/product/roadmap.md)。
 
 决策优先的信息审计提示词：
 
@@ -117,7 +123,7 @@ Use $paranoia-ai-system-evolver to upgrade this workflow with a WOOP Task Card, 
 Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience density problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
 ```
 
-完整上手路径见 [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md)。如果你希望继续看到更多公开游戏分析案例和可迁移的 agent skill 模板，欢迎 star 这个仓库；star 越多，我会越优先补更好的公开 demo、adapter 和可复用 skill 模板。
+完整上手路径见 [10 分钟上手 GameDesignOS](./docs/try-it-in-10-minutes.zh-CN.md)。如果你希望继续看到更多公开游戏分析案例和可迁移的 agent skill 模板，欢迎 star 这个仓库；star 越多，我会越优先补更好的公开 demo、adapter 和可复用 skill 模板。
 
 ## 60 秒 Demo
 
@@ -149,11 +155,16 @@ Use $game-experience-analyzer to analyze this gameplay recording into timestampe
 ### 1. 创建项目 Workspace
 
 ```bash
-cp -R runtime/workspace-template ../my-game-designos
-cd ../my-game-designos
+python -m gamedesignos "我想做一款修灯塔的策略游戏"
 ```
 
-先修改 `game.designos.yaml`，把真实项目保存在公开仓库外，再按 workflow 文档决定下一项设计资产。
+如果要明确指定 workspace 位置：
+
+```bash
+python -m gamedesignos start "My Game" --destination ../my-game-designos --owner your-name
+```
+
+把真实项目保存在公开仓库外。自然语言入口会自动把第一轮验证链路搭好；你只要按输出提示做一次三分钟验证，再记录观察即可。
 
 ### 2. 不知道选哪个？先看这张表
 
@@ -269,7 +280,7 @@ game-design-proposal-writer/
 
 ## System Architecture
 
-`GameDesignOS` v0.9.0 由四层产品结构和贯穿全局的治理规则组成：
+`GameDesignOS` v1.0.0 由四层产品结构和贯穿全局的治理规则组成：
 
 - **Skill Kernel**
   - [`game-concept-architect/`](./game-concept-architect/)：一句话创意 -> 可验证概念蓝图。
@@ -347,12 +358,11 @@ GameDesignOS 支持两种兼容模式。
 
 ### Project Workspace 模式
 
-安装本地 runtime，把 workspace 初始化到公开仓库外，再按 workflow 文档路由任务并保存长期项目资产。
+不安装时，在仓库根目录可以直接用 `python -m gamedesignos "<一句话需求>"`。如果想安装成本地命令，再执行：
 
 ```bash
 python -m pip install -e .
-gamedesignos init "My Game" --destination ../my-game-designos
-gamedesignos route "turn this idea into a validation plan" --workspace ../my-game-designos
+gamedesignos "我想做一款修灯塔的策略游戏"
 ```
 
 ### 直接使用 Skill
@@ -383,7 +393,7 @@ gamedesignos doctor
 
 - **v0.8.0 — Runtime Foundation：** workspace 模板、workspace contract、产品架构、工作流和校验。
 - **v0.9.0 — Local Runtime Prototype：** 初始化、查看、路由、创建、校验和打包本地 workspace。
-- **v1.0.0 — Project-Ready GameDesignOS：** 资产图、Human Gate 队列、项目看板、private overlay 与端到端案例。
+- **v1.0.0 — Project-Ready GameDesignOS：** Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、决策图、健康扫描、Human Gate 与 v1 workspace。
 
 完整路线见按能力门推进的 [产品 Roadmap](./docs/product/roadmap.md)。
 

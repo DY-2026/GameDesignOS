@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-RUNTIME_VERSION = "0.9.0"
+RUNTIME_VERSION = "1.0.0"
 WORKSPACE_SCHEMA_VERSION = "0.8.0"
-SUPPORTED_WORKSPACE_SCHEMAS = {"0.8.0"}
-SUPPORTED_RUNTIME_VERSIONS = {"0.8.0", "0.9.0"}
+PROJECT_READY_WORKSPACE_SCHEMA_VERSION = "1.0.0"
+SUPPORTED_WORKSPACE_SCHEMAS = {"0.8.0", "1.0.0"}
+SUPPORTED_RUNTIME_VERSIONS = {"0.8.0", "0.9.0", "1.0.0"}
 PUBLIC_BASE_REPO = "DY-2026/GameDesignOS"
 WORKSPACE_TYPE = "gamedesignos-project"
 
@@ -20,6 +21,18 @@ LIFECYCLE_DIRS = {
     "experiments_dir": "05-experiments",
     "decisions_dir": "06-decisions",
     "retrospectives_dir": "07-retrospectives",
+}
+
+PROJECT_READY_LIFECYCLE_DIRS = {
+    "inbox_dir": "00-inbox",
+    "decisions_dir": "01-decisions",
+    "assumptions_dir": "02-assumptions",
+    "evidence_dir": "03-evidence",
+    "experiments_dir": "04-experiments",
+    "design_assets_dir": "05-design-assets",
+    "workflows_dir": "06-workflows",
+    "learning_dir": "07-learning",
+    "exports_dir": "08-exports",
 }
 
 REQUIRED_RULES = {
@@ -41,6 +54,7 @@ VALID_PROJECT_STATUSES = {"concept", "prototype", "demo", "vertical-slice", "pro
 VALID_VISIBILITIES = {"private", "public-synthetic", "public-cleared"}
 VALID_SOURCE_STATUSES = {"private", "synthetic", "public", "cleared", "needs_review"}
 VALID_ASSET_TYPES = {"inbox", "concept", "validation", "evidence", "analysis", "proposal", "experiment", "information-assessment", "decision", "retrospective", "knowledge"}
+VALID_ASSET_TYPES = VALID_ASSET_TYPES | {"assumption", "learning", "gate-result", "workflow-run"}
 VALID_ASSET_FORMATS = {"markdown", "json", "yaml", "csv", "image", "video", "audio", "binary", "external-link"}
 VALID_CREATED_BY = {"human", "agent", "human-agent", "import"}
 VALID_DECISION_TYPES = {"concept_gate", "scope_gate", "validation", "experiment", "milestone", "proposal", "release", "workflow", "information"}
@@ -90,4 +104,16 @@ WORKSPACE_GUIDES = {
     "05-experiments": "Sample-information plans, instrumentation, dashboards, results, and rollback rules.",
     "06-decisions": "Human authority, Decision Objects, VOI gates, accepted commitments, and reversals.",
     "07-retrospectives": "What changed, what failed, what is reusable, and what remains only a candidate rule.",
+}
+
+PROJECT_READY_WORKSPACE_GUIDES = {
+    "00-inbox": "只放未经整理的输入。任何材料进入项目主线前，必须先连接到决策、证据或假设。",
+    "01-decisions": "Decision Object、Human Gate、承诺记录、拒绝、反转和 supersede 链路。",
+    "02-assumptions": "设计假设登记表。高风险假设必须写出测试方法、验证状态和 kill condition。",
+    "03-evidence": "证据账本。每条证据都要写清来源类型、来源状态、支持范围和不能证明什么。",
+    "04-experiments": "实验计划、实验结果和复盘。实验必须绑定 decision 或 assumption。",
+    "05-design-assets": "概念、分析、提案和规格。只有证据边界明确后才进入这里。",
+    "06-workflows": "工作流运行记录，说明当前卡点、缺失资产和下一步最小动作。",
+    "07-learning": "复盘后的学习记录。默认先是 candidate，不直接变成长期规则。",
+    "08-exports": "评审和发布导出包。公开导出不能包含 private 或 needs_review 证据。",
 }

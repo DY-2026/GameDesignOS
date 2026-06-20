@@ -2,12 +2,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/project-workspace.schema.json",
   "title": "GameDesignOS Project Workspace",
-  "description": "Workspace manifest contract for game.designos.yaml. Workspace schema 0.8.0 is compatible with runtime declarations 0.8.0 and 0.9.0.",
+  "description": "Workspace manifest contract for game.designos.yaml. Workspace schema 0.8.0 remains supported; schema 1.0.0 is the Project-Ready layout.",
   "type": "object",
   "required": ["schema_version", "workspace_type", "project", "designos", "assets", "rules"],
   "additionalProperties": false,
   "properties": {
-    "schema_version": {"type": "string", "const": "0.8.0"},
+    "schema_version": {"type": "string", "enum": ["0.8.0", "1.0.0"]},
     "workspace_type": {"type": "string", "const": "gamedesignos-project"},
     "project": {
       "type": "object",
@@ -29,14 +29,14 @@
       "required": ["version", "public_base_repo", "private_overlay"],
       "additionalProperties": false,
       "properties": {
-        "version": {"type": "string", "enum": ["0.8.0", "0.9.0"]},
+        "version": {"type": "string", "enum": ["0.8.0", "0.9.0", "1.0.0"]},
         "public_base_repo": {"type": "string", "const": "DY-2026/GameDesignOS"},
         "private_overlay": {"type": "boolean"}
       }
     },
     "assets": {
       "type": "object",
-      "required": ["index", "inbox_dir", "concept_dir", "evidence_dir", "analysis_dir", "proposals_dir", "experiments_dir", "decisions_dir", "retrospectives_dir"],
+      "required": ["index", "inbox_dir"],
       "additionalProperties": false,
       "properties": {
         "index": {"type": "string", "minLength": 1},
@@ -47,25 +47,16 @@
         "proposals_dir": {"type": "string", "minLength": 1},
         "experiments_dir": {"type": "string", "minLength": 1},
         "decisions_dir": {"type": "string", "minLength": 1},
-        "retrospectives_dir": {"type": "string", "minLength": 1}
+        "retrospectives_dir": {"type": "string", "minLength": 1},
+        "assumptions_dir": {"type": "string", "minLength": 1},
+        "design_assets_dir": {"type": "string", "minLength": 1},
+        "workflows_dir": {"type": "string", "minLength": 1},
+        "learning_dir": {"type": "string", "minLength": 1},
+        "exports_dir": {"type": "string", "minLength": 1}
       }
     },
     "rules": {
       "type": "object",
-      "required": [
-        "evidence_before_opinion",
-        "feasibility_before_scope",
-        "workflow_before_one_off_prompts",
-        "voi_before_research",
-        "eval_before_promotion",
-        "rollback_before_confidence",
-        "human_gate_for_commitments",
-        "decision_before_information",
-        "action_change_before_research",
-        "sample_before_scale",
-        "stop_when_marginal_voi_nonpositive",
-        "preserve_local_negative_evidence"
-      ],
       "additionalProperties": false,
       "properties": {
         "evidence_before_opinion": {"type": "boolean", "const": true},
@@ -79,7 +70,13 @@
         "action_change_before_research": {"type": "boolean", "const": true},
         "sample_before_scale": {"type": "boolean", "const": true},
         "stop_when_marginal_voi_nonpositive": {"type": "boolean", "const": true},
-        "preserve_local_negative_evidence": {"type": "boolean", "const": true}
+        "preserve_local_negative_evidence": {"type": "boolean", "const": true},
+        "decision_first": {"type": "boolean", "const": true},
+        "evidence_bound": {"type": "boolean", "const": true},
+        "experiment_before_commitment": {"type": "boolean", "const": true},
+        "human_gate_owns_commitment": {"type": "boolean", "const": true},
+        "learning_must_persist": {"type": "boolean", "const": true},
+        "public_private_boundary": {"type": "boolean", "const": true}
       }
     }
   }

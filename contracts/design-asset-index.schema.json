@@ -13,7 +13,7 @@
   "properties": {
     "schema_version": {
       "type": "string",
-      "const": "0.8.0"
+      "enum": ["0.8.0", "1.0.0"]
     },
     "workspace_id": {
       "type": "string",
@@ -59,7 +59,11 @@
             "information-assessment",
             "decision",
             "retrospective",
-            "knowledge"
+            "knowledge",
+            "assumption",
+            "learning",
+            "gate-result",
+            "workflow-run"
           ]
         },
         "title": {

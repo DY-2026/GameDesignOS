@@ -40,7 +40,7 @@ RULES: tuple[RouteRule, ...] = (
             "商店页",
             "试玩样本",
         ),
-        "A media or playable sample needs an evidence boundary and issue cards before downstream experimentation.",
+        "媒体或试玩样本要先建立证据边界和问题卡，再进入后续实验或策划判断。",
         ("evidence-index", "issue-card", "ed-handoff", "validation-plan"),
     ),
     RouteRule(
@@ -54,11 +54,18 @@ RULES: tuple[RouteRule, ...] = (
             "creative premise",
             "一句话创意",
             "游戏创意",
+            "我想做",
+            "想做",
+            "做一款",
+            "做一个游戏",
+            "游戏项目",
+            "玩法方向",
+            "立项方向",
             "概念种子",
             "核心循环",
             "玩法点子",
         ),
-        "A rough idea should become a bounded player promise, core loop, scope gate, and validation plan before proposal assembly.",
+        "粗创意要先变成玩家承诺、核心循环、范围门和验证计划，再进入策划案或立项判断。",
         ("player-promise-contract", "validation-plan"),
     ),
     RouteRule(
@@ -78,7 +85,7 @@ RULES: tuple[RouteRule, ...] = (
             "垂直切片",
             "决策 memo",
         ),
-        "A decision-facing document should assemble existing concept, evidence, validation, and production assets rather than inventing missing upstream work.",
+        "面向决策的文档应整合已有概念、证据、验证和生产约束，而不是补编缺失上游。",
         ("proposal", "pitch", "decision-memo", "vertical-slice-document"),
         required_any_upstream_types=(
             "concept",
@@ -111,7 +118,7 @@ RULES: tuple[RouteRule, ...] = (
             "a/b",
             "体验浓度",
         ),
-        "A bounded experience problem can become a one-week experiment only after an evidence or issue layer exists.",
+        "体验问题要先有证据或问题层，才能转成一周实验、埋点和回滚规则。",
         ("weekly-ed-experiment-plan", "instrumentation-dictionary", "dashboard-spec", "decision-rules"),
         required_any_upstream_types=("evidence", "analysis", "experiment"),
     ),
@@ -140,7 +147,7 @@ RULES: tuple[RouteRule, ...] = (
             "信息焦虑",
             "ai 疲劳",
         ),
-        "System mutation and information acquisition should remain candidate-gated with VOI, evals, Human Gates, and rollback.",
+        "系统改动和信息获取要经过 VOI、eval、Human Gate 和 rollback，先保持 candidate。",
         ("evolution-proposal", "ooda-voi-state", "information-value-assessment"),
     ),
     RouteRule(
@@ -155,7 +162,7 @@ RULES: tuple[RouteRule, ...] = (
             "来源整理",
             "文章收集",
         ),
-        "Scattered sources should become traceable knowledge assets instead of one-off summaries.",
+        "散落资料应沉淀成可追踪知识资产，而不是一次性摘要。",
         ("source-note", "reference-boundary", "knowledge-entry"),
     ),
     RouteRule(
@@ -170,7 +177,7 @@ RULES: tuple[RouteRule, ...] = (
             "书籍章节",
             "术语表",
         ),
-        "Design-source translation needs terminology, figure/table, source-boundary, and editorial checks.",
+        "设计资料翻译需要术语、图表、来源边界和编辑检查。",
         ("translated-reference", "terminology-table", "chapter-package"),
     ),
 )
@@ -217,7 +224,7 @@ def route_task(task: str, *, workspace: Workspace | None = None) -> dict[str, An
             "selected_skill": None,
             "target_skill": None,
             "confidence": "low",
-            "reason": "No stable route matched. Define the next artifact or name the intended skill explicitly.",
+            "reason": "暂时没有稳定匹配路线。请补一句最终想产出的东西，或直接点名 skill。",
             "matched_signals": [],
             "available_asset_types": sorted(available),
             "missing_upstream": [],
@@ -236,16 +243,16 @@ def route_task(task: str, *, workspace: Workspace | None = None) -> dict[str, An
         result["target_skill"] = rule.skill
         result["selected_skill"] = "game-experience-analyzer"
         result["reason"] = (
-            "The requested ED experiment lacks an evidence/issue layer. Establish sample_boundary, "
-            "evidence-index, and issue cards first; then hand off to game-experience-density-optimizer."
+            "这个 ED 实验请求缺少证据或问题层。先建立 sample_boundary、evidence-index 和 issue cards，"
+            "再交给 game-experience-density-optimizer。"
         )
         result["primary_outputs"] = ["evidence-index", "issue-card", "ed-handoff"]
     elif rule.skill == "game-design-proposal-writer" and missing:
         result["target_skill"] = rule.skill
         result["selected_skill"] = "game-concept-architect"
         result["reason"] = (
-            "The proposal route is missing a concept/validation foundation. Create a player promise "
-            "and validation plan first; proposal assembly remains the follow-on target."
+            "策划案路线缺少概念或验证基础。先创建 player promise 和 validation plan，"
+            "再进入 game-design-proposal-writer 成案。"
         )
         result["primary_outputs"] = ["player-promise-contract", "validation-plan"]
 

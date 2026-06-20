@@ -1,18 +1,25 @@
 # GameDesignOS Contracts
 
-`contracts/` defines stable artifact shapes and routing boundaries for GameDesignOS.
+`contracts/` 定义 GameDesignOS 的稳定产物形状、路由边界和 workspace 记忆结构。
 
-The goal is interoperability and decision continuity: skills pass structured artifacts to one another, a workspace preserves them as a connected record, and costly information actions are tied to a decision they may change.
+目标不是让文档更漂亮，而是保证不同 skill、runtime 命令和长期项目记录能互相交接：证据能追到来源，实验能追到假设，承诺能追到 Human Gate，学习能追到复盘。
 
-## Three Contract Levels
+## 三层契约
 
-### Skill-Level Contracts
+### 1. Skill-Level Contracts
 
-Specialist workflows exchange player promises, validation plans, evidence indexes, issue cards, ED handoffs, and router selections.
+专家工作流之间交换这些结构化产物：
 
-### Decision / Information Contract
+- player promise；
+- validation plan；
+- evidence index；
+- issue card；
+- ED handoff；
+- router selection。
 
-[`information-value-assessment.schema.json`](./information-value-assessment.schema.json) defines the cross-cutting VOI gate:
+### 2. Decision / Information Contract
+
+[`information-value-assessment.schema.json`](./information-value-assessment.schema.json) 定义跨工作流 VOI gate：
 
 ```text
 Decision Object
@@ -27,91 +34,91 @@ Decision Object
 -> posterior and action update
 ```
 
-This contract does not claim that every project can calculate exact monetary VOI. It requires the decision structure and cost boundary to be explicit so qualitative judgments remain reviewable.
+它不要求每个项目都算出精确货币化 VOI；它要求决策结构、信息成本、信号到行动映射和停止规则可复查。
 
-### Workspace-Level Contracts
+### 3. Workspace-Level Contracts
 
-Workspace contracts organize specialist outputs inside a durable project:
+workspace 契约组织长期项目记录：
 
-- project manifest;
-- design-asset index;
-- information-value assessment;
-- decision log.
+- project manifest；
+- design-asset index；
+- information-value assessment；
+- decision log。
 
-They record where assets live, what they depend on, how they were created, whether a human accepted them, and when further information gathering should stop.
+它们记录资产在哪里、由谁生成、来源状态是什么、依赖什么、是否经过人类接受，以及什么时候应该停止继续获取信息。
 
-## Contract Flow
+## Project-Ready v1 Contracts
 
-1. Read accepted project decisions and the current default action.
-2. When more research, retrieval, memory, analysis, or experimentation is proposed, run the VOI gate.
-3. If plausible signals cannot change action, act now, time-box model learning, or classify the activity as information consumption.
-4. If net sample value is positive, select the smallest information probe and pre-register its signal-to-action mapping and stop rule.
-5. `contracts/router.yaml` chooses the smallest suitable domain skill.
-6. `game-concept-architect` exports a `player-promise-contract` and `validation-plan`.
-7. `game-experience-analyzer` creates `evidence-index`, `issue-card`, and optional `ed-handoff` artifacts.
-8. `game-experience-density-optimizer` consumes upstream evidence and compiles a bounded experiment without repeating the evidence pass.
-9. `game-design-proposal-writer` assembles existing concept, validation, evidence, ED, source, market, and production assets.
-10. A Human Gate records the commitment, reversal, or stop decision.
-11. `paranoia-ai-system-evolver` audits system mutations and explicit VOI gates, then keeps changes candidate-gated until behavior eval, approval, and rollback exist.
-12. Translation and source-curation skills remain knowledge-input layers.
+v1.0 新增一等项目记忆对象：
 
-## Default Production Path
+- Decision Object；
+- Assumption Registry；
+- Evidence Ledger；
+- Experiment Plan；
+- Experiment Result；
+- Learning Record；
+- Gate Result；
+- Workflow Run。
+
+这些对象让真实项目可以回答：
+
+```text
+一个设计决定是怎么产生的？
+基于什么证据？
+验证过什么？
+谁拍板？
+结果如何？
+以后还能不能复用？
+```
+
+## 默认生产路径
 
 ```text
 Decision Object
-  -> VOI decision gate
-  -> smallest probe or direct action
-  -> game-concept-architect
-  -> player-promise-contract / validation-plan
-  -> game-experience-analyzer
-  -> evidence-index / issue-card / ed-handoff
-  -> game-experience-density-optimizer
-  -> weekly experiment / instrumentation / decision rules
-  -> game-design-proposal-writer
-  -> proposal / pitch / decision memo / vertical-slice document
+  -> Assumption Registry
+  -> VOI / Evidence / Scope / Experiment / Rollback Gate
+  -> Experiment Plan
+  -> Evidence Ledger
+  -> Experiment Result
+  -> Experiment Review
   -> Human Gate
-  -> decision-log
-  -> retrospective
+  -> Decision accepted / rejected / superseded
+  -> Retrospective
+  -> Learning candidate
 ```
 
-The VOI gate is cross-cutting. It does not force every project through every skill.
+VOI gate 是横切层。它不强迫每个项目走完所有 skill，但会阻止“没有决策对象的信息获取”伪装成项目推进。
 
-## Routing Boundaries
+## 路由边界
 
-| Situation | Route To | Stable Output |
+| 情况 | 路由 | 稳定输出 |
 | --- | --- | --- |
-| Research impulse, FOMO, information overload, or uncertainty about what to test | explicit VOI audit, optionally via `paranoia-ai-system-evolver` | `information-value-assessment`, decision brief, stop rule |
-| One-line idea, no core loop, no player promise | `game-concept-architect` | `player-promise-contract`, `validation-plan` |
-| Screenshot, recording, PV, store page, prototype sample, or gameplay evidence request | `game-experience-analyzer` | `evidence-index`, `issue-card`, `ed-handoff` |
-| Retention, pacing, feedback, embodiment, atmosphere, cognitive load, demo completion, return session, or habituation experiment | `game-experience-density-optimizer` | weekly ED experiment, instrumentation, dashboard, decision rules |
-| Existing concept/evidence/ED/source/production artifacts need a formal proposal | `game-design-proposal-writer` | proposal, pitch, decision memo, vertical-slice document |
-| Skill, schema, eval, router, workflow, promotion, rollback, or information-policy changes | `paranoia-ai-system-evolver` | evolution proposal, VOI decision gate, OODA state, eval plan |
-| Design source ingestion or durable knowledge assets | `game-design-source-curator` | source notes, reference boundary, traceable knowledge entry |
-| Design-book translation or polish | `game-design-book-translator` | translated or polished reference material |
+| 研究冲动、FOMO、信息过载、不知道该测什么 | VOI audit / `paranoia-ai-system-evolver` | information-value-assessment、决策 brief、stop rule |
+| 一句话创意，没有核心循环或玩家承诺 | `game-concept-architect` | player-promise-contract、validation-plan |
+| 截图、录屏、PV、商店页、原型样本 | `game-experience-analyzer` | evidence-index、issue-card、ed-handoff |
+| 留存、节奏、反馈、具身感、氛围感、认知负荷实验 | `game-experience-density-optimizer` | weekly ED experiment、instrumentation、dashboard、decision rules |
+| 已有概念、证据、实验和约束，需要成案 | `game-design-proposal-writer` | proposal、pitch、decision memo、vertical-slice document |
+| skill、schema、eval、router、workflow、promotion 或 rollback 改动 | `paranoia-ai-system-evolver` | evolution proposal、VOI decision gate、OODA state、eval plan |
+| 设计资料策展 | `game-design-source-curator` | source notes、reference boundary、knowledge entry |
+| 设计书籍翻译 | `game-design-book-translator` | 翻译或润色后的参考材料 |
 
-`game-experience-density-optimizer` should not repeat the evidence pass when an `ed-handoff` exists.
+## Workspace 协作规则
 
-`game-design-proposal-writer` should identify the smallest missing upstream artifact only when that artifact can change the proposal decision, scope, investment, or risk treatment. A missing section is not automatically high-VOI research.
+workspace-aware host 应该：
 
-## Workspace Collaboration Rules
+1. 读取 `game.designos.yaml`；
+2. 检查 accepted decision 和 supersession 链；
+3. 广泛调研前声明 Decision Object 和 current default action；
+4. 把边界分为 `undefined`、`far`、`near`、`locked`；
+5. 每轮 VOI 最多生成三个 candidate information actions；
+6. 要求 signal-to-action mapping 和 stop rule；
+7. 通过 design-asset index 解析资产路径；
+8. 保留负反馈和来源边界；
+9. 把新产物保存到生命周期目录；
+10. 更新 upstream/downstream refs、VOI outcome 和 decision log；
+11. 在改变项目承诺前停到 Human Gate。
 
-A workspace-aware host should:
-
-1. read `game.designos.yaml`;
-2. inspect accepted decisions and their supersession chain;
-3. declare the Decision Object and current default action before broad research;
-4. classify the boundary as `undefined`, `far`, `near`, or `locked`;
-5. generate no more than three candidate information actions per VOI round;
-6. require signal-to-action mapping and an explicit stop rule;
-7. resolve artifact paths through the design-asset index;
-8. preserve local negative evidence and source boundaries;
-9. save new artifacts to the documented lifecycle directory;
-10. update upstream/downstream references, VOI outcome, and decision log;
-11. stop at a Human Gate before changing project commitments.
-
-The router coordinates only skills shipped inside this repository. Do not add external or global design-master skills to this graph.
-
-## Schemas
+## Schema 列表
 
 ### Skill-Level
 
@@ -124,7 +131,7 @@ The router coordinates only skills shipped inside this repository. Do not add ex
 
 ### Decision / Information
 
-- [`information-value-assessment.schema.json`](./information-value-assessment.schema.json): decision, default action, boundary, uncertainties, information actions, signal-to-action mapping, costs, selected probe, stop rule, and outcome.
+- [`information-value-assessment.schema.json`](./information-value-assessment.schema.json)
 
 ### Workspace-Level
 
@@ -132,6 +139,19 @@ The router coordinates only skills shipped inside this repository. Do not add ex
 - [`design-asset-index.schema.json`](./design-asset-index.schema.json)
 - [`decision-log.schema.json`](./decision-log.schema.json)
 
-## Public/Private Boundary
+### Project-Ready v1
 
-Contracts must not contain real private project examples. Use schemas, generic descriptions, and synthetic or explicitly cleared fixtures only. VOI does not justify collecting sensitive data merely because the decision is important; privacy, contamination, consent, and publication risks belong in the information cost.
+- [`decision.schema.json`](./decision.schema.json)
+- [`assumption-registry.schema.json`](./assumption-registry.schema.json)
+- [`evidence-ledger.schema.json`](./evidence-ledger.schema.json)
+- [`experiment-plan.schema.json`](./experiment-plan.schema.json)
+- [`experiment-result.schema.json`](./experiment-result.schema.json)
+- [`learning-record.schema.json`](./learning-record.schema.json)
+- [`gate-result.schema.json`](./gate-result.schema.json)
+- [`workflow-run.schema.json`](./workflow-run.schema.json)
+
+## 公私边界
+
+Contracts 不应包含真实私有项目示例。公开示例只能使用 synthetic、public、cleared 或明确 `needs_review` 的材料。
+
+VOI 不会因为决策重要就自动合理化敏感数据收集；隐私、污染、同意、发布风险和误用风险都属于 information cost。

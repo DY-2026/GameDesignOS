@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/assumption-registry.schema.json",
+  "title": "GameDesignOS v1 Assumption Registry",
+  "type": "object",
+  "required": ["schema_version", "workspace_id", "assumptions"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "workspace_id": { "type": "string", "minLength": 1 },
+    "assumptions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/assumption" }
+    }
+  },
+  "$defs": {
+    "assumption": {
+      "type": "object",
+      "required": [
+        "assumption_id",
+        "statement",
+        "type",
+        "risk_level",
+        "confidence",
+        "linked_decisions",
+        "test_method",
+        "validation_status",
+        "kill_condition"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "assumption_id": { "type": "string", "pattern": "^ASM-[A-Z0-9-]{3,}$" },
+        "statement": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "minLength": 1 },
+        "risk_level": { "enum": ["low", "medium", "high", "critical"] },
+        "confidence": { "enum": ["low", "medium", "high"] },
+        "linked_decisions": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^DEC-[A-Z0-9-]{3,}$" },
+          "uniqueItems": true
+        },
+        "test_method": { "type": "string" },
+        "validation_status": {
+          "enum": ["untested", "planned", "tested", "validated", "invalidated", "waived"]
+        },
+        "kill_condition": { "type": "string" }
+      }
+    }
+  }
+}

@@ -11,6 +11,8 @@ from typing import Any
 from .constants import (
     ASSET_SPECS,
     LIFECYCLE_DIRS,
+    PROJECT_READY_LIFECYCLE_DIRS,
+    PROJECT_READY_WORKSPACE_SCHEMA_VERSION,
     RUNTIME_VERSION,
     SUPPORTED_RUNTIME_VERSIONS,
     SUPPORTED_WORKSPACE_SCHEMAS,
@@ -139,16 +141,21 @@ class Workspace:
         return ensure_relative_safe(self.root, f"{directory}/decision-log.json")
 
     def lifecycle_path(self, key: str) -> Path:
-        return ensure_relative_safe(self.root, str(self.assets_config.get(key) or LIFECYCLE_DIRS[key]))
+        fallback = PROJECT_READY_LIFECYCLE_DIRS.get(key) or LIFECYCLE_DIRS.get(key)
+        if fallback is None:
+            raise UsageError(f"Unknown lifecycle directory key: {key}")
+        return ensure_relative_safe(self.root, str(self.assets_config.get(key) or fallback))
 
     def load_asset_index(self) -> dict[str, Any]:
-        data = read_json(self.asset_index_path) if self.asset_index_path.exists() else empty_asset_index(self.workspace_id)
+        schema = str(self.manifest.get("schema_version") or PROJECT_READY_WORKSPACE_SCHEMA_VERSION)
+        data = read_json(self.asset_index_path) if self.asset_index_path.exists() else empty_asset_index(self.workspace_id, schema_version=schema)
         if not isinstance(data, dict) or not isinstance(data.get("assets"), list):
             raise UsageError(f"Invalid asset index: {self.asset_index_path}")
         return data
 
     def load_decision_log(self) -> dict[str, Any]:
-        data = read_json(self.decision_log_path) if self.decision_log_path.exists() else empty_decision_log(self.workspace_id)
+        schema = str(self.manifest.get("schema_version") or PROJECT_READY_WORKSPACE_SCHEMA_VERSION)
+        data = read_json(self.decision_log_path) if self.decision_log_path.exists() else empty_decision_log(self.workspace_id, schema_version=schema)
         if not isinstance(data, dict) or not isinstance(data.get("decisions"), list):
             raise UsageError(f"Invalid decision log: {self.decision_log_path}")
         return data
@@ -196,7 +203,20 @@ class Workspace:
         asset_id = self.next_asset_id(spec.id_prefix)
         supplied = Path(filename or title)
         stem = supplied.stem if filename and supplied.suffix else str(supplied)
-        relative = f"{self.assets_config.get(spec.directory_key, LIFECYCLE_DIRS[spec.directory_key])}/{slugify(stem, fallback=command_name)}.{spec.extension}"
+        directory = self.assets_config.get(spec.directory_key)
+        if directory is None and self.manifest.get("schema_version") == PROJECT_READY_WORKSPACE_SCHEMA_VERSION:
+            directory = {
+                "concept_dir": "05-design-assets/concepts",
+                "analysis_dir": "05-design-assets/analysis",
+                "proposals_dir": "05-design-assets/proposals",
+                "experiments_dir": PROJECT_READY_LIFECYCLE_DIRS["experiments_dir"],
+                "decisions_dir": PROJECT_READY_LIFECYCLE_DIRS["decisions_dir"],
+                "retrospectives_dir": PROJECT_READY_LIFECYCLE_DIRS["learning_dir"],
+                "evidence_dir": PROJECT_READY_LIFECYCLE_DIRS["evidence_dir"],
+            }.get(spec.directory_key)
+        if directory is None:
+            directory = LIFECYCLE_DIRS[spec.directory_key]
+        relative = f"{directory}/{slugify(stem, fallback=command_name)}.{spec.extension}"
         target = ensure_relative_safe(self.root, relative)
         if target.exists():
             raise UsageError(f"Refusing to overwrite existing asset: {relative}")
@@ -246,7 +266,15 @@ class Workspace:
             accepted_decisions=sum(item.get("status") == "accepted" for item in decisions),
             unresolved_human_gates=sum(item.get("status") == "proposed" for item in decisions),
             current_default_actions=list(dict.fromkeys(str(item["current_default_action"]) for item in decisions if item.get("current_default_action"))),
-            missing_directories=[path for key, path in LIFECYCLE_DIRS.items() if not self.lifecycle_path(key).is_dir()],
+            missing_directories=[
+                str(self.assets_config.get(key) or default)
+                for key, default in (
+                    PROJECT_READY_LIFECYCLE_DIRS.items()
+                    if schema == PROJECT_READY_WORKSPACE_SCHEMA_VERSION
+                    else LIFECYCLE_DIRS.items()
+                )
+                if key != "exports_dir" and not self.lifecycle_path(key).is_dir()
+            ],
         )
 
     def validate(self, *, repo_root: Path | None = None) -> ValidationReport:

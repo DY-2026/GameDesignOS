@@ -1,59 +1,79 @@
-# Runtime Foundation and Local Prototype
+# Runtime Foundation 与 Project-Ready 本地运行时
 
-The runtime layer describes how a project workspace, contracts, skills, adapters, local commands, and human review fit together.
+runtime 层定义项目 workspace、contracts、skills、adapters、本地命令和 Human Gate 如何协同工作。
 
-## v0.9.0 Runtime Status
+## v1.0 当前状态
 
-Available now:
+已可用能力：
 
-- an executable local `gamedesignos` CLI;
-- a copyable workspace template;
-- workspace and skill-level contracts;
-- Decision-to-Information and production workflow guides;
-- deterministic initialization, status, routing, draft creation, validation, packing, and diagnostics.
+- 可执行本地 `gamedesignos` CLI；
+- v1.0 Project-Ready workspace 模板；
+- v0.8/v0.9 legacy workspace 兼容；
+- Decision、Assumption、Evidence、Experiment、Learning、GateResult、WorkflowRun 契约；
+- 初始化、状态、路由、对象创建、门禁、工作流、图导出、校验、打包和诊断；
+- 确定性 Project Health 与 Next Best Action。
 
-Install from the repository root:
+从仓库根目录安装：
 
 ```bash
 python -m pip install -e .
 gamedesignos --version
 ```
 
-Start a private workspace:
+最简单的上手方式是直接说一句：
 
 ```bash
-gamedesignos init "My Game" --destination ../my-game-designos
+python -m gamedesignos "我想做一款修灯塔的策略游戏"
 ```
 
-Then define the first Decision Object and run:
+它会自动推荐 skill。对项目型请求，还会创建 v1 workspace、第一条 Decision、第一条 Assumption、第一份三分钟验证 Experiment、VOI Gate 和 `idea-to-validation` 工作流。完成后只需要做一件事：跑一次 3-5 人/自测的三分钟验证，然后按输出里的 `gamedesignos evidence add ...` 记录观察。
+
+需要精细控制时，再使用 Project-Ready 进阶命令：
 
 ```bash
-gamedesignos route "turn this one-line idea into a validation plan" --workspace ../my-game-designos
-gamedesignos validate --workspace ../my-game-designos
+gamedesignos decision new --workspace ../my-game-designos --title "Prototype Direction" --question "下一轮验证哪条玩法？" --option "战斗原型" --option "关系循环" --default-action "战斗原型" --rollback-trigger "两周后无法形成可读三分钟循环"
+gamedesignos assumption new --workspace ../my-game-designos --decision DEC-ID --statement "玩家能在三分钟内理解核心循环"
+gamedesignos gate run voi DEC-ID --workspace ../my-game-designos
+gamedesignos experiment plan --workspace ../my-game-designos --decision DEC-ID --assumption ASM-ID --title "三分钟理解测试" --hypothesis "小样本能暴露理解风险" --method "纸面原型 + 5 人观察" --success "4/5 能解释胜负来源" --failure "多数玩家无法预判结果"
+gamedesignos health --workspace ../my-game-designos
 ```
 
-The runtime performs no model or network call. API keys, model selection, disclosure previews, and tool permissions belong to the host agent or harness.
+runtime 不调用模型或网络。API key、模型选择、披露预览和工具权限属于宿主 agent 或 harness。
 
-## Compatibility
+## 兼容性
 
-The runtime implementation is `0.9.0`. The workspace schema remains `0.8.0`, because the manifest shape is unchanged. Existing v0.8 workspaces remain supported without destructive migration.
+当前 runtime 实现版本是 `1.0.0`。
 
-## Runtime Lifecycle
+- 新建 workspace 默认使用 schema `1.0.0`。
+- 旧 workspace schema `0.8.0` 仍支持。
+- 如需创建旧模板，可使用 `gamedesignos init ... --workspace-version 0.8.0`。
+
+v1.0 模板位于 [`workspace-template-v1/`](./workspace-template-v1/)。旧模板仍保留在 [`workspace-template/`](./workspace-template/)。
+
+## Runtime 生命周期
 
 ```text
-create or open workspace
-  -> inspect manifest, asset index, and decisions
-  -> define Decision Object and default action
-  -> run VOI gate before broad information acquisition
-  -> route to the smallest suitable skill
-  -> create or update a durable draft asset
-  -> validate evidence, references, and source status
-  -> stop at the research rule or Human Gate
-  -> package an allowed review snapshot
+创建或打开 workspace
+  -> 读取 manifest、资产索引和决策
+  -> 创建 Decision Object 与默认行动
+  -> 登记关键 Assumption
+  -> 在广泛获取信息前运行 VOI Gate
+  -> 创建最小 Experiment
+  -> 登记 Evidence 与 unsupported claims
+  -> 复盘 Experiment Result
+  -> Human Gate 接受、拒绝或 supersede 决策
+  -> 生成 Graph、Health、Next 和 Pack
 ```
 
-## Non-Goals
+## 非目标
 
-The v0.9 prototype does not provide a hosted service, model gateway, API-key manager, automatic skill execution, autonomous search, GUI dashboard, or game-engine production adapter.
+v1.0 runtime 不提供托管服务、模型网关、API-key 管理器、自动 skill 执行、自治搜索、GUI dashboard、云同步、账号权限或游戏引擎生产 adapter。
 
-See [`cli/README.md`](./cli/README.md), [`cli/commands.md`](./cli/commands.md), and [`../docs/product/v0.9.0-definition.md`](../docs/product/v0.9.0-definition.md).
+这些方向要等 Project-Ready 的决策链、证据链、实验链和 Human Gate 经真实项目验证后再进入候选队列。
+
+## 入口文档
+
+- [CLI 命令参考](./cli/commands.md)
+- [v1 workspace 模板](./workspace-template-v1/)
+- [v0.9 legacy workspace 模板](./workspace-template/)
+- [v1.0 开发计划](../docs/product/v1.0-development-plan.md)

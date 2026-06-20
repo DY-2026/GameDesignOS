@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/workflow-run.schema.json",
+  "title": "GameDesignOS v1 Workflow Run",
+  "type": "object",
+  "required": ["schema_version", "workflow_id", "run_id", "status", "nodes", "edges"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "workflow_id": { "type": "string", "minLength": 1 },
+    "version": { "type": "string" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["planned", "running", "blocked", "completed", "cancelled"] },
+    "current_node": { "type": "string" },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "status"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["pending", "ready", "blocked", "done", "skipped"] }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to"],
+        "additionalProperties": false,
+        "properties": {
+          "from": { "type": "string", "minLength": 1 },
+          "to": { "type": "string", "minLength": 1 },
+          "condition": { "type": "string" }
+        }
+      }
+    }
+  }
+}

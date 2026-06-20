@@ -2,7 +2,7 @@
 
 This directory defines the product boundary and evolution path of GameDesignOS.
 
-> 中文摘要：这里描述 GameDesignOS 为什么存在、它由哪些层组成、v0.8.0 的 MVP 边界、v0.9.0 的本地 runtime 原型，以及后续版本如何演进为真正可长期运行的游戏设计工作台。
+> 中文摘要：这里描述 GameDesignOS 为什么存在、它由哪些层组成、v0.8.0 的 MVP 边界、v0.9.0 的本地 runtime 原型，以及 v1.0.0 如何演进为 Project-Ready 的游戏设计操作系统。
 
 ## Documents
 
@@ -10,6 +10,7 @@ This directory defines the product boundary and evolution path of GameDesignOS.
 - [System Architecture](./architecture.md): Skill Kernel, Contract Layer, Project Workspace, Runtime Interface, and governance.
 - [v0.8.0 MVP Definition](./mvp-definition.md): scope, non-goals, success criteria, and acceptance gates.
 - [v0.9.0 Definition](./v0.9.0-definition.md): executable local runtime boundary, commands, success criteria, and release gate.
+- [v1.0 Development Plan](./v1.0-development-plan.md): Project-Ready GameDesignOS 的开发计划、门禁、验收标准和 rollback。
 - [Roadmap](./roadmap.md): the path from Runtime Foundation to a project-ready operating system.
 
 ## Product Test

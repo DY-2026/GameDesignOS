@@ -4,6 +4,35 @@ All notable changes to GameDesignOS will be recorded here.
 
 ## [Unreleased]
 
+## [v1.0.0] - 2026-06-19
+
+### Added
+
+- Added Project-Ready v1 workspace structure: `01-decisions`, `02-assumptions`, `03-evidence`, `04-experiments`, `05-design-assets`, `06-workflows`, `07-learning`, and `.gamedesignos` runtime state.
+- Added v1 core contracts: Decision, Assumption Registry, Evidence Ledger, Experiment Plan, Experiment Result, Learning Record, Gate Result, and Workflow Run.
+- Added v1 CLI groups: `decision`, `assumption`, `evidence`, `experiment`, `gate`, `workflow`, `health`, `next`, and `graph`.
+- Added `gamedesignos start` as a one-command onboarding path that creates or resumes a v1 workspace with the first Decision, Assumption, Experiment, VOI Gate, and Workflow Run.
+- Added `gamedesignos ask` and freeform `gamedesignos "<one sentence>"` routing so cloned repositories can accept a natural-language request immediately.
+- Added root `AGENTS.md` and Chinese usage docs that explain whole-project use and each standalone skill route.
+- Added deterministic gates for VOI, Evidence, Scope, Experiment, Commitment, and Rollback.
+- Added Decision Graph Mermaid export and graph inspection.
+- Added a complete runtime behavior test for the chain: Decision -> Assumption -> Experiment Plan -> Evidence -> Result -> Review -> Assumption validation -> Decision accept -> Workflow validation.
+- Added Chinese-first Project-Ready documentation for runtime, CLI commands, contracts, roadmap, v1 workspace template, and release notes.
+
+### Changed
+
+- Changed the runtime package version to `1.0.0`.
+- New workspaces now default to schema `1.0.0`; legacy schema `0.8.0` remains available through `--workspace-version 0.8.0`.
+- Updated README entrypoints to present v1.0.0 as Project-Ready rather than a local prototype.
+- Updated repository validation to require the v1 contract and workspace-template surfaces.
+
+### Safety
+
+- Decision acceptance requires explicit `--by` and `--reason`.
+- Commitment gate blocks high-impact decisions without rollback, untested high-risk assumptions, and unreviewed linked experiments.
+- Runtime remains deterministic and local-only: no model calls, uploads, credentials, publishing, or automatic Human Gate decisions.
+- Rollback remains file-scoped and does not require moving project roots, replacing `.git`, or mirror-syncing workspaces.
+
 ## [v0.9.0] - 2026-06-19
 
 ### Added

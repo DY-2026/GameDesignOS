@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "EXP-COMPREHENSION-001",
+  "title": "三分钟路线战斗理解测试",
+  "target_decision": "DEC-PROTOTYPE-001",
+  "target_assumptions": ["ASM-COMPREHENSION-001"],
+  "hypothesis": "如果玩家能在三分钟内理解路线和站位，就可以继续投入战斗原型。",
+  "method": "纸面原型 + 5 人 think-aloud 观察。",
+  "sample_size": 5,
+  "success_criteria": [
+    "5 名玩家中有 4 名能解释胜负来源。",
+    "5 名玩家中有 3 名愿意再玩一局。",
+    "平均首次有效决策时间小于 90 秒。"
+  ],
+  "failure_criteria": [
+    "多数反馈是看不懂、太乱或无法预判。",
+    "找不到明确可改进路径。"
+  ],
+  "result_status": "planned"
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "workspace_id": "untitled-game",
+  "assumptions": [
+    {
+      "assumption_id": "ASM-COMPREHENSION-001",
+      "statement": "玩家能在三分钟内理解路线、车道和单位站位之间的关系。",
+      "type": "player_understanding",
+      "risk_level": "high",
+      "confidence": "low",
+      "linked_decisions": ["DEC-PROTOTYPE-001"],
+      "test_method": "5 人纸面原型试玩 + think-aloud 观察。",
+      "validation_status": "untested",
+      "kill_condition": "5 名玩家中有 3 名无法解释胜负来源。"
+    }
+  ]
+}

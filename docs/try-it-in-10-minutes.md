@@ -13,14 +13,14 @@ This guide helps a new user understand and test `GameDesignOS` without adding pr
 
 ## Start A Project Workspace
 
-For ongoing work, copy the workspace template outside the public repository:
+After cloning the repository, you can start with one sentence:
 
 ```bash
-cp -R runtime/workspace-template ../my-game-designos
-cd ../my-game-designos
+python -m pip install -e .
+gamedesignos "I want to make a lighthouse tactics game"
 ```
 
-Edit `game.designos.yaml`, then use the workflow guides in [`docs/workflows/`](./workflows/) to decide which project assets to create.
+The natural-language entry recommends the right skill. For project-shaped requests, it prepares the first Decision, Assumption, three-minute validation Experiment, VOI Gate, and workflow. Run the small test, then record the observation with the command printed by the CLI.
 
 For a one-off task, you may skip the workspace and call a skill directly.
 
@@ -38,7 +38,7 @@ For a one-off task, you may skip the workspace and call a skill directly.
 
 ## Which Folder To Copy
 
-For an ongoing project, copy `runtime/workspace-template/` outside the repository.
+For an ongoing project, prefer `gamedesignos start ...` outside the repository. The raw `runtime/workspace-template-v1/` folder is mostly for maintainers and manual inspection.
 
 For direct skill mode, copy only the skill folder you want to try:
 

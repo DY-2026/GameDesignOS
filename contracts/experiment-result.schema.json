@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/experiment-result.schema.json",
+  "title": "GameDesignOS v1 Experiment Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "experiment_id",
+    "status",
+    "observations",
+    "evidence_refs",
+    "decision_delta",
+    "review_status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "experiment_id": { "type": "string", "pattern": "^EXP-[A-Z0-9-]{3,}$" },
+    "status": { "enum": ["passed", "failed", "mixed", "inconclusive"] },
+    "observations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^EVD-[A-Z0-9-]{3,}$" },
+      "uniqueItems": true
+    },
+    "decision_delta": { "type": "string" },
+    "review_status": { "enum": ["draft", "reviewed", "accepted", "rejected"] },
+    "reviewed_by": { "type": "string" }
+  }
+}

@@ -11,7 +11,10 @@ import unicodedata
 from pathlib import Path
 from typing import Any
 
-import yaml
+try:
+    import yaml
+except ImportError:  # pragma: no cover - exercised in dependency-minimal clones.
+    yaml = None
 
 from .errors import UsageError
 
@@ -47,7 +50,16 @@ def read_json(path: Path) -> Any:
 
 def read_yaml(path: Path) -> Any:
     try:
-        return yaml.safe_load(path.read_text(encoding="utf-8"))
+        text = path.read_text(encoding="utf-8")
+        if yaml is not None:
+            return yaml.safe_load(text)
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError as exc:
+            raise UsageError(
+                f"PyYAML is required to read this YAML file: {path}. "
+                "Install with `python -m pip install -e .`."
+            ) from exc
     except FileNotFoundError:
         raise
     except Exception as exc:  # noqa: BLE001
@@ -74,7 +86,10 @@ def write_json(path: Path, data: Any) -> None:
 
 
 def write_yaml(path: Path, data: Any) -> None:
-    _atomic_write(path, yaml.safe_dump(data, sort_keys=False, allow_unicode=True))
+    if yaml is not None:
+        _atomic_write(path, yaml.safe_dump(data, sort_keys=False, allow_unicode=True))
+    else:
+        _atomic_write(path, json.dumps(data, ensure_ascii=False, indent=2) + "\n")
 
 
 def write_text(path: Path, content: str) -> None:

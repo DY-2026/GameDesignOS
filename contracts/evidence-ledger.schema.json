@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/evidence-ledger.schema.json",
+  "title": "GameDesignOS v1 Evidence Ledger",
+  "type": "object",
+  "required": ["schema_version", "workspace_id", "evidence"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "workspace_id": { "type": "string", "minLength": 1 },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": [
+        "evidence_id",
+        "source_type",
+        "source_status",
+        "summary",
+        "confidence",
+        "decision_impact",
+        "used_by_decisions",
+        "used_by_assumptions",
+        "unsupported_claims"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": { "type": "string", "pattern": "^EVD-[A-Z0-9-]{3,}$" },
+        "source_type": {
+          "enum": ["screenshot", "video", "playtest", "interview", "data", "benchmark", "inference", "experience", "other"]
+        },
+        "source_status": {
+          "enum": ["private", "synthetic", "public", "cleared", "needs_review"]
+        },
+        "summary": { "type": "string", "minLength": 1 },
+        "confidence": { "enum": ["low", "medium", "high"] },
+        "decision_impact": { "type": "string" },
+        "used_by_decisions": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^DEC-[A-Z0-9-]{3,}$" },
+          "uniqueItems": true
+        },
+        "used_by_assumptions": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^ASM-[A-Z0-9-]{3,}$" },
+          "uniqueItems": true
+        },
+        "unsupported_claims": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

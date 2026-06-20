@@ -11,6 +11,8 @@ from typing import Any
 from .constants import (
     LIFECYCLE_DIRS,
     PUBLIC_BASE_REPO,
+    PROJECT_READY_LIFECYCLE_DIRS,
+    PROJECT_READY_WORKSPACE_SCHEMA_VERSION,
     REQUIRED_RULES,
     RUNTIME_VERSION,
     WORKSPACE_SCHEMA_VERSION,
@@ -19,8 +21,44 @@ from .constants import (
 
 
 def workspace_manifest(
-    *, project_id: str, title: str, codename: str, visibility: str, owner: str
+    *,
+    project_id: str,
+    title: str,
+    codename: str,
+    visibility: str,
+    owner: str,
+    workspace_version: str = PROJECT_READY_WORKSPACE_SCHEMA_VERSION,
 ) -> dict[str, Any]:
+    if workspace_version == PROJECT_READY_WORKSPACE_SCHEMA_VERSION:
+        return {
+            "schema_version": PROJECT_READY_WORKSPACE_SCHEMA_VERSION,
+            "workspace_type": WORKSPACE_TYPE,
+            "project": {
+                "id": project_id,
+                "title": title,
+                "codename": codename,
+                "status": "concept",
+                "visibility": visibility,
+                "owner": owner,
+                "target_platforms": [],
+                "tags": [],
+            },
+            "designos": {
+                "version": RUNTIME_VERSION,
+                "public_base_repo": PUBLIC_BASE_REPO,
+                "private_overlay": visibility == "private",
+            },
+            "assets": {"index": "design-asset-index.json", **PROJECT_READY_LIFECYCLE_DIRS},
+            "rules": {
+                "decision_first": True,
+                "evidence_bound": True,
+                "experiment_before_commitment": True,
+                "human_gate_owns_commitment": True,
+                "learning_must_persist": True,
+                "rollback_before_confidence": True,
+                "public_private_boundary": True,
+            },
+        }
     return {
         "schema_version": WORKSPACE_SCHEMA_VERSION,
         "workspace_type": WORKSPACE_TYPE,
@@ -44,17 +82,21 @@ def workspace_manifest(
     }
 
 
-def empty_asset_index(workspace_id: str) -> dict[str, Any]:
+def empty_asset_index(
+    workspace_id: str, *, schema_version: str = WORKSPACE_SCHEMA_VERSION
+) -> dict[str, Any]:
     return {
-        "schema_version": WORKSPACE_SCHEMA_VERSION,
+        "schema_version": schema_version,
         "workspace_id": workspace_id,
         "assets": [],
     }
 
 
-def empty_decision_log(workspace_id: str) -> dict[str, Any]:
+def empty_decision_log(
+    workspace_id: str, *, schema_version: str = WORKSPACE_SCHEMA_VERSION
+) -> dict[str, Any]:
     return {
-        "schema_version": WORKSPACE_SCHEMA_VERSION,
+        "schema_version": schema_version,
         "workspace_id": workspace_id,
         "decisions": [],
     }

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/decision.schema.json",
+  "title": "GameDesignOS v1 Decision Object",
+  "description": "Project-ready decision record with options, evidence, assumptions, experiments, gates, result, and rollback.",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "title",
+    "decision_question",
+    "owner",
+    "status",
+    "decision_type",
+    "boundary_status",
+    "stakes",
+    "reversibility",
+    "current_default_action",
+    "options",
+    "evidence_refs",
+    "assumption_refs",
+    "experiment_refs",
+    "gate_refs",
+    "rollback_trigger"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "decision_id": { "type": "string", "pattern": "^DEC-[A-Z0-9-]{3,}$" },
+    "title": { "type": "string", "minLength": 1 },
+    "decision_question": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 },
+    "status": {
+      "enum": ["proposed", "accepted", "rejected", "reversed", "superseded"]
+    },
+    "decision_type": {
+      "enum": [
+        "prototype_direction",
+        "concept_gate",
+        "scope_gate",
+        "validation",
+        "experiment",
+        "milestone",
+        "proposal",
+        "release",
+        "workflow",
+        "information"
+      ]
+    },
+    "boundary_status": { "enum": ["undefined", "far", "near", "locked"] },
+    "stakes": { "enum": ["low", "medium", "high", "critical"] },
+    "reversibility": { "enum": ["reversible", "costly_to_reverse", "irreversible"] },
+    "current_default_action": { "type": "string", "minLength": 1 },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/option" }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^EVD-[A-Z0-9-]{3,}$" },
+      "uniqueItems": true
+    },
+    "assumption_refs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^ASM-[A-Z0-9-]{3,}$" },
+      "uniqueItems": true
+    },
+    "experiment_refs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^EXP-[A-Z0-9-]{3,}$" },
+      "uniqueItems": true
+    },
+    "gate_refs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^GATE-[A-Z0-9-]{3,}$" },
+      "uniqueItems": true
+    },
+    "decision_result": {
+      "type": ["object", "null"],
+      "additionalProperties": true
+    },
+    "rollback_trigger": { "type": "string" },
+    "accepted_by": { "type": "string" },
+    "accepted_reason": { "type": "string" },
+    "supersedes": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" }
+  },
+  "$defs": {
+    "option": {
+      "type": "object",
+      "required": ["option_id", "action"],
+      "additionalProperties": false,
+      "properties": {
+        "option_id": { "type": "string", "pattern": "^OPT-[A-Z0-9-]{3,}$" },
+        "action": { "type": "string", "minLength": 1 },
+        "expected_benefit": { "type": "string" },
+        "main_risk": { "type": "string" }
+      }
+    }
+  }
+}

@@ -24,6 +24,7 @@ REQUIRED_PATHS = [
     "README.md",
     "README.zh-CN.md",
     "README.en.md",
+    "AGENTS.md",
     "CHANGELOG.md",
     "CONTRIBUTING.md",
     "LICENSE",
@@ -34,12 +35,22 @@ REQUIRED_PATHS = [
     "contracts/project-workspace.schema.json",
     "contracts/design-asset-index.schema.json",
     "contracts/decision-log.schema.json",
+    "contracts/decision.schema.json",
+    "contracts/assumption-registry.schema.json",
+    "contracts/evidence-ledger.schema.json",
+    "contracts/experiment-plan.schema.json",
+    "contracts/experiment-result.schema.json",
+    "contracts/learning-record.schema.json",
+    "contracts/gate-result.schema.json",
+    "contracts/workflow-run.schema.json",
     "contracts/information-value-assessment.schema.json",
     "docs/product/README.md",
     "docs/product/vision.md",
     "docs/product/architecture.md",
     "docs/product/mvp-definition.md",
     "docs/product/roadmap.md",
+    "docs/how-to-use.zh-CN.md",
+    "docs/try-it-in-10-minutes.zh-CN.md",
     "docs/workflows/README.md",
     "docs/workflows/decision-to-information.md",
     "docs/workflows/idea-to-validation.md",
@@ -55,6 +66,14 @@ REQUIRED_PATHS = [
     "runtime/workspace-template/06-decisions/decision-brief.template.md",
     "runtime/workspace-template/06-decisions/decision-log.example.json",
     "runtime/workspace-template/06-decisions/information-value-assessment.example.json",
+    "runtime/workspace-template-v1/README.md",
+    "runtime/workspace-template-v1/game.designos.yaml",
+    "runtime/workspace-template-v1/design-asset-index.example.json",
+    "runtime/workspace-template-v1/01-decisions/DEC-PROTOTYPE-001.example.json",
+    "runtime/workspace-template-v1/02-assumptions/assumption-registry.example.json",
+    "runtime/workspace-template-v1/03-evidence/evidence-ledger.example.json",
+    "runtime/workspace-template-v1/04-experiments/EXP-COMPREHENSION-001/experiment-plan.example.json",
+    "docs/product/v1.0-development-plan.md",
     "paranoia-ai-system-evolver/references/value-of-information-playbook.md",
     "paranoia-ai-system-evolver/references/value-of-information-playbook.zh-CN.md",
     "paranoia-ai-system-evolver/references/value-of-information-playbook.en.md",
@@ -63,6 +82,7 @@ REQUIRED_PATHS = [
     "paranoia-ai-system-evolver/templates/voi_decision_gate.en.md",
     "paranoia-ai-system-evolver/evals/voi-decision-gate-cases.md",
     "paranoia-ai-system-evolver/evals/voi-decision-gate-cases.en.md",
+    "releases/v1.0.0.md",
     "releases/v0.8.0.md",
     ".github/workflows/validate.yml",
     "scripts/run_behavior_evals.py",
@@ -211,8 +231,8 @@ def _check_workspace_template(repo_root: Path, errors: list[str]) -> None:
             errors.append(f"{manifest_path}: project.{field} must be non-empty")
 
     designos = _require_mapping(manifest.get("designos"), manifest_path, "designos", errors)
-    if designos.get("version") != "0.8.0":
-        errors.append(f"{manifest_path}: designos.version must be 0.8.0")
+    if designos.get("version") not in {"0.8.0", "0.9.0"}:
+        errors.append(f"{manifest_path}: designos.version must be 0.8.0 or 0.9.0")
     if designos.get("public_base_repo") != "DY-2026/GameDesignOS":
         errors.append(f"{manifest_path}: designos.public_base_repo must be DY-2026/GameDesignOS")
     if not isinstance(designos.get("private_overlay"), bool):

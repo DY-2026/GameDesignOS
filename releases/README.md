@@ -25,7 +25,9 @@
 新增或改变 Runtime Foundation 时，还必须检查：
 
 - `runtime/workspace-template/` 是否仍可独立复制。
+- `runtime/workspace-template-v1/` 是否仍可独立复制。
 - `game.designos.yaml` 与 workspace schema 是否同步。
+- v0.8/v0.9 workspace 是否仍可兼容打开和校验。
 - `contracts/README.md` 是否区分 skill-level 与 workspace-level contract。
 - `docs/product/`、`docs/workflows/` 与 README trio 是否同步。
 - `scripts/validate_repo.py` 是否覆盖新增必需路径与 workspace 约定。
@@ -95,6 +97,7 @@
 - `v0.7.0`（已补 tag：GameDesignOS by Paranoia 公开品牌、GitHub URL、v7 README 封面和案例入口整理）
 - `v0.8.0`（已补 tag：Runtime Foundation、Project Workspace、workspace contracts、Decision-to-Information 工作流与 VOI Decision Gate）
 - `v0.9.0`（已补 tag：Local Runtime Prototype；`gamedesignos` CLI、workspace 初始化/状态/路由/创建/校验/打包/doctor、VOI 评估与 runtime 单测；GitHub Release 仍需按发布流程创建）
+- `v1.0.0`（本地已准备 release note：Project-Ready GameDesignOS；Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、v1 workspace、健康扫描、决策图与完整 runtime 行为测试；GitHub tag/Release 仍需 maintainer 发布）
 
 ## 非目标约束
 

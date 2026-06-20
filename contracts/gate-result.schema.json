@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/gate-result.schema.json",
+  "title": "GameDesignOS v1 Gate Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "gate_id",
+    "gate_type",
+    "target",
+    "status",
+    "reason",
+    "required_actions",
+    "blocked_actions",
+    "reviewer",
+    "human_gate_required"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "gate_id": { "type": "string", "pattern": "^GATE-[A-Z0-9-]{3,}$" },
+    "gate_type": {
+      "enum": ["voi", "evidence", "scope", "experiment", "commitment", "rollback"]
+    },
+    "target": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["pass", "warn", "block", "ask_human"] },
+    "reason": { "type": "string", "minLength": 1 },
+    "required_actions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "blocked_actions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "reviewer": { "type": "string", "minLength": 1 },
+    "human_gate_required": { "type": "boolean" }
+  }
+}

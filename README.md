@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/gamedesignos-runtime-v09-hero.png" alt="GameDesignOS v0.9.0 local runtime connects skills, contracts, workspace assets, and validation" width="100%">
+  <img src="./assets/gamedesignos-runtime-v09-hero.png" alt="GameDesignOS v1.0.0 local runtime connects decisions, assumptions, evidence, experiments, workflows, and validation" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
@@ -11,14 +11,14 @@
 
 <p align="center">
   GameDesignOS turns expert game-design methods, evidence, experiments, proposals, and human decisions into reusable skills, stable contracts, workspace-backed operating procedures, and deterministic local commands.
-  v0.9.0 lets projects initialize, inspect, route, create, validate, and pack workspace assets without model calls, credentials, uploads, or hosted services.
+  v1.0.0 is Project-Ready: projects can initialize v1 workspaces and manage Decisions, Assumptions, Evidence, Experiments, Gates, Workflows, and Learning without model calls, credentials, uploads, or hosted services.
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
-  <a href="#local-runtime-prototype">Local Runtime</a> ·
-  <a href="./runtime/workspace-template/">Workspace</a> ·
+  <a href="#project-ready-runtime">Project-Ready Runtime</a> ·
+  <a href="./runtime/workspace-template-v1/">v1 Workspace</a> ·
   <a href="./docs/workflows/">Workflows</a> ·
   <a href="./docs/product/roadmap.md">Roadmap</a> ·
   <a href="#current-skills">Skills</a> ·
@@ -28,7 +28,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v0.9.0-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v1.0.0-31e1d6">
   <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local%20CLI-8a63d2">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
@@ -39,28 +39,27 @@
 
 > GameDesignOS is the public-facing system name. Paranoia is the author identity and brand signature; the current installable modules remain packaged as Markdown skills.
 
-## Local Runtime Prototype
+## Project-Ready Runtime
 
-v0.9.0 turns the v0.8 workspace and contract foundation into the first executable local `gamedesignos` runtime. The CLI is deterministic and local-first: it creates project workspaces, recommends routes, writes draft assets, reviews qualitative VOI gates, validates contracts, and builds review-safe packs without calling a model.
+v1.0.0 turns the local `gamedesignos` runtime into a Project-Ready design operating system. The CLI is deterministic and local-first: it creates v1 workspaces, manages Decisions, Assumptions, Evidence, Experiments, Gates, Workflows, and Learning, exports decision graphs, scans project health, and builds review-safe packs without calling a model.
 
 | Layer | Purpose | Entry |
 | --- | --- | --- |
 | **Skill Kernel** | Seven bounded specialist workflows | [`Current Skills`](#current-skills) |
 | **Contract Layer** | Stable handoffs, schemas, and routing boundaries | [`contracts/`](./contracts/) |
-| **Project Workspace** | Durable concept, evidence, analysis, experiment, proposal, and decision assets | [`runtime/workspace-template/`](./runtime/workspace-template/) |
+| **Project Workspace** | Durable decision, assumption, evidence, experiment, workflow, and learning assets | [`runtime/workspace-template-v1/`](./runtime/workspace-template-v1/) |
 | **Runtime Interface** | Executable local commands plus host-agent integration boundaries | [`runtime/`](./runtime/) / [`gamedesignos/`](./gamedesignos/) |
 
 Start a private workspace:
 
 ```bash
 python -m pip install -e .
-gamedesignos init "My Game" --destination ../my-game-designos
-gamedesignos status --workspace ../my-game-designos
+gamedesignos "I want to make a lighthouse tactics game"
 ```
 
-Then define a Decision Object, route the next task, and validate the workspace before sharing any pack. Existing skill folders remain independently installable; the runtime layer is additive and backward compatible with the workspace contracts.
+The natural-language entry recommends the right skill. For project-shaped requests, it prepares the workspace, first Decision, first Assumption, three-minute validation Experiment, VOI Gate, and workflow in one pass. Then run the small test and use the printed `gamedesignos evidence add ...` command to record the observation. Existing skill folders remain independently installable; the runtime remains compatible with v0.8/v0.9 workspaces.
 
-Read the [v0.9.0 definition](./docs/product/v0.9.0-definition.md), [CLI guide](./runtime/cli/README.md), [command reference](./runtime/cli/commands.md), and [product roadmap](./docs/product/roadmap.md).
+Read the [v1.0 development plan](./docs/product/v1.0-development-plan.md), [CLI guide](./runtime/cli/README.md), [command reference](./runtime/cli/commands.md), and [product roadmap](./docs/product/roadmap.md).
 
 Decision-first research prompt:
 
@@ -150,11 +149,11 @@ For ongoing work, start a project workspace so context persists. For a one-off t
 ### 1. Start a project workspace
 
 ```bash
-cp -R runtime/workspace-template ../my-game-designos
-cd ../my-game-designos
+python -m pip install -e .
+gamedesignos "I want to make a lighthouse tactics game"
 ```
 
-Edit `game.designos.yaml`, keep private material outside this public repository, and use the workflow guides to decide which assets should be created next.
+Keep private material outside this public repository. The natural-language entry prepares the first validation path when the request is project-shaped; run the small test, then record the observation with the command it prints.
 
 ### 2. Pick the right skill
 
@@ -270,7 +269,7 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 
 ## System Architecture
 
-`GameDesignOS` v0.9.0 is organized as four product layers plus cross-cutting governance:
+`GameDesignOS` v1.0.0 is organized as four product layers plus cross-cutting governance:
 
 - **Skill Kernel**
   - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.
@@ -348,12 +347,11 @@ GameDesignOS supports two compatible modes.
 
 ### Project Workspace Mode
 
-Install the local runtime, initialize a workspace outside this public repository, and use the workflow guides to route work and save durable project assets.
+Install the local runtime and start with one sentence. For project-shaped requests, the runtime prepares the first validation path automatically.
 
 ```bash
 python -m pip install -e .
-gamedesignos init "My Game" --destination ../my-game-designos
-gamedesignos route "turn this idea into a validation plan" --workspace ../my-game-designos
+gamedesignos "I want to make a lighthouse tactics game"
 ```
 
 ### Direct Skill Mode
@@ -384,7 +382,7 @@ gamedesignos doctor
 
 - **v0.8.0 — Runtime Foundation:** workspace template, workspace contracts, product architecture, workflow routes, and validation.
 - **v0.9.0 — Local Runtime Prototype:** initialize, inspect, route, create, validate, and pack local workspaces.
-- **v1.0.0 — Project-Ready GameDesignOS:** asset graph, Human Gate queue, project dashboard, private overlays, and end-to-end cases.
+- **v1.0.0 — Project-Ready GameDesignOS:** Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning chain, decision graph, health scan, Human Gate, and v1 workspace.
 
 See the capability-gated [product roadmap](./docs/product/roadmap.md).
 

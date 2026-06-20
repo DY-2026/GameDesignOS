@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gamedesignos"
-version = "0.9.0"
-description = "Local runtime prototype for workspace-backed AI-native game design workflows"
+version = "1.0.0"
+description = "Project-ready local runtime for decision-bound game design workflows"
 readme = "runtime/cli/README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

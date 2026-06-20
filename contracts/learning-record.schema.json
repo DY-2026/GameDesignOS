@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/learning-record.schema.json",
+  "title": "GameDesignOS v1 Learning Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "learning_id",
+    "source",
+    "learning_type",
+    "statement",
+    "confidence",
+    "reuse_scope",
+    "should_update_workflow",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "learning_id": { "type": "string", "pattern": "^LRN-[A-Z0-9-]{3,}$" },
+    "source": { "type": "string", "minLength": 1 },
+    "learning_type": { "type": "string", "minLength": 1 },
+    "statement": { "type": "string", "minLength": 1 },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "reuse_scope": { "type": "string" },
+    "should_update_workflow": { "type": "boolean" },
+    "candidate_rule": { "type": "string" },
+    "status": { "enum": ["candidate", "accepted", "rejected", "superseded"] }
+  }
+}

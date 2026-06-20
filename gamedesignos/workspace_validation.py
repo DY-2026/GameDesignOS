@@ -8,6 +8,8 @@ from pathlib import Path
 
 from .constants import (
     LIFECYCLE_DIRS,
+    PROJECT_READY_LIFECYCLE_DIRS,
+    PROJECT_READY_WORKSPACE_SCHEMA_VERSION,
     PUBLIC_BASE_REPO,
     REQUIRED_RULES,
     RUNTIME_VERSION,
@@ -41,6 +43,7 @@ def validate_workspace(workspace: Workspace, *, repo_root: Path | None = None) -
     manifest = workspace.manifest
     if manifest.get("schema_version") not in SUPPORTED_WORKSPACE_SCHEMAS:
         report.errors.append(f"Unsupported workspace schema_version {manifest.get('schema_version')!r}")
+    schema_version = str(manifest.get("schema_version") or "")
     if manifest.get("workspace_type") != WORKSPACE_TYPE:
         report.errors.append(f"workspace_type must be {WORKSPACE_TYPE}")
     for name in ("id", "title", "codename", "status", "visibility", "owner"):
@@ -57,13 +60,28 @@ def validate_workspace(workspace: Workspace, *, repo_root: Path | None = None) -
     if workspace.designos.get("public_base_repo") != PUBLIC_BASE_REPO:
         report.errors.append(f"designos.public_base_repo must be {PUBLIC_BASE_REPO}")
     rules = manifest.get("rules") if isinstance(manifest.get("rules"), dict) else {}
-    for key, expected in REQUIRED_RULES.items():
-        if rules.get(key) is not expected:
-            report.errors.append(f"rules.{key} must be true")
-    for key in LIFECYCLE_DIRS:
+    if schema_version == PROJECT_READY_WORKSPACE_SCHEMA_VERSION:
+        for key in (
+            "decision_first",
+            "evidence_bound",
+            "experiment_before_commitment",
+            "human_gate_owns_commitment",
+            "learning_must_persist",
+            "rollback_before_confidence",
+            "public_private_boundary",
+        ):
+            if rules.get(key) is not True:
+                report.errors.append(f"rules.{key} must be true")
+        lifecycle_dirs = PROJECT_READY_LIFECYCLE_DIRS
+    else:
+        for key, expected in REQUIRED_RULES.items():
+            if rules.get(key) is not expected:
+                report.errors.append(f"rules.{key} must be true")
+        lifecycle_dirs = LIFECYCLE_DIRS
+    for key, default_directory in lifecycle_dirs.items():
         try:
             if not workspace.lifecycle_path(key).is_dir():
-                report.errors.append(f"Missing lifecycle directory: {LIFECYCLE_DIRS[key]}")
+                report.errors.append(f"Missing lifecycle directory: {default_directory}")
         except UsageError as exc:
             report.errors.append(str(exc))
 
@@ -71,8 +89,8 @@ def validate_workspace(workspace: Workspace, *, repo_root: Path | None = None) -
         index = workspace.load_asset_index()
     except UsageError as exc:
         report.errors.append(str(exc))
-        index = {"schema_version": WORKSPACE_SCHEMA_VERSION, "workspace_id": workspace.workspace_id, "assets": []}
-    if index.get("schema_version") != WORKSPACE_SCHEMA_VERSION or index.get("workspace_id") != workspace.workspace_id:
+        index = {"schema_version": schema_version or WORKSPACE_SCHEMA_VERSION, "workspace_id": workspace.workspace_id, "assets": []}
+    if index.get("schema_version") != schema_version or index.get("workspace_id") != workspace.workspace_id:
         report.errors.append("asset index version/workspace_id mismatch")
     assets = [item for item in index.get("assets", []) if isinstance(item, dict)]
     ids = {str(item.get("asset_id")) for item in assets}
@@ -111,7 +129,7 @@ def validate_workspace(workspace: Workspace, *, repo_root: Path | None = None) -
 
     try:
         log = workspace.load_decision_log()
-        if log.get("schema_version") != WORKSPACE_SCHEMA_VERSION or log.get("workspace_id") != workspace.workspace_id:
+        if log.get("schema_version") != schema_version or log.get("workspace_id") != workspace.workspace_id:
             report.errors.append("decision log version/workspace_id mismatch")
         for decision in log.get("decisions", []):
             if not isinstance(decision, dict):
