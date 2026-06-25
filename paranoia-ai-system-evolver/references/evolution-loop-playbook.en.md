@@ -11,6 +11,7 @@ real task pressure
 -> WOOP Task Card
 -> Decision Object
 -> VOI decision gate
+-> Scenario VOI Adapter
 -> smallest information probe
 -> Orient-first OODA
 -> result feedback
@@ -49,6 +50,8 @@ Use `references/value-of-information-playbook.en.md` for the full method.
 7. What are acquisition, delay, attention, privacy, and contamination costs?
 8. What is the smallest high-value probe and its stop rule?
 ```
+
+After the generic VOI gate, select a Scenario VOI Adapter: `skill_evolution`, `game_direction`, `experience_diagnosis`, `source_curation`, `content_decision`, `platform_fact`, `high_risk_action`, or `ai_branch_management`. The adapter defines valid evidence, weak evidence, default probe, and domain stop rule. It must not replace the Decision Object.
 
 ```text
 approx_net_voi

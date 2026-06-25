@@ -206,7 +206,42 @@ Prefer the smallest, fastest, reversible sample that can reduce uncertainty in a
 
 Stop when the preferred action is robust across plausible signals, marginal VOI is no greater than marginal cost, the evidence gate or sample limit is reached, the deadline arrives, remaining uncertainty cannot change action, or a Human Gate has committed the project to execution.
 
-## 10. AI Workflow Rules
+## 10. Scenario VOI Adapter
+
+The generic VOI gate answers whether to acquire more information. The Scenario VOI Adapter answers what evidence can change action in this usage context. Use it only after the Decision Object, current default action, and decision boundary are declared. A scenario name must not replace a decision object.
+
+```yaml
+scenario_voi:
+  scenario: "skill_evolution | game_direction | experience_diagnosis | source_curation | content_decision | platform_fact | high_risk_action | ai_branch_management | other"
+  action_that_must_change: ""
+  valid_evidence: []
+  weak_evidence: []
+  preferred_probe: ""
+  domain_stop_rule: ""
+  human_gate: "not_required | required | already_committed"
+```
+
+| Scenario | High-VOI information changes | Valid evidence | Weak evidence / misuse | Default smallest probe |
+| --- | --- | --- | --- | --- |
+| `skill_evolution` | whether to modify a prompt, router, skill, eval, or memory, and whether to move beyond `candidate` | real task traces, repeated failures, behavior evals, counterexamples, negative-transfer checks, rollback | one attractive case, abstract principles, no replay | replay 2-3 representative tasks plus 1 counterexample |
+| `game_direction` | which player promise, core loop, theme wrapper, or production risk to validate first | player understanding, whether theme explains rules, short prototype or concept test, production constraint | macro trend used instead of prototype signal, theme heat only | smallest graybox, concept click test, 8-player test, or production spike |
+| `experience_diagnosis` | issue priority, fix, next playtest, A/B, or telemetry design | screenshot/video/log with `evidence_id`, user misunderstanding, timestamp, attributable consequence | generic bad-feeling prose, retention claims without sample boundaries | review the key segment and bind one fix/validation action |
+| `source_curation` | whether to ingest, classify, reject, promote to a durable rule, or enter an opportunity queue | source, date, local constraint, counterexample, passage that changes classification or next action | ingesting because material is new, authoritative, or long | smallest summary, decision tag, and rejection condition |
+| `content_decision` | whether to write today, angle, title promise, argument spine, or publishing decision | concrete controversy, reader pain, author advantage, differentiated evidence, strongest objection | topic heat, imagined traffic, research pile without action | one angle card plus one objection stress test |
+| `platform_fact` | current operation, compatibility strategy, risk posture, or fallback path | current primary source, official docs/API, live page, account/region/version state | old tutorial, secondary summary, AI memory, cross-platform analogy | verify the current primary fact and record date, version, and blocker |
+| `high_risk_action` | whether to publish, spend money, delete, use an account, write memory, or install a global skill | owner, permission, backup, rollback, loss function, Human Gate record | qualitative high VOI, one successful sample, no rollback commitment | read-only preflight, backup/rollback design, and Human Gate |
+| `ai_branch_management` | which branch to keep, close, or probe next | each branch mapped to a decision object, action change, cost, deadline | generating plans for every branch, turning consumption into tasks | map branches to decisions and keep one highest-net-VOI probe |
+
+Evidence grade is not the same as decision value. A current primary platform source may be high grade but low current VOI if it cannot change action. A small local trace may have high VOI when the decision is near the boundary.
+
+Rules:
+
+1. Run the generic VOI gate first: Decision Object, Boundary, Uncertainty, Signal-to-Action.
+2. Select the Scenario Adapter next: define valid evidence, weak evidence, default probe, and domain stop rule.
+3. If scenario evidence cannot bind `action_that_must_change`, downgrade it to `model_learning` or `information_consumption`.
+4. For `high_risk_action`, scenario VOI may support a Human Gate but must not replace it.
+
+## 11. AI Workflow Rules
 
 AI lowers generation cost but not human evaluation cost. Every extra answer, option, and conversation can create unresolved decision residue.
 
@@ -234,7 +269,7 @@ open branches
 
 High structure does not imply high VOI. Preserve local facts, constraints, negative feedback, failure details, decision impact, and unsupported boundaries. Do not wash a specific operational signal into generic management prose.
 
-## 11. GameDesignOS Applications
+## 12. GameDesignOS Applications
 
 - **Idea to validation:** select the player promise, core-loop risk, or production assumption whose sample information most affects prototype investment.
 - **Media to diagnosis:** collect evidence only when it can change issue priority, a proposed change, or the next validation action.
@@ -242,7 +277,7 @@ High structure does not imply high VOI. Preserve local facts, constraints, negat
 - **Evidence to proposal:** request missing research only when it can change Go/No-Go, scope, budget, milestone, or the decision request.
 - **System evolution:** do not promote a prompt, skill, schema, or router change from one attractive case; use repeated failures, high-impact regressions, and cross-task behavior samples.
 
-## 12. Failure Modes
+## 13. Failure Modes
 
 | Failure mode | Symptom | Correction |
 | --- | --- | --- |
@@ -257,13 +292,13 @@ High structure does not imply high VOI. Preserve local facts, constraints, negat
 | post-lock research | a committed choice keeps attracting justification | move to execution metrics or retrospective |
 | high-VOI signal without action | evidence is learned but workflow does not change | attach an if-then protocol or Human Gate |
 
-## 13. Behavior Eval
+## 14. Behavior Eval
 
 A passing output must include a decision object, options and current default action, boundary status, targeted uncertainty, signal-to-action mapping, information costs, EVPI-versus-EVSI distinction, the smallest selected probe, a stop rule, and an eventual posterior/action update.
 
 Fail outputs that provide research lists without a decision, equate truth with value, recommend more research without action branches, ignore attention or delay costs, promote a rule from one case, or erase local negative evidence during summarization.
 
-## 14. Sources and Boundary
+## 15. Sources and Boundary
 
 The formal definitions follow Ronald A. Howard's information value theory and later work on EVPI, EVPPI, EVSI, and net sample value. The boundary labels and qualitative scoring used in GameDesignOS are engineering heuristics for triage, not replacements for full statistical decision models in high-stakes settings.
 

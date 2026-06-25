@@ -28,6 +28,15 @@ voi_decision_gate:
     key_payoffs_or_losses: []
     assumptions: []
 
+  scenario_voi:
+    scenario: "skill_evolution | game_direction | experience_diagnosis | source_curation | content_decision | platform_fact | high_risk_action | ai_branch_management | other"
+    action_that_must_change: ""
+    valid_evidence: []
+    weak_evidence: []
+    preferred_probe: ""
+    domain_stop_rule: ""
+    human_gate: "not_required | required | already_committed"
+
   uncertainty_map:
     - uncertainty_id: "U-001"
       uncertainty: ""

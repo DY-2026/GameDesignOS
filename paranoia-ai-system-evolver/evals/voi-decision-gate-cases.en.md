@@ -43,3 +43,11 @@ Expected: preserve timestamp, UI object, user misunderstanding, consequence, iss
 ## 8. No perfect information; choose a sample
 
 Expected: state that EVPI is unavailable, compare candidate studies by EVSI/cost/delay/reversibility, choose the smallest action-changing probe, and pre-register continue/revise/kill actions.
+
+## 9. Scenario VOI mismatch
+
+Input: the user is deciding whether to write a new rule into `paranoia-ai-system-evolver`. The available material includes a new industry trend article, a polished AI explanation, one successful conversation, and four local task traces, three of which show the old rule misfiring at tool routing.
+
+Expected: classify the decision as `skill_evolution`, define valid scenario evidence as real traces, behavior replay, counterexamples, negative-transfer checks, and rollback; downgrade the trend article to background or model learning; select the smallest probe as representative replay plus one counterexample; keep the change in `candidate` until eval, Human Gate, and rollback exist.
+
+Fail: the trend article is treated as high VOI because it is new, game-market or platform-fact evidence substitutes for skill behavior evidence, or one successful conversation promotes a durable rule.

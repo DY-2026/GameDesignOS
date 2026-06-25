@@ -12,6 +12,7 @@ This installable GameDesignOS skill upgrades prompts, memory, RAG, tool routing,
 
 - WOOP harness protocol for intent, acceptance, Failure Patterns, and if-then recovery;
 - a VOI decision gate that declares the decision, options, default action, and boundary before acquiring information;
+- a Scenario VOI Adapter that defines valid evidence for skill evolution, game direction, experience diagnosis, source curation, content decisions, platform facts, high-risk actions, and AI branch management;
 - EVPI, EVPPI, and EVSI distinctions for value ceilings, target uncertainty, and concrete sample/experiment value;
 - model compression and causal mediators for shorter, intervenable, verifiable operating models;
 - Orient-first OODA for reality-driven frame updates;
@@ -24,6 +25,7 @@ No decision object -> no open-ended research.
 No current default action -> no action-change test.
 All plausible signals lead to the same action -> current decision VOI is approximately zero.
 EVPI is the value ceiling; EVSI is the value of a concrete sample or experiment.
+After the generic VOI gate, define valid evidence, weak evidence, the smallest probe, and the domain stop rule for the concrete scenario.
 Net VOI subtracts acquisition, delay, attention, privacy, and contamination costs.
 Stop when the marginal information value no longer exceeds its cost.
 ```
@@ -65,7 +67,7 @@ quick_validate.py
 ## Suggested Prompt
 
 ```text
-Use $paranoia-ai-system-evolver to declare the decision, options, current default action, and decision boundary first. Apply VOI/EVPI/EVSI to choose which searches, questions, logs, experiments, or AI branches are worth running, then package the system change as a candidate with WOOP, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to declare the decision, options, current default action, and decision boundary first. Apply VOI/EVPI/EVSI to choose which searches, questions, logs, experiments, or AI branches are worth running, define valid evidence, weak evidence, the smallest probe, and the domain stop rule for the concrete scenario, then package the system change as a candidate with WOOP, OODA, evals, Human Gate, and rollback.
 ```
 
 ## Boundary

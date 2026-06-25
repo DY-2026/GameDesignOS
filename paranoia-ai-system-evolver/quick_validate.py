@@ -85,6 +85,7 @@ def validate(root: Path) -> list[str]:
     require("WOOP" in skill, "SKILL.md lacks WOOP language", failures)
     require("EVPI" in skill and "EVSI" in skill, "SKILL.md lacks EVPI/EVSI distinction", failures)
     require("current_default_action" in skill, "SKILL.md lacks current default action gate", failures)
+    require("Scenario VOI Adapter" in skill, "SKILL.md lacks Scenario VOI Adapter routing", failures)
     require("停止" in skill or "stop" in skill.lower(), "SKILL.md lacks stop-rule language", failures)
 
     agent = read_text(root / "agents/openai.yaml")
@@ -114,6 +115,9 @@ def validate(root: Path) -> list[str]:
         for field in VOI_FIELDS:
             require(field in text, f"{rel} lacks VOI field: {field}", failures)
         require("woop_task_card" in text or "woop:" in text or "voi_decision_gate" in text, f"{rel} lacks task/VOI control structure", failures)
+        if rel.startswith("templates/voi_decision_gate"):
+            for field in ["scenario_voi", "valid_evidence", "weak_evidence", "preferred_probe", "domain_stop_rule"]:
+                require(field in text, f"{rel} lacks scenario VOI field: {field}", failures)
 
     voi_zh = read_text(root / "references/value-of-information-playbook.zh-CN.md")
     voi_en = read_text(root / "references/value-of-information-playbook.en.md")
@@ -123,6 +127,8 @@ def validate(root: Path) -> list[str]:
     require("信息消费" in voi_zh, "Chinese VOI playbook lacks information-consumption classification", failures)
     require("AI 疲劳" in voi_zh, "Chinese VOI playbook lacks AI fatigue gate", failures)
     require("高结构" in voi_zh, "Chinese VOI playbook lacks high-structure/low-VOI gate", failures)
+    require("场景 VOI Adapter" in voi_zh, "Chinese VOI playbook lacks scenario adapter", failures)
+    require("Scenario VOI Adapter" in voi_en, "English VOI playbook lacks scenario adapter", failures)
 
     evolution_zh = read_text(root / "references/evolution-loop-playbook.zh-CN.md")
     evolution_en = read_text(root / "references/evolution-loop-playbook.en.md")
@@ -135,8 +141,10 @@ def validate(root: Path) -> list[str]:
     eval_en = read_text(root / "evals/voi-decision-gate-cases.en.md")
     for marker in ["FOMO", "决策边界", "负反馈", "分支爆炸", "不可逆"]:
         require(marker in eval_zh, f"Chinese VOI evals lack case marker: {marker}", failures)
-    require(eval_zh.count("## Case") >= 8, "Chinese VOI evals need at least 8 cases", failures)
-    require(eval_en.count("## ") >= 8, "English VOI evals need at least 8 cases", failures)
+    require(eval_zh.count("## Case") >= 9, "Chinese VOI evals need at least 9 cases", failures)
+    require(eval_en.count("## ") >= 9, "English VOI evals need at least 9 cases", failures)
+    require("场景 VOI 错配" in eval_zh, "Chinese VOI evals lack scenario mismatch case", failures)
+    require("Scenario VOI mismatch" in eval_en, "English VOI evals lack scenario mismatch case", failures)
 
     duplicate_keys = re.findall(
         r"^\s{4,}([a-zA-Z_]+):",

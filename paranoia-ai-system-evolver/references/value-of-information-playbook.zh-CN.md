@@ -253,7 +253,42 @@ ENBS_or_net_EVSI
 
 记录先验、信号、后验、行动变化、剩余不确定性和停止理由。
 
-## 10. AI 工作流中的 VOI
+## 10. 场景 VOI Adapter
+
+通用 VOI 门回答“要不要获取信息”。场景 VOI Adapter 回答“在这个使用场景里，什么证据才算能改变行动”。它只能在 Decision Object、默认行动和决策边界之后使用，不能用场景名替代决策对象。
+
+```yaml
+scenario_voi:
+  scenario: "skill_evolution | game_direction | experience_diagnosis | source_curation | content_decision | platform_fact | high_risk_action | ai_branch_management | other"
+  action_that_must_change: ""
+  valid_evidence: []
+  weak_evidence: []
+  preferred_probe: ""
+  domain_stop_rule: ""
+  human_gate: "not_required | required | already_committed"
+```
+
+| 场景 | 高 VOI 信息改变什么行动 | 有效证据 | 弱证据 / 误用 | 默认最小探针 |
+| --- | --- | --- | --- | --- |
+| `skill_evolution` | 是否修改 prompt、router、skill、eval、memory；是否从 `candidate` 推进 | 真实任务 trace、重复失败、行为 eval、反例、负迁移检查、rollback | 一次漂亮案例、抽象原则、没有回放的“感觉更好” | 回放 2-3 个代表性任务和 1 个反例 |
+| `game_direction` | 优先验证哪个玩家承诺、核心循环、题材包装或生产风险 | 玩家是否理解目标、题材是否解释规则、短原型/概念测试、生产约束 | 宏观趋势替代原型信号、只看题材热度 | 最小灰盒、概念点击、8 人试玩或生产风险 spike |
+| `experience_diagnosis` | issue priority、修复方案、下一轮试玩/A-B/遥测设计 | 带 `evidence_id` 的截图/录屏/日志、用户误解、时间点、可归因后果 | 泛泛“体验不好”、无样本边界的留存判断 | 复核关键片段并绑定一个修复/验证动作 |
+| `source_curation` | 是否入库、归类、拒绝、沉淀为长期规则或进入机会队列 | 来源、时间、局部约束、反例、能改变分类或下一步的段落 | 只因新鲜、权威、内容多就入库 | 取最小摘要、决策标签和拒绝条件 |
+| `content_decision` | 今天写不写、角度、标题承诺、论证主线、是否发布 | 具体争议、读者痛点、作者优势、差异化证据、反方强度 | 热点本身、流量想象、无行动的资料堆叠 | 写 1 个角度卡和 1 个反方压力测试 |
+| `platform_fact` | 当前操作、兼容策略、风险判断、fallback 路径 | 当前一手来源、官方文档/API、实际页面、账号/地区/版本状态 | 旧教程、二手总结、AI 记忆、跨平台类比 | 查当前一手事实并记录日期、版本、阻断原因 |
+| `high_risk_action` | 是否执行发布、资金、删除、账号、长期记忆或全局 skill 操作 | 明确 owner、权限、备份、rollback、损失函数、Human Gate 记录 | 定性 high VOI、单样本成功、无回滚承诺 | 先做只读预检、备份/回滚设计和 Human Gate |
+| `ai_branch_management` | 保留哪个分支、关闭哪个分支、下一步只做哪个探针 | 每个分支对应的决策对象、可能改变的行动、成本、截止时间 | 为每个分支继续生成计划、把消费分支伪装成待办 | 分支映射到决策，保留 1 个最高净 VOI 探针 |
+
+场景 VOI 的证据等级只说明证据贴近度，不自动等于决策价值。当前一手平台事实可能等级高，但如果不会改变行动，当前 VOI 仍然低；本地小样本 trace 可能样本少，但如果处在决策边界附近，VOI 可能很高。
+
+使用规则：
+
+1. 先过通用 VOI：Decision Object、Boundary、Uncertainty、Signal-to-Action。
+2. 再选场景 Adapter：定义该领域的有效证据、弱证据、默认探针和停止规则。
+3. 若场景证据不能绑定 `action_that_must_change`，则降级为 `model_learning` 或 `information_consumption`。
+4. 若场景是 `high_risk_action`，场景 VOI 只能支持 Human Gate，不能替代 Human Gate。
+
+## 11. AI 工作流中的 VOI
 
 AI 极大降低了生成信息的成本，却没有自动降低人类判断信息价值的成本。每个新方案、对话和分支都会制造待处理决策，因此系统必须主动关闭低 VOI 分支。
 
@@ -294,7 +329,7 @@ AI 疲劳常来自未收束的低 VOI 可能性，而不只是任务数量。
 
 若一段话删除具体细节后仍然完全成立，它可能只是低 VOI 的通用正确话。不要把一条关键本地事实润色成宏大空话。
 
-## 11. GameDesignOS 中的应用
+## 12. GameDesignOS 中的应用
 
 ### 创意到验证
 
@@ -316,7 +351,7 @@ AI 疲劳常来自未收束的低 VOI 可能性，而不只是任务数量。
 
 在修改 prompt、memory、router、schema、eval 或 skill 前，先判断新信息或新规则能否改变提升决策。一次漂亮案例不是高 VOI 的长期证据；重复失败、高影响回归和跨任务行为样本更重要。
 
-## 12. 常见失败模式
+## 13. 常见失败模式
 
 | 失败模式 | 症状 | 修复 |
 | --- | --- | --- |
@@ -331,7 +366,7 @@ AI 疲劳常来自未收束的低 VOI 可能性，而不只是任务数量。
 | 决策锁定后继续搜 | 已承诺仍为旧选择找论据 | 转向执行指标或复盘，不继续购买旧决策信息 |
 | 高 VOI 无行动 | 获取了关键信号但没有改变流程 | 把行动写进 Human Gate 或 if-then 协议 |
 
-## 13. 行为 Eval
+## 14. 行为 Eval
 
 一个合格的 VOI 输出至少满足：
 
@@ -355,7 +390,7 @@ AI 疲劳常来自未收束的低 VOI 可能性，而不只是任务数量。
 - 把一次案例直接提升为长期规则；
 - 把本地负反馈洗成抽象、无行动含义的总结。
 
-## 14. 来源与适用边界
+## 15. 来源与适用边界
 
 本 playbook 的正式定义参考 Ronald A. Howard 的信息价值理论，以及后续关于 EVPI、EVPPI、EVSI 与净样本价值的决策分析研究。GameDesignOS 中的高/中/低评分、决策边界分类和近似公式是工程化启发式，用于快速排序，不替代高风险场景的完整统计决策模型。
 
