@@ -94,6 +94,24 @@ gamedesignos graph export/inspect
 - public/private material boundaries 可操作；
 - 行为测试覆盖无 Decision 阻止 research、高影响无 rollback 阻断承诺、未复盘 experiment 不可支撑接受决策、public-synthetic 不导出 private evidence。
 
+## v1.1.0 — RJR-AI Authority Layer
+
+v1.1.0 不迁移 workspace schema，而是把系统定位和工作流演化能力补齐到“剩余判断权”这一层：
+
+- AI 负责扩大可能性；
+- Workflow 负责压缩混乱；
+- Eval 负责提供反馈；
+- 权限系统负责防止越界；
+- 知识库负责积累组织记忆；
+- 高耦合、低可逆、证据不足、必须下注的问题由人亲自拍板。
+
+已交付范围：
+
+- `paranoia-ai-system-evolver` 吸收 RJR-AI 方法，作为 prompt、workflow、memory、schema、tool-routing、eval 和授权边界升级的入口；
+- router、contract、eval 和 validator 增加 RJR-AI 场景覆盖；
+- GitHub About 描述、README trio、runtime 文档、package metadata、release note 与 version surface 同步到 `1.1.0`；
+- v1 workspace schema 保持 `1.0.0`，不强制迁移既有项目。
+
 ## Later Exploration
 
 只有 v1.0 foundation 稳定后再探索：

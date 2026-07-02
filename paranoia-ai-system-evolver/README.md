@@ -14,6 +14,7 @@
 
 - WOOP harness protocol：把任务目标、验收、失败模式和 if-then 恢复协议写进控制面；
 - VOI 决策门：先定义决策、选项、默认行动和决策边界，再判断哪些信息值得获取；
+- RJR-AI 剩余判断权授权门：把 AI、Workflow、Eval、automation、human 的权限边界写清楚；
 - 场景 VOI Adapter：按 skill 演化、游戏方向、体验诊断、资料整理、内容决策、平台事实、高风险动作和 AI 分支管理定义有效证据；
 - EVPI / EVPPI / EVSI：区分完全信息上界、目标不确定性和具体样本/实验的价值；
 - 模型压缩与因果中介：用更短、可干预、可验证的 operating model 替代补丁堆积；
@@ -30,6 +31,16 @@ EVPI 是价值上界，EVSI 是具体样本或实验的价值。
 通用 VOI 之后必须按具体场景定义有效证据、弱证据、最小探针和停止规则。
 净 VOI 必须扣除获取、延迟、注意力、隐私和污染成本。
 达到停止条件就拍板，不用更多研究替代行动。
+```
+
+## RJR-AI 授权硬规则
+
+```text
+AI 负责扩大可能性，不负责最终下注。
+Workflow 负责压缩混乱，不篡改人的判断层。
+Eval 负责提供反馈，不替代高耦合低可逆决策。
+低风险可逆任务可以自动化。
+高耦合、低可逆、证据不足的问题必须保留 residual_judgment 并进入 Human Gate。
 ```
 
 ## 包内容
@@ -69,7 +80,7 @@ quick_validate.py
 ## 推荐提示词
 
 ```text
-使用 $paranoia-ai-system-evolver，先写出当前决策、选项、默认行动和决策边界，再用 VOI/EVPI/EVSI 判断哪些搜索、追问、日志、实验或 AI 分支值得做，并按具体场景定义有效证据、弱证据、最小探针和停止规则。把最终系统改动整理成带 WOOP、OODA、eval、Human Gate 和 rollback 的候选提案。
+使用 $paranoia-ai-system-evolver，先写出当前决策、选项、默认行动和决策边界，再建立 RJR-AI 授权门：标明 coupling、reversibility、authority_level、delegation_matrix 和 residual_judgment。然后用 VOI/EVPI/EVSI 判断哪些搜索、追问、日志、实验或 AI 分支值得做，并按具体场景定义有效证据、弱证据、最小探针和停止规则。把最终系统改动整理成带 WOOP、OODA、eval、Human Gate 和 rollback 的候选提案。
 ```
 
 ## 在 GameDesignOS 里的边界

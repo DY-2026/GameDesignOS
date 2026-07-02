@@ -12,6 +12,7 @@
 真实任务压力
 -> WOOP Task Card
 -> Decision Object
+-> RJR-AI 剩余判断权授权门
 -> VOI 决策门
 -> 场景 VOI Adapter
 -> 最小信息探针
@@ -53,13 +54,53 @@ decision:
 
 没有默认行动，就无法判断信息是否改变行动。没有真实选项，就无法比较信息后的最优选择。没有截止时间，就容易把调研变成拖延。
 
-## 4. 稀缺资源
+## 4. RJR-AI：剩余判断权授权门
+
+RJR-AI 不是新 agent，也不是让 AI 替代领导者。它是 Decision Object 和 VOI 之间的授权层，用来回答：
+
+```text
+哪些可以交给 AI 扩大可能性？
+哪些必须由 Workflow 压缩混乱？
+哪些可以交给 Eval 提供反馈？
+哪些只能在权限系统内做可逆执行？
+哪些经验可以进入知识库？
+最后剩下的高耦合、低可逆、证据不足、必须下注的问题，谁拍板？
+```
+
+每个系统演化提案必须写出 `rjr_authority_gate`：
+
+```yaml
+rjr_authority_gate:
+  residual_judgment: "人需要亲自拍板的方向性问题"
+  coupling: "low | high"
+  reversibility: "reversible | costly_to_reverse | irreversible"
+  authority_level: "P0_read | P1_suggest | P2_draft | P3_reversible_execute | P4_approved_execute"
+  delegation_matrix:
+    ai: "read | suggest | draft | execute"
+    workflow: "none | route | gate | orchestrate"
+    eval: "none | sample_check | regression | acceptance_gate"
+    automation: "none | reversible_only | approved_execution"
+    human: "not_required | review | approve | decide"
+```
+
+默认分层：
+
+| 类型 | 默认授权 |
+| --- | --- |
+| 低耦合、高可逆 | AI / automation 可执行，保留抽查 |
+| 低耦合、低可逆 | AI 草稿，workflow / eval / 专家规则确认 |
+| 高耦合、高可逆 | AI 多路探索，workflow 收束，eval 对比，人选优 |
+| 高耦合、低可逆 | AI 只能辅助论证，必须 Human Gate |
+
+RJR 的关键是减少人的低价值判断，而不是减少人的最终责任。若 `coupling: high` 且 `reversibility: irreversible | costly_to_reverse`，并且证据仍不足以稳定选择，输出必须显式保留 `residual_judgment`，不能把它包装成 AI 已经决定。
+
+## 5. 稀缺资源
 
 agent 必须把 token、时间、用户注意力、工具调用、上下文窗口、可信反馈、标注样本、金钱、信任额度和决策窗口当成稀缺资源。
 
 AI 让生成信息变便宜，却可能让人的评估和收束成本上升。系统优化目标不是生成最多方案，而是在有限认知带宽内关闭低 VOI 分支。
 
-## 5. VOI 决策门
+## 6. VOI 决策门
 
 完整方法见 `references/value-of-information-playbook.zh-CN.md`。快速门如下：
 
@@ -102,7 +143,7 @@ approx_net_voi
 | 低 | 高 | 做轻量确认 |
 | 低 | 低 | 直接行动 |
 
-## 6. Orient-first OODA
+## 7. Orient-first OODA
 
 Observe 抓取目标、证据、惊讶信号、失败、用户纠偏、成本、延迟和触发的 Obstacle。
 
@@ -125,7 +166,7 @@ Evaluate 记录：
 prior -> observed signal -> posterior -> action_before -> action_after -> stop reason
 ```
 
-## 7. 模型压缩 Gate
+## 8. 模型压缩 Gate
 
 Orient 阶段检查当前系统模型：
 
@@ -146,7 +187,7 @@ total_description_cost
 + failure_recovery_length
 ```
 
-## 8. 任务循环与元循环
+## 9. 任务循环与元循环
 
 任务循环：
 
@@ -171,7 +212,7 @@ trace
 
 永远不要让元循环从单个案例自动提升长期规则。一次输出看起来更完整，不代表它降低了决策错误或注意力成本。
 
-## 9. 候选突变规则
+## 10. 候选突变规则
 
 系统改动只有满足以下条件才进入进化队列：
 
@@ -184,7 +225,7 @@ trace
 
 否则只保留为任务笔记、模型学习或消费记录。
 
-## 10. AI 疲劳与反 AI 味 Gate
+## 11. AI 疲劳与反 AI 味 Gate
 
 ### AI 疲劳
 
@@ -203,7 +244,7 @@ open_branches
 
 改写、总结和提案必须保留本地事实、负反馈、失败细节、来源、约束和行动影响。若文本只增加标题、结构和抽象概念，却没有增加决策边界、信号、成本或动作，它属于高结构低 VOI 输出。
 
-## 11. 行动权限阶梯
+## 12. 行动权限阶梯
 
 | 等级 | 例子 | 默认规则 |
 | --- | --- | --- |
@@ -213,7 +254,7 @@ open_branches
 | A3 | 长期记忆、全局 skill 安装、生产策略 | 需要 Human Gate |
 | A4 | 删除、发布、资金、真实用户影响 | 必须明确审批 |
 
-## 12. 公开 Skill 包检查
+## 13. 公开 Skill 包检查
 
 - `SKILL.md` frontmatter `name` 与文件夹名一致；
 - `agents/openai.yaml` 与 `SKILL.md` 一致；
@@ -224,6 +265,6 @@ open_branches
 - 版权、来源、公开/私有边界和 rollback 清楚；
 - 最后扫描陈旧命名和旧项目措辞。
 
-## 13. README 视觉资产 Gate
+## 14. README 视觉资产 Gate
 
 生成图只承载氛围、结构隐喻和识别度，不承载关键文字。关键流程必须另有 Markdown、表格或 Mermaid 版本；图片路径、alt text、水印、错字、品牌边界和体积均需检查。

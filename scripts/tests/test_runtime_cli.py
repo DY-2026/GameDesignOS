@@ -30,7 +30,7 @@ class RuntimeCliTest(unittest.TestCase):
     def test_01_init_and_validate(self) -> None:
         ws = self.workspace()
         self.assertTrue(ws.validate().ok)
-        self.assertEqual(ws.status().runtime_version_declared, "1.0.0")
+        self.assertEqual(ws.status().runtime_version_declared, "1.1.0")
         self.assertTrue(ws.decision_log_path.is_file())
 
     def test_02_init_refuses_nonempty(self) -> None:
@@ -72,7 +72,14 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertEqual(result["selected_skill"], "game-design-proposal-writer")
         self.assertEqual(result["missing_upstream"], [])
 
-    def test_09_voi_near_selects_probe(self) -> None:
+    def test_09_rjr_ai_routes_to_system_evolver(self) -> None:
+        result = route_task(
+            "根据剩余判断权优化 RJR-AI：AI 扩大可能性，Workflow 压缩混乱，Eval 提供反馈，"
+            "权限系统防止越界，知识库积累组织记忆。"
+        )
+        self.assertEqual(result["selected_skill"], "paranoia-ai-system-evolver")
+
+    def test_10_voi_near_selects_probe(self) -> None:
         ws = self.workspace()
         result = create_assessment(
             ws,
@@ -97,7 +104,7 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertTrue(reviewed["ok"])
         self.assertEqual(reviewed["selected_probe"]["action_id"], "INFO-001")
 
-    def test_10_voi_rejects_invalid_decision(self) -> None:
+    def test_11_voi_rejects_invalid_decision(self) -> None:
         with self.assertRaises(UsageError):
             create_assessment(
                 self.workspace(), decision_id="bad", decision_question="What?", options=["A", "A"],
@@ -105,7 +112,7 @@ class RuntimeCliTest(unittest.TestCase):
                 boundary="near", candidate_information_actions=[], stop_when=None,
             )
 
-    def test_11_locked_decision_stops_research(self) -> None:
+    def test_12_locked_decision_stops_research(self) -> None:
         result = create_assessment(
             self.workspace(), decision_id="DEC-LOCKED-001", decision_question="Reopen scope?",
             options=["Execute", "Reopen"], current_default_action="Execute", owner="tester",
@@ -116,7 +123,7 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertTrue(reviewed["ok"])
         self.assertIsNone(reviewed["selected_probe"])
 
-    def test_12_public_pack_filters(self) -> None:
+    def test_13_public_pack_filters(self) -> None:
         ws = self.workspace("Synthetic Lighthouse", "public-synthetic")
         ws.create_asset("concept", title="Synthetic Concept")
         output = self.root / "pack.zip"
@@ -128,7 +135,7 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertNotIn("game.designos.yaml", names)
         self.assertEqual(len(index["assets"]), 1)
 
-    def test_13_pack_overwrite_requires_force(self) -> None:
+    def test_14_pack_overwrite_requires_force(self) -> None:
         ws = self.workspace("Pack Guard", "public-synthetic")
         ws.create_asset("concept", title="Synthetic Concept")
         output = self.root / "guard.zip"
@@ -137,7 +144,7 @@ class RuntimeCliTest(unittest.TestCase):
             ws.pack(mode="public-synthetic", output=output)
         self.assertFalse(ws.pack(mode="public-synthetic", output=output, force=True)["dry_run"])
 
-    def test_14_public_validation_rejects_private_asset(self) -> None:
+    def test_15_public_validation_rejects_private_asset(self) -> None:
         ws = self.workspace("Synthetic Broken", "public-synthetic")
         ws.create_asset("concept", title="Synthetic Concept")
         index = ws.load_asset_index()
@@ -145,18 +152,18 @@ class RuntimeCliTest(unittest.TestCase):
         ws.asset_index_path.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         self.assertTrue(any("non-synthetic" in item for item in ws.validate().errors))
 
-    def test_15_cli_smoke_second_workspace(self) -> None:
+    def test_16_cli_smoke_second_workspace(self) -> None:
         target = self.root / "lighthouse"
         self.assertEqual(main(["init", "Lighthouse Tactics", "--destination", str(target), "--visibility", "public-synthetic", "--owner", "fixture"]), EXIT_OK)
         self.assertEqual(main(["new", "decision", "--workspace", str(target), "--title", "Prototype Direction"]), EXIT_OK)
         self.assertEqual(main(["validate", "--workspace", str(target)]), EXIT_OK)
 
-    def test_16_project_ready_blocks_voi_without_decision(self) -> None:
+    def test_17_project_ready_blocks_voi_without_decision(self) -> None:
         result = run_gate(self.workspace(), "voi", "DEC-MISSING-001")
         self.assertEqual(result["status"], "block")
         self.assertIn("Decision Object", result["reason"])
 
-    def test_17_project_ready_commitment_requires_rollback(self) -> None:
+    def test_18_project_ready_commitment_requires_rollback(self) -> None:
         ws = self.workspace()
         log = ws.load_decision_log()
         log["decisions"].append(
@@ -190,7 +197,7 @@ class RuntimeCliTest(unittest.TestCase):
             EXIT_OK,
         )
 
-    def test_18_project_ready_health_next_and_graph(self) -> None:
+    def test_19_project_ready_health_next_and_graph(self) -> None:
         ws = self.workspace()
         log = ws.load_decision_log()
         log["decisions"].append(
@@ -277,7 +284,7 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertIn("ASM_COMPREHENSION_001", graph)
         self.assertIn("EXP_COMPREHENSION_001", graph)
 
-    def test_19_project_ready_cli_full_cycle(self) -> None:
+    def test_20_project_ready_cli_full_cycle(self) -> None:
         target = self.root / "project-ready"
         self.assertEqual(main(["init", "Project Ready", "--destination", str(target), "--owner", "tester"]), EXIT_OK)
         self.assertEqual(
@@ -463,7 +470,7 @@ class RuntimeCliTest(unittest.TestCase):
         run_id = next(path.stem for path in (target / ".gamedesignos" / "workflow-runs").glob("WRUN-*.json"))
         self.assertEqual(main(["workflow", "validate", run_id, "--workspace", str(target)]), EXIT_OK)
 
-    def test_20_start_creates_simple_project_ready_path_once(self) -> None:
+    def test_21_start_creates_simple_project_ready_path_once(self) -> None:
         target = self.root / "simple-start"
         command = [
             "start",
@@ -487,7 +494,7 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertEqual(len(list((target / "04-experiments").glob("EXP-*"))), 1)
         self.assertEqual(len(list((target / ".gamedesignos" / "workflow-runs").glob("WRUN-*.json"))), 1)
 
-    def test_21_freeform_sentence_routes_and_starts_workspace(self) -> None:
+    def test_22_freeform_sentence_routes_and_starts_workspace(self) -> None:
         target = self.root / "ask-start"
         self.assertEqual(
             main(

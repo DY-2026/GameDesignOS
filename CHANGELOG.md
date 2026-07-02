@@ -4,6 +4,26 @@ All notable changes to GameDesignOS will be recorded here.
 
 ## [Unreleased]
 
+## [v1.1.0] - 2026-07-02
+
+### Added
+
+- Added RJR-AI as the explicit residual-judgment authority layer for AI engineering workflows: AI expands possibilities, Workflow compresses chaos, Eval provides feedback, permission gates prevent overreach, knowledge bases preserve memory, and humans retain high-coupling, low-reversibility, under-evidenced decisions.
+- Added RJR-AI coverage to `paranoia-ai-system-evolver`, including skill guidance, references, templates, eval cases, router wording, and validation checks.
+- Added a v1.1 release note and GitHub-facing metadata guidance for the new project description and topic set.
+
+### Changed
+
+- Changed the runtime package version to `1.1.0` while keeping the Project-Ready workspace schema at `1.0.0`.
+- Updated README trio, runtime docs, product vision, roadmap, GitHub About checklist, package metadata, and v1 workspace manifest to the v1.1 positioning.
+- Updated natural-language routing so RJR-AI, residual judgment, permission-boundary, workflow/eval/memory, and authority-layer requests route to `paranoia-ai-system-evolver`.
+
+### Safety
+
+- Kept the installed runtime-copy boundary explicit: source-repo validation does not automatically mutate a user's installed skill directory.
+- Kept Human Gate as the owner of residual judgment; RJR-AI organizes delegation and constraints but does not let automation accept irreversible or commitment-changing choices.
+- Kept existing v1 workspaces compatible because this release does not change `schema_version`.
+
 ## [v1.0.0] - 2026-06-19
 
 ### Added
@@ -190,7 +210,9 @@ All notable changes to GameDesignOS will be recorded here.
 - Released the public base version of `game-experience-analyzer`.
 - Added initial release notes, installation guidance, and validation examples.
 
-[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v1.1.0...HEAD
+[v1.1.0]: ./releases/v1.1.0.md
+[v1.0.0]: ./releases/v1.0.0.md
 [v0.9.0]: ./releases/v0.9.0.md
 [v0.8.0]: ./releases/v0.8.0.md
 [v0.7.0]: ./releases/v0.7.0.md

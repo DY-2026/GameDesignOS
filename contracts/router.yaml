@@ -48,19 +48,20 @@ default_rules:
     primary_outputs: [weekly_ed_experiment_plan, instrumentation_dictionary, dashboard_spec, decision_rules, experiment-plan.schema.json]
   - id: route_information_value_audit_to_evolver
     when:
-      user_intent: [information_value_audit, research_priority, decision_information_gate, fomo_or_information_overload, ai_branch_pruning, decide_whether_to_search_ask_or_test]
+      user_intent: [information_value_audit, research_priority, decision_information_gate, fomo_or_information_overload, ai_branch_pruning, decide_whether_to_search_ask_or_test, rjr_ai_authority_gate, residual_judgment, judgment_authority, permission_boundary, ai_engineering_authority]
     use: paranoia-ai-system-evolver
-    reason: "Define the decision object and current default action, map signals to actions, distinguish EVPI from EVSI, choose the smallest positive-net-VOI probe, and stop low-value research."
+    reason: "Define the decision object, current default action, RJR-AI authority boundary, signal-to-action map, EVPI/EVSI, smallest positive-net-VOI probe, and stop rule."
     primary_outputs: [information-value-assessment, decision-brief, ooda_voi_state]
     guardrails:
       - "Do not produce a broad trend summary when no decision object exists; timebox exploration or classify it as model learning or information consumption."
+      - "Do not let AI assume residual judgment for high-coupling, low-reversibility, under-evidenced choices; route to Human Gate."
       - "Limit candidate information actions to three and pre-register the action for each plausible signal."
       - "If all plausible signals lead to the same action, stop research and proceed with the current default action."
   - id: route_system_change_to_evolver
     when:
-      user_intent: [skill_change, prompt_change, workflow_change, schema_change, eval_change, router_change, memory_or_feedback_loop_change]
+      user_intent: [skill_change, prompt_change, workflow_change, schema_change, eval_change, router_change, memory_or_feedback_loop_change, rjr_ai_absorption, authority_layer_change, delegation_matrix_change]
     use: paranoia-ai-system-evolver
-    reason: "Keep AI-system evolution candidate-gated with a decision object, VOI/EVPI/EVSI, OODA, behavior evals, Human Gate, versioning, and rollback."
+    reason: "Keep AI-system evolution candidate-gated with a decision object, RJR-AI authority gate, VOI/EVPI/EVSI, OODA, behavior evals, Human Gate, versioning, and rollback."
     primary_outputs: [evolution_proposal, information-value-assessment, ooda_voi_state]
   - id: route_translation_to_book_translator
     when:
@@ -84,6 +85,8 @@ collaboration_rules:
     rule: "Route only among skills shipped inside this repository. Do not introduce external/global design-master skills into this collaboration graph."
   - id: decision_before_information
     rule: "Before broad research, retrieval, memory reads, tests, or extra AI branches, define the decision, options, current default action, boundary status, signal-to-action map, costs, and stop rule."
+  - id: rjr_authority_before_execution
+    rule: "Before AI execution, publication, durable memory, project-direction changes, or system-rule promotion, define coupling, reversibility, authority level, delegation matrix, residual judgment, Human Gate, and rollback."
   - id: concept_to_evidence_to_experiment
     flow:
       - skill: game-concept-architect
@@ -97,7 +100,7 @@ collaboration_rules:
   - id: proposal_after_artifacts
     rule: "Use game-design-proposal-writer only after concept, evidence, ED, source, or production artifacts already exist; it assembles decisions rather than replacing upstream diagnosis or experiment design."
   - id: evolver_scope
-    rule: "Use paranoia-ai-system-evolver for controlled system mutations or explicit VOI decision audits; do not use it to replace concept architecture, media diagnosis, ED experiments, or proposal assembly."
+    rule: "Use paranoia-ai-system-evolver for controlled system mutations, RJR-AI authority gates, or explicit VOI decision audits; do not use it to replace concept architecture, media diagnosis, ED experiments, or proposal assembly."
   - id: source_curator_as_knowledge_input
     rule: "Use game-design-source-curator to create traceable knowledge assets; it may enrich references but should not replace concept architecture, evidence diagnosis, ED experiments, or proposal assembly."
   - id: translator_as_knowledge_production

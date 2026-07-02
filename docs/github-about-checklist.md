@@ -4,7 +4,7 @@ Use GitHub repository settings to set the public metadata manually.
 
 ## Description
 
-Local-first OS for AI-assisted game design: turn AI-agent sessions into decisions, evidence, experiments, proposals, and durable project memory.
+Local-first AI game design OS for decisions, evidence, experiments, proposals, workflow authority, and human-gated project memory.
 
 ## Repository URL
 
@@ -44,4 +44,5 @@ local-first
 evidence-based
 decision-support
 human-in-the-loop
+ai-workflows
 ```

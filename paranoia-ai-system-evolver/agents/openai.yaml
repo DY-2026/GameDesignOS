@@ -1,4 +1,4 @@
 interface:
   display_name: "Paranoia AI System Evolver"
-  short_description: "用 WOOP、VOI 决策门、场景 VOI、OODA 与 Evals 受控进化 AI 系统"
-  default_prompt: "使用 $paranoia-ai-system-evolver，先定义决策、选项、current default action 和决策边界，再用 VOI/EVPI/EVSI 选择最小高价值信息探针，并按具体场景定义有效证据、弱证据、最小探针和停止规则，最后形成带 WOOP、OODA、eval、Human Gate 和 rollback 的候选系统改动。"
+  short_description: "用 WOOP、RJR-AI 授权门、VOI 决策门、场景 VOI、OODA 与 Evals 受控进化 AI 系统"
+  default_prompt: "使用 $paranoia-ai-system-evolver，先定义决策、选项、current default action 和决策边界，再建立 RJR-AI 授权门：coupling、reversibility、authority_level、delegation_matrix、residual_judgment。然后用 VOI/EVPI/EVSI 选择最小高价值信息探针，并按具体场景定义有效证据、弱证据、最小探针和停止规则，最后形成带 WOOP、OODA、eval、Human Gate 和 rollback 的候选系统改动。"

@@ -6,6 +6,8 @@ Turn an undefined research impulse, information overload, FOMO, or a real choice
 
 This is a cross-cutting workflow. Domain skills still own the game-design work; the VOI gate decides whether more information is worth acquiring before they act.
 
+RJR-AI adds the authority layer before information work: AI may expand options, Workflow may compress the process, Eval may provide feedback, and automation may execute low-risk reversible steps; high-coupling, low-reversibility, under-evidenced direction choices remain human residual judgment.
+
 ## Primary Method
 
 `$paranoia-ai-system-evolver` for an explicit VOI audit, using:
@@ -46,6 +48,7 @@ The selected probe may create downstream assets in the domain directory, such as
 research impulse or unresolved choice
   -> declare Decision Object
   -> identify current default action
+  -> declare RJR-AI authority gate: coupling / reversibility / authority_level / residual_judgment
   -> classify boundary: undefined / far / near / locked
   -> map action-sensitive uncertainties
   -> generate at most three information actions
@@ -63,10 +66,11 @@ The workflow must answer:
 
 1. What decision is being made?
 2. What action happens with current information?
-3. Which plausible signal would reverse or materially alter that action?
-4. What is the smallest way to observe such a signal?
-5. Is its expected value higher than acquisition, delay, attention, privacy, and contamination costs?
-6. When will research stop?
+3. Which authority level is allowed before Human Gate?
+4. Which plausible signal would reverse or materially alter that action?
+5. What is the smallest way to observe such a signal?
+6. Is its expected value higher than acquisition, delay, attention, privacy, and contamination costs?
+7. When will research stop?
 
 If no plausible signal changes action, mark the current decision VOI as approximately zero. Either act, time-box model learning, or classify the activity as information consumption.
 
@@ -117,15 +121,17 @@ Current default action:
 Real options:
 Deadline:
 Stakes and reversibility:
+RJR authority level and residual judgment:
 Known uncertainty:
 Candidate information sources or tests:
 
-Return a Decision Object, boundary status, no more than three information actions, signal-to-action mapping, EVPI/EVSI and cost judgment, the smallest selected probe, and a stop rule. Write the assessment to 06-decisions/.
+Return a Decision Object, RJR-AI authority gate, boundary status, no more than three information actions, signal-to-action mapping, EVPI/EVSI and cost judgment, the smallest selected probe, and a stop rule. Write the assessment to 06-decisions/.
 ```
 
 ## Definition of Done
 
 - decision, options, owner, deadline, and current default action are explicit;
+- RJR-AI authority gate names coupling, reversibility, authority level, residual judgment, and Human Gate trigger;
 - the boundary is classified;
 - every information action targets an action-sensitive uncertainty;
 - possible signals map to different actions;

@@ -12,7 +12,7 @@ project:
   tags: []
 
 designos:
-  version: "1.0.0"
+  version: "1.1.0"
   public_base_repo: "DY-2026/GameDesignOS"
   private_overlay: true
 

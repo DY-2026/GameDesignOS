@@ -10,6 +10,7 @@ Self-evolving AI means improving external system layers under stable goals: prom
 real task pressure
 -> WOOP Task Card
 -> Decision Object
+-> RJR-AI residual judgment authority gate
 -> VOI decision gate
 -> Scenario VOI Adapter
 -> smallest information probe
@@ -32,11 +33,51 @@ Unclear Wish means clarify or shrink. Unclear Outcome means draft only. Unclear 
 
 Before VOI, declare the decision question, real options, current default action, owner, deadline, stakes, reversibility, and boundary status. Without a default action there is no action-change test; without options there is no decision comparison; without a deadline research can become avoidance.
 
-## 4. Scarce Resources
+## 4. RJR-AI: Residual Judgment Authority Gate
+
+RJR-AI is not a new agent and does not replace leadership. It is the authority layer between the Decision Object and VOI. It answers:
+
+```text
+What can AI expand into options?
+What must Workflow compress?
+What can Eval judge?
+What can automation execute reversibly?
+What can memory retain?
+What high-coupling, low-reversibility, under-evidenced directional bet remains human residual judgment?
+```
+
+Every evolution proposal should declare `rjr_authority_gate`:
+
+```yaml
+rjr_authority_gate:
+  residual_judgment: "directional choice reserved for the human"
+  coupling: "low | high"
+  reversibility: "reversible | costly_to_reverse | irreversible"
+  authority_level: "P0_read | P1_suggest | P2_draft | P3_reversible_execute | P4_approved_execute"
+  delegation_matrix:
+    ai: "read | suggest | draft | execute"
+    workflow: "none | route | gate | orchestrate"
+    eval: "none | sample_check | regression | acceptance_gate"
+    automation: "none | reversible_only | approved_execution"
+    human: "not_required | review | approve | decide"
+```
+
+Default split:
+
+| Type | Default authority |
+| --- | --- |
+| Low coupling, high reversibility | AI / automation may execute with sampling |
+| Low coupling, low reversibility | AI drafts; workflow, eval, or expert rules confirm |
+| High coupling, high reversibility | AI explores; workflow narrows; eval compares; human chooses |
+| High coupling, low reversibility | AI only supports reasoning; Human Gate is required |
+
+The goal is to remove low-value human judgment, not human responsibility. If `coupling: high`, reversibility is costly or irreversible, and evidence is still insufficient for a stable choice, the output must preserve `residual_judgment` instead of presenting the AI's synthesis as a decision.
+
+## 5. Scarce Resources
 
 Treat tokens, time, attention, tool calls, context, trustworthy feedback, labeled samples, money, trust, and decision windows as scarce. AI makes information generation cheap while increasing evaluation and closure costs. Optimize for closing low-value branches, not maximizing output volume.
 
-## 5. VOI Gate
+## 6. VOI Gate
 
 Use `references/value-of-information-playbook.en.md` for the full method.
 
@@ -64,7 +105,7 @@ approx_net_voi
 
 This is a triage heuristic. If all plausible signals lead to the same action, stop or classify the work as model learning or information consumption.
 
-## 6. Orient-First OODA
+## 7. Orient-First OODA
 
 Observe goals, evidence, surprise, failures, corrections, costs, latency, and triggered Obstacles. Orient around the current frame, obsolete narratives, decision boundary, user/domain/operating models, and whether the information is decision, model, or consumption value. Decide one action or probe and explicitly reject low-VOI branches. Act through an artifact, tool call, or bounded test. Evaluate the chain:
 
@@ -72,7 +113,7 @@ Observe goals, evidence, surprise, failures, corrections, costs, latency, and tr
 prior -> signal -> posterior -> action_before -> action_after -> stop reason
 ```
 
-## 7. Model Compression Gate
+## 8. Model Compression Gate
 
 Check whether the model is too short to expose mediators, too long to execute, or merely moving complexity. Every new rule should name its mediator, control point, observation, validation, and effect on future decision cost.
 
@@ -86,7 +127,7 @@ total_description_cost
 + failure_recovery_length
 ```
 
-## 8. Task and Meta Loops
+## 9. Task and Meta Loops
 
 ```text
 Decision Object -> VOI Gate -> smallest probe or direct action -> result -> Human Gate / stop
@@ -98,11 +139,11 @@ trace -> repeated/high-impact failure -> mutation candidate -> behavior eval -> 
 
 Never promote a permanent rule from one attractive case. More complete prose is not evidence of lower decision error or lower attention cost.
 
-## 9. Candidate Mutation Gate
+## 10. Candidate Mutation Gate
 
 A mutation enters the queue only when it is repeated or high-impact, can change a system decision or reduce major risk, is repairable, reusable, evidenced, reversible, cheaper than its expected benefit, tested against a counterexample, and has a stop rule.
 
-## 10. AI Fatigue and Anti-Generic Output
+## 11. AI Fatigue and Anti-Generic Output
 
 ```text
 open branches -> map to decisions -> keep action-changing branches -> archive model learning -> close consumption -> choose one probe
@@ -110,7 +151,7 @@ open branches -> map to decisions -> keep action-changing branches -> archive mo
 
 Preserve local facts, negative feedback, failure details, provenance, constraints, and action impact. Added headings and abstract structure without added decision boundaries, signals, costs, or actions are high-structure/low-VOI output.
 
-## 11. Permission Ladder
+## 12. Permission Ladder
 
 | Level | Example | Default |
 | --- | --- | --- |
@@ -120,6 +161,6 @@ Preserve local facts, negative feedback, failure details, provenance, constraint
 | A3 | long-term memory, global skill install, production policy | Human Gate |
 | A4 | deletion, publishing, money, real-user impact | explicit approval |
 
-## 12. Public Skill Checks
+## 13. Public Skill Checks
 
 The package must keep names aligned, keep `SKILL.md` lightweight, route to one-hop references and templates, include decision/default-action/signal-to-action/cost/stop fields, cover VOI failure cases in behavior evals, preserve public/private boundaries, and retain rollback.

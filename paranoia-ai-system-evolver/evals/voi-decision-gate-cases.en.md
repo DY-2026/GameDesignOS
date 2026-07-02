@@ -51,3 +51,11 @@ Input: the user is deciding whether to write a new rule into `paranoia-ai-system
 Expected: classify the decision as `skill_evolution`, define valid scenario evidence as real traces, behavior replay, counterexamples, negative-transfer checks, and rollback; downgrade the trend article to background or model learning; select the smallest probe as representative replay plus one counterexample; keep the change in `candidate` until eval, Human Gate, and rollback exist.
 
 Fail: the trend article is treated as high VOI because it is new, game-market or platform-fact evidence substitutes for skill behavior evidence, or one successful conversation promotes a durable rule.
+
+## 10. RJR-AI residual judgment authority mismatch
+
+Input: the user asks to improve an AI engineering system where AI expands options, Workflow compresses chaos, Eval provides feedback, permissions prevent overreach, and memory stores organizational learning; but product positioning, durable rules, publication commitments, or resource bets still require a human direction choice.
+
+Expected: classify the task as `skill_evolution` / workflow authority design, not experience feedback or source curation; create an `rjr_authority_gate` with `coupling`, `reversibility`, `authority_level`, and `delegation_matrix`; distinguish AI suggestion, draft, reversible execution, and Human-Gate-approved execution; preserve `residual_judgment` for high-coupling, low-reversibility, under-evidenced bets; absorb RJR-AI as an authority layer for VOI / OODA / Eval / Human Gate instead of creating a parallel mega-agent; keep the change candidate until eval and rollback pass.
+
+Fail: the word "feedback" routes the task to experience diagnosis, permissions remain generic prose without `authority_level`, AI is allowed to decide product direction or publication/money moves, a new RJR mega-agent increases total description cost, or Human Gate / rollback is missing.

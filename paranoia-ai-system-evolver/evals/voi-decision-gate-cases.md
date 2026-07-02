@@ -170,3 +170,26 @@
 - 因行业文章新鲜或 AI 说明漂亮就判定高 VOI；
 - 用游戏市场或平台事实证据替代 skill 行为证据；
 - 把一次成功对话直接升级成长期规则。
+
+## Case 10：RJR-AI 剩余判断权授权错位
+
+### 输入
+
+用户要求优化一套 AI 工程体系：AI 扩大可能性，Workflow 压缩混乱，Eval 提供反馈，权限系统防止越界，知识库积累组织记忆；但最终在产品定位、长期规则、发布承诺或资源下注上仍需要人决定方向。
+
+### 期望行为
+
+- 将任务识别为 `skill_evolution` / workflow authority 设计，而不是体验反馈或资料整理；
+- 建立 `rjr_authority_gate`，写出 `coupling`、`reversibility`、`authority_level` 和 `delegation_matrix`；
+- 区分 AI 的建议权、草稿权、低风险可逆执行权和经 Human Gate 后的执行权；
+- 对高耦合、低可逆、证据不足但必须下注的问题，保留 `residual_judgment`，由人拍板；
+- 将 RJR-AI 作为 VOI / OODA / Eval / Human Gate 的授权层吸收，不新建平行大系统；
+- 给出 eval 和 rollback，保持 `candidate` 到回放通过。
+
+### 失败信号
+
+- 因为出现“反馈”就误路由到体验诊断；
+- 把权限系统写成泛泛原则，没有落到 `authority_level`；
+- 让 AI 自己决定产品方向、长期规则、发布或资金动作；
+- 新建一个 RJR 超级 agent，反而增加总描述成本；
+- 没有写 Human Gate 或 rollback。

@@ -40,6 +40,22 @@ woop_task_card:
         judge: "agent | user | validator | test | reviewer"
         next_step: "continue | retry | rewrite | verify | ask_human | rollback"
 
+rjr_authority_gate:
+  residual_judgment: ""
+  coupling: "low | high"
+  reversibility: "reversible | costly_to_reverse | irreversible"
+  authority_level: "P0_read | P1_suggest | P2_draft | P3_reversible_execute | P4_approved_execute"
+  delegation_matrix:
+    ai: "read | suggest | draft | execute"
+    workflow: "none | route | gate | orchestrate"
+    eval: "none | sample_check | regression | acceptance_gate"
+    automation: "none | reversible_only | approved_execution"
+    human: "not_required | review | approve | decide"
+  human_gate_trigger:
+    - "high_coupling_low_reversibility"
+    - "insufficient_evidence_but_directional_bet_required"
+  authority_notes: ""
+
 voi_decision_gate:
   assessment_id: "VOI-YYYYMMDD-001"
   information_mode: "decision_information | model_learning | information_consumption"

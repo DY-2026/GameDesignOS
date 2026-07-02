@@ -11,7 +11,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
-from .constants import VALID_VISIBILITIES
+from .constants import RUNTIME_VERSION, VALID_VISIBILITIES
 from .errors import UsageError
 from .io_utils import ensure_relative_safe, read_json, slugify, write_json
 from .workspace import Workspace, find_repo_root
@@ -33,7 +33,7 @@ EDGE_TYPES = {
 WORKFLOWS: dict[str, dict[str, Any]] = {
     "idea-to-validation": {
         "workflow_id": "idea-to-validation",
-        "version": "1.0.0",
+        "version": RUNTIME_VERSION,
         "title": "想法到验证",
         "nodes": [
             {"id": "decision_object", "type": "decision", "required_outputs": ["decision"]},

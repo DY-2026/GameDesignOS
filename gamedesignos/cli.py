@@ -1,4 +1,4 @@
-"""Command-line interface for the GameDesignOS v0.9 local runtime."""
+"""Command-line interface for the GameDesignOS local runtime."""
 
 from __future__ import annotations
 

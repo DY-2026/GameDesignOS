@@ -82,6 +82,7 @@ REQUIRED_PATHS = [
     "paranoia-ai-system-evolver/templates/voi_decision_gate.en.md",
     "paranoia-ai-system-evolver/evals/voi-decision-gate-cases.md",
     "paranoia-ai-system-evolver/evals/voi-decision-gate-cases.en.md",
+    "releases/v1.1.0.md",
     "releases/v1.0.0.md",
     "releases/v0.8.0.md",
     ".github/workflows/validate.yml",
@@ -311,6 +312,8 @@ def _check_paranoia_voi(repo_root: Path, errors: list[str]) -> None:
         "EVPI",
         "EVSI",
         "candidate_information_actions",
+        "RJR-AI",
+        "剩余判断权",
         "references/value-of-information-playbook",
     ):
         if marker not in skill:
@@ -326,6 +329,11 @@ def _check_paranoia_voi(repo_root: Path, errors: list[str]) -> None:
     cases = skill_root / "evals" / "voi-decision-gate-cases.md"
     if cases.exists() and cases.read_text(encoding="utf-8").count("## Case") < 8:
         errors.append(f"{cases}: requires at least 8 VOI behavior cases")
+    if cases.exists():
+        case_text = cases.read_text(encoding="utf-8")
+        for marker in ("RJR-AI", "rjr_authority_gate", "residual_judgment"):
+            if marker not in case_text:
+                errors.append(f"{cases}: missing RJR behavior marker {marker}")
 
 
 def main() -> int:

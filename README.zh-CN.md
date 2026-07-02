@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/gamedesignos-v1-hero.svg" alt="GameDesignOS v1.0.0 正式 Project-Ready 首页图：7 个 skill、17 个 contract、5 条 workflow 和 1 个本地 runtime" width="100%">
+  <img src="./assets/gamedesignos-v1-hero.svg" alt="GameDesignOS v1.1.0 Project-Ready 与 RJR-AI 权限边界首页图：7 个 skill、17 个 contract、5 条 workflow 和 1 个本地 runtime" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
@@ -12,7 +12,7 @@
 <p align="center">
   GameDesignOS 是一层 local-first 的 AI 辅助游戏设计操作系统。
   它把 AI-agent session 转成结构化的 Decision、Assumption、Evidence、Experiment、Proposal、Workflow 和 Learning Record，让团队能验证创意、诊断体验、撰写策划案、演化生产工作流，同时不丢上下文，也不越过 Human Gate。
-  v1.0.0 包含 7 个专家 skill、17 个 contract schema、5 条端到端工作流、v1 项目 workspace 和 1 个确定性本地 runtime。
+  v1.1.0 在 7 个专家 skill、17 个 contract schema、5 条端到端工作流、v1 项目 workspace 和 1 个确定性本地 runtime 之上，加入 RJR-AI 剩余判断权边界。
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v1.0.0-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v1.1.0-31e1d6">
   <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local%20CLI-8a63d2">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
@@ -60,9 +60,9 @@ GameDesignOS 补的是中间那层操作系统：把 agent 输出转成有来源
 | 公开 proof case | 2 | 带证据边界的游戏体验分析与体验浓度实验案例 |
 | Runtime | 1 | 用于路由、创建 workspace、校验、健康扫描、决策图、gate 和可评审 pack 的确定性本地 CLI |
 
-## v1.0.0 Project-Ready Runtime
+## v1.1.0 Project-Ready Runtime
 
-v1.0.0 把本地 `gamedesignos` runtime 推进到正式 Project-Ready。CLI 是确定性、本地优先的：它能创建 v1 项目 workspace，管理 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，导出决策图，扫描项目健康，并生成可评审 pack，不会调用模型。
+v1.1.0 保持本地 `gamedesignos` runtime 的 Project-Ready 主链路，并加入明确的 RJR-AI 授权边界：AI 负责扩大可能性，Workflow 负责压缩混乱，Eval 负责提供反馈，权限系统负责防止越界，知识库负责积累组织记忆，而高耦合、低可逆、证据不足、必须下注的问题仍由人拍板。CLI 是确定性、本地优先的：它能创建 v1 项目 workspace，管理 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，导出决策图，扫描项目健康，并生成可评审 pack，不会调用模型。
 
 | 层级 | 作用 | 入口 |
 | --- | --- | --- |
@@ -87,12 +87,18 @@ python -m gamedesignos start "My Game" --destination ../my-game-designos --owner
 
 `ask/start` 会自动准备 workspace、第一条决策、第一条假设、三分钟验证实验和工作流。CLI 负责本地路由和状态审计；宿主 agent 负责继续读取并执行选中的 skill，不把提示词再丢给用户。随后先做一次小测试，再用终端输出里的 `gamedesignos evidence add ...` 记录观察。原有 skill 仍可独立安装；runtime 保持 v0.8/v0.9 workspace 兼容。
 
-详细内容见 [怎么用](./docs/how-to-use.zh-CN.md)、[v1.0 开发计划](./docs/product/v1.0-development-plan.md)、[CLI 指南](./runtime/cli/README.md)、[命令参考](./runtime/cli/commands.md) 和 [路线图](./docs/product/roadmap.md)。
+详细内容见 [怎么用](./docs/how-to-use.zh-CN.md)、[v1.0 基线开发计划](./docs/product/v1.0-development-plan.md)、[CLI 指南](./runtime/cli/README.md)、[命令参考](./runtime/cli/commands.md)、[v1.1 release note](./releases/v1.1.0.md) 和 [路线图](./docs/product/roadmap.md)。
 
 决策优先的信息审计提示词：
 
 ```text
 Use $paranoia-ai-system-evolver to audit this research or AI workflow with a Decision Object, current default action, decision boundary, EVPI/EVSI, signal-to-action map, the smallest high-VOI probe, and a stop rule.
+```
+
+RJR-AI 升级提示词：
+
+```text
+Use $paranoia-ai-system-evolver to turn this AI workflow into an RJR-AI system: list what AI can search or draft, what workflow must constrain, what evals must test, what permissions block overreach, what knowledge should persist, and which residual judgments must stay with a human.
 ```
 
 ## 这个项目是什么
@@ -119,6 +125,7 @@ workflow 改动 -> WOOP Task Card -> VOI/OODA probe -> eval -> Human Gate -> rol
 - **Contract-driven:** concept brief、evidence index、issue card、ED handoff 和 validation plan 可以跨 skill 流转。
 - **Workspace-native:** 概念、证据、分析、实验、策划案、决策和复盘保存在同一个项目上下文中。
 - **Human-gated:** agent 可以提出和组织方案，但改变项目承诺的决策必须由人记录。
+- **剩余判断权边界：** 高耦合、低可逆、证据不足的选择仍由人拥有；AI、workflow、eval、权限和记忆只负责围绕方向对齐。
 - **决策优先的信息门：** 在广泛调研前，先声明决策、当前默认行动、决策边界、信号—行动映射、信息成本和停止规则。
 - **Concept-to-validation:** 不把“绝妙点子”直接扩写成 GDD，而是拆成 seed、玩家承诺、核心循环、scope gate 和原型验证计划。
 - **Workflow-governed:** 不追求一次漂亮回答，而是把可复用流程沉淀到 `SKILL.md`、`references/`、`templates/`、eval、Human Gate 和 rollback。
@@ -304,7 +311,7 @@ game-design-proposal-writer/
 
 ## System Architecture
 
-`GameDesignOS` v1.0.0 由四层产品结构和贯穿全局的治理规则组成：
+`GameDesignOS` v1.1.0 由四层产品结构、贯穿全局的治理规则和 RJR-AI 授权边界组成：
 
 - **Skill Kernel**
   - [`game-concept-architect/`](./game-concept-architect/)：一句话创意 -> 可验证概念蓝图。
@@ -330,7 +337,7 @@ game-design-proposal-writer/
 | Skill | 一句话用途 | 适合场景 | 包目录 |
 | --- | --- | --- | --- |
 | **Game Experience Analyzer** | 把截图、录屏、PV/宣传片和视频链接拆成证据优先的中文游戏设计报告。 | 体验分析、玩法机制、游戏拆解、机制迁移、整体项目、MDA、系统叙事、单机流程、热度预测、前瞻窗口、商业化、UX。 | [`game-experience-analyzer/`](./game-experience-analyzer/) |
-| **Paranoia AI System Evolver** | 把 prompt、workflow、memory、schema、tool routing 和 eval 改动变成受控系统演化。 | WOOP Task Card、VOI/OODA、模型压缩、因果中介、Human Gate、rollback、可验证升级。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
+| **Paranoia AI System Evolver** | 把 prompt、workflow、memory、schema、tool routing、eval 和 RJR-AI 授权边界改动变成受控系统演化。 | WOOP Task Card、VOI/OODA、剩余判断权边界、模型压缩、因果中介、Human Gate、rollback、可验证升级。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本。 | 术语、章节、图注、表格、QA、来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
@@ -418,6 +425,7 @@ gamedesignos doctor
 - **v0.8.0 — Runtime Foundation：** workspace 模板、workspace contract、产品架构、工作流和校验。
 - **v0.9.0 — Local Runtime Prototype：** 初始化、查看、路由、创建、校验和打包本地 workspace。
 - **v1.0.0 — Project-Ready GameDesignOS：** 正式版，包含 Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、决策图、健康扫描、Human Gate 与 v1 workspace。
+- **v1.1.0 — RJR-AI Authority Layer：** 剩余判断权边界、GitHub 定位、版本同步，以及 AI/workflow/eval/权限/记忆系统的 workflow-evolution 覆盖。
 - **v1.x — Proof and adoption：** 补更多公开案例、强化 adapter、推进 runtime dashboard，并沉淀真实项目 playbook。
 
 完整路线见按能力门推进的 [产品 Roadmap](./docs/product/roadmap.md)。

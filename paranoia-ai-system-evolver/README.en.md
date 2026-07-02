@@ -12,6 +12,7 @@ This installable GameDesignOS skill upgrades prompts, memory, RAG, tool routing,
 
 - WOOP harness protocol for intent, acceptance, Failure Patterns, and if-then recovery;
 - a VOI decision gate that declares the decision, options, default action, and boundary before acquiring information;
+- an RJR-AI residual judgment authority gate that makes AI, Workflow, Eval, automation, and human authority explicit;
 - a Scenario VOI Adapter that defines valid evidence for skill evolution, game direction, experience diagnosis, source curation, content decisions, platform facts, high-risk actions, and AI branch management;
 - EVPI, EVPPI, and EVSI distinctions for value ceilings, target uncertainty, and concrete sample/experiment value;
 - model compression and causal mediators for shorter, intervenable, verifiable operating models;
@@ -28,6 +29,16 @@ EVPI is the value ceiling; EVSI is the value of a concrete sample or experiment.
 After the generic VOI gate, define valid evidence, weak evidence, the smallest probe, and the domain stop rule for the concrete scenario.
 Net VOI subtracts acquisition, delay, attention, privacy, and contamination costs.
 Stop when the marginal information value no longer exceeds its cost.
+```
+
+## RJR-AI Authority Hard Rules
+
+```text
+AI expands possibilities; it does not own the final bet.
+Workflow compresses chaos; it does not rewrite the human judgment layer.
+Eval provides feedback; it does not replace high-coupling, low-reversibility decisions.
+Low-risk reversible work can be automated.
+High-coupling, low-reversibility, under-evidenced choices preserve residual_judgment and enter Human Gate.
 ```
 
 ## Package Contents
@@ -67,7 +78,7 @@ quick_validate.py
 ## Suggested Prompt
 
 ```text
-Use $paranoia-ai-system-evolver to declare the decision, options, current default action, and decision boundary first. Apply VOI/EVPI/EVSI to choose which searches, questions, logs, experiments, or AI branches are worth running, define valid evidence, weak evidence, the smallest probe, and the domain stop rule for the concrete scenario, then package the system change as a candidate with WOOP, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to declare the decision, options, current default action, and decision boundary first. Then establish the RJR-AI authority gate: coupling, reversibility, authority_level, delegation_matrix, and residual_judgment. Apply VOI/EVPI/EVSI to choose which searches, questions, logs, experiments, or AI branches are worth running, define valid evidence, weak evidence, the smallest probe, and the domain stop rule for the concrete scenario, then package the system change as a candidate with WOOP, OODA, evals, Human Gate, and rollback.
 ```
 
 ## Boundary

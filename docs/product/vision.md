@@ -1,6 +1,6 @@
 # GameDesignOS Product Vision
 
-GameDesignOS is a local-first operating system for AI-assisted game design. It turns AI-agent sessions into structured decisions, assumptions, evidence, experiments, proposals, workflows, and learning records, so teams can validate ideas, diagnose gameplay, and evolve production workflows without losing context or bypassing human judgment.
+GameDesignOS is a local-first operating system for AI-assisted game design. It turns AI-agent sessions into structured decisions, assumptions, evidence, experiments, proposals, workflows, authority boundaries, and learning records, so teams can validate ideas, diagnose gameplay, and evolve production workflows without losing context or bypassing human judgment.
 
 > 中文摘要：GameDesignOS 不是自动替代策划的写稿机器，而是一套帮助策划保存判断、证据、实验与决策，并让不同 AI skill 在同一项目上下文中协作的工作系统。
 
@@ -57,6 +57,8 @@ Examples include:
 
 GameDesignOS treats AI as a design-workflow participant, not the final authority. Agents can structure inputs, apply methods, identify missing evidence, propose experiments, and assemble decision documents. Humans retain responsibility for goals, taste, trade-offs, project commitments, publishing, and irreversible decisions.
 
+In v1.1.0 this becomes the RJR-AI rule: AI expands possibilities; Workflow compresses chaos; Eval provides feedback; permission systems prevent overreach; knowledge bases preserve organizational memory; and the residual judgment for high-coupling, low-reversibility, under-evidenced choices stays with a human.
+
 The default operating principles are:
 
 ```text
@@ -79,11 +81,12 @@ Real projects should use a private workspace or private overlay for proprietary 
 
 ## Product Direction
 
-v1.0.0 is the formal Project-Ready baseline. The product reached the first three milestones:
+v1.0.0 is the formal Project-Ready baseline. v1.1.0 adds the RJR-AI authority layer and GitHub-facing positioning without changing the v1 workspace schema. The product has reached these milestones:
 
 1. **Runtime Foundation:** workspace template, contracts, workflow routes, and validation conventions.
 2. **Local Runtime:** project initialization, routing, asset creation, validation, VOI review, and review-safe packing through a local CLI or agent harness.
 3. **Project-Ready Operating System:** asset graph, review gates, project dashboard, private overlays, and validated end-to-end cases.
+4. **RJR-AI Authority Layer:** explicit responsibility split across AI, workflow, eval, permissions, knowledge memory, and human residual judgment.
 
 The v1.x direction is proof and adoption: more public evidence-linked cases, stronger adapters, clearer runtime dashboards, private-overlay playbooks, and real-project validation without weakening Human Gate, public/private separation, or local-first safety.
 

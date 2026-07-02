@@ -1,8 +1,8 @@
-# GameDesignOS v1.0 本地 CLI
+# GameDesignOS v1.1 本地 CLI
 
 这里是 GameDesignOS 的可执行本地 runtime。
 
-v1.0 的 CLI 不是自动写策划案的工具，而是一个确定性的项目操作层：它帮助真实游戏项目记录 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，并在进入承诺态前停到 Human Gate。
+v1.1 的 CLI 不是自动写策划案的工具，而是一个确定性的项目操作层：它帮助真实游戏项目记录 Decision、Assumption、Evidence、Experiment、Gate、Workflow 和 Learning，并把 RJR-AI 剩余判断权停在 Human Gate。
 
 ## 安装
 
@@ -40,5 +40,7 @@ Decision Object
 - 默认新建 v1.0 workspace。
 - 旧 v0.8/v0.9 workspace 仍可打开和校验。
 - 如需创建旧模板，使用 `--workspace-version 0.8.0`。
+
+Runtime 版本为 `1.1.0`；workspace schema 仍为 `1.0.0`，无需迁移旧 v1 workspace。
 
 完整命令见 [commands.md](./commands.md)。

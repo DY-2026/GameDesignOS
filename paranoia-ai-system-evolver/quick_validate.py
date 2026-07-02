@@ -57,6 +57,14 @@ VOI_FIELDS = [
     "stop_rule",
 ]
 
+RJR_FIELDS = [
+    "rjr_authority_gate",
+    "delegation_matrix",
+    "coupling",
+    "authority_level",
+    "residual_judgment",
+]
+
 
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
@@ -86,6 +94,8 @@ def validate(root: Path) -> list[str]:
     require("EVPI" in skill and "EVSI" in skill, "SKILL.md lacks EVPI/EVSI distinction", failures)
     require("current_default_action" in skill, "SKILL.md lacks current default action gate", failures)
     require("Scenario VOI Adapter" in skill, "SKILL.md lacks Scenario VOI Adapter routing", failures)
+    require("RJR-AI" in skill, "SKILL.md lacks RJR-AI authority layer", failures)
+    require("剩余判断权" in skill, "SKILL.md lacks residual judgment language", failures)
     require("停止" in skill or "stop" in skill.lower(), "SKILL.md lacks stop-rule language", failures)
 
     agent = read_text(root / "agents/openai.yaml")
@@ -115,6 +125,9 @@ def validate(root: Path) -> list[str]:
         for field in VOI_FIELDS:
             require(field in text, f"{rel} lacks VOI field: {field}", failures)
         require("woop_task_card" in text or "woop:" in text or "voi_decision_gate" in text, f"{rel} lacks task/VOI control structure", failures)
+        if rel.startswith("templates/evolution_proposal"):
+            for field in RJR_FIELDS:
+                require(field in text, f"{rel} lacks RJR field: {field}", failures)
         if rel.startswith("templates/voi_decision_gate"):
             for field in ["scenario_voi", "valid_evidence", "weak_evidence", "preferred_probe", "domain_stop_rule"]:
                 require(field in text, f"{rel} lacks scenario VOI field: {field}", failures)
@@ -134,6 +147,8 @@ def validate(root: Path) -> list[str]:
     evolution_en = read_text(root / "references/evolution-loop-playbook.en.md")
     require("Decision Object" in evolution_zh, "Chinese evolution playbook lacks Decision Object", failures)
     require("Decision Object" in evolution_en, "English evolution playbook lacks Decision Object", failures)
+    require("RJR-AI" in evolution_zh and "剩余判断权" in evolution_zh, "Chinese evolution playbook lacks RJR authority layer", failures)
+    require("RJR-AI" in evolution_en and "residual judgment" in evolution_en.lower(), "English evolution playbook lacks RJR authority layer", failures)
     require("description_cost" in evolution_zh or "总描述成本" in evolution_zh, "Chinese evolution playbook lacks description cost", failures)
     require("total_description_cost" in evolution_en, "English evolution playbook lacks description cost", failures)
 
@@ -145,6 +160,8 @@ def validate(root: Path) -> list[str]:
     require(eval_en.count("## ") >= 9, "English VOI evals need at least 9 cases", failures)
     require("场景 VOI 错配" in eval_zh, "Chinese VOI evals lack scenario mismatch case", failures)
     require("Scenario VOI mismatch" in eval_en, "English VOI evals lack scenario mismatch case", failures)
+    require("RJR-AI" in eval_zh and "剩余判断权" in eval_zh, "Chinese VOI evals lack RJR authority case", failures)
+    require("RJR-AI" in eval_en and "residual judgment" in eval_en.lower(), "English VOI evals lack RJR authority case", failures)
 
     duplicate_keys = re.findall(
         r"^\s{4,}([a-zA-Z_]+):",
