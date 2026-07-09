@@ -28,6 +28,7 @@
     },
     "decision_delta": { "type": "string" },
     "review_status": { "enum": ["draft", "reviewed", "accepted", "rejected"] },
-    "reviewed_by": { "type": "string" }
+    "reviewed_by": { "type": "string" },
+    "review_summary": { "type": "string" }
   }
 }
