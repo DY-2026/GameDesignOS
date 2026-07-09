@@ -155,6 +155,37 @@ def validate_workspace(workspace: Workspace, *, repo_root: Path | None = None) -
     return report
 
 
+def _project_ready_schema_targets(workspace: Workspace, repo_root: Path) -> list[tuple[Path, Path]]:
+    """Return v1 runtime object files and their canonical schemas.
+
+    The patterns intentionally target runtime-owned v1 records. They avoid broad
+    directory-level validation so unrelated skill asset JSON files can still live
+    in the same lifecycle folders without being forced into the ledger schemas.
+    """
+
+    decisions_dir = workspace.lifecycle_path("decisions_dir")
+    assumptions_dir = workspace.lifecycle_path("assumptions_dir")
+    evidence_dir = workspace.lifecycle_path("evidence_dir")
+    experiments_dir = workspace.lifecycle_path("experiments_dir")
+    learning_dir = workspace.lifecycle_path("learning_dir")
+    gate_results_dir = workspace.root / ".gamedesignos" / "gate-results"
+    workflow_runs_dir = workspace.root / ".gamedesignos" / "workflow-runs"
+
+    targets: list[tuple[Path, Path]] = []
+    targets.extend((repo_root / "contracts/decision.schema.json", path) for path in decisions_dir.glob("DEC-*.json"))
+    targets.extend((repo_root / "contracts/assumption-registry.schema.json", path) for path in assumptions_dir.glob("ASM-*.json"))
+    targets.extend((repo_root / "contracts/assumption-registry.schema.json", path) for path in assumptions_dir.glob("assumption-registry*.json"))
+    targets.extend((repo_root / "contracts/evidence-ledger.schema.json", path) for path in evidence_dir.glob("EVD-*.json"))
+    targets.extend((repo_root / "contracts/evidence-ledger.schema.json", path) for path in evidence_dir.glob("evidence-ledger*.json"))
+    targets.extend((repo_root / "contracts/experiment-plan.schema.json", path) for path in experiments_dir.glob("EXP-*/experiment-plan*.json"))
+    targets.extend((repo_root / "contracts/experiment-result.schema.json", path) for path in experiments_dir.glob("EXP-*/experiment-result*.json"))
+    targets.extend((repo_root / "contracts/learning-record.schema.json", path) for path in learning_dir.glob("LRN-*.json"))
+    targets.extend((repo_root / "contracts/learning-record.schema.json", path) for path in learning_dir.glob("learning-record*.json"))
+    targets.extend((repo_root / "contracts/gate-result.schema.json", path) for path in gate_results_dir.glob("*.json"))
+    targets.extend((repo_root / "contracts/workflow-run.schema.json", path) for path in workflow_runs_dir.glob("WRUN-*.json"))
+    return targets
+
+
 def _validate_schemas(workspace: Workspace, repo_root: Path, report: ValidationReport) -> None:
     try:
         from jsonschema import Draft202012Validator
@@ -168,6 +199,8 @@ def _validate_schemas(workspace: Workspace, repo_root: Path, report: ValidationR
     ]
     voi_schema = repo_root / "contracts/information-value-assessment.schema.json"
     targets.extend((voi_schema, path) for path in workspace.lifecycle_path("decisions_dir").glob("*information-value-assessment*.json"))
+    if workspace.manifest.get("schema_version") == PROJECT_READY_WORKSPACE_SCHEMA_VERSION:
+        targets.extend(_project_ready_schema_targets(workspace, repo_root))
     for schema_path, data_path in targets:
         if not schema_path.is_file() or not data_path.is_file():
             continue

@@ -41,6 +41,7 @@
     },
     "result_status": {
       "enum": ["planned", "running", "completed", "reviewed", "failed", "inconclusive", "cancelled"]
-    }
+    },
+    "review_status": { "enum": ["draft", "reviewed", "accepted", "rejected"] }
   }
 }
