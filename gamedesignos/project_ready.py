@@ -1443,7 +1443,14 @@ def next_best_action(workspace: Workspace) -> dict[str, Any]:
             "action": "create_decision_object",
             "target": None,
             "reason": "Project-ready work starts from a Decision Object.",
-            "command_hint": "gamedesignos new decision",
+            "command_hint": (
+                "gamedesignos decision new "
+                '--title "First Decision" '
+                '--question "What should we validate next?" '
+                '--option "Build a three-minute prototype" '
+                '--option "Pause and redefine" '
+                '--default-action "Build a three-minute prototype"'
+            ),
         }
     return {
         "action": "continue_current_workflow",

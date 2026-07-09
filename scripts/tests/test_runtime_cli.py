@@ -294,6 +294,13 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertIn("ASM_COMPREHENSION_001", graph)
         self.assertIn("EXP_COMPREHENSION_001", graph)
 
+    def test_20b_next_best_action_uses_decision_new_hint(self) -> None:
+        ws = self.workspace()
+        result = next_best_action(ws)
+        self.assertEqual(result["action"], "create_decision_object")
+        self.assertIn("gamedesignos decision new", result["command_hint"])
+        self.assertNotIn("gamedesignos new decision", result["command_hint"])
+
     def test_21_project_ready_cli_full_cycle(self) -> None:
         target = self.root / "project-ready"
         self.assertEqual(main(["init", "Project Ready", "--destination", str(target), "--owner", "tester"]), EXIT_OK)
