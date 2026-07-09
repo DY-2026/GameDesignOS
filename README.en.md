@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/gamedesignos-v1-hero.svg" alt="GameDesignOS v1.1.0 Project-Ready and RJR-AI authority release hero: 7 skills, 17 contracts, 5 workflows, and 1 local runtime" width="100%">
+  <img src="./assets/gamedesignos-v1-hero.svg" alt="GameDesignOS v1.2.0 Intent Work Order and Workflow Governance release hero: 7 skills, 18 contracts, 5 workflows, and 1 local runtime" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
@@ -12,7 +12,7 @@
 <p align="center">
   GameDesignOS is a local-first operating system for AI-assisted game design.
   It turns AI-agent sessions into structured decisions, assumptions, evidence, experiments, proposals, workflows, and learning records, so teams can validate ideas, diagnose gameplay, and evolve production workflows without losing context or bypassing human judgment.
-  v1.1.0 ships the RJR-AI authority layer on top of 7 specialist skills, 17 contract schemas, 5 end-to-end workflows, v1 project workspaces, and 1 deterministic local runtime.
+  v1.2.0 ships Intent Work Orders and workflow governance on top of 7 specialist skills, 18 contract schemas, 5 end-to-end workflows, v1 project workspaces, and 1 deterministic local runtime.
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@
 
 <p align="center">
   <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
-  <img alt="Version" src="https://img.shields.io/badge/Version-v1.1.0-31e1d6">
+  <img alt="Version" src="https://img.shields.io/badge/Version-v1.2.0-31e1d6">
   <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local%20CLI-8a63d2">
   <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
@@ -53,7 +53,7 @@ You still make the calls. The system supplies specialist workflows, shared hando
 | Category | Count | What It Gives You |
 | --- | ---: | --- |
 | Specialist skills | 7 | Concept architecture, experience analysis, ED optimization, proposal writing, workflow evolution, book translation, and source curation |
-| Contract schemas | 17 | Stable handoffs for decisions, assumptions, evidence, experiments, learning, gates, workflows, issues, player promises, and project assets |
+| Contract schemas | 18 | Stable handoffs for decisions, assumptions, evidence, experiments, learning, gates, workflows, issues, player promises, AI work orders, and project assets |
 | v1 workspace sections | 9 | A durable private project space for Decisions, Assumptions, Evidence, Experiments, Design Assets, Workflows, Learning, Exports, and runtime state |
 | Workflow guides | 5 | Idea-to-validation, media-to-diagnosis, weekly ED experiment, evidence-to-proposal, and decision-to-information paths |
 | Host adapters | 4 | Codex, Claude Code, OpenAI-compatible agents, and local harness integration notes |
@@ -62,7 +62,7 @@ You still make the calls. The system supplies specialist workflows, shared hando
 
 ## Project-Ready Runtime
 
-v1.1.0 keeps the local `gamedesignos` runtime Project-Ready and adds an explicit RJR-AI authority layer: AI expands possibilities, workflows compress chaos, evals provide feedback, permission gates prevent overreach, knowledge bases preserve memory, and humans retain the residual judgment for high-coupling, low-reversibility, under-evidenced choices. The CLI is deterministic and local-first: it creates v1 workspaces, manages Decisions, Assumptions, Evidence, Experiments, Gates, Workflows, and Learning, exports decision graphs, scans project health, and builds review-safe packs without calling a model.
+v1.2.0 keeps the local `gamedesignos` runtime Project-Ready and adds Intent Work Orders plus `workflow-run.governance`: AI work starts from the reality to change, every workflow can preserve intent / VOI / RJR / Human Gate / rollback / candidate-learning refs, and domain skills still own their specialist outputs. The CLI is deterministic and local-first: it creates v1 workspaces, manages Decisions, Assumptions, Evidence, Experiments, Gates, Workflows, and Learning, exports decision graphs, scans project health, and builds review-safe packs without calling a model.
 
 | Layer | Purpose | Entry |
 | --- | --- | --- |
@@ -80,7 +80,7 @@ gamedesignos "I want to make a lighthouse tactics game"
 
 The natural-language entry recommends the right skill. For project-shaped requests, it prepares the workspace, first Decision, first Assumption, three-minute validation Experiment, VOI Gate, and workflow in one pass. Then run the small test and use the printed `gamedesignos evidence add ...` command to record the observation. Existing skill folders remain independently installable; the runtime remains compatible with v0.8/v0.9 workspaces.
 
-Read the [v1.0 baseline plan](./docs/product/v1.0-development-plan.md), [CLI guide](./runtime/cli/README.md), [command reference](./runtime/cli/commands.md), [v1.1 release note](./releases/v1.1.0.md), and [product roadmap](./docs/product/roadmap.md).
+Read the [v1.0 baseline plan](./docs/product/v1.0-development-plan.md), [CLI guide](./runtime/cli/README.md), [command reference](./runtime/cli/commands.md), [v1.2 release note](./releases/v1.2.0.md), and [product roadmap](./docs/product/roadmap.md).
 
 Decision-first research prompt:
 
@@ -92,6 +92,12 @@ RJR-AI upgrade prompt:
 
 ```text
 Use $paranoia-ai-system-evolver to turn this AI workflow into an RJR-AI system: list what AI can search or draft, what workflow must constrain, what evals must test, what permissions block overreach, what knowledge should persist, and which residual judgments must stay with a human.
+```
+
+Intent Work Order prompt:
+
+```text
+Use $paranoia-ai-system-evolver to upgrade this AI work order from an instruction sheet into an Intent Work Order: define the reality to change, project goal, desired outside-world state, verifier, first-glance acceptance, non-sacrifice boundaries, AI freedom, AI no-touch boundary, direction-change principles, delivery failure signals, and retrospective candidate learning.
 ```
 
 ## What This Is
@@ -140,7 +146,7 @@ Use $game-design-proposal-writer to turn this concept brief, validation plan, ev
 ```
 
 ```text
-Use $paranoia-ai-system-evolver to upgrade this workflow with a WOOP Task Card, VOI, OODA, eval checks, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to upgrade this workflow or AI work order into an Intent Work Order with a WOOP Task Card, VOI, OODA, eval checks, Human Gate, rollback, and retrospective candidate learning.
 ```
 
 ```text
@@ -192,7 +198,7 @@ Keep private material outside this public repository. The natural-language entry
 | Screenshot, recording, PV/trailer, or video link | `$game-experience-analyzer` | A game experience report with timestamps, evidence, issue priorities, game dissection, mechanic transfer boundaries, and validation plans |
 | One-line game idea | `$game-concept-architect` | Concept seed, player verbs, action-goal alignment, player promise, core loop, scope gate, and validation plan |
 | Concept, evidence, validation notes, or production constraints | `$game-design-proposal-writer` | Decision-ready commercial proposal, indie design dossier, publisher pitch, one-page memo, or vertical-slice document |
-| Prompt, workflow, schema, or agent rule | `$paranoia-ai-system-evolver` | A WOOP/VOI/OODA/eval/Human Gate/rollback-backed evolution proposal |
+| Prompt, workflow, schema, agent rule, or project process | `$paranoia-ai-system-evolver` | Intent Work Order, workflow governance review, and WOOP/VOI/OODA/eval/Human Gate/rollback-backed evolution proposal |
 | English game design chapter or essay | `$game-design-book-translator` | Professional Chinese design translation with reviewable terminology |
 | Articles, videos, creators, or websites | `$game-design-source-curator` | Maintainable game design knowledge-base entries |
 | Retention, pacing, feedback, embodiment, atmosphere, or cognitive-load problem | `$game-experience-density-optimizer` | ED diagnosis, weekly A/B variants, instrumentation, dashboard fields, and rollback gates |
@@ -210,7 +216,7 @@ Use $game-experience-analyzer to dissect this game into player verbs, action-goa
 ```
 
 ```text
-Use $paranoia-ai-system-evolver to upgrade this prompt/workflow/schema with a WOOP Task Card, VOI, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to upgrade this prompt/workflow/schema/work order into an Intent Work Order with WOOP, VOI, OODA, evals, Human Gate, rollback, and retrospective candidate learning.
 ```
 
 ```text
@@ -299,7 +305,7 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 
 ## System Architecture
 
-`GameDesignOS` v1.1.0 is organized as four product layers plus cross-cutting governance and an RJR-AI authority boundary:
+`GameDesignOS` v1.2.0 is organized as four product layers plus cross-cutting governance, Intent Work Orders, and an RJR-AI authority boundary:
 
 - **Skill Kernel**
   - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.
@@ -325,7 +331,7 @@ Private overlays, real project data, client examples, credentials, and local stu
 | Skill | One-line Use | Best For | Package |
 | --- | --- | --- | --- |
 | **Game Experience Analyzer** | Turns screenshots, gameplay recordings, trailers/PVs, and video links into evidence-first Chinese game design reports. | Early experience, mechanics, game dissection, mechanic transfer, holistic product analysis, MDA, systems-narrative fusion, single-player flow, genre strategy, heat prediction, foresight windows, monetization, UX. | [`game-experience-analyzer/`](./game-experience-analyzer/) |
-| **Paranoia AI System Evolver** | Turns prompt, workflow, memory, schema, tool-routing, eval, and RJR-AI authority changes into controlled system evolution. | WOOP Task Cards, VOI/OODA, residual judgment boundaries, model compression, causal mediators, Human Gate, rollback, validated upgrades. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
+| **Paranoia AI System Evolver** | Turns AI work orders, prompts, workflows, memory, schemas, tool-routing, eval, and RJR-AI authority changes into controlled system evolution. | Intent Work Orders, WOOP Task Cards, VOI/OODA, residual judgment boundaries, model compression, causal mediators, Human Gate, rollback, validated upgrades. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | Produces professional Chinese game design translations that read like serious design writing. | Terminology, chapters, figures, captions, tables, QA, source-boundary checks. | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | Converts scattered game design sources into a durable local knowledge base. | Source screening, scoring, HTML archives, registries, update history, design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player verbs, action-goal alignment, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
@@ -414,6 +420,7 @@ gamedesignos doctor
 - **v0.9.0 — Local Runtime Prototype:** initialize, inspect, route, create, validate, and pack local workspaces.
 - **v1.0.0 — Project-Ready GameDesignOS:** formal release with the Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning chain, decision graph, health scan, Human Gate, and v1 workspace.
 - **v1.1.0 — RJR-AI Authority Layer:** residual judgment boundaries, GitHub positioning, version sync, and workflow-evolution coverage for AI/workflow/eval/permission/memory systems.
+- **v1.2.0 — Intent Work Order & Workflow Governance:** AI work orders, workflow-run governance refs, Paranoia checkpoints, release tag cleanup, and runtime/package version sync.
 - **v1.x — Proof and adoption:** more public cases, adapter hardening, runtime dashboards, and validated real-project playbooks.
 
 See the capability-gated [product roadmap](./docs/product/roadmap.md).

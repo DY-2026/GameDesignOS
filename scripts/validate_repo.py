@@ -31,6 +31,7 @@ REQUIRED_PATHS = [
     "adapters/README.md",
     "contracts/README.md",
     "contracts/router.yaml",
+    "contracts/intent-work-order.schema.json",
     "contracts/ed-handoff.schema.json",
     "contracts/project-workspace.schema.json",
     "contracts/design-asset-index.schema.json",
@@ -77,11 +78,24 @@ REQUIRED_PATHS = [
     "paranoia-ai-system-evolver/references/value-of-information-playbook.md",
     "paranoia-ai-system-evolver/references/value-of-information-playbook.zh-CN.md",
     "paranoia-ai-system-evolver/references/value-of-information-playbook.en.md",
+    "paranoia-ai-system-evolver/references/intent-engineering-work-order.md",
+    "paranoia-ai-system-evolver/references/intent-engineering-work-order.zh-CN.md",
+    "paranoia-ai-system-evolver/references/intent-engineering-work-order.en.md",
+    "paranoia-ai-system-evolver/references/project-workflow-governance.md",
+    "paranoia-ai-system-evolver/references/project-workflow-governance.zh-CN.md",
+    "paranoia-ai-system-evolver/references/project-workflow-governance.en.md",
     "paranoia-ai-system-evolver/templates/voi_decision_gate.md",
     "paranoia-ai-system-evolver/templates/voi_decision_gate.zh-CN.md",
     "paranoia-ai-system-evolver/templates/voi_decision_gate.en.md",
+    "paranoia-ai-system-evolver/templates/intent_work_order.md",
+    "paranoia-ai-system-evolver/templates/intent_work_order.zh-CN.md",
+    "paranoia-ai-system-evolver/templates/intent_work_order.en.md",
+    "paranoia-ai-system-evolver/templates/workflow_governance_review.md",
+    "paranoia-ai-system-evolver/templates/workflow_governance_review.zh-CN.md",
+    "paranoia-ai-system-evolver/templates/workflow_governance_review.en.md",
     "paranoia-ai-system-evolver/evals/voi-decision-gate-cases.md",
     "paranoia-ai-system-evolver/evals/voi-decision-gate-cases.en.md",
+    "releases/v1.2.0.md",
     "releases/v1.1.0.md",
     "releases/v1.0.0.md",
     "releases/v0.8.0.md",
@@ -314,10 +328,73 @@ def _check_paranoia_voi(repo_root: Path, errors: list[str]) -> None:
         "candidate_information_actions",
         "RJR-AI",
         "剩余判断权",
+        "Intent Work Order",
+        "reality_to_change",
+        "workflow-run.governance",
+        "references/project-workflow-governance",
         "references/value-of-information-playbook",
+        "references/intent-engineering-work-order",
     ):
         if marker not in skill:
             errors.append(f"paranoia-ai-system-evolver/SKILL.md: missing VOI marker {marker}")
+
+    intent_ref = skill_root / "references" / "intent-engineering-work-order.zh-CN.md"
+    if intent_ref.exists():
+        text = intent_ref.read_text(encoding="utf-8")
+        for marker in ("我要改变什么现实", "验收者第一眼", "ai_must_not_touch", "retrospective_contract"):
+            if marker not in text:
+                errors.append(f"{intent_ref}: missing intent-work-order marker {marker}")
+
+    intent_template = skill_root / "templates" / "intent_work_order.zh-CN.md"
+    if intent_template.exists():
+        text = intent_template.read_text(encoding="utf-8")
+        for marker in (
+            "reality_to_change",
+            "first_impression_must_understand",
+            "ai_can_freely_change",
+            "ai_must_not_touch",
+            "promotion_status",
+        ):
+            if marker not in text:
+                errors.append(f"{intent_template}: missing intent template field {marker}")
+
+    governance_ref = skill_root / "references" / "project-workflow-governance.zh-CN.md"
+    if governance_ref.exists():
+        text = governance_ref.read_text(encoding="utf-8")
+        for marker in (
+            "workflow-run.governance",
+            "enforcement_mode",
+            "shadow",
+            "warn",
+            "enforce",
+            "intent_work_order_ref",
+            "voi_gate_ref",
+            "rjr_authority_ref",
+            "paranoia_review_ref",
+            "human_gate_refs",
+            "rollback_ref",
+            "candidate_learning_refs",
+        ):
+            if marker not in text:
+                errors.append(f"{governance_ref}: missing workflow-governance marker {marker}")
+
+    governance_template = skill_root / "templates" / "workflow_governance_review.zh-CN.md"
+    if governance_template.exists():
+        text = governance_template.read_text(encoding="utf-8")
+        for marker in (
+            "workflow_governance_review",
+            "enforcement_mode",
+            "intent_work_order_ref",
+            "decision_ref",
+            "voi_gate_ref",
+            "rjr_authority_ref",
+            "paranoia_review_ref",
+            "human_gate_refs",
+            "rollback_ref",
+            "candidate_learning_refs",
+        ):
+            if marker not in text:
+                errors.append(f"{governance_template}: missing workflow governance template field {marker}")
 
     playbook = (skill_root / "references" / "value-of-information-playbook.zh-CN.md")
     if playbook.exists():
@@ -334,6 +411,48 @@ def _check_paranoia_voi(repo_root: Path, errors: list[str]) -> None:
         for marker in ("RJR-AI", "rjr_authority_gate", "residual_judgment"):
             if marker not in case_text:
                 errors.append(f"{cases}: missing RJR behavior marker {marker}")
+        if "workflow-run.governance" not in case_text:
+            errors.append(f"{cases}: missing workflow governance behavior marker workflow-run.governance")
+
+
+def _check_project_workflow_governance(repo_root: Path, errors: list[str]) -> None:
+    schema = repo_root / "contracts" / "workflow-run.schema.json"
+    if schema.exists():
+        text = schema.read_text(encoding="utf-8")
+        for marker in (
+            '"governance"',
+            '"evolver_required"',
+            '"enforcement_mode"',
+            '"intent_work_order_ref"',
+            '"voi_gate_ref"',
+            '"rjr_authority_ref"',
+            '"paranoia_review_ref"',
+            '"human_gate_refs"',
+            '"rollback_ref"',
+            '"candidate_learning_refs"',
+        ):
+            if marker not in text:
+                errors.append(f"{schema}: missing workflow governance schema marker {marker}")
+
+    workflow_readme = repo_root / "docs" / "workflows" / "README.md"
+    if workflow_readme.exists():
+        text = workflow_readme.read_text(encoding="utf-8")
+        for marker in ("Project Governance Checkpoints", "workflow-run.governance", "paranoia-ai-system-evolver"):
+            if marker not in text:
+                errors.append(f"{workflow_readme}: missing workflow governance marker {marker}")
+
+    for rel in (
+        "docs/workflows/decision-to-information.md",
+        "docs/workflows/idea-to-validation.md",
+        "docs/workflows/media-to-diagnosis.md",
+        "docs/workflows/weekly-ed-experiment.md",
+        "docs/workflows/evidence-to-proposal.md",
+    ):
+        path = repo_root / rel
+        if path.exists():
+            text = path.read_text(encoding="utf-8")
+            if "Paranoia Checkpoint" not in text:
+                errors.append(f"{path}: missing Paranoia Checkpoint section")
 
 
 def main() -> int:
@@ -352,6 +471,7 @@ def main() -> int:
         all_errors.extend(validate_skill(skill_dir))
 
     _check_paranoia_voi(repo_root, all_errors)
+    _check_project_workflow_governance(repo_root, all_errors)
     _check_repo_data_files(repo_root, all_errors)
 
     if all_errors:

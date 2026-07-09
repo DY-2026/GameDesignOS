@@ -60,6 +60,18 @@ The selected validation must be the smallest sample that can change the prototyp
 
 Pre-register how supportive, contradictory, and ambiguous signals lead to `prototype`, `revise`, `hold`, or `reject`. Stop when the selected concept remains preferred across plausible signals, the evidence gate is reached, or the prototype deadline arrives.
 
+## Paranoia Checkpoint
+
+Use `$paranoia-ai-system-evolver` as a governance pass when the idea is vague, over-ambitious, or already drifting toward a full GDD.
+
+Required checkpoint output:
+
+- `intent_work_order_ref`: what reality the concept sprint should change, who verifies it, and what cannot be sacrificed;
+- `voi_gate_ref`: the smallest concept or prototype signal that can change the next investment;
+- `rjr_authority_ref`: which scope, budget, platform, or production calls remain human residual judgment;
+- `rollback_ref`: the observable condition for shrinking, revising, or stopping the concept path;
+- `candidate_learning_refs`: reusable rules learned from the concept pass, still marked candidate.
+
 ## Flow
 
 ```text

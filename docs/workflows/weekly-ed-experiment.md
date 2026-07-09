@@ -57,6 +57,18 @@ Compare candidate playtest, telemetry, and A/B designs by:
 
 Choose the smallest design with positive net sample value. Every result range must map to a pre-registered action. Stop when the option ranking is stable, the sample/evidence gate is reached, marginal VOI falls below cost, or the weekly decision deadline arrives.
 
+## Paranoia Checkpoint
+
+Use `$paranoia-ai-system-evolver` as a governance pass before launch and after result review.
+
+Required checkpoint output:
+
+- `intent_work_order_ref`: the real outcome the experiment should change, not just the feature to tweak;
+- `voi_gate_ref`: why this sample has positive EVSI after implementation, delay, attention, and contamination costs;
+- `rjr_authority_ref`: what the experiment can automate versus what remains human residual judgment;
+- `rollback_ref`: the exact rollback or kill trigger attached to each result range;
+- `retrospective_ref`: post-test decision delta, failure signals, and candidate workflow learning.
+
 ## Flow
 
 ```text

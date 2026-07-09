@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gamedesignos"
-version = "1.1.0"
+version = "1.2.0"
 description = "Local-first AI game design OS for decisions, evidence, experiments, workflow authority, and project memory"
 readme = "runtime/cli/README.md"
 requires-python = ">=3.11"

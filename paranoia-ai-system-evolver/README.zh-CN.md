@@ -6,13 +6,14 @@
 
 > Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
-这是 `GameDesignOS` 里的受控系统演化 skill。它负责升级 prompt、memory、RAG、tool routing、workflow、schema、eval 与 skill，同时用 VOI 决策门阻止 FOMO 调研、AI 分支爆炸和高结构低价值输出。
+这是 `GameDesignOS` 里的受控系统演化 skill。它负责把 AI 工作单从指令单升级为意图单，并升级 prompt、memory、RAG、tool routing、workflow、schema、eval 与 skill，同时用 VOI 决策门阻止 FOMO 调研、AI 分支爆炸和高结构低价值输出。
 
 ## 这个 Skill 做什么
 
 它组合了：
 
 - WOOP harness protocol：把任务目标、验收、失败模式和 if-then 恢复协议写进控制面；
+- Intent Work Order：先声明要改变什么现实、谁验收、第一眼必须看懂什么、不能牺牲什么、AI 可自治到哪里；
 - VOI 决策门：先定义决策、选项、默认行动和决策边界，再判断哪些信息值得获取；
 - RJR-AI 剩余判断权授权门：把 AI、Workflow、Eval、automation、human 的权限边界写清楚；
 - 场景 VOI Adapter：按 skill 演化、游戏方向、体验诊断、资料整理、内容决策、平台事实、高风险动作和 AI 分支管理定义有效证据；
@@ -51,6 +52,12 @@ agents/openai.yaml
 references/value-of-information-playbook.md
 references/value-of-information-playbook.zh-CN.md
 references/value-of-information-playbook.en.md
+references/intent-engineering-work-order.md
+references/intent-engineering-work-order.zh-CN.md
+references/intent-engineering-work-order.en.md
+references/project-workflow-governance.md
+references/project-workflow-governance.zh-CN.md
+references/project-workflow-governance.en.md
 references/evolution-loop-playbook.md
 references/evolution-loop-playbook.zh-CN.md
 references/evolution-loop-playbook.en.md
@@ -66,6 +73,12 @@ references/eval-versioning-playbook.en.md
 templates/voi_decision_gate.md
 templates/voi_decision_gate.zh-CN.md
 templates/voi_decision_gate.en.md
+templates/intent_work_order.md
+templates/intent_work_order.zh-CN.md
+templates/intent_work_order.en.md
+templates/workflow_governance_review.md
+templates/workflow_governance_review.zh-CN.md
+templates/workflow_governance_review.en.md
 templates/evolution_proposal.md
 templates/evolution_proposal.zh-CN.md
 templates/evolution_proposal.en.md
@@ -80,12 +93,13 @@ quick_validate.py
 ## 推荐提示词
 
 ```text
-使用 $paranoia-ai-system-evolver，先写出当前决策、选项、默认行动和决策边界，再建立 RJR-AI 授权门：标明 coupling、reversibility、authority_level、delegation_matrix 和 residual_judgment。然后用 VOI/EVPI/EVSI 判断哪些搜索、追问、日志、实验或 AI 分支值得做，并按具体场景定义有效证据、弱证据、最小探针和停止规则。把最终系统改动整理成带 WOOP、OODA、eval、Human Gate 和 rollback 的候选提案。
+使用 $paranoia-ai-system-evolver，先把任务从指令单升级为意图单：写清要改变什么现实、服务哪个更大目标、完成后外部世界变成什么状态、谁验收、第一眼必须看懂什么、哪些不能牺牲、AI 可自由改什么、不能碰什么、原计划失败时按什么原则改方向，以及交付前自查哪些失败信号。再写出当前决策、选项、默认行动和决策边界，建立 RJR-AI 授权门，使用 VOI/EVPI/EVSI 选择最小高价值探针，并把最终系统改动整理成带 WOOP、OODA、eval、Human Gate、rollback 和复盘沉淀的候选提案。
 ```
 
 ## 在 GameDesignOS 里的边界
 
 - 领域 skill 仍负责概念、体验诊断、ED 实验和策划案；本 skill 负责系统改动与显式 VOI 审计。
+- 意图单不是额外流程，而是 WOOP/VOI/RJR-AI 之前的任务入口，用来减少人类微操并防止 AI 越界自治。
 - VOI 不把所有学习都判为无用，而是区分 `decision_information`、`model_learning` 和 `information_consumption`。
 - 高风险概率、损益、资金和生产判断不能只靠高/中/低启发式。
 - 真实项目材料、私有数据和客户信息留在 private workspace。

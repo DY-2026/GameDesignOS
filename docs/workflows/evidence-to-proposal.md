@@ -52,6 +52,19 @@ For each missing upstream artifact, ask whether a plausible result would change 
 
 Prioritize local production constraints, negative test results, unresolved kill conditions, and evidence that could reverse the recommendation. Stop when the proposal is decision-sufficient, not when it is encyclopedic.
 
+## Paranoia Checkpoint
+
+Use `$paranoia-ai-system-evolver` as a governance pass before proposal finalization, especially when the proposal asks for budget, scope, publishing, staffing, or milestone commitment.
+
+Required checkpoint output:
+
+- `intent_work_order_ref`: what outside-world decision or confidence state the proposal must change;
+- `decision_ref`: the explicit decision request and current default action without the proposal;
+- `rjr_authority_ref`: which recommendation remains human residual judgment rather than agent synthesis;
+- `paranoia_review_ref`: missing upstream assets, unsupported claims, and evidence that could reverse the recommendation;
+- `human_gate_refs`: approval, rejection, revise-scope, or request-more-evidence outcomes;
+- `rollback_ref`: milestone, budget, or scope condition that reverses the recommendation.
+
 ## Flow
 
 ```text

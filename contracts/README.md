@@ -19,6 +19,22 @@
 
 ### 2. Decision / Information Contract
 
+[`intent-work-order.schema.json`](./intent-work-order.schema.json) 定义意图优先的 AI 工作单：
+
+```text
+reality to change
+-> parent project goal
+-> desired outside-world state
+-> verifier and first-glance acceptance
+-> non-sacrifice boundaries
+-> AI freedom / no-touch boundary
+-> direction-change principles
+-> loop and stop conditions
+-> retrospective candidate learning
+```
+
+它把“帮我写一版、优化一下、分析一下”升级成可验收、可循环、可回滚的作战意图。
+
 [`information-value-assessment.schema.json`](./information-value-assessment.schema.json) 定义跨工作流 VOI gate：
 
 ```text
@@ -58,7 +74,7 @@ v1.0 新增一等项目记忆对象：
 - Experiment Result；
 - Learning Record；
 - Gate Result；
-- Workflow Run。
+- Workflow Run（包含 `workflow-run.governance`：Intent Work Order、VOI/RJR、Paranoia review、Human Gate、rollback、candidate learning 引用）。
 
 这些对象让真实项目可以回答：
 
@@ -89,12 +105,16 @@ Decision Object
 
 VOI gate 是横切层。它不强迫每个项目走完所有 skill，但会阻止“没有决策对象的信息获取”伪装成项目推进。
 
+`workflow-run.governance` 是第二个横切层。它让 `paranoia-ai-system-evolver` 在每条项目 workflow 中保留治理线索：开工意图、VOI/RJR 授权、过程漂移、交付验收、Human Gate、rollback 和复盘候选规则。默认是 `shadow`，只有经过 eval 与 Human Gate 才能升级到 `warn` 或 `enforce`。
+
 ## 路由边界
 
 | 情况 | 路由 | 稳定输出 |
 | --- | --- | --- |
 | 研究冲动、FOMO、信息过载、不知道该测什么 | VOI audit / `paranoia-ai-system-evolver` | information-value-assessment、决策 brief、stop rule |
 | RJR-AI、剩余判断权、权限系统、判断授权层 | `paranoia-ai-system-evolver` | rjr_authority_gate、delegation_matrix、Human Gate、rollback |
+| AI 工作单、任务单、prompt brief 从指令单升级为意图单 | `paranoia-ai-system-evolver` | intent-work-order、WOOP Task Card、验收标准、自治边界、复盘候选规则 |
+| 项目整体流程、workflow run、产出质量、验收和复盘治理 | `paranoia-ai-system-evolver` | workflow-governance-review、workflow-run.governance、Human Gate、rollback、candidate learning |
 | 一句话创意，没有核心循环或玩家承诺 | `game-concept-architect` | player-promise-contract、validation-plan |
 | 截图、录屏、PV、商店页、原型样本 | `game-experience-analyzer` | evidence-index、issue-card、ed-handoff |
 | 留存、节奏、反馈、具身感、氛围感、认知负荷实验 | `game-experience-density-optimizer` | weekly ED experiment、instrumentation、dashboard、decision rules |
@@ -133,6 +153,7 @@ workspace-aware host 应该：
 
 ### Decision / Information
 
+- [`intent-work-order.schema.json`](./intent-work-order.schema.json)
 - [`information-value-assessment.schema.json`](./information-value-assessment.schema.json)
 
 ### Workspace-Level

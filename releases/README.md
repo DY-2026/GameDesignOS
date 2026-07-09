@@ -97,8 +97,9 @@
 - `v0.7.0`（已补 tag：GameDesignOS by Paranoia 公开品牌、GitHub URL、v7 README 封面和案例入口整理）
 - `v0.8.0`（已补 tag：Runtime Foundation、Project Workspace、workspace contracts、Decision-to-Information 工作流与 VOI Decision Gate）
 - `v0.9.0`（已补 tag：Local Runtime Prototype；`gamedesignos` CLI、workspace 初始化/状态/路由/创建/校验/打包/doctor、VOI 评估与 runtime 单测；GitHub Release 仍需按发布流程创建）
-- `v1.0.0`（本地已准备 release note：Project-Ready GameDesignOS；Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、v1 workspace、健康扫描、决策图与完整 runtime 行为测试；GitHub tag/Release 仍需 maintainer 发布）
-- `v1.1.0`（本地已准备 release note：RJR-AI Authority Layer；剩余判断权边界、GitHub About 定位、README trio、runtime/package 版本与 router/eval/validator 覆盖已同步；GitHub tag/Release 仍需 maintainer 发布）
+- `v1.0.0`（本地 tag 已补：Project-Ready GameDesignOS；Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、v1 workspace、健康扫描、决策图与完整 runtime 行为测试；GitHub Release 仍需 maintainer 发布）
+- `v1.1.0`（本地 tag 已补：RJR-AI Authority Layer；剩余判断权边界、GitHub About 定位、README trio、runtime/package 版本与 router/eval/validator 覆盖已同步；GitHub Release 仍需 maintainer 发布）
+- `v1.2.0`（本地已准备 release note：Intent Work Order & Workflow Governance；AI 工作单、workflow-run.governance、Paranoia Checkpoint、runtime/package 版本与 tag backfill 已同步；Git tag/Release 仍需 release commit 后发布）
 
 ## 非目标约束
 

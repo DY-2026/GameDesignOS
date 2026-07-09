@@ -18,6 +18,12 @@ REQUIRED_FILES = [
     "references/value-of-information-playbook.md",
     "references/value-of-information-playbook.zh-CN.md",
     "references/value-of-information-playbook.en.md",
+    "references/intent-engineering-work-order.md",
+    "references/intent-engineering-work-order.zh-CN.md",
+    "references/intent-engineering-work-order.en.md",
+    "references/project-workflow-governance.md",
+    "references/project-workflow-governance.zh-CN.md",
+    "references/project-workflow-governance.en.md",
     "references/evolution-loop-playbook.md",
     "references/evolution-loop-playbook.zh-CN.md",
     "references/evolution-loop-playbook.en.md",
@@ -33,6 +39,12 @@ REQUIRED_FILES = [
     "templates/voi_decision_gate.md",
     "templates/voi_decision_gate.zh-CN.md",
     "templates/voi_decision_gate.en.md",
+    "templates/intent_work_order.md",
+    "templates/intent_work_order.zh-CN.md",
+    "templates/intent_work_order.en.md",
+    "templates/workflow_governance_review.md",
+    "templates/workflow_governance_review.zh-CN.md",
+    "templates/workflow_governance_review.en.md",
     "templates/evolution_proposal.md",
     "templates/evolution_proposal.zh-CN.md",
     "templates/evolution_proposal.en.md",
@@ -89,7 +101,12 @@ def validate(root: Path) -> list[str]:
     skill = read_text(root / "SKILL.md")
     require("name: paranoia-ai-system-evolver" in skill, "SKILL.md name mismatch", failures)
     require("references/value-of-information-playbook" in skill, "SKILL.md does not route to VOI playbook", failures)
+    require("references/intent-engineering-work-order" in skill, "SKILL.md does not route to intent work order playbook", failures)
+    require("references/project-workflow-governance" in skill, "SKILL.md does not route to workflow governance playbook", failures)
     require("references/model-compression-playbook" in skill, "SKILL.md does not route to model compression playbook", failures)
+    require("Intent Work Order" in skill, "SKILL.md lacks Intent Work Order language", failures)
+    require("workflow-run.governance" in skill, "SKILL.md lacks workflow governance language", failures)
+    require("reality_to_change" in skill, "SKILL.md lacks intent reality-to-change field", failures)
     require("WOOP" in skill, "SKILL.md lacks WOOP language", failures)
     require("EVPI" in skill and "EVSI" in skill, "SKILL.md lacks EVPI/EVSI distinction", failures)
     require("current_default_action" in skill, "SKILL.md lacks current default action gate", failures)
@@ -106,9 +123,57 @@ def validate(root: Path) -> list[str]:
     for rel in ["README.md", "README.zh-CN.md", "README.en.md"]:
         text = read_text(root / rel)
         require("value-of-information-playbook" in text, f"{rel} does not list VOI reference", failures)
+        require("intent-engineering-work-order" in text, f"{rel} does not list intent-work-order reference", failures)
+        require("project-workflow-governance" in text, f"{rel} does not list workflow governance reference", failures)
         require("voi_decision_gate" in text, f"{rel} does not list VOI template", failures)
+        require("intent_work_order" in text, f"{rel} does not list intent-work-order template", failures)
+        require("workflow_governance_review" in text, f"{rel} does not list workflow governance template", failures)
         require("model-compression-playbook" in text, f"{rel} does not list model-compression reference", failures)
         require("woop-harness-protocol" in text, f"{rel} does not list WOOP harness reference", failures)
+
+    for rel in [
+        "templates/intent_work_order.md",
+        "templates/intent_work_order.zh-CN.md",
+        "templates/intent_work_order.en.md",
+    ]:
+        text = read_text(root / rel)
+        for field in [
+            "intent_work_order",
+            "reality_to_change",
+            "parent_project_goal",
+            "desired_world_state",
+            "verifier_role",
+            "first_impression_must_understand",
+            "must_not_sacrifice",
+            "ai_can_freely_change",
+            "ai_must_not_touch",
+            "decision_principles_if_plan_breaks",
+            "failure_signals_to_check_before_delivery",
+            "retrospective_contract",
+            "promotion_status",
+        ]:
+            require(field in text, f"{rel} lacks intent-work-order field: {field}", failures)
+
+    for rel in [
+        "templates/workflow_governance_review.md",
+        "templates/workflow_governance_review.zh-CN.md",
+        "templates/workflow_governance_review.en.md",
+    ]:
+        text = read_text(root / rel)
+        for field in [
+            "workflow_governance_review",
+            "enforcement_mode",
+            "intent_work_order_ref",
+            "decision_ref",
+            "voi_gate_ref",
+            "rjr_authority_ref",
+            "paranoia_review_ref",
+            "human_gate_refs",
+            "rollback_ref",
+            "candidate_learning_refs",
+            "promotion_status",
+        ]:
+            require(field in text, f"{rel} lacks workflow governance field: {field}", failures)
 
     for rel in [
         "templates/voi_decision_gate.md",
@@ -143,6 +208,32 @@ def validate(root: Path) -> list[str]:
     require("场景 VOI Adapter" in voi_zh, "Chinese VOI playbook lacks scenario adapter", failures)
     require("Scenario VOI Adapter" in voi_en, "English VOI playbook lacks scenario adapter", failures)
 
+    intent_zh = read_text(root / "references/intent-engineering-work-order.zh-CN.md")
+    intent_en = read_text(root / "references/intent-engineering-work-order.en.md")
+    for token in ["意图工程", "我要改变什么现实", "验收者第一眼", "ai_must_not_touch", "retrospective_contract"]:
+        require(token in intent_zh, f"Chinese intent playbook lacks {token}", failures)
+    for token in ["intent engineering", "What reality should change", "first glance", "retrospective"]:
+        require(token.lower() in intent_en.lower(), f"English intent playbook lacks {token}", failures)
+
+    governance_zh = read_text(root / "references/project-workflow-governance.zh-CN.md")
+    governance_en = read_text(root / "references/project-workflow-governance.en.md")
+    for token in [
+        "workflow-run.governance",
+        "enforcement_mode",
+        "shadow",
+        "warn",
+        "enforce",
+        "intent_work_order_ref",
+        "voi_gate_ref",
+        "rjr_authority_ref",
+        "paranoia_review_ref",
+        "human_gate_refs",
+        "rollback_ref",
+        "candidate_learning_refs",
+    ]:
+        require(token in governance_zh, f"Chinese workflow governance playbook lacks {token}", failures)
+        require(token in governance_en, f"English workflow governance playbook lacks {token}", failures)
+
     evolution_zh = read_text(root / "references/evolution-loop-playbook.zh-CN.md")
     evolution_en = read_text(root / "references/evolution-loop-playbook.en.md")
     require("Decision Object" in evolution_zh, "Chinese evolution playbook lacks Decision Object", failures)
@@ -162,6 +253,8 @@ def validate(root: Path) -> list[str]:
     require("Scenario VOI mismatch" in eval_en, "English VOI evals lack scenario mismatch case", failures)
     require("RJR-AI" in eval_zh and "剩余判断权" in eval_zh, "Chinese VOI evals lack RJR authority case", failures)
     require("RJR-AI" in eval_en and "residual judgment" in eval_en.lower(), "English VOI evals lack RJR authority case", failures)
+    require("workflow-run.governance" in eval_zh, "Chinese VOI evals lack workflow governance case", failures)
+    require("workflow-run.governance" in eval_en, "English VOI evals lack workflow governance case", failures)
 
     duplicate_keys = re.findall(
         r"^\s{4,}([a-zA-Z_]+):",

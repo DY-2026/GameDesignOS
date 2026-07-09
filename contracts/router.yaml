@@ -59,10 +59,10 @@ default_rules:
       - "If all plausible signals lead to the same action, stop research and proceed with the current default action."
   - id: route_system_change_to_evolver
     when:
-      user_intent: [skill_change, prompt_change, workflow_change, schema_change, eval_change, router_change, memory_or_feedback_loop_change, rjr_ai_absorption, authority_layer_change, delegation_matrix_change]
+      user_intent: [skill_change, prompt_change, workflow_change, schema_change, eval_change, router_change, memory_or_feedback_loop_change, project_process_improvement, workflow_governance, output_quality_improvement, rjr_ai_absorption, authority_layer_change, delegation_matrix_change, intent_engineering, intent_work_order, ai_work_order, instruction_sheet_to_intent, commander_intent]
     use: paranoia-ai-system-evolver
-    reason: "Keep AI-system evolution candidate-gated with a decision object, RJR-AI authority gate, VOI/EVPI/EVSI, OODA, behavior evals, Human Gate, versioning, and rollback."
-    primary_outputs: [evolution_proposal, information-value-assessment, ooda_voi_state]
+    reason: "Keep AI-system evolution and AI work-order upgrades candidate-gated with an Intent Work Order, decision object, RJR-AI authority gate, VOI/EVPI/EVSI, OODA, behavior evals, Human Gate, versioning, and rollback."
+    primary_outputs: [intent-work-order, workflow_governance_review, evolution_proposal, information-value-assessment, ooda_voi_state]
   - id: route_translation_to_book_translator
     when:
       user_intent: [translate_game_design_book, polish_translation, terminology_table, pdf_or_ocr_translation]
@@ -99,8 +99,10 @@ collaboration_rules:
         stable_outputs: [weekly_ed_experiment_plan, instrumentation_dictionary, dashboard_spec, decision_rules]
   - id: proposal_after_artifacts
     rule: "Use game-design-proposal-writer only after concept, evidence, ED, source, or production artifacts already exist; it assembles decisions rather than replacing upstream diagnosis or experiment design."
+  - id: evolver_as_project_governance_layer
+    rule: "Every end-to-end workflow should expose paranoia-ai-system-evolver checkpoints at intake intent, VOI/RJR boundary, midstream drift, final Human Gate, rollback, and retrospective candidate learning; keep the checkpoints in shadow or warn mode until eval evidence justifies enforcement."
   - id: evolver_scope
-    rule: "Use paranoia-ai-system-evolver for controlled system mutations, RJR-AI authority gates, or explicit VOI decision audits; do not use it to replace concept architecture, media diagnosis, ED experiments, or proposal assembly."
+    rule: "Use paranoia-ai-system-evolver for controlled system mutations, workflow governance reviews, RJR-AI authority gates, or explicit VOI decision audits; do not use it to replace concept architecture, media diagnosis, ED experiments, or proposal assembly."
   - id: source_curator_as_knowledge_input
     rule: "Use game-design-source-curator to create traceable knowledge assets; it may enrich references but should not replace concept architecture, evidence diagnosis, ED experiments, or proposal assembly."
   - id: translator_as_knowledge_production

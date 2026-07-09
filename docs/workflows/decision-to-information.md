@@ -42,6 +42,19 @@ Read accepted decisions and existing evidence before asking the user to restate 
 
 The selected probe may create downstream assets in the domain directory, such as an evidence index, validation plan, experiment plan, or retrospective.
 
+## Paranoia Checkpoint
+
+This workflow is owned by `$paranoia-ai-system-evolver`. It should also leave a workflow governance trail so other workflows can consume the decision instead of rerunning broad research.
+
+Required checkpoint output:
+
+- `intent_work_order_ref`: the reality change or decision state that information work should serve;
+- `decision_ref`: Decision Object and `current_default_action`;
+- `voi_gate_ref`: selected probe, rejected information actions, and stop rule;
+- `rjr_authority_ref`: coupling, reversibility, authority level, delegation matrix, and residual judgment;
+- `paranoia_review_ref`: information-consumption, FOMO, AI fatigue, or branch-explosion findings;
+- `candidate_learning_refs`: any reusable rule remains candidate until eval and Human Gate promotion.
+
 ## Flow
 
 ```text

@@ -4,6 +4,27 @@ All notable changes to GameDesignOS will be recorded here.
 
 ## [Unreleased]
 
+## [v1.2.0] - 2026-07-09
+
+### Added
+
+- Added Intent Work Order support across `paranoia-ai-system-evolver`, including schema, templates, playbook guidance, routing, README prompts, behavior evals, and validation checks.
+- Added `workflow-run.governance` so workflow runs can preserve intent, Decision/VOI, RJR authority, Paranoia review, Human Gate, rollback, candidate learning, and retrospective references.
+- Added Project Workflow Governance guidance and `workflow_governance_review` templates so `paranoia-ai-system-evolver` participates as a cross-workflow governance layer without replacing domain skills.
+- Added Paranoia Checkpoints to all documented end-to-end workflows.
+
+### Changed
+
+- Changed the runtime package version to `1.2.0` while keeping the Project-Ready workspace schema at `1.0.0`.
+- Updated README trio, runtime docs, package metadata, v1 workspace manifest, project-workspace contract, router rules, runtime workflow creation, tests, and validators for v1.2.
+- Updated release status to account for missing historical local tags and the v1.2 release note.
+
+### Safety
+
+- Kept workflow governance defaulted to `shadow` so it records drift and boundary findings without blocking low-risk domain work.
+- Kept `paranoia-ai-system-evolver` as a governance layer rather than a mega-agent that owns concept, diagnosis, ED experiment, or proposal outputs.
+- Kept `v1.2.0` Git tag pending until the release commit exists; only historical tags can be backfilled to their existing release commits.
+
 ## [v1.1.0] - 2026-07-02
 
 ### Added
@@ -210,7 +231,8 @@ All notable changes to GameDesignOS will be recorded here.
 - Released the public base version of `game-experience-analyzer`.
 - Added initial release notes, installation guidance, and validation examples.
 
-[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/DY-2026/GameDesignOS/compare/v1.2.0...HEAD
+[v1.2.0]: ./releases/v1.2.0.md
 [v1.1.0]: ./releases/v1.1.0.md
 [v1.0.0]: ./releases/v1.0.0.md
 [v0.9.0]: ./releases/v0.9.0.md

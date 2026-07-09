@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DY-2026/GameDesignOS/main/contracts/intent-work-order.schema.json",
+  "title": "GameDesignOS Intent Work Order",
+  "description": "Intent-first task contract for upgrading AI work from action instructions to bounded autonomous loops with acceptance and retrospective.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "work_order_id",
+    "title",
+    "status",
+    "intent",
+    "acceptance",
+    "boundaries",
+    "autonomy",
+    "context_supply",
+    "loop_contract",
+    "retrospective_contract"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.2.0"
+    },
+    "work_order_id": {
+      "type": "string",
+      "pattern": "^IWO-[A-Z0-9-]{3,}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": ["draft", "active", "completed", "blocked", "candidate_learning"]
+    },
+    "intent": {
+      "$ref": "#/$defs/intent"
+    },
+    "acceptance": {
+      "$ref": "#/$defs/acceptance"
+    },
+    "boundaries": {
+      "$ref": "#/$defs/boundaries"
+    },
+    "autonomy": {
+      "$ref": "#/$defs/autonomy"
+    },
+    "context_supply": {
+      "$ref": "#/$defs/context_supply"
+    },
+    "loop_contract": {
+      "$ref": "#/$defs/loop_contract"
+    },
+    "woop_mapping": {
+      "$ref": "#/$defs/woop_mapping"
+    },
+    "retrospective_contract": {
+      "$ref": "#/$defs/retrospective_contract"
+    }
+  },
+  "$defs": {
+    "intent": {
+      "type": "object",
+      "required": ["reality_to_change", "parent_project_goal", "desired_world_state"],
+      "additionalProperties": false,
+      "properties": {
+        "reality_to_change": { "type": "string", "minLength": 1 },
+        "parent_project_goal": { "type": "string", "minLength": 1 },
+        "desired_world_state": { "type": "string", "minLength": 1 }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "verifier_role",
+        "first_impression_must_understand",
+        "acceptance_criteria",
+        "failure_signals_to_check_before_delivery"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "verifier_role": { "type": "string", "minLength": 1 },
+        "first_impression_must_understand": { "type": "string", "minLength": 1 },
+        "acceptance_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "failure_signals_to_check_before_delivery": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "boundaries": {
+      "type": "object",
+      "required": [
+        "must_not_sacrifice",
+        "ai_can_freely_change",
+        "ai_must_not_touch",
+        "cost_boundaries"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "must_not_sacrifice": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "ai_can_freely_change": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "ai_must_not_touch": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "cost_boundaries": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "autonomy": {
+      "type": "object",
+      "required": [
+        "authority_level",
+        "decision_principles_if_plan_breaks",
+        "human_gate_triggers",
+        "rollback_expectation"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "authority_level": {
+          "enum": [
+            "P0_read",
+            "P1_suggest",
+            "P2_draft",
+            "P3_reversible_execute",
+            "P4_approved_execute"
+          ]
+        },
+        "decision_principles_if_plan_breaks": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "human_gate_triggers": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "rollback_expectation": { "type": "string", "minLength": 1 }
+      }
+    },
+    "context_supply": {
+      "type": "object",
+      "required": [
+        "known_context",
+        "required_sources",
+        "assumptions_to_mark",
+        "evidence_boundaries"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "known_context": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "required_sources": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "assumptions_to_mark": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "evidence_boundaries": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "loop_contract": {
+      "type": "object",
+      "required": ["allowed_tools_or_actions", "loop_steps", "stop_conditions"],
+      "additionalProperties": false,
+      "properties": {
+        "allowed_tools_or_actions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "loop_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": ["observe", "orient", "decide", "act", "evaluate"]
+          }
+        },
+        "stop_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "woop_mapping": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "retrospective_contract": {
+      "type": "object",
+      "required": [
+        "original_intent",
+        "completion_state",
+        "verified_judgments",
+        "uncertain_items",
+        "next_change",
+        "reusable_rules",
+        "prompts_acceptance_or_failure_signals_to_promote",
+        "promotion_status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "original_intent": { "type": "string" },
+        "completion_state": { "type": "string" },
+        "verified_judgments": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "uncertain_items": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "next_change": { "type": "string" },
+        "reusable_rules": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "prompts_acceptance_or_failure_signals_to_promote": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "promotion_status": {
+          "enum": ["candidate", "validated", "rejected"]
+        }
+      }
+    }
+  }
+}

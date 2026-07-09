@@ -650,6 +650,39 @@ def _workflow_path(workspace: Workspace, run_id: str) -> Path:
     return _workflow_dir(workspace) / f"{run_id}.json"
 
 
+def _workflow_governance(workspace: Workspace, workflow_id: str) -> dict[str, Any]:
+    state = load_project_ready_state(workspace)
+    decision_ref = sorted(state["decisions"])[0] if state["decisions"] else None
+    gate_refs: list[str] = []
+    human_gate_refs: list[str] = []
+    rollback_ref = None
+    if decision_ref:
+        decision = state["decisions"][decision_ref]
+        gate_refs = [str(ref) for ref in decision.get("gate_refs", [])]
+        if decision.get("status") in {"accepted", "rejected", "reversed", "superseded"}:
+            human_gate_refs.append(decision_ref)
+        if decision.get("rollback_trigger"):
+            rollback_ref = decision_ref
+    return {
+        "evolver_required": True,
+        "enforcement_mode": "shadow",
+        "status": "pending",
+        "intent_work_order_ref": None,
+        "decision_ref": decision_ref,
+        "voi_gate_ref": gate_refs[0] if gate_refs else None,
+        "rjr_authority_ref": None,
+        "paranoia_review_ref": None,
+        "human_gate_refs": human_gate_refs,
+        "rollback_ref": rollback_ref,
+        "candidate_learning_refs": [],
+        "retrospective_ref": None,
+        "notes": (
+            "paranoia-ai-system-evolver checkpoint: intent, VOI/RJR, drift, "
+            f"Human Gate, rollback, and candidate learning for {workflow_id}."
+        ),
+    }
+
+
 def start_workflow(workspace: Workspace, workflow_id: str) -> dict[str, Any]:
     if workflow_id not in WORKFLOWS:
         raise UsageError(f"Unknown workflow: {workflow_id}")
@@ -674,6 +707,7 @@ def start_workflow(workspace: Workspace, workflow_id: str) -> dict[str, Any]:
         "run_id": run_id,
         "status": "running",
         "current_node": nodes[0]["id"],
+        "governance": _workflow_governance(workspace, workflow_id),
         "nodes": nodes,
         "edges": workflow["edges"],
     }
@@ -774,6 +808,16 @@ def workflow_next(workspace: Workspace, run_id: str) -> dict[str, Any]:
 def validate_workflow_run(workspace: Workspace, run_id: str) -> dict[str, Any]:
     data = workflow_status(workspace, run_id)
     errors: list[str] = []
+    governance = data.get("governance")
+    if not isinstance(governance, dict):
+        errors.append("workflow_run.governance is required")
+    else:
+        if governance.get("evolver_required") is not True:
+            errors.append("workflow_run.governance.evolver_required must be true")
+        if governance.get("enforcement_mode") not in {"shadow", "warn", "enforce"}:
+            errors.append("workflow_run.governance.enforcement_mode is invalid")
+        if governance.get("status") not in {"not_started", "pending", "ready", "passed", "blocked", "skipped"}:
+            errors.append("workflow_run.governance.status is invalid")
     node_ids = {node.get("id") for node in data.get("nodes", []) if isinstance(node, dict)}
     for edge in data.get("edges", []):
         if edge.get("from") not in node_ids or edge.get("to") not in node_ids:

@@ -8,6 +8,20 @@ These workflow guides describe how existing skills write durable assets into a G
 
 - [Decision to Information](./decision-to-information.md): define the decision, current default action, boundary, information actions, EVSI probe, and stop rule before research expands.
 
+## Project Governance Checkpoints
+
+`$paranoia-ai-system-evolver` is a cross-cutting governance layer for every workflow, not a replacement for the domain skill that owns the work.
+
+Each workflow should expose these checkpoints in `workflow-run.governance`:
+
+1. intake intent: convert vague instructions into an Intent Work Order when the task is open-ended;
+2. VOI/RJR boundary: name the Decision Object, `current_default_action`, authority level, residual judgment, and Human Gate trigger;
+3. midstream drift: check branch explosion, scope creep, low-VOI research, missing evidence, and over-structured output;
+4. delivery gate: verify first-glance acceptance, non-sacrifice constraints, rollback, and unsupported claims;
+5. retrospective learning: persist only candidate rules until eval evidence and Human Gate justify promotion.
+
+Default enforcement is `shadow`. Move to `warn` or `enforce` only after representative evals show that the checkpoint improves output without hiding useful domain work.
+
 ## Core Production Routes
 
 - [Idea to Validation](./idea-to-validation.md)
@@ -31,6 +45,7 @@ Every workflow must:
 10. distinguish observations, interpretations, assumptions, model learning, consumption, and decisions;
 11. preserve local negative evidence instead of washing it into generic prose;
 12. end with a next action, Human Gate, or explicit research stop condition;
-13. avoid publishing private project material back to the public repository.
+13. write workflow governance refs for intent, VOI/RJR, Human Gate, rollback, and candidate learning;
+14. avoid publishing private project material back to the public repository.
 
 The full method lives in [`paranoia-ai-system-evolver/references/value-of-information-playbook.zh-CN.md`](../../paranoia-ai-system-evolver/references/value-of-information-playbook.zh-CN.md).

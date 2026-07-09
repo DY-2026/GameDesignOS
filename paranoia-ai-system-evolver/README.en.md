@@ -6,10 +6,11 @@
 
 > Copyright (c) 2026 Paranoia. Licensed under the MIT License.
 
-This installable GameDesignOS skill upgrades prompts, memory, RAG, tool routing, workflows, schemas, evals, and skills while using a VOI decision gate to prevent FOMO research, AI branch explosion, and high-structure/low-value output.
+This installable GameDesignOS skill upgrades AI work orders from action instructions to intent work orders. It also upgrades prompts, memory, RAG, tool routing, workflows, schemas, evals, and skills while using a VOI decision gate to prevent FOMO research, AI branch explosion, and high-structure/low-value output.
 
 ## What It Combines
 
+- an Intent Work Order for the reality to change, verifier, first-glance acceptance, non-sacrifice boundaries, and AI autonomy boundary;
 - WOOP harness protocol for intent, acceptance, Failure Patterns, and if-then recovery;
 - a VOI decision gate that declares the decision, options, default action, and boundary before acquiring information;
 - an RJR-AI residual judgment authority gate that makes AI, Workflow, Eval, automation, and human authority explicit;
@@ -49,6 +50,12 @@ agents/openai.yaml
 references/value-of-information-playbook.md
 references/value-of-information-playbook.zh-CN.md
 references/value-of-information-playbook.en.md
+references/intent-engineering-work-order.md
+references/intent-engineering-work-order.zh-CN.md
+references/intent-engineering-work-order.en.md
+references/project-workflow-governance.md
+references/project-workflow-governance.zh-CN.md
+references/project-workflow-governance.en.md
 references/evolution-loop-playbook.md
 references/evolution-loop-playbook.zh-CN.md
 references/evolution-loop-playbook.en.md
@@ -64,6 +71,12 @@ references/eval-versioning-playbook.en.md
 templates/voi_decision_gate.md
 templates/voi_decision_gate.zh-CN.md
 templates/voi_decision_gate.en.md
+templates/intent_work_order.md
+templates/intent_work_order.zh-CN.md
+templates/intent_work_order.en.md
+templates/workflow_governance_review.md
+templates/workflow_governance_review.zh-CN.md
+templates/workflow_governance_review.en.md
 templates/evolution_proposal.md
 templates/evolution_proposal.zh-CN.md
 templates/evolution_proposal.en.md
@@ -78,12 +91,13 @@ quick_validate.py
 ## Suggested Prompt
 
 ```text
-Use $paranoia-ai-system-evolver to declare the decision, options, current default action, and decision boundary first. Then establish the RJR-AI authority gate: coupling, reversibility, authority_level, delegation_matrix, and residual_judgment. Apply VOI/EVPI/EVSI to choose which searches, questions, logs, experiments, or AI branches are worth running, define valid evidence, weak evidence, the smallest probe, and the domain stop rule for the concrete scenario, then package the system change as a candidate with WOOP, OODA, evals, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to upgrade this task from an instruction sheet into an Intent Work Order: define the reality to change, larger project goal, desired outside-world state, verifier, first-glance acceptance, non-sacrifice boundaries, what AI may freely change, what AI must not touch, principles for changing direction if the plan fails, and failure signals to check before delivery. Then declare the decision, options, current default action, and decision boundary; establish the RJR-AI authority gate; apply VOI/EVPI/EVSI; and package the system change as a candidate with WOOP, OODA, evals, Human Gate, rollback, and retrospective learning.
 ```
 
 ## Boundary
 
 - Domain skills still own concept, diagnosis, ED experiments, and proposal work; this skill owns system mutation and explicit VOI audits.
+- The Intent Work Order is not a parallel process; it is the task entry before WOOP/VOI/RJR-AI, designed to reduce human micromanagement without granting unbounded AI autonomy.
 - VOI distinguishes `decision_information`, `model_learning`, and `information_consumption` rather than declaring all non-immediate learning useless.
 - Qualitative scores are triage aids, not substitutes for quantified high-stakes decision models.
 - Real project data remains in private workspaces.

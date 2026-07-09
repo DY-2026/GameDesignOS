@@ -59,6 +59,18 @@ For each requested evidence pass, state:
 
 When additional timestamps, screenshots, or sources will not change issue priority or the next action, stop the evidence pass. Preserve surprising and negative local evidence even when it conflicts with the current product narrative.
 
+## Paranoia Checkpoint
+
+Use `$paranoia-ai-system-evolver` as a governance pass when the diagnosis may over-claim beyond the sample, wash out negative evidence, or trigger unnecessary downstream work.
+
+Required checkpoint output:
+
+- `decision_ref`: what product or design decision the media evidence should change;
+- `voi_gate_ref`: which extra capture, timestamp, or comparison would actually change priority;
+- `paranoia_review_ref`: unsupported claims, weak evidence, and over-confident interpretations to block;
+- `human_gate_refs`: any promise, public claim, scope change, or production commitment that needs owner review;
+- `candidate_learning_refs`: reusable diagnosis rules that remain candidate until repeated across samples.
+
 ## Flow
 
 ```text

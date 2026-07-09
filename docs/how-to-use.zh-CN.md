@@ -88,10 +88,10 @@ Use $game-design-proposal-writer to assemble this concept brief, evidence notes,
 
 ### Paranoia AI System Evolver
 
-用于：prompt、workflow、schema、eval、router、memory、skill、automation、agent 规则升级。
+用于：prompt、workflow、schema、eval、router、memory、skill、automation、agent 规则升级，也用于把 AI 工作单从指令单升级成意图单，并把项目整体流程、产出质量、验收、rollback 和复盘沉淀纳入 workflow governance review。
 
 ```text
-Use $paranoia-ai-system-evolver to upgrade this workflow with WOOP, VOI, OODA, eval checks, Human Gate, and rollback.
+Use $paranoia-ai-system-evolver to upgrade this workflow or AI work order into an Intent Work Order with WOOP, VOI, OODA, eval checks, Human Gate, rollback, and retrospective candidate learning.
 ```
 
 ### Game Design Book Translator
