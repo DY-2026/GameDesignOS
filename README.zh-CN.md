@@ -53,7 +53,7 @@ GameDesignOS 补的是中间那层操作系统：把 agent 输出转成有来源
 | 类别 | 数量 | 它给你什么 |
 | --- | ---: | --- |
 | 专家 skill | 7 | 概念架构、体验分析、ED 优化、策划案写作、工作流演化、书籍翻译和资料策展 |
-| Contract schema | 17 | 决策、假设、证据、实验、学习记录、质量门、工作流、issue、玩家承诺和项目资产的稳定交接格式 |
+| Contract schema | 18 | 决策、假设、证据、实验、学习记录、质量门、工作流、issue、玩家承诺和项目资产的稳定交接格式 |
 | v1 workspace 分区 | 9 | 用于保存 Decision、Assumption、Evidence、Experiment、Design Asset、Workflow、Learning、Export 和 runtime 状态的长期私有项目空间 |
 | 端到端工作流 | 5 | idea-to-validation、media-to-diagnosis、weekly ED experiment、evidence-to-proposal、decision-to-information |
 | 宿主 adapter | 4 | Codex、Claude Code、OpenAI-compatible agent 和本地 harness 接入说明 |

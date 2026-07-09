@@ -57,7 +57,7 @@ VALID_ASSET_TYPES = {"inbox", "concept", "validation", "evidence", "analysis", "
 VALID_ASSET_TYPES = VALID_ASSET_TYPES | {"assumption", "learning", "gate-result", "workflow-run"}
 VALID_ASSET_FORMATS = {"markdown", "json", "yaml", "csv", "image", "video", "audio", "binary", "external-link"}
 VALID_CREATED_BY = {"human", "agent", "human-agent", "import"}
-VALID_DECISION_TYPES = {"concept_gate", "scope_gate", "validation", "experiment", "milestone", "proposal", "release", "workflow", "information"}
+VALID_DECISION_TYPES = {"prototype_direction", "concept_gate", "scope_gate", "validation", "experiment", "milestone", "proposal", "release", "workflow", "information"}
 VALID_DECISION_STATUSES = {"proposed", "accepted", "rejected", "reversed", "superseded"}
 VALID_REVIEW_STATUSES = {"draft", "needs_review", "reviewed", "accepted", "rejected", "superseded"}
 
