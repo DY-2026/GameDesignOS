@@ -11,7 +11,7 @@
     "version": { "type": "string" },
     "run_id": { "type": "string", "minLength": 1 },
     "status": { "enum": ["planned", "running", "blocked", "completed", "cancelled"] },
-    "current_node": { "type": "string" },
+    "current_node": { "type": ["string", "null"] },
     "governance": {
       "type": "object",
       "required": ["evolver_required", "enforcement_mode", "status"],
