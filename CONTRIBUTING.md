@@ -94,7 +94,7 @@ Before submitting, verify:
 - All private identifiers, paths, budgets, dates, strategy details, and roadmap details are removed.
 - A reader cannot infer a real project, client, team, launch plan, or private workflow.
 - Examples and evals test reusable behavior, not private facts.
-- Behavior assertions are runnable where possible with `scripts/run_behavior_evals.py` against captured outputs, and script tests pass with `python -m unittest discover -s scripts/tests`.
+- Behavior assertions are runnable where possible with `scripts/run_behavior_evals.py` against captured outputs. CI runs every packaged `evals.json` / `synthetic_outputs.json` pair via `python scripts/run_behavior_evals.py --all-packaged`, and script tests pass with `python -m unittest discover -s scripts/tests`.
 - Any private overlay, client work, unreleased project, or author-specific context stays outside this repository.
 
 If the answer is unclear, do not submit the material.

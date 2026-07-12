@@ -62,14 +62,6 @@ KNOWN_COMMANDS = {
     "voi",
     "pack",
 }
-PROJECT_READY_START_SKILLS = {
-    None,
-    "game-concept-architect",
-    "game-design-proposal-writer",
-    "game-experience-density-optimizer",
-}
-
-
 def _path(value: str | None) -> Path | None:
     return Path(value).expanduser() if value else None
 
@@ -359,9 +351,15 @@ def _run(args: argparse.Namespace) -> int:
         route = route_task(sentence, workspace=workspace)
         selected = route.get("selected_skill")
         start_result = None
-        should_start = bool(args.destination or args.workspace or selected in PROJECT_READY_START_SKILLS)
+        # Routing confidence describes match quality, not authorization to write.
+        # `ask` creates or resumes a workspace only when the user supplies a path.
+        should_start = bool(args.destination or args.workspace)
         if should_start:
-            destination = _path(args.destination) or (workspace.root if workspace else None)
+            destination = (
+                _path(args.destination)
+                or (workspace.root if workspace else None)
+                or _path(args.workspace)
+            )
             start_result = start_project(
                 project_name=_title_from_sentence(sentence),
                 destination=destination,
@@ -808,6 +806,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     except GameDesignOSError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return exc.exit_code
+    except OSError as exc:
+        print(f"error: filesystem operation failed: {exc}", file=sys.stderr)
+        return EXIT_VALIDATION
     except KeyboardInterrupt:
         print("error: interrupted", file=sys.stderr)
         return 130

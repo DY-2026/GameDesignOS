@@ -4,6 +4,26 @@ All notable changes to GameDesignOS will be recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- Added a text-free GitHub hero visual that shows fragmented AI game-design inputs resolving into evidence, experiments, decisions, and durable project memory.
+- Added a dated GitHub README benchmark covering Browser Use, OpenHands, MetaGPT, AutoGen, CrewAI, and LangGraph with explicit transfer and non-transfer boundaries.
+
+### Fixed
+
+- Aligned v1 Assumption, Evidence, Experiment, and Workflow runtime records with their canonical schemas and added a full-cycle schema regression.
+- Corrected the no-Decision next-action hint to use `gamedesignos decision new ...`.
+- Made `gamedesignos ask` route-only unless the user supplies `--destination` / `--workspace`; routing confidence no longer acts as authorization to create files, and explicit long-lived setup remains available through `start`.
+- Converted filesystem failures at the CLI boundary into concise validation errors instead of exposing raw tracebacks.
+- Added negative routing regressions for project-review and high-confidence project requests without an explicit destination.
+
+### Changed
+
+- Added the two packaged static behavior-eval fixture suites to CI.
+- Added trustworthiness regressions for README schema counts and runtime/schema decision-type parity.
+- Refreshed product architecture, roadmap, usage, and v1.2 release-status documentation to match the current tagged runtime.
+- Reworked the README first screen around one outcome promise, four primary links, a visible decision flow, and a 30-second Quick Start; refreshed GitHub About copy and topics to match.
+
 ## [v1.2.0] - 2026-07-09
 
 ### Added
@@ -23,7 +43,7 @@ All notable changes to GameDesignOS will be recorded here.
 
 - Kept workflow governance defaulted to `shadow` so it records drift and boundary findings without blocking low-risk domain work.
 - Kept `paranoia-ai-system-evolver` as a governance layer rather than a mega-agent that owns concept, diagnosis, ED experiment, or proposal outputs.
-- Kept `v1.2.0` Git tag pending until the release commit exists; only historical tags can be backfilled to their existing release commits.
+- Tagged the reviewed v1.2 release commit; later schema-hardening and CLI fixes remain under `Unreleased` until the next release.
 
 ## [v1.1.0] - 2026-07-02
 

@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import io
 import json
 import tempfile
 import unittest
 import zipfile
+from contextlib import redirect_stderr
 from pathlib import Path
+from unittest.mock import patch
 
 from gamedesignos.cli import main
 from gamedesignos.errors import EXIT_OK, UsageError
@@ -533,6 +536,34 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertTrue((target / "game.designos.yaml").is_file())
         self.assertEqual(len(list((target / "01-decisions").glob("DEC-*.json"))), 1)
         self.assertTrue(Workspace.open(target).validate().ok)
+
+    def test_24_ambiguous_review_request_does_not_start_workspace(self) -> None:
+        with patch("gamedesignos.cli.start_project") as mocked_start:
+            self.assertEqual(main(["整体审查项目，给我一些改进建议"]), EXIT_OK)
+        mocked_start.assert_not_called()
+
+    def test_25_project_route_does_not_start_without_destination(self) -> None:
+        with patch("gamedesignos.cli.start_project") as mocked_start:
+            self.assertEqual(main(["我想做一款修灯塔策略游戏"]), EXIT_OK)
+        mocked_start.assert_not_called()
+
+    def test_26_filesystem_error_is_reported_without_traceback(self) -> None:
+        stderr = io.StringIO()
+        with patch(
+            "gamedesignos.cli.start_project",
+            side_effect=PermissionError("denied"),
+        ), redirect_stderr(stderr):
+            result = main(
+                [
+                    "我想做一款修灯塔策略游戏",
+                    "--destination",
+                    str(self.root / "blocked"),
+                ]
+            )
+
+        self.assertNotEqual(result, EXIT_OK)
+        self.assertIn("filesystem operation failed", stderr.getvalue())
+        self.assertNotIn("Traceback", stderr.getvalue())
 
 
 if __name__ == "__main__":

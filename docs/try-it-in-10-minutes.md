@@ -20,7 +20,7 @@ python -m pip install -e .
 gamedesignos "I want to make a lighthouse tactics game"
 ```
 
-The natural-language entry recommends the right skill. For project-shaped requests, it prepares the first Decision, Assumption, three-minute validation Experiment, VOI Gate, and workflow. Run the small test, then record the observation with the command printed by the CLI.
+The natural-language entry recommends the right skill without writing by default. Supply `--destination` / `--workspace`, or use `start`, to prepare the first Decision, Assumption, three-minute validation Experiment, VOI Gate, and workflow.
 
 For a one-off task, you may skip the workspace and call a skill directly.
 

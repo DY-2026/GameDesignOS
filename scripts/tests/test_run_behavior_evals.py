@@ -103,6 +103,27 @@ class BehaviorEvalRunnerTest(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("missing_section: missing required section: evidence_index", result.stdout)
 
+    def test_runs_all_packaged_fixture_pairs(self) -> None:
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(SCRIPT),
+                "--all-packaged",
+                "--repo-root",
+                str(REPO_ROOT),
+            ],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertRegex(
+            result.stdout,
+            r"OK: [1-9]\d* packaged suites, [1-9]\d* behavior evals",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

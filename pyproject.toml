@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "gamedesignos"
 version = "1.2.0"
-description = "Local-first AI game design OS for decisions, evidence, experiments, workflow authority, and project memory"
+description = "Local-first game design OS for AI agents, evidence, experiments, human-gated decisions, and durable project memory"
 readme = "runtime/cli/README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

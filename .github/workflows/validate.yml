@@ -25,6 +25,9 @@ jobs:
       - name: Run script and runtime tests
         run: python -m unittest discover -s scripts/tests
 
+      - name: Run packaged behavior eval fixtures
+        run: python scripts/run_behavior_evals.py --all-packaged
+
       - name: Run CLI smoke checks
         run: |
           gamedesignos --version

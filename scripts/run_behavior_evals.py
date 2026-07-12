@@ -108,11 +108,62 @@ def evaluate(evals_payload: Any, outputs_payload: Any) -> list[str]:
     return errors
 
 
+def packaged_fixture_pairs(repo_root: Path) -> list[tuple[Path, Path]]:
+    """Discover skill eval definitions that ship with captured output fixtures."""
+
+    pairs: list[tuple[Path, Path]] = []
+    for evals_path in sorted(repo_root.glob("*/evals/evals.json")):
+        outputs_path = evals_path.with_name("synthetic_outputs.json")
+        if outputs_path.is_file():
+            pairs.append((evals_path, outputs_path))
+    return pairs
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run static GameDesignOS behavior eval assertions.")
-    parser.add_argument("--evals", required=True, help="Path to evals JSON.")
-    parser.add_argument("--outputs", required=True, help="Path to captured outputs JSON.")
+    parser.add_argument("--evals", help="Path to evals JSON.")
+    parser.add_argument("--outputs", help="Path to captured outputs JSON.")
+    parser.add_argument(
+        "--all-packaged",
+        action="store_true",
+        help="Run every */evals/evals.json that has a sibling synthetic_outputs.json.",
+    )
+    parser.add_argument(
+        "--repo-root",
+        type=Path,
+        default=Path(__file__).resolve().parents[1],
+        help="Repository root used by --all-packaged.",
+    )
     args = parser.parse_args(argv)
+
+    if args.all_packaged:
+        if args.evals or args.outputs:
+            parser.error("--all-packaged cannot be combined with --evals or --outputs")
+        pairs = packaged_fixture_pairs(args.repo_root.resolve())
+        if not pairs:
+            print("Behavior evals failed:\n- no packaged eval/output fixture pairs found")
+            return 1
+
+        all_errors: list[str] = []
+        total_cases = 0
+        for evals_path, outputs_path in pairs:
+            evals_payload = _read_json(evals_path)
+            outputs_payload = _read_json(outputs_path)
+            total_cases += len(_eval_cases(evals_payload))
+            suite_errors = evaluate(evals_payload, outputs_payload)
+            all_errors.extend(f"{evals_path.parent.parent.name}: {error}" for error in suite_errors)
+
+        if all_errors:
+            print("Behavior evals failed:")
+            for error in all_errors:
+                print(f"- {error}")
+            return 1
+
+        print(f"OK: {len(pairs)} packaged suites, {total_cases} behavior evals")
+        return 0
+
+    if not args.evals or not args.outputs:
+        parser.error("--evals and --outputs are required unless --all-packaged is used")
 
     evals_path = Path(args.evals)
     outputs_path = Path(args.outputs)

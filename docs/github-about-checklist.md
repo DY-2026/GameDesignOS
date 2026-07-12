@@ -2,9 +2,11 @@
 
 Use GitHub repository settings to set the public metadata manually.
 
+Positioning rationale: [2026-07-11 GitHub benchmark](./2026-07-11-github-readme-benchmark.md)
+
 ## Description
 
-Local-first AI game design OS for decisions, evidence, experiments, proposals, workflow authority, and human-gated project memory.
+Local-first game design OS for AI agents—turn ideas, gameplay evidence, and experiments into reviewable decisions with contracts, Human Gates, and rollback.
 
 ## Repository URL
 
@@ -28,21 +30,20 @@ https://github.com/DY-2026/GameDesignOS#readme
 ai-agents
 agent-skills
 game-design
-game-analysis
 game-development
+game-analysis
 llm
 codex
 claude-code
-prompt-engineering
-workflow
+local-first
+human-in-the-loop
+decision-support
+evidence-based
+workflow-automation
 indie-game
 game-research
-markdown-skills
-game-design-tools
-game-design-os
-local-first
-evidence-based
-decision-support
-human-in-the-loop
 ai-workflows
+prompt-engineering
+developer-tools
+python
 ```

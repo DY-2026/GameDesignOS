@@ -81,7 +81,7 @@ Real projects should use a private workspace or private overlay for proprietary 
 
 ## Product Direction
 
-v1.0.0 is the formal Project-Ready baseline. v1.1.0 adds the RJR-AI authority layer and GitHub-facing positioning without changing the v1 workspace schema. The product has reached these milestones:
+v1.0.0 is the formal Project-Ready baseline. v1.1.0 adds the RJR-AI authority layer, and v1.2.0 adds Intent Work Orders plus workflow-governance references without changing the v1 workspace schema. The product has reached these milestones:
 
 1. **Runtime Foundation:** workspace template, contracts, workflow routes, and validation conventions.
 2. **Local Runtime:** project initialization, routing, asset creation, validation, VOI review, and review-safe packing through a local CLI or agent harness.

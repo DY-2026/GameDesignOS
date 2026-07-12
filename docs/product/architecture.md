@@ -1,6 +1,6 @@
 # GameDesignOS System Architecture
 
-GameDesignOS v0.9.0 formalizes four product layers and one cross-cutting governance plane, with the first executable local runtime sitting at the interface layer.
+GameDesignOS v1.2.0 uses four product layers and one cross-cutting governance plane. The local runtime now operates Project-Ready workspaces, while Intent Work Orders, RJR-AI authority boundaries, and workflow-governance checkpoints keep system evolution reviewable.
 
 > 中文摘要：四层分别是 Skill Kernel、Contract Layer、Project Workspace 与 Runtime Interface；Human Gate、验证、来源边界和回滚规则贯穿所有层。
 
@@ -99,15 +99,15 @@ Agents must surface conflicts instead of silently choosing whichever file is eas
 
 The Runtime Interface connects a host agent or local CLI to the workspace, contracts, and skills.
 
-In v0.9.0 it includes:
+By v1.2.0 it includes:
 
 - a copyable workspace template;
 - a defined workspace lifecycle;
-- an executable `gamedesignos` CLI for `init`, `status`, `voi`, `route`, `new`, `validate`, `pack`, and `doctor`;
+- an executable `gamedesignos` CLI for natural-language routing, Project-Ready lifecycle commands, gates, graphs, validation, packaging, and diagnostics;
 - workspace-aware adapter guidance;
 - repository validation coverage.
 
-v0.9.0 still does not ship a hosted API, model gateway, credential store, automatic skill execution, or project-commitment authority.
+v1.2.0 still does not ship a hosted API, model gateway, credential store, automatic skill execution, or project-commitment authority. Governance checkpoints default to `shadow`; humans retain residual judgment for high-coupling, low-reversibility, under-evidenced decisions.
 
 ## 5. Governance Plane
 

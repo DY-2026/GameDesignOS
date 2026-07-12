@@ -1,44 +1,57 @@
 <p align="center">
-  <img src="./assets/gamedesignos-v1-hero.svg" alt="GameDesignOS v1.2.0 Intent Work Order and Workflow Governance release hero: 7 skills, 18 contracts, 5 workflows, and 1 local runtime" width="100%">
+  <img src="./assets/gamedesignos-github-hero-v2.png" alt="GameDesignOS turns scattered AI game-design output into evidence, experiments, decisions, and durable project memory" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
 
 <p align="center">
-  <strong>Turn a single AI-agent session into a project-ready game design operating system.</strong><br>
-  游戏设计操作系统 / 游思考 GameDesignOS
+  <strong>Turn AI output into game design decisions you can verify.</strong><br>
+  Local-first · Evidence-linked · Human-gated
 </p>
 
 <p align="center">
-  GameDesignOS is a local-first operating system for AI-assisted game design.
-  It turns AI-agent sessions into structured decisions, assumptions, evidence, experiments, proposals, workflows, and learning records, so teams can validate ideas, diagnose gameplay, and evolve production workflows without losing context or bypassing human judgment.
-  v1.2.0 ships Intent Work Orders and workflow governance on top of 7 specialist skills, 18 contract schemas, 5 end-to-end workflows, v1 project workspaces, and 1 deterministic local runtime.
+  GameDesignOS is a local-first operating layer for AI-assisted game design.
+  Bring an idea, gameplay sample, research trail, or workflow problem; get reviewable evidence, experiments, proposals, decisions, and project memory—without handing commitment-changing judgment to the agent.
 </p>
 
 <p align="center">
   <a href="./README.zh-CN.md">简体中文</a> ·
-  <a href="./README.en.md">English</a> ·
-  <a href="#project-ready-runtime">Project-Ready Runtime</a> ·
-  <a href="./runtime/workspace-template-v1/">v1 Workspace</a> ·
+  <a href="#quick-start">Quick Start</a> ·
   <a href="./docs/workflows/">Workflows</a> ·
-  <a href="./docs/product/roadmap.md">Roadmap</a> ·
-  <a href="#current-skills">Skills</a> ·
   <a href="#featured-cases">Cases</a> ·
-  <a href="#license">License</a>
+  <a href="./docs/product/roadmap.md">Roadmap</a>
 </p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
   <img alt="Version" src="https://img.shields.io/badge/Version-v1.2.0-31e1d6">
-  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local%20CLI-8a63d2">
-  <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
-  <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
-  <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
+  <img alt="Validation" src="https://github.com/DY-2026/GameDesignOS/actions/workflows/validate.yml/badge.svg">
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-2ea44f">
+  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local--first-8a63d2">
+  <img alt="Human Gate" src="https://img.shields.io/badge/Authority-Human--gated-f9a825">
 </p>
 
-> License: skill documents and tooling are released under the MIT License. The Paranoia name, logos, visual identity, and project branding are not licensed as trademarks.
+```text
+idea / gameplay / research / workflow
+                  ↓
+evidence → experiment → decision → learning
+                  ↑
+         Human Gate + rollback
+```
 
-> GameDesignOS is the public-facing system name. Paranoia is the author identity and brand signature; the current installable modules remain packaged as Markdown skills.
+## Quick Start
+
+```bash
+git clone https://github.com/DY-2026/GameDesignOS.git
+cd GameDesignOS
+python -m pip install -e .
+python -m gamedesignos ask "I want to validate a lighthouse tactics game"
+```
+
+`ask` recommends the smallest suitable skill without writing by default. For a persistent private project, create an explicit workspace:
+
+```bash
+python -m gamedesignos start "Lighthouse Tactics" --destination ../lighthouse-designos
+```
 
 ## Why This Exists
 
@@ -78,7 +91,7 @@ python -m pip install -e .
 gamedesignos "I want to make a lighthouse tactics game"
 ```
 
-The natural-language entry recommends the right skill. For project-shaped requests, it prepares the workspace, first Decision, first Assumption, three-minute validation Experiment, VOI Gate, and workflow in one pass. Then run the small test and use the printed `gamedesignos evidence add ...` command to record the observation. Existing skill folders remain independently installable; the runtime remains compatible with v0.8/v0.9 workspaces.
+The natural-language entry recommends the right skill without writing by default. Supply a destination or workspace to prepare the first Decision, Assumption, three-minute validation Experiment, VOI Gate, and workflow, or use the explicit `start` command. Existing skill folders remain independently installable; the runtime remains compatible with v0.8/v0.9 workspaces.
 
 Read the [v1.0 baseline plan](./docs/product/v1.0-development-plan.md), [CLI guide](./runtime/cli/README.md), [command reference](./runtime/cli/commands.md), [v1.2 release note](./releases/v1.2.0.md), and [product roadmap](./docs/product/roadmap.md).
 
@@ -189,7 +202,7 @@ python -m pip install -e .
 gamedesignos "I want to make a lighthouse tactics game"
 ```
 
-Keep private material outside this public repository. The natural-language entry prepares the first validation path when the request is project-shaped; run the small test, then record the observation with the command it prints.
+Keep private material outside this public repository. The natural-language entry remains route-only unless you supply a destination or workspace; use `start` for an explicit long-lived project setup.
 
 ### 2. Pick the right skill
 
@@ -383,7 +396,7 @@ GameDesignOS supports two compatible modes.
 
 ### Project Workspace Mode
 
-Install the local runtime and start with one sentence. For project-shaped requests, the runtime prepares the first validation path automatically.
+Install the local runtime and start with one sentence. The request remains route-only unless a destination or workspace is supplied; use `start` to explicitly prepare the first validation path.
 
 ```bash
 python -m pip install -e .

@@ -9,7 +9,7 @@ python -m gamedesignos "<一句话需求>"
 gamedesignos ask <一句话需求> [--destination PATH] [--owner NAME] [--json]
 ```
 
-`ask` 是最低门槛入口。它会先推荐应该使用的 skill，并给出可复制的 `Use $skill-name ...` 提示词。对一句话创意、立项、验证实验、策划案等项目型请求，会自动创建或恢复 Project-Ready workspace。
+`ask` 是最低门槛入口。它会先推荐应该使用的 skill，并给出可复制的 `Use $skill-name ...` 提示词，但置信度不构成写盘授权。提供 `--destination` 或 `--workspace` 才会创建或恢复指定工作区；长期项目也可以明确使用 `start`。
 
 示例：
 

@@ -19,7 +19,7 @@ python -m gamedesignos "<用户原话>"
 这个入口会做三件事：
 
 - 推荐应该使用的 skill，并给出可审计的 `Use $skill-name ...` 提示词；
-- 对“一句话创意、立项方向、验证实验、策划案”等项目型请求，自动创建或恢复 Project-Ready workspace。
+- `ask` 默认只做路由和状态审计；只有用户显式提供 `--destination` / `--workspace`，或明确调用 `start`，才创建或恢复 Project-Ready workspace。
 - 给宿主 agent 一个明确的下一步执行线索。
 
 默认 workspace 会放在公开仓库外侧的相邻目录，避免把真实项目资料写进本仓库。

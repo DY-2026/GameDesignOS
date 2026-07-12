@@ -20,7 +20,7 @@ python -m gamedesignos "我想做一款修灯塔的策略游戏"
 python -m gamedesignos ask "我想做一款修灯塔的策略游戏"
 ```
 
-它会自动判断这句话应该进入哪个 skill。对项目型请求，它还会自动创建一个 Project-Ready workspace，并准备第一条决策、假设、三分钟验证实验和工作流。命令行只负责本地路由和状态；真正的 agent 应继续读取并调用对应 skill，而不是把提示词甩回给用户。
+它会自动判断这句话应该进入哪个 skill，但默认不写盘。只有显式提供 `--destination` / `--workspace`，或明确调用 `start`，才会创建或恢复 Project-Ready workspace，并准备第一条决策、假设、三分钟验证实验和工作流。命令行只负责本地路由和状态；真正的 agent 应继续读取并调用对应 skill，而不是把提示词甩回给用户。
 
 如果想安装成系统命令：
 

@@ -1,44 +1,57 @@
 <p align="center">
-  <img src="./assets/gamedesignos-v1-hero.svg" alt="GameDesignOS v1.2.0 Intent Work Order 与 Workflow Governance 首页图：7 个 skill、18 个 contract、5 条 workflow 和 1 个本地 runtime" width="100%">
+  <img src="./assets/gamedesignos-github-hero-v2.png" alt="GameDesignOS 把碎片化 AI 游戏设计输出转成证据、实验、决策和长期项目记忆" width="100%">
 </p>
 
 <h1 align="center">GameDesignOS</h1>
 
 <p align="center">
-  <strong>把一次 AI agent 会话，变成可持续推进真实项目的游戏设计操作系统。</strong><br>
-  GameDesignOS by Paranoia / 游思考
+  <strong>把 AI 输出变成可验证的游戏设计决策。</strong><br>
+  本地优先 · 证据可追溯 · 决策有人把关
 </p>
 
 <p align="center">
-  GameDesignOS 是一层 local-first 的 AI 辅助游戏设计操作系统。
-  它把 AI-agent session 转成结构化的 Decision、Assumption、Evidence、Experiment、Proposal、Workflow 和 Learning Record，让团队能验证创意、诊断体验、撰写策划案、演化生产工作流，同时不丢上下文，也不越过 Human Gate。
-  v1.2.0 在 7 个专家 skill、18 个 contract schema、5 条端到端工作流、v1 项目 workspace 和 1 个确定性本地 runtime 之上，加入 Intent Work Order 与 workflow governance。
+  GameDesignOS 是一层 local-first 的 AI 辅助游戏设计操作层。
+  你可以带来一句创意、一段试玩、研究资料或流程问题，得到可评审的证据、实验、策划案、决策和项目记忆；涉及承诺与方向改变的判断仍然留在人手里。
 </p>
 
 <p align="center">
-  <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="./README.en.md">English</a> ·
-  <a href="#v100-project-ready-runtime">Project-Ready Runtime</a> ·
-  <a href="./runtime/workspace-template-v1/">v1 Workspace</a> ·
+  <a href="#快速开始">快速开始</a> ·
   <a href="./docs/workflows/">工作流</a> ·
-  <a href="./docs/product/roadmap.md">路线图</a> ·
-  <a href="#当前-skill">Skills</a> ·
   <a href="#github-案例">案例</a> ·
-  <a href="#license">License</a>
+  <a href="./docs/product/roadmap.md">路线图</a>
 </p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/Skills-7-2ea44f">
   <img alt="Version" src="https://img.shields.io/badge/Version-v1.2.0-31e1d6">
-  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local%20CLI-8a63d2">
-  <img alt="Domain" src="https://img.shields.io/badge/Domain-Game%20Design-blue">
-  <img alt="Agent Ready" src="https://img.shields.io/badge/Agent--Ready-Codex%20%7C%20Claude%20Code%20%7C%20OpenCode-6f42c1">
-  <img alt="Method" src="https://img.shields.io/badge/Method-Evidence%20%7C%20Contracts%20%7C%20Evals-f9a825">
+  <img alt="Validation" src="https://github.com/DY-2026/GameDesignOS/actions/workflows/validate.yml/badge.svg">
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-2ea44f">
+  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-Local--first-8a63d2">
+  <img alt="Human Gate" src="https://img.shields.io/badge/Authority-Human--gated-f9a825">
 </p>
 
-> License: skill documents and tooling are released under the MIT License. Paranoia 名称、logo、视觉识别和项目品牌不作为商标授权。
+```text
+创意 / 试玩 / 研究 / 流程问题
+              ↓
+证据 → 实验 → 决策 → 学习
+              ↑
+       Human Gate + rollback
+```
 
-> GameDesignOS 是对外项目主体；Paranoia / 游思考是作者背书。当前模块仍以可安装 skill 形式组织，方便 Codex、Claude Code、OpenCode 等 agent 复用。
+## 快速开始
+
+```bash
+git clone https://github.com/DY-2026/GameDesignOS.git
+cd GameDesignOS
+python -m pip install -e .
+python -m gamedesignos ask "我想验证一款修灯塔的策略游戏"
+```
+
+`ask` 默认只推荐最小合适 skill，不会静默写盘。需要长期私有项目时，显式创建 workspace：
+
+```bash
+python -m gamedesignos start "灯塔战术" --destination ../lighthouse-designos
+```
 
 ## 为什么需要它
 
@@ -85,7 +98,7 @@ python -m gamedesignos "我想做一款修灯塔的策略游戏"
 python -m gamedesignos start "My Game" --destination ../my-game-designos --owner your-name
 ```
 
-`ask/start` 会自动准备 workspace、第一条决策、第一条假设、三分钟验证实验和工作流。CLI 负责本地路由和状态审计；宿主 agent 负责继续读取并执行选中的 skill，不把提示词再丢给用户。随后先做一次小测试，再用终端输出里的 `gamedesignos evidence add ...` 记录观察。原有 skill 仍可独立安装；runtime 保持 v0.8/v0.9 workspace 兼容。
+`ask` 默认只做路由，不会因为置信度高就写盘；只有显式提供 `--destination` / `--workspace`，或明确调用 `start`，才准备 workspace、第一条决策、第一条假设、三分钟验证实验和工作流。CLI 负责本地路由和状态审计；宿主 agent 负责继续读取并执行选中的 skill，不把提示词再丢给用户。原有 skill 仍可独立安装；runtime 保持 v0.8/v0.9 workspace 兼容。
 
 详细内容见 [怎么用](./docs/how-to-use.zh-CN.md)、[v1.0 基线开发计划](./docs/product/v1.0-development-plan.md)、[CLI 指南](./runtime/cli/README.md)、[命令参考](./runtime/cli/commands.md)、[v1.2 release note](./releases/v1.2.0.md) 和 [路线图](./docs/product/roadmap.md)。
 
@@ -201,7 +214,7 @@ python -m gamedesignos "我想做一款修灯塔的策略游戏"
 python -m gamedesignos start "My Game" --destination ../my-game-designos --owner your-name
 ```
 
-把真实项目保存在公开仓库外。自然语言入口会自动把第一轮验证链路搭好；你只要按输出提示做一次三分钟验证，再记录观察即可。
+把真实项目保存在公开仓库外。自然语言入口默认只给出路由建议；显式提供目标路径或调用 `start` 才会搭建第一轮验证链路。
 
 ### 2. 不知道选哪个？先看这张表
 
