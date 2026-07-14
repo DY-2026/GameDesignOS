@@ -1,0 +1,7 @@
+{
+  "positive":"用 WOOP 定义准入，用 VOI 选择探针，用 OODA 执行和复盘。",
+  "misroute":"媒体体验诊断交给 game-experience-analyzer；本 skill 不替代领域 skill。",
+  "evidence":"证据不足时结论为 need more evidence，规则保持 candidate。",
+  "human_gate":"全局安装、生产发布和长期规则晋级必须经过 Human Gate。",
+  "rollback":"记录 rollback 步骤并保留 last known good 版本。"
+}

@@ -1,4 +1,9 @@
 {
+  "positive":"输出 weekly ED experiment、instrumentation dictionary 与 rollback。",
+  "misroute":"只有截图或录屏且无证据层时，先用 game-experience-analyzer 生成 evidence-index。",
+  "evidence":"文本输入为 assumption_only；cannot judge real pacing。",
+  "human_gate":"面向真实用户上线实验前必须通过 Human Gate。",
+  "rollback":"预注册 kill condition；失败后 restore baseline。",
   "text_only_retention_to_ed_plan": "output_mode: weekly_ab_plan\nevidence_gate\nL0_text_only\nevidence_status: assumption_only\ntheory_status: design_hypothesis\ncase_boundary\nmetric_horizon: mobile_liveops daily_retention\noptimal_stimulation_fit\nboredom_type: unknown\nCLP SF EB AR MD/min\nfree_energy_window\nmarkov_blanket_coupling\ngrowth_surprise_ladder\nmotivation_flow_gate\nnovelty_support\noptimal_novelty_fit\n先判窗口，再降噪，再提质，后调频\nrollback",
   "quick_triage_one_sentence_not_full_report": "output_mode: quick_ed_triage\nevidence_gate\nprimary_lever\ntwo_minimal_changes\nverification_metrics\nrollback_condition",
   "static_assets_no_tempo_claim": "evidence_gate\nL1_static_assets\nevidence_status: partial_evidence\ncannot judge real pacing\ncannot judge feel\nCLP\nunsupported_claims",

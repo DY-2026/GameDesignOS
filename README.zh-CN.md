@@ -67,11 +67,13 @@ GameDesignOS 补的是中间那层操作系统：把 agent 输出转成有来源
 | --- | ---: | --- |
 | 专家 skill | 7 | 概念架构、体验分析、ED 优化、策划案写作、工作流演化、书籍翻译和资料策展 |
 | Contract schema | 18 | 决策、假设、证据、实验、学习记录、质量门、工作流、issue、玩家承诺和项目资产的稳定交接格式 |
-| v1 workspace 分区 | 9 | 用于保存 Decision、Assumption、Evidence、Experiment、Design Asset、Workflow、Learning、Export 和 runtime 状态的长期私有项目空间 |
+| v1 workspace 分区 | 9 | 9 个生命周期目录：Inbox、Decision、Assumption、Evidence、Experiment、Design Asset、Workflow、Learning、Export；runtime 状态独立保存在 `.gamedesignos/` |
 | 端到端工作流 | 5 | idea-to-validation、media-to-diagnosis、weekly ED experiment、evidence-to-proposal、decision-to-information |
 | 宿主 adapter | 4 | Codex、Claude Code、OpenAI-compatible agent 和本地 harness 接入说明 |
 | 公开 proof case | 2 | 带证据边界的游戏体验分析与体验浓度实验案例 |
 | Runtime | 1 | 用于路由、创建 workspace、校验、健康扫描、决策图、gate 和可评审 pack 的确定性本地 CLI |
+
+> **开发候选版本：v1.3.0.dev0。** 候选 wheel 已自带 contracts/templates，`router.yaml` 是唯一可编辑路由真源，7/7 skill 通过 Agent Skills 规范；五门行为套件与保留的领域回归合计为 9 suites / 53 evals。可用一条命令运行 [Golden Lighthouse](./examples/golden-lighthouse/) synthetic 闭环。最新正式版本仍为 v1.2.0。
 
 ## v1.2.0 Project-Ready Runtime
 
@@ -173,7 +175,7 @@ Use $paranoia-ai-system-evolver to upgrade this workflow or AI work order into a
 Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience density problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
 ```
 
-完整上手路径见 [10 分钟上手 GameDesignOS](./docs/try-it-in-10-minutes.zh-CN.md)。如果你希望继续看到更多公开游戏分析案例和可迁移的 agent skill 模板，欢迎 star 这个仓库；star 越多，我会越优先补更好的公开 demo、adapter 和可复用 skill 模板。
+完整上手路径见 [10 分钟上手 GameDesignOS](./docs/try-it-in-10-minutes.zh-CN.md)。
 
 ## 60 秒 Demo
 
@@ -282,7 +284,7 @@ game-design-proposal-writer/
 
 ## 图文展示
 
-7 个可见入口覆盖 GameDesignOS 的完整路径：概念、证据、策划案、体验浓度迭代、工作流治理和长期知识资产。
+7 个有边界的入口覆盖 GameDesignOS 的主要工作路径：概念架构、证据与诊断、策划案组装、体验浓度迭代、工作流治理、设计文本翻译和资料策展。
 
 <table>
   <tr>
@@ -450,15 +452,9 @@ gamedesignos doctor
 
 完整路线见按能力门推进的 [产品 Roadmap](./docs/product/roadmap.md)。
 
-## Star History
+## 支持项目
 
-<a href="https://star-history.com/#DY-2026/GameDesignOS&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date&theme=dark">
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date">
-    <img alt="Star History Chart for DY-2026/GameDesignOS" src="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date">
-  </picture>
-</a>
+如果 GameDesignOS 对你有帮助，可以为[仓库点亮 Star](https://github.com/DY-2026/GameDesignOS)，或提交一个具体的工作流、proof case、adapter 需求。Star 和可执行反馈会帮助我们安排下一批公开案例与可迁移性改进。
 
 ## License
 

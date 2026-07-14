@@ -1,0 +1,7 @@
+{
+  "positive":"先稳定术语表，再交付自然中文译稿，并翻译图注与表头。",
+  "misroute":"本 skill 不负责知识库入库；需要长期策展时转 game-design-source-curator。",
+  "evidence":"模糊扫描内容标记 OCR uncertain 和待确认，不猜测缺字。",
+  "human_gate":"整本译文公开传播前进入 Human Gate 并核验版权授权。",
+  "rollback":"保留原文、术语变更记录和版本差异，确保可回滚。"
+}

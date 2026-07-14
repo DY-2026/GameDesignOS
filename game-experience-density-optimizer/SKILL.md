@@ -1,7 +1,10 @@
 ---
 name: game-experience-density-optimizer
 description: "当用户需要把游戏体验浓度、留存、首局节奏、Demo 完成率、单机总旅程、D1/D7、反馈、具身感、氛围、认知负荷、最佳刺激窗口、FEP/free-energy、预测误差、Markov blanket、习惯化或 liveops 参与问题，编译成可上线、可埋点、可复盘、可回滚的一周 ED 实验包时使用。Use when converting game experience-density and engagement problems into rollback-ready ED experiments."
+license: MIT
+compatibility: 可处理文本、截图、录屏或遥测摘要；生产实验、真实用户触达和指标承诺必须经过 Human Gate。
 metadata:
+  version: "1.3.0-candidate"
   short-description: 体验浓度实验编译器
 ---
 
@@ -174,7 +177,7 @@ FEP、自由能、预测处理、Markov blanket、GameFlow、SDT 只作为设计
 
 当输入来自 `game-experience-analyzer`，优先消费已有 `ed-handoff`，尤其是 `issue_cards_for_ed`、`evidence_refs`、`suggested_primary_lever`、`secondary_noise`、`confounder_risk` 和 `unknowns`。不要重做完整体验分析。
 
-仓库已有跨 skill contract：`../contracts/ed-handoff.schema.json`。本 skill 不创建平行 handoff schema；如果需要自动化消费，按该 contract 接收，再编译成 `weekly_ab_plan` 或 `schema_json`。
+GameDesignOS runtime 提供规范名为 `ed-handoff.schema.json` 的跨 skill contract。本 skill 不创建平行 schema；独立使用时按 [ED Handoff 最小契约](references/ed-handoff-contract.md) 接收，再编译成 `weekly_ab_plan` 或 `schema_json`。
 
 ## References
 

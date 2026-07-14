@@ -1,17 +1,21 @@
-"""Deterministic, explainable skill routing for the local prototype."""
+"""Deterministic, explainable routing compiled from contracts/router.yaml."""
 
 from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from .workspace import Workspace, find_repo_root
+from .io_utils import read_yaml
+from .resources import contracts_dir, resource_mode
+from .workspace import Workspace
 
 
 @dataclass(frozen=True)
 class RouteRule:
+    rule_id: str
     skill: str
     signals: tuple[str, ...]
     reason: str
@@ -20,209 +24,55 @@ class RouteRule:
     required_any_upstream_types: tuple[str, ...] = ()
 
 
-RULES: tuple[RouteRule, ...] = (
-    RouteRule(
-        "game-experience-analyzer",
-        (
-            "screenshot",
-            "recording",
-            "gameplay",
-            "video",
-            "trailer",
-            "pv",
-            "store page",
-            "steam page",
-            "截图",
-            "录屏",
-            "录像",
-            "视频",
-            "宣传片",
-            "商店页",
-            "试玩样本",
-        ),
-        "媒体或试玩样本要先建立证据边界和问题卡，再进入后续实验或策划判断。",
-        ("evidence-index", "issue-card", "ed-handoff", "validation-plan"),
-    ),
-    RouteRule(
-        "game-concept-architect",
-        (
-            "one line idea",
-            "one-line idea",
-            "game idea",
-            "concept seed",
-            "core loop",
-            "creative premise",
-            "一句话创意",
-            "游戏创意",
-            "我想做",
-            "想做",
-            "做一款",
-            "做一个游戏",
-            "游戏项目",
-            "玩法方向",
-            "立项方向",
-            "概念种子",
-            "核心循环",
-            "玩法点子",
-        ),
-        "粗创意要先变成玩家承诺、核心循环、范围门和验证计划，再进入策划案或立项判断。",
-        ("player-promise-contract", "validation-plan"),
-    ),
-    RouteRule(
-        "game-design-proposal-writer",
-        (
-            "proposal",
-            "publisher pitch",
-            "investor pitch",
-            "gdd",
-            "vertical slice",
-            "decision memo",
-            "商业策划案",
-            "立项案",
-            "发行 pitch",
-            "投资 pitch",
-            "策划案",
-            "垂直切片",
-            "决策 memo",
-        ),
-        "面向决策的文档应整合已有概念、证据、验证和生产约束，而不是补编缺失上游。",
-        ("proposal", "pitch", "decision-memo", "vertical-slice-document"),
-        required_any_upstream_types=(
-            "concept",
-            "validation",
-            "evidence",
-            "analysis",
-            "experiment",
-            "knowledge",
-        ),
-    ),
-    RouteRule(
-        "game-experience-density-optimizer",
-        (
-            "retention",
-            "first session",
-            "pacing",
-            "feedback strength",
-            "cognitive load",
-            "instrumentation",
-            "dashboard",
-            "ab test",
-            "a/b test",
-            "留存",
-            "首局",
-            "节奏",
-            "反馈",
-            "认知负荷",
-            "埋点",
-            "看板",
-            "a/b",
-            "体验浓度",
-        ),
-        "体验问题要先有证据或问题层，才能转成一周实验、埋点和回滚规则。",
-        ("weekly-ed-experiment-plan", "instrumentation-dictionary", "dashboard-spec", "decision-rules"),
-        required_any_upstream_types=("evidence", "analysis", "experiment"),
-    ),
-    RouteRule(
-        "paranoia-ai-system-evolver",
-        (
-            "prompt change",
-            "workflow change",
-            "schema change",
-            "eval change",
-            "router change",
-            "memory change",
-            "skill change",
-            "intent engineering",
-            "intent work order",
-            "ai work order",
-            "instruction sheet",
-            "commander intent",
-            "rjr",
-            "rjr ai",
-            "rjr-ai",
-            "ai engineering",
-            "workflow",
-            "workflow governance",
-            "overall process",
-            "project process",
-            "process improvement",
-            "output quality",
-            "整体流程",
-            "项目流程",
-            "流程优化",
-            "产出优化",
-            "产出质量",
-            "eval",
-            "human gate",
-            "rollback",
-            "residual judgment",
-            "judgment authority",
-            "authority gate",
-            "voi",
-            "fomo",
-            "research overload",
-            "ai fatigue",
-            "ai 工程",
-            "ai工程",
-            "意图工程",
-            "意图单",
-            "意图工作单",
-            "ai 工作单",
-            "ai工作单",
-            "指令单",
-            "作战意图",
-            "剩余判断权",
-            "判断权",
-            "授权",
-            "授权层",
-            "权限系统",
-            "组织记忆",
-            "提示词改造",
-            "工作流改造",
-            "schema 改造",
-            "评测改造",
-            "路由改造",
-            "记忆改造",
-            "skill 改造",
-            "信息价值",
-            "信息焦虑",
-            "ai 疲劳",
-        ),
-        "系统改动、意图工作单升级、RJR-AI 授权门和信息获取要经过 VOI、eval、Human Gate 和 rollback，先保持 candidate。",
-        ("intent-work-order", "workflow-governance-review", "evolution-proposal", "ooda-voi-state", "information-value-assessment"),
-    ),
-    RouteRule(
-        "game-design-source-curator",
-        (
-            "curate sources",
-            "knowledge base",
-            "source ingest",
-            "article collection",
-            "资料策展",
-            "知识库",
-            "来源整理",
-            "文章收集",
-        ),
-        "散落资料应沉淀成可追踪知识资产，而不是一次性摘要。",
-        ("source-note", "reference-boundary", "knowledge-entry"),
-    ),
-    RouteRule(
-        "game-design-book-translator",
-        (
-            "translate",
-            "translation",
-            "book chapter",
-            "terminology table",
-            "翻译",
-            "译文",
-            "书籍章节",
-            "术语表",
-        ),
-        "设计资料翻译需要术语、图表、来源边界和编辑检查。",
-        ("translated-reference", "terminology-table", "chapter-package"),
-    ),
-)
+def _strings(value: Any, *, field: str, rule_id: str) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    if not isinstance(value, list) or not all(isinstance(item, str) and item for item in value):
+        raise ValueError(f"router rule {rule_id}: {field} must be a list of non-empty strings")
+    return tuple(value)
 
+
+@lru_cache(maxsize=1)
+def load_rules() -> tuple[RouteRule, ...]:
+    path = contracts_dir() / "router.yaml"
+    payload = read_yaml(path)
+    if not isinstance(payload, dict) or not isinstance(payload.get("default_rules"), list):
+        raise ValueError(f"Invalid router contract: {path}")
+
+    rules: list[RouteRule] = []
+    for raw in payload["default_rules"]:
+        if not isinstance(raw, dict):
+            raise ValueError(f"Invalid router rule in {path}")
+        rule_id = str(raw.get("id") or "")
+        skill = str(raw.get("use") or "")
+        runtime = raw.get("runtime")
+        if not rule_id or not skill or not isinstance(runtime, dict):
+            raise ValueError(f"router rule requires id, use, and runtime mapping: {raw!r}")
+        rules.append(
+            RouteRule(
+                rule_id=rule_id,
+                skill=skill,
+                signals=_strings(runtime.get("signals"), field="runtime.signals", rule_id=rule_id),
+                reason=str(runtime.get("reason_zh") or raw.get("reason") or ""),
+                primary_outputs=_strings(raw.get("primary_outputs"), field="primary_outputs", rule_id=rule_id),
+                required_all_upstream_types=_strings(
+                    runtime.get("required_all_upstream_types"),
+                    field="runtime.required_all_upstream_types",
+                    rule_id=rule_id,
+                ),
+                required_any_upstream_types=_strings(
+                    runtime.get("required_any_upstream_types"),
+                    field="runtime.required_any_upstream_types",
+                    rule_id=rule_id,
+                ),
+            )
+        )
+    if not rules or any(not rule.signals for rule in rules):
+        raise ValueError(f"Every router rule must define runtime.signals: {path}")
+    return tuple(rules)
+
+
+RULES = load_rules()
 EXPLICIT_SKILL_NAMES = {rule.skill: rule for rule in RULES}
 
 
@@ -253,12 +103,12 @@ def route_task(task: str, *, workspace: Workspace | None = None) -> dict[str, An
         if _normalized(skill_name) in normalized or f"${skill_name}" in task:
             return _result(rule, [skill_name], available, explicit=True)
 
-    scored: list[tuple[int, RouteRule, list[str]]] = []
-    for rule in RULES:
+    scored: list[tuple[int, int, RouteRule, list[str]]] = []
+    for index, rule in enumerate(RULES):
         matches = [signal for signal in rule.signals if _normalized(signal) in normalized]
         if matches:
             score = sum(max(1, len(_normalized(signal).split())) for signal in matches)
-            scored.append((score, rule, matches))
+            scored.append((score, index, rule, matches))
 
     if not scored:
         return {
@@ -273,46 +123,43 @@ def route_task(task: str, *, workspace: Workspace | None = None) -> dict[str, An
             "executed": False,
         }
 
-    scored.sort(key=lambda item: (-item[0], RULES.index(item[1])))
-    _, rule, matches = scored[0]
+    _, _, rule, matches = sorted(scored, key=lambda item: (-item[0], item[1]))[0]
     result = _result(rule, matches, available, explicit=False)
 
-    # Missing-upstream behavior is intentional: route to the smallest prerequisite,
-    # while preserving the user's eventual target.
     missing = set(result["missing_upstream"])
     if rule.skill == "game-experience-density-optimizer" and missing:
-        result["target_skill"] = rule.skill
-        result["selected_skill"] = "game-experience-analyzer"
-        result["reason"] = (
-            "这个 ED 实验请求缺少证据或问题层。先建立 sample_boundary、evidence-index 和 issue cards，"
-            "再交给 game-experience-density-optimizer。"
+        result.update(
+            selected_skill="game-experience-analyzer",
+            target_skill=rule.skill,
+            reason=(
+                "这个 ED 实验请求缺少证据或问题层。先建立 sample_boundary、evidence-index 和 issue cards，"
+                "再交给 game-experience-density-optimizer。"
+            ),
+            primary_outputs=["evidence-index", "issue-card", "ed-handoff"],
         )
-        result["primary_outputs"] = ["evidence-index", "issue-card", "ed-handoff"]
     elif rule.skill == "game-design-proposal-writer" and missing:
-        result["target_skill"] = rule.skill
-        result["selected_skill"] = "game-concept-architect"
-        result["reason"] = (
-            "策划案路线缺少概念或验证基础。先创建 player promise 和 validation plan，"
-            "再进入 game-design-proposal-writer 成案。"
+        result.update(
+            selected_skill="game-concept-architect",
+            target_skill=rule.skill,
+            reason=(
+                "策划案路线缺少概念或验证基础。先创建 player promise 和 validation plan，"
+                "再进入 game-design-proposal-writer 成案。"
+            ),
+            primary_outputs=["player-promise-contract", "validation-plan"],
         )
-        result["primary_outputs"] = ["player-promise-contract", "validation-plan"]
-
     return result
 
 
-def _result(
-    rule: RouteRule, matches: list[str], available: set[str], *, explicit: bool
-) -> dict[str, Any]:
+def _result(rule: RouteRule, matches: list[str], available: set[str], *, explicit: bool) -> dict[str, Any]:
     missing = [item for item in rule.required_all_upstream_types if item not in available]
     if rule.required_any_upstream_types and not any(
         item in available for item in rule.required_any_upstream_types
     ):
         missing.append("one_of:" + "|".join(rule.required_any_upstream_types))
-    confidence = "high" if explicit or len(matches) >= 2 else "medium"
     return {
         "selected_skill": rule.skill,
         "target_skill": rule.skill,
-        "confidence": confidence,
+        "confidence": "high" if explicit or len(matches) >= 2 else "medium",
         "reason": rule.reason,
         "matched_signals": matches,
         "available_asset_types": sorted(available),
@@ -323,7 +170,5 @@ def _result(
 
 
 def router_source(workspace: Workspace | None = None) -> str:
-    root = find_repo_root(workspace.root if workspace else Path.cwd())
-    if root and (root / "contracts" / "router.yaml").is_file():
-        return str(root / "contracts" / "router.yaml")
-    return "embedded-v0.9-route-rules"
+    start = workspace.root if workspace else Path.cwd()
+    return f"{contracts_dir(start) / 'router.yaml'} ({resource_mode(start)})"

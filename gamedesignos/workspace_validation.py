@@ -31,7 +31,8 @@ from .constants import (
 )
 from .errors import UsageError
 from .io_utils import ensure_relative_safe, read_json, read_yaml
-from .workspace import ValidationReport, Workspace, find_repo_root
+from .resources import contracts_dir
+from .workspace import ValidationReport, Workspace
 
 
 def _sensitive(path: Path) -> bool:
@@ -147,15 +148,21 @@ def validate_workspace(workspace: Workspace, *, repo_root: Path | None = None) -
         except Exception as exc:  # noqa: BLE001
             report.errors.append(f"Invalid JSON {path.relative_to(workspace.root)}: {exc}")
 
-    canonical = repo_root or find_repo_root(workspace.root)
-    if canonical:
-        _validate_schemas(workspace, canonical, report)
+    if repo_root:
+        canonical_contracts = repo_root / "contracts" if (repo_root / "contracts").is_dir() else repo_root
+    else:
+        try:
+            canonical_contracts = contracts_dir(workspace.root)
+        except FileNotFoundError:
+            canonical_contracts = None
+    if canonical_contracts:
+        _validate_schemas(workspace, canonical_contracts, report)
     else:
         report.warnings.append("Canonical contracts were not found. Structural validation ran, but JSON Schema validation was skipped.")
     return report
 
 
-def _project_ready_schema_targets(workspace: Workspace, repo_root: Path) -> list[tuple[Path, Path]]:
+def _project_ready_schema_targets(workspace: Workspace, contracts_root: Path) -> list[tuple[Path, Path]]:
     """Return v1 runtime object files and their canonical schemas.
 
     The patterns intentionally target runtime-owned v1 records. They avoid broad
@@ -172,35 +179,35 @@ def _project_ready_schema_targets(workspace: Workspace, repo_root: Path) -> list
     workflow_runs_dir = workspace.root / ".gamedesignos" / "workflow-runs"
 
     targets: list[tuple[Path, Path]] = []
-    targets.extend((repo_root / "contracts/decision.schema.json", path) for path in decisions_dir.glob("DEC-*.json"))
-    targets.extend((repo_root / "contracts/assumption-registry.schema.json", path) for path in assumptions_dir.glob("ASM-*.json"))
-    targets.extend((repo_root / "contracts/assumption-registry.schema.json", path) for path in assumptions_dir.glob("assumption-registry*.json"))
-    targets.extend((repo_root / "contracts/evidence-ledger.schema.json", path) for path in evidence_dir.glob("EVD-*.json"))
-    targets.extend((repo_root / "contracts/evidence-ledger.schema.json", path) for path in evidence_dir.glob("evidence-ledger*.json"))
-    targets.extend((repo_root / "contracts/experiment-plan.schema.json", path) for path in experiments_dir.glob("EXP-*/experiment-plan*.json"))
-    targets.extend((repo_root / "contracts/experiment-result.schema.json", path) for path in experiments_dir.glob("EXP-*/experiment-result*.json"))
-    targets.extend((repo_root / "contracts/learning-record.schema.json", path) for path in learning_dir.glob("LRN-*.json"))
-    targets.extend((repo_root / "contracts/learning-record.schema.json", path) for path in learning_dir.glob("learning-record*.json"))
-    targets.extend((repo_root / "contracts/gate-result.schema.json", path) for path in gate_results_dir.glob("*.json"))
-    targets.extend((repo_root / "contracts/workflow-run.schema.json", path) for path in workflow_runs_dir.glob("WRUN-*.json"))
+    targets.extend((contracts_root / "decision.schema.json", path) for path in decisions_dir.glob("DEC-*.json"))
+    targets.extend((contracts_root / "assumption-registry.schema.json", path) for path in assumptions_dir.glob("ASM-*.json"))
+    targets.extend((contracts_root / "assumption-registry.schema.json", path) for path in assumptions_dir.glob("assumption-registry*.json"))
+    targets.extend((contracts_root / "evidence-ledger.schema.json", path) for path in evidence_dir.glob("EVD-*.json"))
+    targets.extend((contracts_root / "evidence-ledger.schema.json", path) for path in evidence_dir.glob("evidence-ledger*.json"))
+    targets.extend((contracts_root / "experiment-plan.schema.json", path) for path in experiments_dir.glob("EXP-*/experiment-plan*.json"))
+    targets.extend((contracts_root / "experiment-result.schema.json", path) for path in experiments_dir.glob("EXP-*/experiment-result*.json"))
+    targets.extend((contracts_root / "learning-record.schema.json", path) for path in learning_dir.glob("LRN-*.json"))
+    targets.extend((contracts_root / "learning-record.schema.json", path) for path in learning_dir.glob("learning-record*.json"))
+    targets.extend((contracts_root / "gate-result.schema.json", path) for path in gate_results_dir.glob("*.json"))
+    targets.extend((contracts_root / "workflow-run.schema.json", path) for path in workflow_runs_dir.glob("WRUN-*.json"))
     return targets
 
 
-def _validate_schemas(workspace: Workspace, repo_root: Path, report: ValidationReport) -> None:
+def _validate_schemas(workspace: Workspace, contracts_root: Path, report: ValidationReport) -> None:
     try:
         from jsonschema import Draft202012Validator
     except ImportError:
         report.warnings.append("jsonschema is not installed; canonical schema validation skipped")
         return
     targets = [
-        (repo_root / "contracts/project-workspace.schema.json", workspace.manifest_path),
-        (repo_root / "contracts/design-asset-index.schema.json", workspace.asset_index_path),
-        (repo_root / "contracts/decision-log.schema.json", workspace.decision_log_path),
+        (contracts_root / "project-workspace.schema.json", workspace.manifest_path),
+        (contracts_root / "design-asset-index.schema.json", workspace.asset_index_path),
+        (contracts_root / "decision-log.schema.json", workspace.decision_log_path),
     ]
-    voi_schema = repo_root / "contracts/information-value-assessment.schema.json"
+    voi_schema = contracts_root / "information-value-assessment.schema.json"
     targets.extend((voi_schema, path) for path in workspace.lifecycle_path("decisions_dir").glob("*information-value-assessment*.json"))
     if workspace.manifest.get("schema_version") == PROJECT_READY_WORKSPACE_SCHEMA_VERSION:
-        targets.extend(_project_ready_schema_targets(workspace, repo_root))
+        targets.extend(_project_ready_schema_targets(workspace, contracts_root))
     for schema_path, data_path in targets:
         if not schema_path.is_file() or not data_path.is_file():
             continue

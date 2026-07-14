@@ -1,0 +1,7 @@
+{"evals":[
+  {"id":"positive","must_include":["Decision Request","scope gate","Evidence and Assumption Ledger"]},
+  {"id":"misroute","must_include":["game-concept-architect","上游概念契约"]},
+  {"id":"evidence","must_include":["needs_research","不承诺销量"]},
+  {"id":"human_gate","must_include":["Human Gate","投资承诺"]},
+  {"id":"rollback","must_include":["candidate","rollback"]}
+]}

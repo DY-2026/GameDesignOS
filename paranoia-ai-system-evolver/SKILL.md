@@ -1,7 +1,10 @@
 ---
 name: paranoia-ai-system-evolver
 description: 用于升级 AI 系统、agent workflow、Codex skill、prompt、memory、RAG、tool routing、schema、eval set 或 feedback loop；也用于把 AI 工作单从指令单升级为意图单，并对研究、检索、测试和 AI 对话做 VOI 决策门审计。需要 Intent Work Order、WOOP 任务准入、决策对象、VOI/EVPI/EVSI、OODA、eval、Human Gate、versioning 与 rollback 的受控演化时使用。Use when controlled AI system evolution or a decision-oriented information audit is needed.
+license: MIT
+compatibility: 需要读取目标系统与验证材料；长期规则、全局安装、生产发布和权限变更必须经过 Human Gate。
 metadata:
+  version: "1.3.0-candidate"
   short-description: 用意图单、WOOP、VOI、OODA 与 Evals 受控进化 AI 系统
 ---
 

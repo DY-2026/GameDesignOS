@@ -41,6 +41,6 @@ Decision Object
 - 旧 v0.8/v0.9 workspace 仍可打开和校验。
 - 如需创建旧模板，使用 `--workspace-version 0.8.0`。
 
-Runtime 版本为 `1.2.0`；workspace schema 仍为 `1.0.0`，无需迁移旧 v1 workspace。
+当前 `main` Runtime 版本为 `1.3.0.dev0`（P0 candidate）；workspace schema 仍为 `1.0.0`，无需迁移旧 v1 workspace。
 
 完整命令见 [commands.md](./commands.md)。

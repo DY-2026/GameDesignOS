@@ -67,11 +67,13 @@ You still make the calls. The system supplies specialist workflows, shared hando
 | --- | ---: | --- |
 | Specialist skills | 7 | Concept architecture, experience analysis, ED optimization, proposal writing, workflow evolution, book translation, and source curation |
 | Contract schemas | 18 | Stable handoffs for decisions, assumptions, evidence, experiments, learning, gates, workflows, issues, player promises, AI work orders, and project assets |
-| v1 workspace sections | 9 | A durable private project space for Decisions, Assumptions, Evidence, Experiments, Design Assets, Workflows, Learning, Exports, and runtime state |
+| v1 workspace sections | 9 | Nine lifecycle directories: Inbox, Decisions, Assumptions, Evidence, Experiments, Design Assets, Workflows, Learning, and Exports; runtime state stays separate under `.gamedesignos/` |
 | Workflow guides | 5 | Idea-to-validation, media-to-diagnosis, weekly ED experiment, evidence-to-proposal, and decision-to-information paths |
 | Host adapters | 4 | Codex, Claude Code, OpenAI-compatible agents, and local harness integration notes |
 | Public proof cases | 2 | Evidence-linked game-analysis and experience-density examples with explicit source boundaries |
 | Runtime | 1 | Deterministic local CLI for routing, workspace creation, validation, health checks, graphs, gates, and review-safe packs |
+
+> **Development candidate: v1.3.0.dev0.** Candidate wheels carry their own contracts/templates, `router.yaml` is the only editable routing source, and all 7 skills pass the Agent Skills reference validator; the five-gate suites plus preserved domain regressions total 9 suites / 53 evals. Run the [Golden Lighthouse](./examples/golden-lighthouse/) synthetic loop with one command. The latest formal release remains v1.2.0.
 
 ## Project-Ready Runtime
 
@@ -166,7 +168,7 @@ Use $paranoia-ai-system-evolver to upgrade this workflow or AI work order into a
 Use $game-experience-density-optimizer to turn this first-session retention, pacing, or experience density problem into an ED diagnosis, CLP/SF/EB/AR/MD-min levers, a weekly A/B plan, instrumentation, dashboard fields, decision rules, and rollback gates.
 ```
 
-For the full onboarding path, see [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md). Star this repo if you want more public game-analysis examples and portable agent-skill templates; more stars help prioritize better public demos, adapters, and reusable skill templates.
+For the full onboarding path, see [Try It in 10 Minutes](./docs/try-it-in-10-minutes.md).
 
 ## 60-Second Demo
 
@@ -270,7 +272,7 @@ After installation, check that the `SKILL.md` frontmatter `name` matches the fol
 
 ## Showcase
 
-Seven visible entry points cover the full GameDesignOS path: concept, evidence, proposal, experience-density iteration, workflow governance, and durable knowledge assets.
+Seven bounded entry points cover the main GameDesignOS workflow: concept architecture, evidence and diagnosis, proposal assembly, experience-density iteration, workflow governance, design-text translation, and source curation.
 
 <table>
   <tr>
@@ -438,15 +440,9 @@ gamedesignos doctor
 
 See the capability-gated [product roadmap](./docs/product/roadmap.md).
 
-## Star History
+## Support the Project
 
-<a href="https://star-history.com/#DY-2026/GameDesignOS&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date&theme=dark">
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date">
-    <img alt="Star History Chart for DY-2026/GameDesignOS" src="https://api.star-history.com/svg?repos=DY-2026/GameDesignOS&type=Date">
-  </picture>
-</a>
+If GameDesignOS is useful to you, [star the repository](https://github.com/DY-2026/GameDesignOS) or open an issue with a concrete workflow, proof-case, or adapter request. Stars and actionable feedback help prioritize the next public examples and portability work.
 
 ## License
 

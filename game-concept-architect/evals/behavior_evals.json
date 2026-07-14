@@ -1,0 +1,7 @@
+{"evals":[
+  {"id":"positive","must_include":["concept seed","player promise","validation plan"]},
+  {"id":"misroute","must_include":["game-experience-analyzer","先建立证据层"]},
+  {"id":"evidence","must_include":["evidence_status: unknown","assumption"]},
+  {"id":"human_gate","must_include":["Human Gate","公开发布"]},
+  {"id":"rollback","must_include":["candidate","rollback trigger"]}
+]}

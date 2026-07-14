@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import re
+import tomllib
 from pathlib import Path
 from typing import Any
 
@@ -28,6 +30,9 @@ REQUIRED_PATHS = [
     "CHANGELOG.md",
     "CONTRIBUTING.md",
     "LICENSE",
+    "SECURITY.md",
+    "MANIFEST.in",
+    "setup.py",
     "adapters/README.md",
     "contracts/README.md",
     "contracts/router.yaml",
@@ -52,6 +57,8 @@ REQUIRED_PATHS = [
     "docs/product/roadmap.md",
     "docs/how-to-use.zh-CN.md",
     "docs/try-it-in-10-minutes.zh-CN.md",
+    "docs/GITHUB_ABOUT.md",
+    "docs/github-about-checklist.md",
     "docs/workflows/README.md",
     "docs/workflows/decision-to-information.md",
     "docs/workflows/idea-to-validation.md",
@@ -101,6 +108,11 @@ REQUIRED_PATHS = [
     "releases/v0.8.0.md",
     ".github/workflows/validate.yml",
     "scripts/run_behavior_evals.py",
+    "scripts/validate_agent_skills.py",
+    "scripts/smoke_installed_wheel.py",
+    "scripts/smoke_sdist_rebuild.py",
+    "scripts/create_golden_project.py",
+    "examples/golden-lighthouse/README.md",
 ]
 
 WORKSPACE_TEMPLATE_DIRS = {
@@ -455,6 +467,136 @@ def _check_project_workflow_governance(repo_root: Path, errors: list[str]) -> No
                 errors.append(f"{path}: missing Paranoia Checkpoint section")
 
 
+def _check_public_readme_surface(repo_root: Path, errors: list[str]) -> None:
+    proof_cases = (
+        repo_root / "game-experience-analyzer" / "examples" / "survival-33-days-gameplay-experience-report.md",
+        repo_root / "docs" / "showcases" / "elliot-experience-density-report" / "README.md",
+    )
+    workspace_manifest_text = (
+        repo_root / "runtime" / "workspace-template-v1" / "game.designos.yaml"
+    ).read_text(encoding="utf-8")
+    assets_block = re.search(r"(?ms)^assets:\n((?:  .*?(?:\n|$))+)", workspace_manifest_text)
+    workspace_sections = (
+        len(re.findall(r"(?m)^  [A-Za-z_][A-Za-z0-9_]*_dir:\s*", assets_block.group(1)))
+        if assets_block
+        else 0
+    )
+    readme_labels = {
+        "README.md": {
+            "Specialist skills": len(REQUIRED_SKILLS),
+            "Contract schemas": len(list((repo_root / "contracts").glob("*.schema.json"))),
+            "v1 workspace sections": workspace_sections,
+            "Workflow guides": len(
+                [path for path in (repo_root / "docs" / "workflows").glob("*.md") if path.name != "README.md"]
+            ),
+            "Host adapters": len(
+                [path for path in (repo_root / "adapters").glob("*.md") if path.name != "README.md"]
+            ),
+            "Public proof cases": len(proof_cases),
+        },
+        "README.en.md": {},
+        "README.zh-CN.md": {
+            "专家 skill": len(REQUIRED_SKILLS),
+            "Contract schema": len(list((repo_root / "contracts").glob("*.schema.json"))),
+            "v1 workspace 分区": workspace_sections,
+            "端到端工作流": len(
+                [path for path in (repo_root / "docs" / "workflows").glob("*.md") if path.name != "README.md"]
+            ),
+            "宿主 adapter": len(
+                [path for path in (repo_root / "adapters").glob("*.md") if path.name != "README.md"]
+            ),
+            "公开 proof case": len(proof_cases),
+        },
+    }
+    readme_labels["README.en.md"] = dict(readme_labels["README.md"])
+
+    for path in proof_cases:
+        if not path.exists():
+            errors.append(f"public proof case missing: {path.relative_to(repo_root)}")
+
+    markdown_link_pattern = re.compile(r"(?:!\[[^\]]*\]|\[[^\]]+\])\(([^)]+)\)")
+    html_link_pattern = re.compile(r"(?:src|srcset|href)=\"([^\"]+)\"")
+    for relative, labels in readme_labels.items():
+        path = repo_root / relative
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        if "api.star-history.com" in text or "## Star History" in text:
+            errors.append(f"{relative}: deprecated live Star History embed is not allowed")
+
+        for label, expected in labels.items():
+            match = re.search(rf"\|\s*{re.escape(label)}\s*\|\s*(\d+)\s*\|", text)
+            if not match:
+                errors.append(f"{relative}: missing inventory row {label}")
+            elif int(match.group(1)) != expected:
+                errors.append(f"{relative}: {label} count {match.group(1)} must be {expected}")
+
+        references = markdown_link_pattern.findall(text) + html_link_pattern.findall(text)
+        for reference in references:
+            reference = reference.strip().strip("<>").split()[0]
+            if reference.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            reference = reference.split("#", 1)[0]
+            if not reference:
+                continue
+            target = (path.parent / reference).resolve()
+            if not target.exists():
+                errors.append(f"{relative}: local link target missing: {reference}")
+
+
+def _check_p0_portability(repo_root: Path, errors: list[str]) -> None:
+    project = tomllib.loads((repo_root / "pyproject.toml").read_text(encoding="utf-8"))["project"]
+    package_version = str(project["version"])
+    template_path = repo_root / "runtime" / "workspace-template-v1" / "game.designos.yaml"
+    template = _parse_yaml(template_path, errors)
+    template_runtime = (
+        template.get("designos", {}).get("version")
+        if isinstance(template, dict) and isinstance(template.get("designos"), dict)
+        else None
+    )
+    if template_runtime != package_version:
+        errors.append(
+            f"{template_path}: designos.version {template_runtime!r} must match package {package_version!r}"
+        )
+
+    router_path = repo_root / "contracts" / "router.yaml"
+    router = _parse_yaml(router_path, errors) if router_path.exists() else None
+    rules = router.get("default_rules", []) if isinstance(router, dict) else []
+    skills: set[str] = set()
+    for rule in rules if isinstance(rules, list) else []:
+        if not isinstance(rule, dict):
+            continue
+        runtime = rule.get("runtime")
+        if not isinstance(runtime, dict) or not runtime.get("signals") or not runtime.get("reason_zh"):
+            errors.append(f"{router_path}: rule {rule.get('id')} lacks runtime.signals or runtime.reason_zh")
+        if isinstance(rule.get("use"), str):
+            skills.add(rule["use"])
+    if skills != set(REQUIRED_SKILLS):
+        errors.append(f"{router_path}: runtime routes cover {sorted(skills)}, expected {sorted(REQUIRED_SKILLS)}")
+
+    for skill_name in REQUIRED_SKILLS:
+        skill_root = repo_root / skill_name
+        skill_text = (skill_root / "SKILL.md").read_text(encoding="utf-8")
+        frontmatter = skill_text.split("---", 2)[1] if skill_text.startswith("---") else ""
+        for marker in ("license:", "compatibility:", "version:"):
+            if marker not in frontmatter:
+                errors.append(f"{skill_name}/SKILL.md: missing Agent Skills metadata {marker}")
+        if re.search(r"\.\./(?:contracts|CONTRIBUTING)", skill_text):
+            errors.append(f"{skill_name}/SKILL.md: contains non-portable cross-root reference")
+        eval_dir = skill_root / "evals"
+        evals_path = eval_dir / "behavior_evals.json"
+        outputs_path = eval_dir / "synthetic_outputs.json"
+        evals = _parse_json(evals_path, errors) if evals_path.exists() else None
+        outputs = _parse_json(outputs_path, errors) if outputs_path.exists() else None
+        cases = evals.get("evals", []) if isinstance(evals, dict) else []
+        required_ids = {"positive", "misroute", "evidence", "human_gate", "rollback"}
+        case_ids = {str(item.get("id")) for item in cases if isinstance(item, dict)}
+        if case_ids != required_ids:
+            errors.append(f"{skill_name}: behavior eval ids must be {sorted(required_ids)}")
+        if not isinstance(outputs, dict) or not required_ids.issubset(outputs):
+            errors.append(f"{skill_name}: synthetic outputs must cover all P0 behavior eval ids")
+
+
 def main() -> int:
     repo_root = Path(__file__).resolve().parents[1]
     all_errors: list[str] = []
@@ -472,6 +614,8 @@ def main() -> int:
 
     _check_paranoia_voi(repo_root, all_errors)
     _check_project_workflow_governance(repo_root, all_errors)
+    _check_public_readme_surface(repo_root, all_errors)
+    _check_p0_portability(repo_root, all_errors)
     _check_repo_data_files(repo_root, all_errors)
 
     if all_errors:
@@ -486,11 +630,15 @@ def main() -> int:
     print("- workflow docs")
     print("- project workspace")
     print("- workspace contracts")
+    print("- self-contained wheel resources")
+    print("- router.yaml runtime source")
+    print("- public README counts, local links, and stable support surface")
     print("Validated VOI Decision Gate:")
     print("- decision object and current default action")
     print("- EVPI / EVSI and signal-to-action mapping")
     print("- information-cost and stop-rule fields")
     print("- behavior-eval cases")
+    print("- 7/7 portable skill suites")
     print("Validated skills:")
     for skill_name in REQUIRED_SKILLS:
         print(f"- {skill_name}")

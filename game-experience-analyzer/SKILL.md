@@ -1,7 +1,10 @@
 ---
 name: game-experience-analyzer
-description: Use when analyzing game screenshots, local gameplay recordings, trailers/PVs, paid creatives, store pages, or video links into Chinese evidence-linked diagnosis reports with sample scope gates, evidence indexes, game dissection diagnosis packs, mode routing, genre-sensitive recommendations, validation plans, and actionable game design recommendations.
+description: 用于把游戏截图、本地录屏、PV、买量素材、商店页或视频链接分析为中文证据链诊断报告，包含样本范围门、证据索引、拆解诊断包、模式路由、品类敏感建议、验证计划和可执行优化建议。
+license: MIT
+compatibility: 可读取图片、视频和网页资料；访问受限时必须降级并标注 unknown，不得编造未观察内容。
 metadata:
+  version: "1.3.0-candidate"
   short-description: Build illustrated, evidence-linked Chinese game diagnosis reports
 ---
 

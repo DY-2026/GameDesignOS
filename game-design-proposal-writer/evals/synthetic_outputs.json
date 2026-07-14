@@ -1,4 +1,9 @@
 {
+  "positive":"包含 Decision Request、scope gate 与 Evidence and Assumption Ledger。",
+  "misroute":"只有一句话创意时先调用 game-concept-architect，补齐上游概念契约。",
+  "evidence":"平台窗口标记 needs_research，不承诺销量。",
+  "human_gate":"真实投资承诺、范围锁定和公开发布进入 Human Gate。",
+  "rollback":"策划案保持 candidate，里程碑必须写 rollback 条件。",
   "commercial_proposal_from_concept": "commercial_product_proposal\n## Case Visibility\n## Proposal Intake\n## Source Artifact Inventory\n## Executive Summary\n## Product Positioning\n## Target Player and Desire\n## Player Promise\n## Core Loop and Key Systems\n## Platform and Business Fit\nplatform: unknown\nbusiness model: assumption\n## Scope Gate\nscope gate\n## Production Feasibility\n## Milestone and Gate Plan\n通过标准\n失败标准\n## Metrics and Validation Plan\n## Risk Register\n## Decision Request\nDecision Request\n## Evidence and Assumption Ledger\nassumption\nunknown",
   "indie_dossier_steam_demo": "indie_design_dossier\n## Creative Thesis\n## Store-Page Promise\nSteam\n## Target Player and Niche\n## Player Verbs and Core Loop\n## Design Pillars\n## Content Minimalism Strategy\ncontent minimalism\n## Art and Audio Direction Boundary\n制作边界\n## Vertical Slice Plan\nDemo\nvertical slice\n## Release and Community Validation\nneeds_research\n## Risk Register\n## Next Investment Decision\n## Evidence and Assumption Ledger",
   "one_page_decision_memo_sparse_input": "one_page_decision_memo\n## Decision Memo\n## Why This, Why Now\n## Core Promise\n## Biggest Assumptions\n最大假设\n## Minimum Validation\n最小验证\nfirst playable\n两周\n## Scope and Cost Boundary\n## Recommendation\n## Decision Needed\n决策",

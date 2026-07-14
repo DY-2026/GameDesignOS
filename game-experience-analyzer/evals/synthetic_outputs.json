@@ -1,0 +1,7 @@
+{
+  "positive":"先写 sample scope gate 与 evidence-index，再给 issue cards 和 validation plan。",
+  "misroute":"没有媒体样本且只有一句话创意时转 game-concept-architect。",
+  "evidence":"静态截图无法证明手感，标记 unknown，不推断长期留存。",
+  "human_gate":"使用未授权或账号内公开素材前进入 Human Gate。",
+  "rollback":"优化项是 candidate recommendation，实验方案必须包含 rollback。"
+}

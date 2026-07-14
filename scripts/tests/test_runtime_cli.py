@@ -33,7 +33,7 @@ class RuntimeCliTest(unittest.TestCase):
     def test_01_init_and_validate(self) -> None:
         ws = self.workspace()
         self.assertTrue(ws.validate().ok)
-        self.assertEqual(ws.status().runtime_version_declared, "1.2.0")
+        self.assertEqual(ws.status().runtime_version_declared, "1.3.0.dev0")
         self.assertTrue(ws.decision_log_path.is_file())
 
     def test_02_init_refuses_nonempty(self) -> None:

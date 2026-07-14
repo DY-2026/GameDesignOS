@@ -1,6 +1,11 @@
 ---
 name: game-design-book-translator
-description: Use when translating, polishing, structuring, or QA-checking English game design, game development, system design, UX, game studies, design theory books, chapters, PDFs, OCR text, Markdown drafts, diagrams, figure captions, terminology tables, or Chinese manuscripts that need professional game-design terminology.
+description: 用于翻译、润色、整理或质检英文游戏设计、游戏研发、系统设计、UX、Game Studies 与设计理论书籍、章节、PDF、OCR、Markdown、图表、图注和术语表；强调专业术语、中文可读性、图片结构与版权边界。Use for professional game-design translation and QA.
+license: MIT
+compatibility: 需要读取用户提供的文本或文档；整本受版权材料的公开传播必须先确认授权。
+metadata:
+  version: "1.3.0-candidate"
+  short-description: 游戏设计资料专业翻译、审校与结构保真
 ---
 
 # Game Design Book Translator

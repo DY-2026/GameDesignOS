@@ -1,0 +1,7 @@
+{"evals":[
+  {"id":"positive","must_include":["WOOP","VOI","OODA"]},
+  {"id":"misroute","must_include":["game-experience-analyzer","不替代领域 skill"]},
+  {"id":"evidence","must_include":["need more evidence","candidate"]},
+  {"id":"human_gate","must_include":["Human Gate","长期规则"]},
+  {"id":"rollback","must_include":["rollback","last known good"]}
+]}

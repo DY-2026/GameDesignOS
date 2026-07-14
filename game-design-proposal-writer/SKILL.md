@@ -1,7 +1,10 @@
 ---
 name: game-design-proposal-writer
 description: 将调研、概念架构、体验诊断、验证计划、脑图/xmind/系统设计图、已有策划案和生产约束收束为商业游戏策划案、独立游戏设计案、立项评审稿、发行/投资 pitch 或 vertical slice 设计文档。适用于一句话创意先经 game-concept-architect 生成概念契约后再成案、玩法/系统脑图转可落地策划案、审核并改进已有策划案。强调证据边界、受众与商业适配、scope gate、里程碑、风险、决策请求和下一步投入条件；不替代上游创意生成或体验诊断。
+license: MIT
+compatibility: 需要读取上游概念、证据或实验材料；公开发布、真实投资或范围锁定必须经过 Human Gate。
 metadata:
+  version: "1.3.0-candidate"
   short-description: Write decision-ready commercial and indie game design proposals
 ---
 # Game Design Proposal Writer
@@ -12,7 +15,7 @@ metadata:
 
 如果用户给的是一句话创意，但明确要求“写策划案/立项案/独游设计案/pitch/GDD”，不要直接跳过上游。先调用 `game-concept-architect` 产出 concept brief、player-promise-contract、core loop、scope gate 和 validation plan，再用本 skill 成案。最终文档要标注“上游概念由本轮自动生成，证据等级仍为 assumption / needs_research”。
 
-Users may use this skill with their own real projects or confidential projects in their own environment. Repository examples are governed by [CONTRIBUTING.md](../CONTRIBUTING.md), not by runtime restrictions.
+用户可在自己的环境中处理真实项目、私有项目或客户项目。准备公开仓库案例时，只能使用 synthetic、公开或明确授权的材料，并在发布前执行 Human Gate。
 
 ## 什么时候使用
 
@@ -162,7 +165,7 @@ Users may use this skill with their own real projects or confidential projects i
 - `output_destination`: `private_notes` | `repo_example` | `public_post` | `client_delivery` | `publisher_pitch` | `internal_review` | `unknown`
 - `redaction_required`: `true` | `false` | `unknown`
 
-当 `output_destination=repo_example` 时，必须提醒用户遵守 [CONTRIBUTING.md](../CONTRIBUTING.md)。仓库 examples、assets、showcases、eval cases 只能使用 synthetic cases、公开材料或明确 cleared materials。
+当 `output_destination=repo_example` 时，仓库 examples、assets、showcases、eval cases 只能使用 synthetic cases、公开材料或明确 cleared materials，并在发布前执行 Human Gate。
 
 ## 证据规则
 

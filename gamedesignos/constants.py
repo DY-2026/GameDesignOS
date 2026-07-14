@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-RUNTIME_VERSION = "1.2.0"
+RUNTIME_VERSION = "1.3.0.dev0"
 WORKSPACE_SCHEMA_VERSION = "0.8.0"
 PROJECT_READY_WORKSPACE_SCHEMA_VERSION = "1.0.0"
 SUPPORTED_WORKSPACE_SCHEMAS = {"0.8.0", "1.0.0"}
-SUPPORTED_RUNTIME_VERSIONS = {"0.8.0", "0.9.0", "1.0.0", "1.1.0", "1.2.0"}
+SUPPORTED_RUNTIME_VERSIONS = {"0.8.0", "0.9.0", "1.0.0", "1.1.0", "1.2.0", "1.3.0.dev0"}
 PUBLIC_BASE_REPO = "DY-2026/GameDesignOS"
 WORKSPACE_TYPE = "gamedesignos-project"
 

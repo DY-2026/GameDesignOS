@@ -1,0 +1,7 @@
+{"evals":[
+  {"id":"positive","must_include":["sample scope gate","evidence-index","validation plan"]},
+  {"id":"misroute","must_include":["game-concept-architect","没有媒体样本"]},
+  {"id":"evidence","must_include":["unknown","不推断长期留存"]},
+  {"id":"human_gate","must_include":["Human Gate","公开素材"]},
+  {"id":"rollback","must_include":["candidate recommendation","rollback"]}
+]}

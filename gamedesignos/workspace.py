@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import os
 from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -21,6 +20,7 @@ from .constants import (
 from .errors import UsageError, WorkspaceNotFoundError
 from .io_utils import ensure_relative_safe, read_json, read_yaml, slugify, write_json, write_text
 from .templates import asset_body, empty_asset_index, empty_decision_log
+from .resources import find_source_root
 
 
 @dataclass
@@ -61,21 +61,9 @@ class WorkspaceStatus:
 
 
 def find_repo_root(start: Path | None = None) -> Path | None:
-    candidates: list[Path] = []
-    if os.getenv("GAMEDESIGNOS_HOME"):
-        candidates.append(Path(os.environ["GAMEDESIGNOS_HOME"]).expanduser())
-    candidates.extend(Path(__file__).resolve().parents)
-    current = (start or Path.cwd()).resolve()
-    candidates.extend([current, *current.parents])
-    seen: set[Path] = set()
-    for candidate in candidates:
-        candidate = candidate.resolve()
-        if candidate in seen:
-            continue
-        seen.add(candidate)
-        if (candidate / "contracts/router.yaml").is_file() and (candidate / "runtime/workspace-template").is_dir():
-            return candidate
-    return None
+    """Backward-compatible alias for callers that specifically need a checkout."""
+
+    return find_source_root(start)
 
 
 def find_workspace(start: Path | None = None) -> Path:

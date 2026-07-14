@@ -1,49 +1,14 @@
 # GitHub About Checklist
 
-Use GitHub repository settings to set the public metadata manually.
+线上设置的唯一文案来源是 [GITHUB_ABOUT.md](./GITHUB_ABOUT.md)。不要在两份文件里各维护一套 Description 和 Topics。
 
-Positioning rationale: [2026-07-11 GitHub benchmark](./2026-07-11-github-readme-benchmark.md)
+更新 GitHub 仓库设置前后逐项检查：
 
-## Description
-
-Local-first game design OS for AI agents—turn ideas, gameplay evidence, and experiments into reviewable decisions with contracts, Human Gates, and rollback.
-
-## Repository URL
-
-Canonical repository URL:
-
-https://github.com/DY-2026/GameDesignOS#readme
-
-## Display Name
-
-Short project name: `GameDesignOS`
-
-Display signature: `GameDesignOS by Paranoia`
-
-## Website
-
-https://github.com/DY-2026/GameDesignOS#readme
-
-## Topics
-
-```text
-ai-agents
-agent-skills
-game-design
-game-development
-game-analysis
-llm
-codex
-claude-code
-local-first
-human-in-the-loop
-decision-support
-evidence-based
-workflow-automation
-indie-game
-game-research
-ai-workflows
-prompt-engineering
-developer-tools
-python
-```
+- [ ] 已获得修改公开元数据的 Human Gate。
+- [ ] Description 与 `GITHUB_ABOUT.md` 完全一致。
+- [ ] 仓库 URL 仍为 `https://github.com/DY-2026/GameDesignOS`。
+- [ ] Website 在没有独立站点时保持为空。
+- [ ] Topics 只包含当前已公开、可验证的能力。
+- [ ] README 首屏承诺与 About Description 没有冲突。
+- [ ] 没有写入版本数量、stars、用户规模或“production-ready”等易漂移/未证明声明。
+- [ ] 退出设置页后重新打开公开仓库，确认 Description、Topics 和链接实际生效。

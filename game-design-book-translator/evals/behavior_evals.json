@@ -1,0 +1,7 @@
+{"evals":[
+  {"id":"positive","must_include":["术语表","中文译稿","图注"]},
+  {"id":"misroute","must_include":["game-design-source-curator","不负责知识库入库"]},
+  {"id":"evidence","must_include":["OCR uncertain","待确认"]},
+  {"id":"human_gate","must_include":["Human Gate","版权授权"]},
+  {"id":"rollback","must_include":["保留原文","可回滚"]}
+]}

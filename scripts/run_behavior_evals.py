@@ -20,7 +20,7 @@ def _read_json(path: Path) -> Any:
 
 def _eval_cases(payload: Any) -> list[dict[str, Any]]:
     if isinstance(payload, dict):
-        cases = payload.get("evals", [])
+        cases = payload.get("evals", payload.get("cases", []))
     else:
         cases = payload
     if not isinstance(cases, list):
@@ -112,10 +112,21 @@ def packaged_fixture_pairs(repo_root: Path) -> list[tuple[Path, Path]]:
     """Discover skill eval definitions that ship with captured output fixtures."""
 
     pairs: list[tuple[Path, Path]] = []
-    for evals_path in sorted(repo_root.glob("*/evals/evals.json")):
-        outputs_path = evals_path.with_name("synthetic_outputs.json")
-        if outputs_path.is_file():
-            pairs.append((evals_path, outputs_path))
+    for skill_file in sorted(repo_root.glob("*/SKILL.md")):
+        eval_dir = skill_file.parent / "evals"
+        behavior_path = eval_dir / "behavior_evals.json"
+        legacy_path = eval_dir / "evals.json"
+        outputs_path = eval_dir / "synthetic_outputs.json"
+        if not outputs_path.is_file():
+            continue
+        outputs = _output_map(_read_json(outputs_path))
+        for evals_path in (behavior_path, legacy_path):
+            if not evals_path.is_file():
+                continue
+            cases = _eval_cases(_read_json(evals_path))
+            case_ids = {str(case.get("id", "")) for case in cases}
+            if case_ids and case_ids.issubset(outputs):
+                pairs.append((evals_path, outputs_path))
     return pairs
 
 

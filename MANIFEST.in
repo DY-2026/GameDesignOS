@@ -1,0 +1,4 @@
+include setup.py
+recursive-include contracts *.json *.yaml *.md
+recursive-include runtime/workspace-template *.json *.yaml *.md
+recursive-include runtime/workspace-template-v1 *.json *.yaml *.md

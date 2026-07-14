@@ -1,0 +1,7 @@
+{"evals":[
+  {"id":"positive","must_include":["weekly ED experiment","instrumentation","rollback"]},
+  {"id":"misroute","must_include":["game-experience-analyzer","evidence-index"]},
+  {"id":"evidence","must_include":["assumption_only","cannot judge real pacing"]},
+  {"id":"human_gate","must_include":["Human Gate","真实用户"]},
+  {"id":"rollback","must_include":["kill condition","restore baseline"]}
+]}

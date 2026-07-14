@@ -1,0 +1,7 @@
+{"evals":[
+  {"id":"positive","must_include":["source manifest","deduplicate","incremental update"]},
+  {"id":"misroute","must_include":["game-design-book-translator","纯翻译"]},
+  {"id":"evidence","must_include":["access_status: blocked","不编造正文"]},
+  {"id":"human_gate","must_include":["Human Gate","受限来源"]},
+  {"id":"rollback","must_include":["candidate","canonical 入库"]}
+]}

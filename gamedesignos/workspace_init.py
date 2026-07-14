@@ -19,8 +19,9 @@ from .constants import (
 )
 from .errors import UsageError, WorkspaceNotFoundError
 from .io_utils import is_nonempty_directory, slugify, write_json, write_text, write_yaml
+from .resources import contracts_dir, resource_mode
 from .templates import decision_brief_markdown, empty_asset_index, empty_decision_log, workspace_manifest
-from .workspace import Workspace, find_repo_root
+from .workspace import Workspace
 
 
 def init_workspace(
@@ -129,8 +130,11 @@ def doctor(workspace_path: Path | None = None) -> dict[str, Any]:
             checks.append({"name": name, "ok": True, "detail": "available"})
         except ImportError:
             checks.append({"name": name, "ok": False, "detail": "missing"})
-    repo = find_repo_root(workspace_path)
-    checks.append({"name": "canonical-repository", "ok": repo is not None, "detail": str(repo) if repo else "not found; set GAMEDESIGNOS_HOME for schema/router access"})
+    try:
+        canonical_contracts = contracts_dir(workspace_path)
+        checks.append({"name": "canonical-contracts", "ok": True, "detail": f"{canonical_contracts} ({resource_mode(workspace_path)})"})
+    except FileNotFoundError as exc:
+        checks.append({"name": "canonical-contracts", "ok": False, "detail": str(exc)})
     try:
         workspace = Workspace.open(workspace_path)
         status = workspace.status()
@@ -143,5 +147,4 @@ def doctor(workspace_path: Path | None = None) -> dict[str, Any]:
         )
     except WorkspaceNotFoundError as exc:
         checks.append({"name": "workspace", "ok": workspace_path is None, "detail": "optional: not currently inside a workspace" if workspace_path is None else str(exc)})
-    required = [item for item in checks if item["name"] != "canonical-repository"]
-    return {"ok": all(item["ok"] for item in required), "runtime_version": RUNTIME_VERSION, "checks": checks}
+    return {"ok": all(item["ok"] for item in checks), "runtime_version": RUNTIME_VERSION, "checks": checks}

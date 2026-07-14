@@ -1,0 +1,7 @@
+{
+  "positive":"建立 source manifest，按内容哈希 deduplicate，并记录 incremental update。",
+  "misroute":"只做纯翻译时转交 game-design-book-translator，不创建知识库结构。",
+  "evidence":"页面不可访问时写 access_status: blocked，且不编造正文。",
+  "human_gate":"账号态、付费或受限来源的持久化进入 Human Gate。",
+  "rollback":"新来源先保持 candidate，审核后才进入 canonical 入库。"
+}

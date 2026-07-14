@@ -1,7 +1,10 @@
 ---
 name: game-design-source-curator
-description: "Use when curating game design sources into a durable local knowledge base: source research, candidate screening, evidence-gated review, canonical ingestion, incremental updates, source catalogs, HTML archives, and design inspiration cards. Do not use for one-off summaries, casual recommendations, general news browsing, or translation-only tasks without knowledge-base ingestion."
+description: "用于把游戏设计文章、视频、作者、栏目和网站策展为可持续的本地知识库：包括来源调研、候选筛选、证据门审核、规范入库、增量更新、来源目录、HTML 归档和灵感卡。不要用于一次性摘要、随手推荐、普通新闻浏览或不入库的纯翻译任务。"
+license: MIT
+compatibility: 需要文件访问；联网抓取必须遵守来源授权、robots、平台规则与用户账号边界。
 metadata:
+  version: "1.3.0-candidate"
   short-description: 游戏设计资料策展、审核、入库与增量更新
 ---
 
