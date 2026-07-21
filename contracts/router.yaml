@@ -76,13 +76,13 @@ default_rules:
       - "If all plausible signals lead to the same action, stop research and proceed with the current default action."
   - id: route_system_change_to_evolver
     when:
-      user_intent: [skill_change, prompt_change, workflow_change, schema_change, eval_change, router_change, memory_or_feedback_loop_change, project_process_improvement, workflow_governance, output_quality_improvement, rjr_ai_absorption, authority_layer_change, delegation_matrix_change, intent_engineering, intent_work_order, ai_work_order, instruction_sheet_to_intent, commander_intent]
+      user_intent: [skill_change, prompt_change, workflow_change, schema_change, eval_change, router_change, memory_or_feedback_loop_change, project_process_improvement, workflow_governance, output_quality_improvement, rjr_ai_absorption, authority_layer_change, delegation_matrix_change, intent_engineering, intent_work_order, ai_work_order, instruction_sheet_to_intent, commander_intent, uncertainty_ladder, progressive_uncertainty_release, bottleneck_attribution, transfer_validation]
     use: paranoia-ai-system-evolver
-    reason: "Keep AI-system evolution and AI work-order upgrades candidate-gated with an Intent Work Order, decision object, RJR-AI authority gate, VOI/EVPI/EVSI, OODA, behavior evals, Human Gate, versioning, and rollback."
-    primary_outputs: [intent-work-order, workflow-governance-review, evolution-proposal, information-value-assessment, ooda-voi-state]
+    reason: "Keep AI-system evolution and AI work-order upgrades candidate-gated with an Intent Work Order, decision object, RJR-AI authority gate, VOI/EVPI/EVSI, UL (Uncertainty Ladder), OODA, behavior evals, Human Gate, versioning, and rollback."
+    primary_outputs: [intent-work-order, workflow-governance-review, evolution-proposal, information-value-assessment, ul-state, ooda-voi-state]
     runtime:
-      signals: [prompt change, workflow change, schema change, eval change, router change, memory change, skill change, intent engineering, intent work order, ai work order, instruction sheet, commander intent, rjr, rjr ai, rjr-ai, ai engineering, workflow, workflow governance, overall process, project process, process improvement, output quality, eval, human gate, rollback, ai 工程, ai工程, 意图工程, 意图单, 意图工作单, ai 工作单, ai工作单, 指令单, 作战意图, 组织记忆, 提示词改造, 工作流改造, schema 改造, 评测改造, 路由改造, 记忆改造, skill 改造, 整体流程, 项目流程, 流程优化, 产出优化, 产出质量]
-      reason_zh: "系统改动、意图工作单升级和工作流治理要经过 VOI、eval、Human Gate 和 rollback，先保持 candidate。"
+      signals: [prompt change, workflow change, schema change, eval change, router change, memory change, skill change, intent engineering, intent work order, ai work order, instruction sheet, commander intent, uncertainty ladder, progressive uncertainty, bottleneck attribution, transfer validation, rjr, rjr ai, rjr-ai, ai engineering, workflow, workflow governance, overall process, project process, process improvement, output quality, eval, human gate, rollback, ai 工程, ai工程, 不确定性阶梯, 逐步释放不确定性, 瓶颈诊断, 迁移验证, 意图工程, 意图单, 意图工作单, ai 工作单, ai工作单, 指令单, 作战意图, 组织记忆, 提示词改造, 工作流改造, schema 改造, 评测改造, 路由改造, 记忆改造, skill 改造, 整体流程, 项目流程, 流程优化, 产出优化, 产出质量]
+      reason_zh: "系统改动、意图工作单升级和工作流治理要经过 VOI、UL（不确定性阶梯）、eval、Human Gate 和 rollback，先保持 candidate。"
   - id: route_translation_to_book_translator
     when:
       user_intent: [translate_game_design_book, polish_translation, terminology_table, pdf_or_ocr_translation]

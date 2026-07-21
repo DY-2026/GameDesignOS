@@ -21,6 +21,7 @@ trace_summary:
   woop_task_card:
   decision_object:
   voi_decision_gate:
+  ul_state:
   context_used:
   tool_calls:
   uncertainties:
@@ -45,6 +46,7 @@ expected_benefit:
 risk:
 woop_task_card:
 voi_decision_gate:
+ul_state:
 eval_plan:
 human_gate:
 rollback:
@@ -59,9 +61,9 @@ status: candidate
 | memory | Include evidence, confidence, scope, expiry, and at least one counterexample check |
 | RAG | Check source quality, retrieval precision, staleness risk, citation behavior, and whether retrieval can change action |
 | tool routing | Check whether tools are correct, premature, late, missing, or low-VOI |
-| workflow | Check WOOP Task Card, Decision Object, source contract, output gate, and stop rule completeness |
+| workflow | Check WOOP Task Card, Decision Object, source contract, uncertainty exposure, output gate, and stop rule completeness |
 | schema | Validate machine parsing and edge samples |
-| skill | Check frontmatter, metadata, VOI/WOOP references, paths, templates, stale wording, realistic invocation, and behavior regression |
+| skill | Check frontmatter, metadata, VOI/WOOP/Uncertainty Ladder references, paths, templates, stale wording, realistic invocation, transfer, and behavior regression |
 | README visual | Check image path, alt text, watermark, misleading text, and a text-backed critical flow |
 
 ## 5. Skill Package Regression Checklist
@@ -73,6 +75,7 @@ all referenced files exist
 templates are non-empty and copy-paste usable
 Decision Object and VOI stop-rule fields exist when the skill can trigger research or tools
 WOOP Task Card fields exist when the skill controls task admission or recovery
+UL State fields expose the current rung, released variables, attribution, transfer, and fallback
 root README is human-facing
 SKILL.md is agent-facing and lightweight
 no stale old name remains in public entrypoints
@@ -87,6 +90,7 @@ Structural checks prove installability, not better work. A `target_layer: skill`
 - Compare before and after behavior, or compare to the current `SKILL.md` contract.
 - Check whether WOOP improves admission, evaluation, failure detection, and recovery rather than only adding text.
 - Check negative transfer: more verbosity, slower execution, false triggers, skipped VOI, weaker evidence, or regression on high-value cases.
+- Check that controlled fixture success proceeds through composition, bottleneck attribution, progressive release, and transfer before robustness is claimed.
 - If behavior does not improve, keep the change as `candidate` or a failure sample.
 - If behavior improves while description cost rises sharply, verify that benefit exceeds complexity.
 
@@ -102,6 +106,12 @@ Replay at least these situations:
 - Many AI conversations remain open: map each branch to a decision and close low-VOI branches.
 
 Pass only when the output names `current_default_action`, `boundary_status`, target uncertainty, costs, stop rules, and action change before/after information. If the framework only lengthens the response without accelerating action closure, treat it as a regression.
+
+### UL Regression
+
+Replay at least: fixture success requesting production authority; a failure after prompt/model/tool/memory/evaluation all changed; atomic checks passing while composition loses state; benchmark success that fails on a structurally similar novel task; repeated prompt exceptions around one tool failure; and a valid progression that releases one major variable while holding authority and evaluation stable.
+
+Pass only when the output declares `current_rung`, `released_this_round`, `held_constant`, `attribution_confidence`, `graduation_evidence`, `transfer_checks`, and `fallback_rung`. If a confounded failure still promotes complexity or a permanent rule, treat it as a regression.
 
 ## 6. Version Management
 

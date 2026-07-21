@@ -100,6 +100,33 @@ voi_decision_gate:
     stop_when: []
     fallback_action: ""
 
+ul_state:
+  target_capability: ""
+  current_rung: "UL-L0 | UL-L1 | UL-L2 | UL-L3 | UL-L4 | UL-L5"
+  world_model_ref: ""
+  uncertainty_exposure:
+    input_novelty: "controlled | partial | real"
+    context_ambiguity: "controlled | partial | real"
+    tool_environment_variability: "controlled | partial | real"
+    coordination_variability: "controlled | partial | real"
+    authority_and_consequence: "sandbox | reversible | human_gated_real"
+    evaluation_ambiguity: "controlled | partial | real"
+  released_this_round: []
+  held_constant: []
+  scaffolds_present: []
+  consequence_budget: ""
+  attribution_gate:
+    observable_failure: ""
+    candidate_bottlenecks: []
+    discriminating_probe: ""
+    primary_bottleneck: ""
+    attribution_confidence: "low | medium | high | confounded"
+  targeted_intervention: ""
+  graduation_evidence: []
+  transfer_checks: []
+  fallback_rung: ""
+  stop_rule: ""
+
 model_audit:
   current_model: ""
   proposed_model: ""
@@ -130,6 +157,12 @@ eval_plan:
     - "low-VOI branches are closed"
     - "local negative evidence is preserved"
     - "stop rule prevents research theater"
+  ul_checks:
+    - "one major uncertainty is released by default"
+    - "held constants and scaffolds preserve attribution"
+    - "confounded failures fall back instead of adding permanent rules"
+    - "controlled success is separated from transfer evidence"
+    - "authority does not auto-promote with task complexity"
   graders: []
   regression_checks: []
 

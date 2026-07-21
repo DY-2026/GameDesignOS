@@ -15,7 +15,7 @@ These workflow guides describe how existing skills write durable assets into a G
 Each workflow should expose these checkpoints in `workflow-run.governance`:
 
 1. intake intent: convert vague instructions into an Intent Work Order when the task is open-ended;
-2. VOI/RJR boundary: name the Decision Object, `current_default_action`, authority level, residual judgment, and Human Gate trigger;
+2. VOI/UL/RJR boundary: name the Decision Object, `current_default_action`, highest-value uncertainty, optional `ul_state_ref`, authority level, residual judgment, and Human Gate trigger;
 3. midstream drift: check branch explosion, scope creep, low-VOI research, missing evidence, and over-structured output;
 4. delivery gate: verify first-glance acceptance, non-sacrifice constraints, rollback, and unsupported claims;
 5. retrospective learning: persist only candidate rules until eval evidence and Human Gate justify promotion.
@@ -45,7 +45,7 @@ Every workflow must:
 10. distinguish observations, interpretations, assumptions, model learning, consumption, and decisions;
 11. preserve local negative evidence instead of washing it into generic prose;
 12. end with a next action, Human Gate, or explicit research stop condition;
-13. write workflow governance refs for intent, VOI/RJR, Human Gate, rollback, and candidate learning;
+13. write workflow governance refs for intent, VOI, optional UL state, RJR, Human Gate, rollback, and candidate learning;
 14. avoid publishing private project material back to the public repository.
 
-The full method lives in [`paranoia-ai-system-evolver/references/value-of-information-playbook.zh-CN.md`](../../paranoia-ai-system-evolver/references/value-of-information-playbook.zh-CN.md).
+UL（Uncertainty Ladder，不确定性阶梯）只在系统演化、复杂能力验证或失败归因需要控制未知暴露时启用；普通领域 workflow 不强制生成 UL 文件。完整方法见 [`paranoia-ai-system-evolver/references/uncertainty-ladder-protocol.zh-CN.md`](../../paranoia-ai-system-evolver/references/uncertainty-ladder-protocol.zh-CN.md)，VOI 方法见 [`value-of-information-playbook.zh-CN.md`](../../paranoia-ai-system-evolver/references/value-of-information-playbook.zh-CN.md)。

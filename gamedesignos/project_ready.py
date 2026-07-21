@@ -7,6 +7,7 @@ human owner.
 
 from __future__ import annotations
 
+import re
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -670,6 +671,7 @@ def _workflow_governance(workspace: Workspace, workflow_id: str) -> dict[str, An
         "intent_work_order_ref": None,
         "decision_ref": decision_ref,
         "voi_gate_ref": gate_refs[0] if gate_refs else None,
+        "ul_state_ref": None,
         "rjr_authority_ref": None,
         "paranoia_review_ref": None,
         "human_gate_refs": human_gate_refs,
@@ -677,7 +679,7 @@ def _workflow_governance(workspace: Workspace, workflow_id: str) -> dict[str, An
         "candidate_learning_refs": [],
         "retrospective_ref": None,
         "notes": (
-            "paranoia-ai-system-evolver checkpoint: intent, VOI/RJR, drift, "
+            "paranoia-ai-system-evolver checkpoint: intent, VOI, UL, RJR, drift, "
             f"Human Gate, rollback, and candidate learning for {workflow_id}."
         ),
     }
@@ -818,6 +820,14 @@ def validate_workflow_run(workspace: Workspace, run_id: str) -> dict[str, Any]:
             errors.append("workflow_run.governance.enforcement_mode is invalid")
         if governance.get("status") not in {"not_started", "pending", "ready", "passed", "blocked", "skipped"}:
             errors.append("workflow_run.governance.status is invalid")
+        ul_state_ref = governance.get("ul_state_ref")
+        if ul_state_ref is not None:
+            if not isinstance(ul_state_ref, str) or not re.fullmatch(r"UL-[A-Z0-9-]{3,}", ul_state_ref):
+                errors.append("workflow_run.governance.ul_state_ref is invalid")
+            elif not (_workflow_dir(workspace) / f"{ul_state_ref}.json").is_file():
+                errors.append(
+                    "workflow_run.governance.ul_state_ref references a missing UL state"
+                )
     node_ids = {node.get("id") for node in data.get("nodes", []) if isinstance(node, dict)}
     for edge in data.get("edges", []):
         if edge.get("from") not in node_ids or edge.get("to") not in node_ids:

@@ -6,6 +6,7 @@
 
 - Intent Work Order：要改变什么现实、谁验收、哪些不能牺牲、AI 可自治到哪里；
 - Decision Object / VOI：本轮服务哪个决策、默认行动是什么、哪些信息真的能改变行动；
+- UL（Uncertainty Ladder，不确定性阶梯）：需要时控制未知暴露、失败归因、迁移验证和 fallback；
 - RJR-AI：AI、workflow、eval、automation 和 human 的授权边界；
 - Drift Gate：低 VOI 调研、分支爆炸、过度结构化、证据不足或范围漂移；
 - Human Gate / rollback：哪些承诺必须由人拍板，失败后如何撤回；
@@ -20,6 +21,7 @@ status: pending
 intent_work_order_ref: null
 decision_ref: null
 voi_gate_ref: null
+ul_state_ref: null
 rjr_authority_ref: null
 paranoia_review_ref: null
 human_gate_refs: []
@@ -28,4 +30,4 @@ candidate_learning_refs: []
 retrospective_ref: null
 ```
 
-默认 `enforcement_mode` 是 `shadow`。只有代表性 eval 证明检查点稳定改善流程和产出，才升级到 `warn` 或 `enforce`。
+UL 是可选引用，不要求普通领域 workflow 额外生成状态。默认 `enforcement_mode` 是 `shadow`。只有代表性 eval 证明检查点稳定改善流程和产出，才升级到 `warn` 或 `enforce`。

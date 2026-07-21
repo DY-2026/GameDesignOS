@@ -66,14 +66,14 @@ GameDesignOS 补的是中间那层操作系统：把 agent 输出转成有来源
 | 类别 | 数量 | 它给你什么 |
 | --- | ---: | --- |
 | 专家 skill | 7 | 概念架构、体验分析、ED 优化、策划案写作、工作流演化、书籍翻译和资料策展 |
-| Contract schema | 18 | 决策、假设、证据、实验、学习记录、质量门、工作流、issue、玩家承诺和项目资产的稳定交接格式 |
+| Contract schema | 19 | 决策、假设、证据、实验、UL 状态、学习记录、质量门、工作流、issue、玩家承诺和项目资产的稳定交接格式 |
 | v1 workspace 分区 | 9 | 9 个生命周期目录：Inbox、Decision、Assumption、Evidence、Experiment、Design Asset、Workflow、Learning、Export；runtime 状态独立保存在 `.gamedesignos/` |
 | 端到端工作流 | 5 | idea-to-validation、media-to-diagnosis、weekly ED experiment、evidence-to-proposal、decision-to-information |
 | 宿主 adapter | 4 | Codex、Claude Code、OpenAI-compatible agent 和本地 harness 接入说明 |
 | 公开 proof case | 2 | 带证据边界的游戏体验分析与体验浓度实验案例 |
 | Runtime | 1 | 用于路由、创建 workspace、校验、健康扫描、决策图、gate 和可评审 pack 的确定性本地 CLI |
 
-> **开发候选版本：v1.3.0.dev0。** 候选 wheel 已自带 contracts/templates，`router.yaml` 是唯一可编辑路由真源，7/7 skill 通过 Agent Skills 规范；五门行为套件与保留的领域回归合计为 9 suites / 53 evals。可用一条命令运行 [Golden Lighthouse](./examples/golden-lighthouse/) synthetic 闭环。最新正式版本仍为 v1.2.0。
+> **开发候选版本：v1.3.0.dev0。** 候选 wheel 已自带 contracts/templates，`router.yaml` 是唯一可编辑路由真源；UL（Uncertainty Ladder，不确定性阶梯）现在拥有 `ul_state` schema、UL-L0～UL-L5、workflow 可选引用与失败归因/迁移回归。7/7 skill 通过 Agent Skills 规范，现有行为夹具仍为 9 suites / 53 evals。最新正式版本仍为 v1.2.0。
 
 ## v1.2.0 Project-Ready Runtime
 
@@ -332,7 +332,7 @@ game-design-proposal-writer/
 
 ## System Architecture
 
-`GameDesignOS` v1.2.0 由四层产品结构、贯穿全局的治理规则、Intent Work Order 和 RJR-AI 授权边界组成：
+`GameDesignOS` 由四层产品结构与贯穿全局的治理面组成；当前 v1.3 candidate 在 Intent Work Order、VOI 与 RJR-AI 之间加入可选 UL 控制层，但不迁移 v1 workspace schema：
 
 - **Skill Kernel**
   - [`game-concept-architect/`](./game-concept-architect/)：一句话创意 -> 可验证概念蓝图。
@@ -343,13 +343,13 @@ game-design-proposal-writer/
   - [`game-design-book-translator/`](./game-design-book-translator/)：设计文本 -> 专业中文设计写作。
   - [`game-design-source-curator/`](./game-design-source-curator/)：散落资料 -> 长期知识资产。
 - **Contract Layer**
-  - [`contracts/`](./contracts/)：路由、skill 交接、项目 manifest、资产索引与决策日志。
+  - [`contracts/`](./contracts/)：路由、skill 交接、`ul-state.schema.json`、项目 manifest、资产索引与决策日志。
 - **Project Workspace**
   - [`runtime/workspace-template-v1/`](./runtime/workspace-template-v1/)：项目身份、生命周期目录、资产 registry、学习记录、导出物与 Human Gate。
 - **Runtime Interface**
   - [`gamedesignos/`](./gamedesignos/)、[`runtime/`](./runtime/) 与 [`adapters/`](./adapters/)：本地 CLI 命令、workspace 生命周期、宿主接入和命令契约。
 - **Governance**
-  - 证据边界、公开/私有隔离、eval、Human Gate 与 rollback 贯穿每一层。
+  - 证据边界、公开/私有隔离、VOI、可选 UL、RJR-AI、eval、Human Gate 与 rollback 贯穿每一层。
 
 私有项目数据、客户材料、凭据与工作室本地规则应留在公开仓库外。用户也仍然可以不使用 workspace，直接调用任一 skill。
 
@@ -358,7 +358,7 @@ game-design-proposal-writer/
 | Skill | 一句话用途 | 适合场景 | 包目录 |
 | --- | --- | --- | --- |
 | **Game Experience Analyzer** | 把截图、录屏、PV/宣传片和视频链接拆成证据优先的中文游戏设计报告。 | 体验分析、玩法机制、游戏拆解、机制迁移、整体项目、MDA、系统叙事、单机流程、热度预测、前瞻窗口、商业化、UX。 | [`game-experience-analyzer/`](./game-experience-analyzer/) |
-| **Paranoia AI System Evolver** | 把 AI 工作单、prompt、workflow、memory、schema、tool routing、eval 和 RJR-AI 授权边界改动变成受控系统演化。 | Intent Work Order、WOOP Task Card、VOI/OODA、剩余判断权边界、模型压缩、因果中介、Human Gate、rollback、可验证升级。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
+| **Paranoia AI System Evolver** | 把 AI 工作单、prompt、workflow、memory、schema、tool routing、eval 和 RJR-AI 授权边界改动变成受控系统演化。 | Intent Work Order、WOOP、VOI、UL、OODA、剩余判断权、失败归因、迁移验证、Human Gate、rollback。 | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | 把英文游戏设计/研发材料翻译成真正像中文设计写作的专业文本。 | 术语、章节、图注、表格、QA、来源边界检查。 | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | 把散落资料变成可长期维护的游戏设计知识库。 | 来源筛选、评分、HTML 归档、registry、update history、设计实验卡。 | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | 把一句话游戏创意扩展为可验证的概念设计案，包含 seed extraction、玩家动词、动作-目标对齐、玩家承诺、核心循环、scope gate 和原型验证计划。 | 独游创意、立项 pitch、外部可行性、平台/商业适配、MVP/Vertical Slice 规划、生产约束。 | [`game-concept-architect/`](./game-concept-architect/) |
@@ -448,6 +448,7 @@ gamedesignos doctor
 - **v1.0.0 — Project-Ready GameDesignOS：** 正式版，包含 Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、决策图、健康扫描、Human Gate 与 v1 workspace。
 - **v1.1.0 — RJR-AI Authority Layer：** 剩余判断权边界、GitHub 定位、版本同步，以及 AI/workflow/eval/权限/记忆系统的 workflow-evolution 覆盖。
 - **v1.2.0 — Intent Work Order & Workflow Governance：** AI 工作单、workflow-run 治理引用、Paranoia checkpoint、release tag 补齐，以及 runtime/package 版本同步。
+- **v1.3.0.dev0 candidate — Portable Runtime & UL：** wheel 自包含资源、唯一 router 真源、`ul_state` schema、UL-L0～UL-L5、可选 workflow 引用与迁移门；仍非正式 release。
 - **v1.x — Proof and adoption：** 补更多公开案例、强化 adapter、推进 runtime dashboard，并沉淀真实项目 playbook。
 
 完整路线见按能力门推进的 [产品 Roadmap](./docs/product/roadmap.md)。

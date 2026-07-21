@@ -11,7 +11,13 @@ from unittest.mock import patch
 
 from gamedesignos.cli import main
 from gamedesignos.errors import EXIT_OK, UsageError
-from gamedesignos.project_ready import export_graph_mermaid, health_scan, next_best_action, run_gate
+from gamedesignos.project_ready import (
+    export_graph_mermaid,
+    health_scan,
+    next_best_action,
+    run_gate,
+    validate_workflow_run,
+)
 from gamedesignos.routing import route_task
 from gamedesignos.voi import create_assessment, review_assessment
 from gamedesignos.workspace import Workspace, init_workspace
@@ -91,6 +97,17 @@ class RuntimeCliTest(unittest.TestCase):
         result = route_task("Improve overall process, workflow governance, and output quality")
         self.assertEqual(result["selected_skill"], "paranoia-ai-system-evolver")
         self.assertIn("workflow-governance-review", result["primary_outputs"])
+
+    def test_10c_uncertainty_ladder_routes_to_system_evolver(self) -> None:
+        result = route_task(
+            "把不确定性阶梯用于 AI 工程：建立模型、受控组合、暴露失败、诊断瓶颈，再做迁移验证"
+        )
+        self.assertEqual(result["selected_skill"], "paranoia-ai-system-evolver")
+        self.assertIn("ul-state", result["primary_outputs"])
+
+    def test_10d_player_learning_curve_does_not_route_to_system_evolver(self) -> None:
+        result = route_task("为新手玩家设计学习曲线、教程节奏和反馈强度实验")
+        self.assertNotEqual(result["selected_skill"], "paranoia-ai-system-evolver")
 
     def test_11_voi_near_selects_probe(self) -> None:
         ws = self.workspace()
@@ -492,8 +509,22 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertTrue(workflow_data["governance"]["evolver_required"])
         self.assertEqual(workflow_data["governance"]["enforcement_mode"], "shadow")
         self.assertEqual(workflow_data["governance"]["decision_ref"], decision_id)
+        self.assertIsNone(workflow_data["governance"]["ul_state_ref"])
         self.assertEqual(workflow_data["governance"]["rollback_ref"], decision_id)
         self.assertEqual(main(["workflow", "validate", run_id, "--workspace", str(target)]), EXIT_OK)
+
+        workflow_path = target / ".gamedesignos" / "workflow-runs" / f"{run_id}.json"
+        workflow_data["governance"]["ul_state_ref"] = "UL-MISSING-001"
+        workflow_path.write_text(json.dumps(workflow_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        self.assertFalse(validate_workflow_run(ws, run_id)["ok"])
+
+        example_path = Path(__file__).resolve().parents[2] / "paranoia-ai-system-evolver" / "examples" / "ul-state.example.json"
+        ul_data = json.loads(example_path.read_text(encoding="utf-8"))
+        ul_path = target / ".gamedesignos" / "workflow-runs" / f"{ul_data['ul_id']}.json"
+        ul_path.write_text(json.dumps(ul_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        workflow_data["governance"]["ul_state_ref"] = ul_data["ul_id"]
+        workflow_path.write_text(json.dumps(workflow_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        self.assertTrue(validate_workflow_run(ws, run_id)["ok"])
 
     def test_22_start_creates_simple_project_ready_path_once(self) -> None:
         target = self.root / "simple-start"

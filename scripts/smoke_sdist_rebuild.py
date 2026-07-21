@@ -13,6 +13,7 @@ from pathlib import Path
 REQUIRED_WHEEL_FILES = {
     "gamedesignos/_data/contracts/router.yaml",
     "gamedesignos/_data/contracts/project-workspace.schema.json",
+    "gamedesignos/_data/contracts/ul-state.schema.json",
     "gamedesignos/_data/workspace-template/game.designos.yaml",
     "gamedesignos/_data/workspace-template-v1/game.designos.yaml",
 }

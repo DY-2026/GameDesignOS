@@ -6,6 +6,7 @@ All notable changes to GameDesignOS will be recorded here.
 
 ### Added
 
+- Added the candidate UL (Uncertainty Ladder) control layer to `paranoia-ai-system-evolver`: canonical `UL-L0`–`UL-L5` rungs, `ul_state`, a machine-readable schema and example, optional workflow-run reference, bottleneck attribution, progressive scaffold removal, transfer and negative-transfer checks, routing signals, validators, and runtime regressions.
 - Added generated wheel snapshots of canonical contracts and workspace templates so installed runtimes can operate without a source checkout, including an sdist-to-wheel rebuild gate.
 - Added Agent Skills portability metadata, 7/7 five-gate behavior suites without dropping existing domain regressions, cross-platform CI, an installed-wheel smoke test, and the public-synthetic Golden Lighthouse path.
 - Added `SECURITY.md` and Dependabot configuration.
@@ -14,6 +15,7 @@ All notable changes to GameDesignOS will be recorded here.
 
 - Changed the development runtime to `1.3.0.dev0` while keeping workspace schema `1.0.0` compatible.
 - Made `contracts/router.yaml` the only editable runtime routing source; Python now compiles deterministic rules from the contract.
+- Kept UL optional and `shadow` by default: it controls uncertainty exposure between VOI selection and OODA execution, but does not replace domain skills, migrate existing workspaces, or expand Human Gate authority.
 
 ### Security
 

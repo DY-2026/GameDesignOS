@@ -16,6 +16,7 @@
 -> VOI 决策门
 -> 场景 VOI Adapter
 -> 最小信息探针
+-> UL：控制暴露剂量与可归因性
 -> Orient-first OODA
 -> 结果反馈
 -> 候选改进
@@ -143,7 +144,29 @@ approx_net_voi
 | 低 | 高 | 做轻量确认 |
 | 低 | 低 | 直接行动 |
 
-## 7. Orient-first OODA
+## 7. UL（Uncertainty Ladder）：控制下一轮暴露
+
+VOI 负责选择最值得消除的未知，UL 负责决定下一轮释放多少未知。完整协议见 `references/uncertainty-ladder-protocol.zh-CN.md`。
+
+```text
+建立模型
+-> 拆分动作
+-> 受控组合
+-> 暴露失败
+-> 诊断瓶颈
+-> 针对训练
+-> 增加复杂度
+-> 迁移验证
+-> 更新模型
+```
+
+六个工程阶段是 `UL-L0`、`UL-L1`、`UL-L2`、`UL-L3`、`UL-L4`、`UL-L5`。它不是固定瀑布，也不是单一难度分数；要分别记录输入新颖度、上下文歧义、工具环境、协作、权限与后果、验收歧义。
+
+每轮默认只释放一个主要变量，并记录 `held_constant`、`scaffolds_present`、`consequence_budget` 与 `fallback_rung`。若失败不能通过消融、对照或反事实区分主要解释，标记 `confounded`，退回更受控环境；不要在混杂失败上叠加长期规则。
+
+受控环境成功只能支持当前 rung。进入真实输入前要逐步移除支架；声称能力稳定前要有迁移与负迁移证据。权限、发布、资金、长期记忆和真实用户影响不随 rung 自动升级，仍由 RJR-AI / Human Gate 决定。
+
+## 8. Orient-first OODA
 
 Observe 抓取目标、证据、惊讶信号、失败、用户纠偏、成本、延迟和触发的 Obstacle。
 
@@ -166,7 +189,7 @@ Evaluate 记录：
 prior -> observed signal -> posterior -> action_before -> action_after -> stop reason
 ```
 
-## 8. 模型压缩 Gate
+## 9. 模型压缩 Gate
 
 Orient 阶段检查当前系统模型：
 
@@ -187,13 +210,14 @@ total_description_cost
 + failure_recovery_length
 ```
 
-## 9. 任务循环与元循环
+## 10. 任务循环与元循环
 
 任务循环：
 
 ```text
 Decision Object
 -> VOI Gate
+-> UL
 -> smallest probe or direct action
 -> result
 -> Human Gate / stop
@@ -204,6 +228,7 @@ Decision Object
 ```text
 trace
 -> repeated or high-impact failure
+-> bottleneck attribution
 -> mutation candidate
 -> behavior eval
 -> approval
@@ -212,7 +237,7 @@ trace
 
 永远不要让元循环从单个案例自动提升长期规则。一次输出看起来更完整，不代表它降低了决策错误或注意力成本。
 
-## 10. 候选突变规则
+## 11. 候选突变规则
 
 系统改动只有满足以下条件才进入进化队列：
 
@@ -221,11 +246,12 @@ trace
 - 可修复、可复用、有证据、可回滚；
 - 新增复杂度低于预期收益；
 - 有至少一个反例或负迁移检查；
+- 当前 rung、暴露变量和失败归因清楚，受控通过没有被误报为迁移通过；
 - 有停止条件，而不是永久增加研究步骤。
 
 否则只保留为任务笔记、模型学习或消费记录。
 
-## 11. AI 疲劳与反 AI 味 Gate
+## 12. AI 疲劳与反 AI 味 Gate
 
 ### AI 疲劳
 
@@ -244,7 +270,7 @@ open_branches
 
 改写、总结和提案必须保留本地事实、负反馈、失败细节、来源、约束和行动影响。若文本只增加标题、结构和抽象概念，却没有增加决策边界、信号、成本或动作，它属于高结构低 VOI 输出。
 
-## 12. 行动权限阶梯
+## 13. 行动权限阶梯
 
 | 等级 | 例子 | 默认规则 |
 | --- | --- | --- |
@@ -254,17 +280,18 @@ open_branches
 | A3 | 长期记忆、全局 skill 安装、生产策略 | 需要 Human Gate |
 | A4 | 删除、发布、资金、真实用户影响 | 必须明确审批 |
 
-## 13. 公开 Skill 包检查
+## 14. 公开 Skill 包检查
 
 - `SKILL.md` frontmatter `name` 与文件夹名一致；
 - `agents/openai.yaml` 与 `SKILL.md` 一致；
 - `SKILL.md` 轻量并路由到本 skill 的 references/templates；
 - VOI 模板包含 decision、current_default_action、signal-to-action、cost 与 stop rule；
 - 行为 eval 包含无决策 FOMO、决策边界、高价值负反馈、低价值重复调研和不可逆动作案例；
+- 不确定性阶梯 eval 包含过早真实化、混杂失败、组合崩溃、迁移失败和权限不自动晋升；
 - 参考文件是一层可达，不把一次性 rollout 塞入长期 reference；
 - 版权、来源、公开/私有边界和 rollback 清楚；
 - 最后扫描陈旧命名和旧项目措辞。
 
-## 14. README 视觉资产 Gate
+## 15. README 视觉资产 Gate
 
 生成图只承载氛围、结构隐喻和识别度，不承载关键文字。关键流程必须另有 Markdown、表格或 Mermaid 版本；图片路径、alt text、水印、错字、品牌边界和体积均需检查。

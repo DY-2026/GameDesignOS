@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
@@ -27,6 +28,9 @@ REQUIRED_FILES = [
     "references/evolution-loop-playbook.md",
     "references/evolution-loop-playbook.zh-CN.md",
     "references/evolution-loop-playbook.en.md",
+    "references/uncertainty-ladder-protocol.md",
+    "references/uncertainty-ladder-protocol.zh-CN.md",
+    "references/uncertainty-ladder-protocol.en.md",
     "references/woop-harness-protocol.md",
     "references/woop-harness-protocol.zh-CN.md",
     "references/woop-harness-protocol.en.md",
@@ -51,8 +55,14 @@ REQUIRED_FILES = [
     "templates/ooda_voi_state.md",
     "templates/ooda_voi_state.zh-CN.md",
     "templates/ooda_voi_state.en.md",
+    "templates/uncertainty_ladder_state.md",
+    "templates/uncertainty_ladder_state.zh-CN.md",
+    "templates/uncertainty_ladder_state.en.md",
     "evals/voi-decision-gate-cases.md",
     "evals/voi-decision-gate-cases.en.md",
+    "evals/uncertainty-ladder-cases.md",
+    "evals/uncertainty-ladder-cases.en.md",
+    "examples/ul-state.example.json",
 ]
 
 VOI_FIELDS = [
@@ -75,6 +85,22 @@ RJR_FIELDS = [
     "coupling",
     "authority_level",
     "residual_judgment",
+]
+
+UNCERTAINTY_LADDER_FIELDS = [
+    "current_rung",
+    "uncertainty_exposure",
+    "released_this_round",
+    "held_constant",
+    "scaffolds_present",
+    "consequence_budget",
+    "attribution_gate",
+    "graduation_evidence",
+    "transfer_checks",
+    "fallback_rung",
+    "rollback",
+    "stop_rule",
+    "human_gate",
 ]
 
 
@@ -112,6 +138,8 @@ def validate(root: Path) -> list[str]:
     require("current_default_action" in skill, "SKILL.md lacks current default action gate", failures)
     require("Scenario VOI Adapter" in skill, "SKILL.md lacks Scenario VOI Adapter routing", failures)
     require("RJR-AI" in skill, "SKILL.md lacks RJR-AI authority layer", failures)
+    require("Uncertainty Ladder" in skill, "SKILL.md lacks Uncertainty Ladder control layer", failures)
+    require("references/uncertainty-ladder-protocol" in skill, "SKILL.md does not route to uncertainty ladder protocol", failures)
     require("剩余判断权" in skill, "SKILL.md lacks residual judgment language", failures)
     require("停止" in skill or "stop" in skill.lower(), "SKILL.md lacks stop-rule language", failures)
 
@@ -119,6 +147,7 @@ def validate(root: Path) -> list[str]:
     require("Paranoia AI System Evolver" in agent, "agents/openai.yaml display name mismatch", failures)
     require("current default action" in agent.lower(), "agents/openai.yaml lacks decision-default language", failures)
     require("EVPI/EVSI" in agent, "agents/openai.yaml lacks EVPI/EVSI", failures)
+    require("不确定性阶梯" in agent, "agents/openai.yaml lacks uncertainty ladder language", failures)
 
     for rel in ["README.md", "README.zh-CN.md", "README.en.md"]:
         text = read_text(root / rel)
@@ -130,6 +159,8 @@ def validate(root: Path) -> list[str]:
         require("workflow_governance_review" in text, f"{rel} does not list workflow governance template", failures)
         require("model-compression-playbook" in text, f"{rel} does not list model-compression reference", failures)
         require("woop-harness-protocol" in text, f"{rel} does not list WOOP harness reference", failures)
+        require("uncertainty-ladder-protocol" in text, f"{rel} does not list uncertainty ladder reference", failures)
+        require("uncertainty_ladder_state" in text, f"{rel} does not list uncertainty ladder template", failures)
 
     for rel in [
         "templates/intent_work_order.md",
@@ -193,6 +224,8 @@ def validate(root: Path) -> list[str]:
         if rel.startswith("templates/evolution_proposal"):
             for field in RJR_FIELDS:
                 require(field in text, f"{rel} lacks RJR field: {field}", failures)
+            for field in UNCERTAINTY_LADDER_FIELDS:
+                require(field in text, f"{rel} lacks uncertainty ladder field: {field}", failures)
         if rel.startswith("templates/voi_decision_gate"):
             for field in ["scenario_voi", "valid_evidence", "weak_evidence", "preferred_probe", "domain_stop_rule"]:
                 require(field in text, f"{rel} lacks scenario VOI field: {field}", failures)
@@ -242,6 +275,38 @@ def validate(root: Path) -> list[str]:
     require("RJR-AI" in evolution_en and "residual judgment" in evolution_en.lower(), "English evolution playbook lacks RJR authority layer", failures)
     require("description_cost" in evolution_zh or "总描述成本" in evolution_zh, "Chinese evolution playbook lacks description cost", failures)
     require("total_description_cost" in evolution_en, "English evolution playbook lacks description cost", failures)
+    require("不确定性阶梯" in evolution_zh and "confounded" in evolution_zh, "Chinese evolution playbook lacks uncertainty ladder attribution gate", failures)
+    require("Uncertainty Ladder" in evolution_en and "confounded" in evolution_en, "English evolution playbook lacks uncertainty ladder attribution gate", failures)
+
+    for rel in [
+        "templates/uncertainty_ladder_state.md",
+        "templates/uncertainty_ladder_state.zh-CN.md",
+        "templates/uncertainty_ladder_state.en.md",
+    ]:
+        text = read_text(root / rel)
+        for field in UNCERTAINTY_LADDER_FIELDS:
+            require(field in text, f"{rel} lacks uncertainty ladder field: {field}", failures)
+        for field in ("schema_version", "ul_id"):
+            require(field in text, f"{rel} lacks UL identity field: {field}", failures)
+
+    ladder_zh = read_text(root / "references/uncertainty-ladder-protocol.zh-CN.md")
+    ladder_en = read_text(root / "references/uncertainty-ladder-protocol.en.md")
+    for token in ["UL-L0", "UL-L3", "UL-L5", "ul_state", "released_this_round", "confounded", "Human Gate"]:
+        require(token in ladder_zh, f"Chinese uncertainty ladder protocol lacks {token}", failures)
+        require(token in ladder_en, f"English uncertainty ladder protocol lacks {token}", failures)
+
+    try:
+        ul_example = json.loads(read_text(root / "examples/ul-state.example.json"))
+    except (OSError, json.JSONDecodeError) as exc:
+        failures.append(f"examples/ul-state.example.json is invalid JSON: {exc}")
+        ul_example = {}
+    for field in ("schema_version", "ul_id", "current_rung", "attribution_gate", "transfer_checks", "human_gate"):
+        require(field in ul_example, f"UL example lacks field: {field}", failures)
+    require(
+        isinstance(ul_example.get("current_rung"), str) and ul_example["current_rung"].startswith("UL-L"),
+        "UL example current_rung must use UL-L0..UL-L5",
+        failures,
+    )
 
     eval_zh = read_text(root / "evals/voi-decision-gate-cases.md")
     eval_en = read_text(root / "evals/voi-decision-gate-cases.en.md")
@@ -255,6 +320,15 @@ def validate(root: Path) -> list[str]:
     require("RJR-AI" in eval_en and "residual judgment" in eval_en.lower(), "English VOI evals lack RJR authority case", failures)
     require("workflow-run.governance" in eval_zh, "Chinese VOI evals lack workflow governance case", failures)
     require("workflow-run.governance" in eval_en, "English VOI evals lack workflow governance case", failures)
+
+    ladder_eval_zh = read_text(root / "evals/uncertainty-ladder-cases.md")
+    ladder_eval_en = read_text(root / "evals/uncertainty-ladder-cases.en.md")
+    require(ladder_eval_zh.count("## Case") >= 6, "Chinese uncertainty ladder evals need at least 6 cases", failures)
+    require(ladder_eval_en.count("## Case") >= 6, "English uncertainty ladder evals need at least 6 cases", failures)
+    for token in ["confounded", "迁移", "Human Gate"]:
+        require(token in ladder_eval_zh, f"Chinese uncertainty ladder evals lack {token}", failures)
+    for token in ["confounded", "transfer", "Human Gate"]:
+        require(token.lower() in ladder_eval_en.lower(), f"English uncertainty ladder evals lack {token}", failures)
 
     duplicate_keys = re.findall(
         r"^\s{4,}([a-zA-Z_]+):",

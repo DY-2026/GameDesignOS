@@ -190,6 +190,7 @@ def _project_ready_schema_targets(workspace: Workspace, contracts_root: Path) ->
     targets.extend((contracts_root / "learning-record.schema.json", path) for path in learning_dir.glob("learning-record*.json"))
     targets.extend((contracts_root / "gate-result.schema.json", path) for path in gate_results_dir.glob("*.json"))
     targets.extend((contracts_root / "workflow-run.schema.json", path) for path in workflow_runs_dir.glob("WRUN-*.json"))
+    targets.extend((contracts_root / "ul-state.schema.json", path) for path in workflow_runs_dir.glob("UL-*.json"))
     return targets
 
 

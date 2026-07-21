@@ -9,10 +9,11 @@
 1. 本轮到底要改变什么现实？
 2. 哪个决策会因为本轮工作而改变？
 3. AI、workflow、eval、automation 和 human 的授权边界在哪里？
-4. 中途有没有低 VOI 调研、分支爆炸、过度结构化、证据不足或范围漂移？
-5. 交付前哪些承诺、发布、资金、权限或方向变更必须进入 Human Gate？
-6. 失败后如何 rollback？
-7. 哪些复盘经验只能先作为 candidate learning，不能直接晋升为长期规则？
+4. 是否需要 UL 控制本轮释放的不确定性，失败能否归因？
+5. 中途有没有低 VOI 调研、分支爆炸、过度结构化、证据不足或范围漂移？
+6. 交付前哪些承诺、发布、资金、权限或方向变更必须进入 Human Gate？
+7. 失败后如何 rollback？
+8. 哪些复盘经验只能先作为 candidate learning，不能直接晋升为长期规则？
 
 ## 不替代领域 Skill
 
@@ -24,7 +25,7 @@
 - `game-design-proposal-writer` 负责面向决策者的 proposal、pitch、memo 或 vertical slice 文档；
 - `game-design-source-curator` 和 `game-design-book-translator` 负责知识资产。
 
-`paranoia-ai-system-evolver` 只做治理检查：意图、VOI、RJR-AI、漂移、Human Gate、rollback、复盘沉淀。
+`paranoia-ai-system-evolver` 只做治理检查：意图、VOI、可选 UL、RJR-AI、漂移、Human Gate、rollback、复盘沉淀。
 
 ## workflow-run.governance
 
@@ -38,6 +39,7 @@ governance:
   intent_work_order_ref: null
   decision_ref: DEC-...
   voi_gate_ref: GATE-...
+  ul_state_ref: null
   rjr_authority_ref: null
   paranoia_review_ref: null
   human_gate_refs: []
@@ -51,6 +53,7 @@ governance:
 - `intent_work_order_ref`：开工意图。说明要改变什么现实、谁验收、第一眼必须看懂什么、哪些不能牺牲、AI 可自治到哪里。
 - `decision_ref`：本轮服务的 Decision Object。
 - `voi_gate_ref`：本轮为什么值得继续获取信息、做实验或开分支。
+- `ul_state_ref`：可选 UL 状态引用；当任务需要控制未知暴露、诊断瓶颈或验证迁移时，记录 `UL-L0`～`UL-L5`、本轮释放变量、保持变量、归因门和 fallback。
 - `rjr_authority_ref`：AI、workflow、eval、automation 和 human 的授权边界。
 - `paranoia_review_ref`：中途或交付前的治理审查记录。
 - `human_gate_refs`：必须由人拍板的承诺、发布、资金、权限、删除、范围锁定或方向变更。
@@ -86,6 +89,7 @@ governance:
 动作：
 
 - 运行 VOI/RJR-AI 审查；
+- 若失败不可归因，启用 UL 并退回更受控 rung；
 - 关闭低 VOI 分支；
 - 把不可授权判断推回 Human Gate；
 - 把产出重新压回最小可验收状态。
@@ -119,6 +123,7 @@ governance:
 
 - 领域 skill 的主产出更聚焦；
 - 低价值调研和分支减少；
+- 需要 UL 的任务能区分受控通过、失败归因与迁移通过；
 - 验收者更快看懂当前结论；
 - 证据边界、不可牺牲项和 rollback 更清楚；
 - 高耦合低可逆判断没有被 agent 私自接管；

@@ -1,6 +1,6 @@
 # GameDesignOS System Architecture
 
-GameDesignOS v1.2.0 uses four product layers and one cross-cutting governance plane. The local runtime now operates Project-Ready workspaces, while Intent Work Orders, RJR-AI authority boundaries, and workflow-governance checkpoints keep system evolution reviewable.
+GameDesignOS uses four product layers and one cross-cutting governance plane. The formal v1.2.0 runtime operates Project-Ready workspaces; the current v1.3 candidate adds portable runtime hardening plus optional UL (Uncertainty Ladder) state for attributable system evolution without migrating the v1 workspace schema.
 
 > 中文摘要：四层分别是 Skill Kernel、Contract Layer、Project Workspace 与 Runtime Interface；Human Gate、验证、来源边界和回滚规则贯穿所有层。
 
@@ -40,6 +40,7 @@ The Contract Layer defines stable artifact shapes and routing boundaries. Existi
 v0.8.0 introduced a cross-cutting decision-information contract and workspace-level contracts, and v0.9.0 makes them operable through local runtime commands:
 
 - `information-value-assessment.schema.json`
+- `ul-state.schema.json`
 - `project-workspace.schema.json`
 - `design-asset-index.schema.json`
 - `decision-log.schema.json`
@@ -62,6 +63,21 @@ Decision Object
 ```
 
 The gate is cross-cutting rather than a replacement for domain skills. It prevents information collection from becoming an unbounded project and preserves local negative evidence that can reverse the current narrative.
+
+## UL Exposure-Control Layer
+
+UL sits between VOI selection and OODA execution when a complex capability needs controlled progression:
+
+```text
+Decision Object
+  -> VOI chooses the action-changing uncertainty
+  -> UL-L0 ... UL-L5 controls exposure, scaffolds, attribution, and transfer
+  -> OODA executes one bounded probe
+  -> Eval decides replay, graduation, fallback, or stop
+  -> RJR-AI / Human Gate limits authority and real-world consequence
+```
+
+The machine-readable artifact is `ul_state`, validated by `contracts/ul-state.schema.json`. A workflow may reference it through `workflow-run.governance.ul_state_ref`. The field is optional: ordinary domain work should not create UL state unless uncertainty exposure or failure attribution is itself the decision problem.
 
 ## 3. Project Workspace
 
@@ -99,7 +115,7 @@ Agents must surface conflicts instead of silently choosing whichever file is eas
 
 The Runtime Interface connects a host agent or local CLI to the workspace, contracts, and skills.
 
-By v1.2.0 it includes:
+The current runtime includes:
 
 - a copyable workspace template;
 - a defined workspace lifecycle;
@@ -107,7 +123,7 @@ By v1.2.0 it includes:
 - workspace-aware adapter guidance;
 - repository validation coverage.
 
-v1.2.0 still does not ship a hosted API, model gateway, credential store, automatic skill execution, or project-commitment authority. Governance checkpoints default to `shadow`; humans retain residual judgment for high-coupling, low-reversibility, under-evidenced decisions.
+It still does not ship a hosted API, model gateway, credential store, automatic skill execution, or project-commitment authority. UL does not expand authority. Governance checkpoints default to `shadow`; humans retain residual judgment for high-coupling, low-reversibility, under-evidenced decisions.
 
 ## 5. Governance Plane
 
@@ -126,7 +142,8 @@ Governance applies across every layer:
 ```mermaid
 flowchart LR
     D[Decision Object] --> V[VOI Gate]
-    V --> I[Idea]
+    V --> U[Optional UL State]
+    U --> I[Idea]
     I --> CA[Concept Architect]
     CA --> PP[Player Promise]
     CA --> VP[Validation Plan]

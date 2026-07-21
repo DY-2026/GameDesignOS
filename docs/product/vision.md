@@ -19,6 +19,7 @@ A designer should be able to move through this chain without rebuilding context 
 ```text
 decision object
   -> VOI gate
+  -> optional UL state
   -> idea
   -> concept seed
   -> player promise
@@ -39,6 +40,12 @@ Each step should produce a reviewable asset with explicit provenance, upstream d
 GameDesignOS does not treat more research as the default. Before an agent opens broad search, memory, RAG, or an experiment, the project should know what decision is being supported, what action happens without new information, which plausible signal could change that action, and when information gathering stops.
 
 This turns AI from an option generator into a decision-support system. It also separates immediate decision information from long-term model learning and intentional information consumption.
+
+## Attributable Uncertainty Exposure
+
+The current v1.3 candidate adds UL (Uncertainty Ladder) between VOI selection and OODA execution. VOI chooses which uncertainty is worth reducing; UL controls how much of it is released in the next probe, what remains fixed, how failures will be attributed, and which transfer or negative-transfer evidence is required before promotion.
+
+UL is optional, `shadow` by default, and does not create a new authority ladder. Ordinary domain workflows do not need an `ul_state`; real accounts, publication, funds, permissions, durable memory, and irreversible commitments remain Human Gate decisions regardless of rung.
 
 ## What Counts as a Design Asset
 
@@ -81,12 +88,13 @@ Real projects should use a private workspace or private overlay for proprietary 
 
 ## Product Direction
 
-v1.0.0 is the formal Project-Ready baseline. v1.1.0 adds the RJR-AI authority layer, and v1.2.0 adds Intent Work Orders plus workflow-governance references without changing the v1 workspace schema. The product has reached these milestones:
+v1.0.0 is the formal Project-Ready baseline. v1.1.0 adds the RJR-AI authority layer, and v1.2.0 adds Intent Work Orders plus workflow-governance references without changing the v1 workspace schema. The current v1.3 development line keeps that schema stable while validating portable runtime packaging and optional UL state. The product has reached these milestones:
 
 1. **Runtime Foundation:** workspace template, contracts, workflow routes, and validation conventions.
 2. **Local Runtime:** project initialization, routing, asset creation, validation, VOI review, and review-safe packing through a local CLI or agent harness.
 3. **Project-Ready Operating System:** asset graph, review gates, project dashboard, private overlays, and validated end-to-end cases.
 4. **RJR-AI Authority Layer:** explicit responsibility split across AI, workflow, eval, permissions, knowledge memory, and human residual judgment.
+5. **Candidate UL Control Layer:** attributable uncertainty exposure, bottleneck diagnosis, transfer checks, and fallback without automatic authority escalation.
 
 The v1.x direction is proof and adoption: more public evidence-linked cases, stronger adapters, clearer runtime dashboards, private-overlay playbooks, and real-project validation without weakening Human Gate, public/private separation, or local-first safety.
 

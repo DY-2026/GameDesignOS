@@ -66,14 +66,14 @@ You still make the calls. The system supplies specialist workflows, shared hando
 | Category | Count | What It Gives You |
 | --- | ---: | --- |
 | Specialist skills | 7 | Concept architecture, experience analysis, ED optimization, proposal writing, workflow evolution, book translation, and source curation |
-| Contract schemas | 18 | Stable handoffs for decisions, assumptions, evidence, experiments, learning, gates, workflows, issues, player promises, AI work orders, and project assets |
+| Contract schemas | 19 | Stable handoffs for decisions, assumptions, evidence, experiments, UL state, learning, gates, workflows, issues, player promises, AI work orders, and project assets |
 | v1 workspace sections | 9 | Nine lifecycle directories: Inbox, Decisions, Assumptions, Evidence, Experiments, Design Assets, Workflows, Learning, and Exports; runtime state stays separate under `.gamedesignos/` |
 | Workflow guides | 5 | Idea-to-validation, media-to-diagnosis, weekly ED experiment, evidence-to-proposal, and decision-to-information paths |
 | Host adapters | 4 | Codex, Claude Code, OpenAI-compatible agents, and local harness integration notes |
 | Public proof cases | 2 | Evidence-linked game-analysis and experience-density examples with explicit source boundaries |
 | Runtime | 1 | Deterministic local CLI for routing, workspace creation, validation, health checks, graphs, gates, and review-safe packs |
 
-> **Development candidate: v1.3.0.dev0.** Candidate wheels carry their own contracts/templates, `router.yaml` is the only editable routing source, and all 7 skills pass the Agent Skills reference validator; the five-gate suites plus preserved domain regressions total 9 suites / 53 evals. Run the [Golden Lighthouse](./examples/golden-lighthouse/) synthetic loop with one command. The latest formal release remains v1.2.0.
+> **Development candidate: v1.3.0.dev0.** Candidate wheels carry their own contracts/templates and `router.yaml` remains the only editable routing source. UL (Uncertainty Ladder) now has a machine-readable `ul_state` schema, UL-L0 through UL-L5, an optional workflow reference, and attribution/transfer regressions. All 7 skills still pass the Agent Skills reference validator; packaged behavior fixtures remain 9 suites / 53 evals. The latest formal release remains v1.2.0.
 
 ## Project-Ready Runtime
 
@@ -320,7 +320,7 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
 
 ## System Architecture
 
-`GameDesignOS` v1.2.0 is organized as four product layers plus cross-cutting governance, Intent Work Orders, and an RJR-AI authority boundary:
+`GameDesignOS` is organized as four product layers plus a cross-cutting governance plane. The current v1.3 candidate adds optional UL between VOI selection and OODA execution without migrating the v1 workspace schema:
 
 - **Skill Kernel**
   - [`game-concept-architect/`](./game-concept-architect/): one-line idea -> verifiable design blueprint.
@@ -331,13 +331,13 @@ For the compact proof-path list, see the [showcase index](./docs/showcases/READM
   - [`game-design-book-translator/`](./game-design-book-translator/): design texts -> professional Chinese design writing.
   - [`game-design-source-curator/`](./game-design-source-curator/): scattered sources -> durable knowledge base.
 - **Contract Layer**
-  - [`contracts/`](./contracts/): routing, skill handoffs, project manifests, asset indexes, and decision logs.
+  - [`contracts/`](./contracts/): routing, skill handoffs, `ul-state.schema.json`, project manifests, asset indexes, and decision logs.
 - **Project Workspace**
   - [`runtime/workspace-template-v1/`](./runtime/workspace-template-v1/): project identity, lifecycle directories, asset registry, learning records, exports, and Human Gates.
 - **Runtime Interface**
   - [`gamedesignos/`](./gamedesignos/), [`runtime/`](./runtime/), and [`adapters/`](./adapters/): local CLI commands, workspace lifecycle, host integration, and command contracts.
 - **Governance**
-  - evidence boundaries, public/private separation, evals, Human Gates, and rollback apply across every layer.
+  - evidence boundaries, public/private separation, VOI, optional UL, RJR-AI, evals, Human Gates, and rollback apply across every layer.
 
 Private overlays, real project data, client examples, credentials, and local studio rules should live outside this public repository. Users may still run any skill directly without adopting a workspace.
 
@@ -346,7 +346,7 @@ Private overlays, real project data, client examples, credentials, and local stu
 | Skill | One-line Use | Best For | Package |
 | --- | --- | --- | --- |
 | **Game Experience Analyzer** | Turns screenshots, gameplay recordings, trailers/PVs, and video links into evidence-first Chinese game design reports. | Early experience, mechanics, game dissection, mechanic transfer, holistic product analysis, MDA, systems-narrative fusion, single-player flow, genre strategy, heat prediction, foresight windows, monetization, UX. | [`game-experience-analyzer/`](./game-experience-analyzer/) |
-| **Paranoia AI System Evolver** | Turns AI work orders, prompts, workflows, memory, schemas, tool-routing, eval, and RJR-AI authority changes into controlled system evolution. | Intent Work Orders, WOOP Task Cards, VOI/OODA, residual judgment boundaries, model compression, causal mediators, Human Gate, rollback, validated upgrades. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
+| **Paranoia AI System Evolver** | Turns AI work orders, prompts, workflows, memory, schemas, tool-routing, eval, and RJR-AI authority changes into controlled system evolution. | Intent Work Orders, WOOP, VOI, UL, OODA, residual judgment, failure attribution, transfer checks, Human Gates, and rollback. | [`paranoia-ai-system-evolver/`](./paranoia-ai-system-evolver/) |
 | **Game Design Book Translator** | Produces professional Chinese game design translations that read like serious design writing. | Terminology, chapters, figures, captions, tables, QA, source-boundary checks. | [`game-design-book-translator/`](./game-design-book-translator/) |
 | **Game Design Source Curator** | Converts scattered game design sources into a durable local knowledge base. | Source screening, scoring, HTML archives, registries, update history, design experiment cards. | [`game-design-source-curator/`](./game-design-source-curator/) |
 | **Game Concept Architect** | Turns one-line game ideas into verifiable concept briefs with seed extraction, player verbs, action-goal alignment, player promises, core loops, scope gates, and prototype validation plans. | Indie game ideation, pitch shaping, external feasibility, platform/business fit, MVP/vertical slice planning, production constraints. | [`game-concept-architect/`](./game-concept-architect/) |
@@ -436,6 +436,7 @@ gamedesignos doctor
 - **v1.0.0 — Project-Ready GameDesignOS:** formal release with the Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning chain, decision graph, health scan, Human Gate, and v1 workspace.
 - **v1.1.0 — RJR-AI Authority Layer:** residual judgment boundaries, GitHub positioning, version sync, and workflow-evolution coverage for AI/workflow/eval/permission/memory systems.
 - **v1.2.0 — Intent Work Order & Workflow Governance:** AI work orders, workflow-run governance refs, Paranoia checkpoints, release tag cleanup, and runtime/package version sync.
+- **v1.3.0.dev0 candidate — Portable Runtime & UL:** self-contained wheel resources, one router source, `ul_state` schema, UL-L0 through UL-L5, optional workflow references, and transfer gates; not a formal release.
 - **v1.x — Proof and adoption:** more public cases, adapter hardening, runtime dashboards, and validated real-project playbooks.
 
 See the capability-gated [product roadmap](./docs/product/roadmap.md).

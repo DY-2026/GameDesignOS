@@ -25,6 +25,15 @@ decision_and_voi:
   voi_gate_ref:
   stop_rule:
 
+ul_control:
+  ul_state_ref:
+  current_rung: "UL-L0 | UL-L1 | UL-L2 | UL-L3 | UL-L4 | UL-L5"
+  released_this_round: []
+  held_constant: []
+  attribution_confidence: "not_tested | low | medium | high | confounded"
+  fallback_rung:
+  transfer_status: "not_tested | partial | passed | failed"
+
 rjr_authority:
   rjr_authority_ref:
   authority_level:

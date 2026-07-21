@@ -60,6 +60,22 @@ def main() -> int:
         route = run(["-m", "gamedesignos", "route", "分析一段试玩录屏"], cwd=outside).stdout
         if "game-experience-analyzer" not in route:
             raise SystemExit(f"Packaged router returned an unexpected route:\n{route}")
+        ul_route = json.loads(run(
+            [
+                "-c",
+                (
+                    "import json; from gamedesignos.routing import route_task; "
+                    "print(json.dumps(route_task('把不确定性阶梯用于 AI 工程并验证负迁移'), "
+                    "ensure_ascii=False))"
+                ),
+            ],
+            cwd=outside,
+        ).stdout)
+        if (
+            ul_route.get("selected_skill") != "paranoia-ai-system-evolver"
+            or "ul-state" not in ul_route.get("primary_outputs", [])
+        ):
+            raise SystemExit(f"Packaged router lost the UL route or output:\n{ul_route}")
     print("OK: installed wheel is self-contained outside the source checkout")
     return 0
 

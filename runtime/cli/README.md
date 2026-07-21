@@ -43,4 +43,6 @@ Decision Object
 
 当前 `main` Runtime 版本为 `1.3.0.dev0`（P0 candidate）；workspace schema 仍为 `1.0.0`，无需迁移旧 v1 workspace。
 
+UL（Uncertainty Ladder）是可选的 workflow 治理产物，不新增 CLI 命令：由 `paranoia-ai-system-evolver` 生成或更新 `ul_state`，runtime 在 `.gamedesignos/workflow-runs/UL-*.json` 中发现后按 canonical schema 校验。权限、发布和真实后果仍由 RJR-AI / Human Gate 控制。
+
 完整命令见 [commands.md](./commands.md)。

@@ -14,6 +14,7 @@ real task pressure
 -> VOI decision gate
 -> Scenario VOI Adapter
 -> smallest information probe
+-> UL exposure and attribution gate
 -> Orient-first OODA
 -> result feedback
 -> candidate mutation
@@ -105,7 +106,23 @@ approx_net_voi
 
 This is a triage heuristic. If all plausible signals lead to the same action, stop or classify the work as model learning or information consumption.
 
-## 7. Orient-First OODA
+## 7. UL (Uncertainty Ladder)
+
+VOI selects the uncertainty worth reducing. UL controls how much uncertainty the next probe exposes. See `references/uncertainty-ladder-protocol.en.md`.
+
+```text
+build model -> isolate actions -> controlled composition -> expose failure
+-> diagnose bottleneck -> targeted practice -> increase complexity
+-> test transfer -> update model
+```
+
+The rungs are `UL-L0`, `UL-L1`, `UL-L2`, `UL-L3`, `UL-L4`, and `UL-L5`. This is not a scalar difficulty score or a fixed waterfall. Track input novelty, context ambiguity, tool/environment variability, coordination, authority/consequence, and evaluation ambiguity separately.
+
+Release one major variable per round by default. Record `held_constant`, `scaffolds_present`, `consequence_budget`, and `fallback_rung`. If ablation, controls, or counterfactuals cannot distinguish leading explanations, mark the failure `confounded` and return to a more controlled environment. Do not build permanent rules on confounded evidence.
+
+Controlled success supports only the current rung. Remove scaffolds progressively and require transfer plus negative-transfer evidence before claiming robustness. Authority, publishing, money, long-term memory, and real-user impact never auto-promote with the rung; RJR-AI and Human Gate still govern them.
+
+## 8. Orient-First OODA
 
 Observe goals, evidence, surprise, failures, corrections, costs, latency, and triggered Obstacles. Orient around the current frame, obsolete narratives, decision boundary, user/domain/operating models, and whether the information is decision, model, or consumption value. Decide one action or probe and explicitly reject low-VOI branches. Act through an artifact, tool call, or bounded test. Evaluate the chain:
 
@@ -113,7 +130,7 @@ Observe goals, evidence, surprise, failures, corrections, costs, latency, and tr
 prior -> signal -> posterior -> action_before -> action_after -> stop reason
 ```
 
-## 8. Model Compression Gate
+## 9. Model Compression Gate
 
 Check whether the model is too short to expose mediators, too long to execute, or merely moving complexity. Every new rule should name its mediator, control point, observation, validation, and effect on future decision cost.
 
@@ -127,23 +144,23 @@ total_description_cost
 + failure_recovery_length
 ```
 
-## 9. Task and Meta Loops
+## 10. Task and Meta Loops
 
 ```text
-Decision Object -> VOI Gate -> smallest probe or direct action -> result -> Human Gate / stop
+Decision Object -> VOI Gate -> UL -> smallest probe or direct action -> result -> Human Gate / stop
 ```
 
 ```text
-trace -> repeated/high-impact failure -> mutation candidate -> behavior eval -> approval -> promotion/rollback
+trace -> repeated/high-impact failure -> bottleneck attribution -> mutation candidate -> behavior eval -> approval -> promotion/rollback
 ```
 
 Never promote a permanent rule from one attractive case. More complete prose is not evidence of lower decision error or lower attention cost.
 
-## 10. Candidate Mutation Gate
+## 11. Candidate Mutation Gate
 
-A mutation enters the queue only when it is repeated or high-impact, can change a system decision or reduce major risk, is repairable, reusable, evidenced, reversible, cheaper than its expected benefit, tested against a counterexample, and has a stop rule.
+A mutation enters the queue only when it is repeated or high-impact, can change a system decision or reduce major risk, is repairable, reusable, evidenced, reversible, cheaper than its expected benefit, tested against a counterexample, and has a stop rule. Its current rung, exposed variables, and attribution must be explicit; controlled success must not be presented as transfer proof.
 
-## 11. AI Fatigue and Anti-Generic Output
+## 12. AI Fatigue and Anti-Generic Output
 
 ```text
 open branches -> map to decisions -> keep action-changing branches -> archive model learning -> close consumption -> choose one probe
@@ -151,7 +168,7 @@ open branches -> map to decisions -> keep action-changing branches -> archive mo
 
 Preserve local facts, negative feedback, failure details, provenance, constraints, and action impact. Added headings and abstract structure without added decision boundaries, signals, costs, or actions are high-structure/low-VOI output.
 
-## 12. Permission Ladder
+## 13. Permission Ladder
 
 | Level | Example | Default |
 | --- | --- | --- |
@@ -161,6 +178,6 @@ Preserve local facts, negative feedback, failure details, provenance, constraint
 | A3 | long-term memory, global skill install, production policy | Human Gate |
 | A4 | deletion, publishing, money, real-user impact | explicit approval |
 
-## 13. Public Skill Checks
+## 14. Public Skill Checks
 
-The package must keep names aligned, keep `SKILL.md` lightweight, route to one-hop references and templates, include decision/default-action/signal-to-action/cost/stop fields, cover VOI failure cases in behavior evals, preserve public/private boundaries, and retain rollback.
+The package must keep names aligned, keep `SKILL.md` lightweight, route to one-hop references and templates, include decision/default-action/signal-to-action/cost/stop fields, cover VOI and uncertainty-ladder failure cases in behavior evals, preserve public/private boundaries, and retain rollback.

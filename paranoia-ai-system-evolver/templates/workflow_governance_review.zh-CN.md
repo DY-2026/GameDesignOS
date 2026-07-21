@@ -31,6 +31,15 @@ decision_and_voi:
   rejected_information_actions: []
   stop_rule:
 
+ul_control:
+  ul_state_ref:
+  current_rung: "UL-L0 | UL-L1 | UL-L2 | UL-L3 | UL-L4 | UL-L5"
+  released_this_round: []
+  held_constant: []
+  attribution_confidence: "not_tested | low | medium | high | confounded"
+  fallback_rung:
+  transfer_status: "not_tested | partial | passed | failed"
+
 rjr_authority:
   rjr_authority_ref:
   coupling:
@@ -79,4 +88,5 @@ retrospective:
 - 默认 `enforcement_mode: shadow`，先记录不阻断。
 - 只有 eval 证明检查点稳定改善流程和产出，才升级到 `warn` 或 `enforce`。
 - 领域 skill 的主产出不在本模板里重写，只引用其资产。
+- UL 为可选区块；普通领域任务不需要为了填表而启用。
 - 任何真实账号、发布、资金、权限、删除、长期规则晋升，都必须进入 Human Gate。

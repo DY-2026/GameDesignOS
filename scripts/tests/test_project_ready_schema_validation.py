@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -91,6 +92,19 @@ class ProjectReadySchemaValidationTest(unittest.TestCase):
 
         report = workspace.validate()
         self.assertTrue(report.ok, "\n".join(report.errors))
+
+        example_path = Path(__file__).resolve().parents[2] / "paranoia-ai-system-evolver" / "examples" / "ul-state.example.json"
+        ul_data = json.loads(example_path.read_text(encoding="utf-8"))
+        ul_path = workspace.root / ".gamedesignos" / "workflow-runs" / f"{ul_data['ul_id']}.json"
+        ul_path.write_text(json.dumps(ul_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        ul_report = workspace.validate()
+        self.assertTrue(ul_report.ok, "\n".join(ul_report.errors))
+
+        ul_data["current_rung"] = "UL-L99"
+        ul_path.write_text(json.dumps(ul_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        invalid_report = workspace.validate()
+        self.assertFalse(invalid_report.ok)
+        self.assertTrue(any("UL-L99" in error for error in invalid_report.errors))
 
 
 if __name__ == "__main__":

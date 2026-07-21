@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "ul_id": "UL-SYSTEM-EVOLUTION-001",
+  "status": "candidate",
+  "target_capability": "Route an ambiguous AI-engineering request to the correct skill and preserve a verifiable delivery path.",
+  "decision_ref": "DEC-SYSTEM-EVOLUTION-001",
+  "voi_gate_ref": "VOI-SYSTEM-EVOLUTION-001",
+  "world_model_ref": "references/uncertainty-ladder-protocol.zh-CN.md",
+  "current_rung": "UL-L3",
+  "uncertainty_exposure": {
+    "input_novelty": "partial",
+    "context_ambiguity": "controlled",
+    "tool_environment_variability": "controlled",
+    "coordination_variability": "controlled",
+    "authority_and_consequence": "sandbox",
+    "evaluation_ambiguity": "controlled"
+  },
+  "released_this_round": [
+    {
+      "variable": "input_novelty",
+      "reason": "Test whether a structurally similar but differently worded request still routes correctly.",
+      "expected_learning": "Separate route-signal weakness from general skill-execution quality."
+    }
+  ],
+  "held_constant": [
+    "tool availability",
+    "authority boundary",
+    "acceptance rubric"
+  ],
+  "scaffolds_present": [
+    "fixed repository",
+    "deterministic router",
+    "local validation"
+  ],
+  "consequence_budget": "Local read-only route check; no global install, publish, or production mutation.",
+  "preregistered_signals": {
+    "pass": ["The request routes to paranoia-ai-system-evolver and returns ul-state."],
+    "fail": ["The request routes to a domain skill or loses the UL output."],
+    "confounded": ["Router source, skill metadata, and fixture change in the same probe."],
+    "stop": ["The route is stable on the target and negative-transfer cases."]
+  },
+  "attribution_gate": {
+    "observable_failure": null,
+    "candidate_bottlenecks": [
+      "missing route signal",
+      "overlapping domain-skill signal"
+    ],
+    "discriminating_probe": "Hold the router contract constant and vary only the request wording.",
+    "primary_bottleneck": null,
+    "attribution_confidence": "not_tested",
+    "evidence_refs": []
+  },
+  "targeted_intervention": null,
+  "same_rung_replay": [],
+  "graduation_evidence": [],
+  "transfer_checks": {
+    "near": ["A second AI-engineering phrasing with the same structure."],
+    "medium": ["A workflow-governance request that does not mention UL."],
+    "far": [],
+    "negative_transfer": ["A player-learning-curve request should remain in the appropriate domain skill."]
+  },
+  "next_uncertainty_to_release": "context_ambiguity",
+  "fallback_rung": "UL-L2",
+  "rollback": "Remove the UL route signals and restore the previous candidate router contract.",
+  "stop_rule": "Stop after the target route and negative-transfer route both pass without widening authority.",
+  "human_gate": {
+    "required": false,
+    "reason": "The probe is local, reversible, and has no real-user consequence."
+  }
+}

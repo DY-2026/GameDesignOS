@@ -2,9 +2,9 @@
 
 **Languages:** [简体中文](./evolution-loop-playbook.zh-CN.md) | [English](./evolution-loop-playbook.en.md)
 
-This file is the language selector for the controlled evolution loop and the RJR-AI residual judgment authority gate.
+This file is the language selector for the controlled evolution loop, the RJR-AI residual judgment authority gate, and UL (Uncertainty Ladder).
 
-这个文件是受控进化闭环与 RJR-AI 剩余判断权授权门 playbook 的语言入口。
+这个文件是受控进化闭环、RJR-AI 剩余判断权授权门与 UL（不确定性阶梯）playbook 的语言入口。
 
 Read the decision-oriented information method first when the task may trigger more search, questions, experiments, memory reads, or AI branches:
 

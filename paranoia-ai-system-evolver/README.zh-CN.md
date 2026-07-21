@@ -19,6 +19,7 @@
 - 场景 VOI Adapter：按 skill 演化、游戏方向、体验诊断、资料整理、内容决策、平台事实、高风险动作和 AI 分支管理定义有效证据；
 - EVPI / EVPPI / EVSI：区分完全信息上界、目标不确定性和具体样本/实验的价值；
 - 模型压缩与因果中介：用更短、可干预、可验证的 operating model 替代补丁堆积；
+- UL（Uncertainty Ladder，不确定性阶梯）：用 UL-L0～UL-L5 控制每轮释放的未知、失败归因、复杂度增加与迁移验证；
 - Orient-first OODA：用现实反馈刷新地图，而不是追求反应速度；
 - Evals、Human Gate、versioning 与 rollback：让候选改动可验证、可审批、可逆。
 
@@ -44,6 +45,16 @@ Eval 负责提供反馈，不替代高耦合低可逆决策。
 高耦合、低可逆、证据不足的问题必须保留 residual_judgment 并进入 Human Gate。
 ```
 
+## UL 硬规则
+
+```text
+VOI 选择最值得消除的未知，UL 控制下一轮暴露剂量。
+每轮默认只释放一个主要变量，并写出保持不变的变量、支架与后果预算。
+无法区分主要失败解释时标记 confounded，退回更受控环境。
+固定样例通过不等于迁移通过；必须检查陌生样本和负迁移。
+任务复杂度上升不等于权限自动上升，真实后果仍走 Human Gate。
+```
+
 ## 包内容
 
 ```text
@@ -61,6 +72,9 @@ references/project-workflow-governance.en.md
 references/evolution-loop-playbook.md
 references/evolution-loop-playbook.zh-CN.md
 references/evolution-loop-playbook.en.md
+references/uncertainty-ladder-protocol.md
+references/uncertainty-ladder-protocol.zh-CN.md
+references/uncertainty-ladder-protocol.en.md
 references/woop-harness-protocol.md
 references/woop-harness-protocol.zh-CN.md
 references/woop-harness-protocol.en.md
@@ -85,15 +99,21 @@ templates/evolution_proposal.en.md
 templates/ooda_voi_state.md
 templates/ooda_voi_state.zh-CN.md
 templates/ooda_voi_state.en.md
+templates/uncertainty_ladder_state.md
+templates/uncertainty_ladder_state.zh-CN.md
+templates/uncertainty_ladder_state.en.md
 evals/voi-decision-gate-cases.md
 evals/voi-decision-gate-cases.en.md
+evals/uncertainty-ladder-cases.md
+evals/uncertainty-ladder-cases.en.md
+examples/ul-state.example.json
 quick_validate.py
 ```
 
 ## 推荐提示词
 
 ```text
-使用 $paranoia-ai-system-evolver，先把任务从指令单升级为意图单：写清要改变什么现实、服务哪个更大目标、完成后外部世界变成什么状态、谁验收、第一眼必须看懂什么、哪些不能牺牲、AI 可自由改什么、不能碰什么、原计划失败时按什么原则改方向，以及交付前自查哪些失败信号。再写出当前决策、选项、默认行动和决策边界，建立 RJR-AI 授权门，使用 VOI/EVPI/EVSI 选择最小高价值探针，并把最终系统改动整理成带 WOOP、OODA、eval、Human Gate、rollback 和复盘沉淀的候选提案。
+使用 $paranoia-ai-system-evolver，先把任务从指令单升级为意图单：写清要改变什么现实、服务哪个更大目标、完成后外部世界变成什么状态、谁验收、第一眼必须看懂什么、哪些不能牺牲、AI 可自由改什么、不能碰什么、原计划失败时按什么原则改方向，以及交付前自查哪些失败信号。再写出当前决策、选项、默认行动和决策边界，建立 RJR-AI 授权门，使用 VOI/EVPI/EVSI 选择最小高价值探针；用 UL 声明当前 UL-L0～UL-L5、本轮释放与保持不变的变量、支架、归因门、迁移检查和 fallback，最后把系统改动整理成带 WOOP、OODA、eval、Human Gate、rollback 和复盘沉淀的候选提案。
 ```
 
 ## 在 GameDesignOS 里的边界
@@ -101,6 +121,7 @@ quick_validate.py
 - 领域 skill 仍负责概念、体验诊断、ED 实验和策划案；本 skill 负责系统改动与显式 VOI 审计。
 - 意图单不是额外流程，而是 WOOP/VOI/RJR-AI 之前的任务入口，用来减少人类微操并防止 AI 越界自治。
 - VOI 不把所有学习都判为无用，而是区分 `decision_information`、`model_learning` 和 `information_consumption`。
+- UL 不是权限阶梯，也不是固定瀑布；它控制实验环境的未知暴露，RJR-AI 继续控制授权。
 - 高风险概率、损益、资金和生产判断不能只靠高/中/低启发式。
 - 真实项目材料、私有数据和客户信息留在 private workspace。
 
@@ -109,4 +130,5 @@ quick_validate.py
 - `SKILL.md` 保持轻量，完整方法放在 `references/`。
 - 改动后运行 `python scripts/validate_skill.py paranoia-ai-system-evolver` 与 `python paranoia-ai-system-evolver/quick_validate.py paranoia-ai-system-evolver`。
 - `target_layer: skill` 必须运行行为回归，检查是否减少低 VOI 分支且没有增加无意义前置文本。
+- 行为回归还必须区分受控通过、失败归因和迁移通过；`confounded` 失败不得晋升长期规则。
 - 全局安装、长期记忆写入、生产发布和长期规则提升都属于 Human Gate。

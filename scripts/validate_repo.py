@@ -8,6 +8,8 @@ import tomllib
 from pathlib import Path
 from typing import Any
 
+from jsonschema import Draft202012Validator
+
 from validate_skill import _parse_json, _parse_yaml, validate_skill
 
 
@@ -49,6 +51,7 @@ REQUIRED_PATHS = [
     "contracts/learning-record.schema.json",
     "contracts/gate-result.schema.json",
     "contracts/workflow-run.schema.json",
+    "contracts/ul-state.schema.json",
     "contracts/information-value-assessment.schema.json",
     "docs/product/README.md",
     "docs/product/vision.md",
@@ -91,6 +94,9 @@ REQUIRED_PATHS = [
     "paranoia-ai-system-evolver/references/project-workflow-governance.md",
     "paranoia-ai-system-evolver/references/project-workflow-governance.zh-CN.md",
     "paranoia-ai-system-evolver/references/project-workflow-governance.en.md",
+    "paranoia-ai-system-evolver/references/uncertainty-ladder-protocol.md",
+    "paranoia-ai-system-evolver/references/uncertainty-ladder-protocol.zh-CN.md",
+    "paranoia-ai-system-evolver/references/uncertainty-ladder-protocol.en.md",
     "paranoia-ai-system-evolver/templates/voi_decision_gate.md",
     "paranoia-ai-system-evolver/templates/voi_decision_gate.zh-CN.md",
     "paranoia-ai-system-evolver/templates/voi_decision_gate.en.md",
@@ -100,8 +106,14 @@ REQUIRED_PATHS = [
     "paranoia-ai-system-evolver/templates/workflow_governance_review.md",
     "paranoia-ai-system-evolver/templates/workflow_governance_review.zh-CN.md",
     "paranoia-ai-system-evolver/templates/workflow_governance_review.en.md",
+    "paranoia-ai-system-evolver/templates/uncertainty_ladder_state.md",
+    "paranoia-ai-system-evolver/templates/uncertainty_ladder_state.zh-CN.md",
+    "paranoia-ai-system-evolver/templates/uncertainty_ladder_state.en.md",
     "paranoia-ai-system-evolver/evals/voi-decision-gate-cases.md",
     "paranoia-ai-system-evolver/evals/voi-decision-gate-cases.en.md",
+    "paranoia-ai-system-evolver/evals/uncertainty-ladder-cases.md",
+    "paranoia-ai-system-evolver/evals/uncertainty-ladder-cases.en.md",
+    "paranoia-ai-system-evolver/examples/ul-state.example.json",
     "releases/v1.2.0.md",
     "releases/v1.1.0.md",
     "releases/v1.0.0.md",
@@ -346,6 +358,8 @@ def _check_paranoia_voi(repo_root: Path, errors: list[str]) -> None:
         "references/project-workflow-governance",
         "references/value-of-information-playbook",
         "references/intent-engineering-work-order",
+        "UL（Uncertainty Ladder",
+        "references/uncertainty-ladder-protocol",
     ):
         if marker not in skill:
             errors.append(f"paranoia-ai-system-evolver/SKILL.md: missing VOI marker {marker}")
@@ -426,6 +440,68 @@ def _check_paranoia_voi(repo_root: Path, errors: list[str]) -> None:
         if "workflow-run.governance" not in case_text:
             errors.append(f"{cases}: missing workflow governance behavior marker workflow-run.governance")
 
+    ladder_ref = skill_root / "references" / "uncertainty-ladder-protocol.zh-CN.md"
+    if ladder_ref.exists():
+        text = ladder_ref.read_text(encoding="utf-8")
+        for marker in (
+            "UL-L0",
+            "UL-L3",
+            "UL-L5",
+            "ul_state",
+            "released_this_round",
+            "held_constant",
+            "confounded",
+            "迁移",
+            "Human Gate",
+        ):
+            if marker not in text:
+                errors.append(f"{ladder_ref}: missing uncertainty ladder marker {marker}")
+
+    ladder_template = skill_root / "templates" / "uncertainty_ladder_state.zh-CN.md"
+    if ladder_template.exists():
+        text = ladder_template.read_text(encoding="utf-8")
+        for marker in (
+            "schema_version",
+            "ul_id",
+            "current_rung",
+            "uncertainty_exposure",
+            "released_this_round",
+            "held_constant",
+            "scaffolds_present",
+            "consequence_budget",
+            "attribution_gate",
+            "graduation_evidence",
+            "transfer_checks",
+            "fallback_rung",
+            "rollback",
+            "stop_rule",
+            "human_gate",
+        ):
+            if marker not in text:
+                errors.append(f"{ladder_template}: missing uncertainty ladder template field {marker}")
+
+    ladder_cases = skill_root / "evals" / "uncertainty-ladder-cases.md"
+    if ladder_cases.exists():
+        case_text = ladder_cases.read_text(encoding="utf-8")
+        if case_text.count("## Case") < 6:
+            errors.append(f"{ladder_cases}: requires at least 6 uncertainty ladder behavior cases")
+        for marker in ("confounded", "迁移", "Human Gate", "fallback rung"):
+            if marker not in case_text:
+                errors.append(f"{ladder_cases}: missing uncertainty ladder behavior marker {marker}")
+
+    ul_schema_path = repo_root / "contracts" / "ul-state.schema.json"
+    ul_example_path = skill_root / "examples" / "ul-state.example.json"
+    if ul_schema_path.exists() and ul_example_path.exists():
+        schema_data = _parse_json(ul_schema_path, errors)
+        example_data = _parse_json(ul_example_path, errors)
+        if isinstance(schema_data, dict) and isinstance(example_data, dict):
+            for error in Draft202012Validator(schema_data).iter_errors(example_data):
+                location = ".".join(str(part) for part in error.path) or "<root>"
+                errors.append(f"{ul_example_path}:{location}: {error.message}")
+            for marker in ("ul_id", "current_rung", "confounded", "negative_transfer", "human_gate"):
+                if marker not in ul_example_path.read_text(encoding="utf-8"):
+                    errors.append(f"{ul_example_path}: missing UL example marker {marker}")
+
 
 def _check_project_workflow_governance(repo_root: Path, errors: list[str]) -> None:
     schema = repo_root / "contracts" / "workflow-run.schema.json"
@@ -437,6 +513,7 @@ def _check_project_workflow_governance(repo_root: Path, errors: list[str]) -> No
             '"enforcement_mode"',
             '"intent_work_order_ref"',
             '"voi_gate_ref"',
+            '"ul_state_ref"',
             '"rjr_authority_ref"',
             '"paranoia_review_ref"',
             '"human_gate_refs"',
@@ -449,7 +526,7 @@ def _check_project_workflow_governance(repo_root: Path, errors: list[str]) -> No
     workflow_readme = repo_root / "docs" / "workflows" / "README.md"
     if workflow_readme.exists():
         text = workflow_readme.read_text(encoding="utf-8")
-        for marker in ("Project Governance Checkpoints", "workflow-run.governance", "paranoia-ai-system-evolver"):
+        for marker in ("Project Governance Checkpoints", "workflow-run.governance", "ul_state_ref", "paranoia-ai-system-evolver"):
             if marker not in text:
                 errors.append(f"{workflow_readme}: missing workflow governance marker {marker}")
 

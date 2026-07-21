@@ -23,6 +23,12 @@
         "intent_work_order_ref": { "type": ["string", "null"] },
         "decision_ref": { "type": ["string", "null"] },
         "voi_gate_ref": { "type": ["string", "null"] },
+        "ul_state_ref": {
+          "anyOf": [
+            { "type": "string", "pattern": "^UL-[A-Z0-9-]{3,}$" },
+            { "type": "null" }
+          ]
+        },
         "rjr_authority_ref": { "type": ["string", "null"] },
         "paranoia_review_ref": { "type": ["string", "null"] },
         "human_gate_refs": {
