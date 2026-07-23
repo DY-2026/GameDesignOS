@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import io
 import json
+import os
+import subprocess
+import sys
 import tempfile
 import unittest
 import zipfile
@@ -10,6 +13,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from gamedesignos.cli import main
+from gamedesignos.constants import RUNTIME_VERSION
 from gamedesignos.errors import EXIT_OK, UsageError
 from gamedesignos.project_ready import (
     export_graph_mermaid,
@@ -39,7 +43,7 @@ class RuntimeCliTest(unittest.TestCase):
     def test_01_init_and_validate(self) -> None:
         ws = self.workspace()
         self.assertTrue(ws.validate().ok)
-        self.assertEqual(ws.status().runtime_version_declared, "1.3.0.dev0")
+        self.assertEqual(ws.status().runtime_version_declared, RUNTIME_VERSION)
         self.assertTrue(ws.decision_log_path.is_file())
 
     def test_02_init_refuses_nonempty(self) -> None:
@@ -595,6 +599,26 @@ class RuntimeCliTest(unittest.TestCase):
         self.assertNotEqual(result, EXIT_OK)
         self.assertIn("filesystem operation failed", stderr.getvalue())
         self.assertNotIn("Traceback", stderr.getvalue())
+
+    def test_27_cli_reconfigures_legacy_stdout_for_unicode(self) -> None:
+        env = dict(os.environ)
+        env["PYTHONIOENCODING"] = "cp1252"
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-c",
+                (
+                    "from gamedesignos.cli import main; "
+                    "raise SystemExit(main(['ask', '整体审查项目，给我一些改进建议']))"
+                ),
+            ],
+            cwd=Path(__file__).resolve().parents[2],
+            env=env,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, EXIT_OK, result.stderr.decode("utf-8", errors="replace"))
+        self.assertIn("已接住", result.stdout.decode("utf-8"))
 
 
 if __name__ == "__main__":

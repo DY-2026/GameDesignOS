@@ -73,7 +73,7 @@ GameDesignOS 补的是中间那层操作系统：把 agent 输出转成有来源
 | 公开 proof case | 2 | 带证据边界的游戏体验分析与体验浓度实验案例 |
 | Runtime | 1 | 用于路由、创建 workspace、校验、健康扫描、决策图、gate 和可评审 pack 的确定性本地 CLI |
 
-> **开发候选版本：v1.3.0.dev0。** 候选 wheel 已自带 contracts/templates，`router.yaml` 是唯一可编辑路由真源；UL（Uncertainty Ladder，不确定性阶梯）现在拥有 `ul_state` schema、UL-L0～UL-L5、workflow 可选引用与失败归因/迁移回归。7/7 skill 通过 Agent Skills 规范，现有行为夹具仍为 9 suites / 53 evals。最新正式版本仍为 v1.2.0。
+> **开发候选版本：v1.3.0.dev0。** 候选 wheel 已自带 contracts/templates，`router.yaml` 是唯一可编辑路由真源；UL（Uncertainty Ladder，不确定性阶梯）现在拥有 `ul_state` schema、UL-L0～UL-L5、workflow 可选引用与失败归因/迁移回归。7/7 skill 通过 Agent Skills 规范，现有行为夹具仍为 9 suites / 53 evals。最新带 tag 的稳定源码版本是 v1.2.0；对应 GitHub Release 页面尚未发布。
 
 ## v1.2.0 Project-Ready Runtime
 
@@ -445,10 +445,10 @@ gamedesignos doctor
 
 - **v0.8.0 — Runtime Foundation：** workspace 模板、workspace contract、产品架构、工作流和校验。
 - **v0.9.0 — Local Runtime Prototype：** 初始化、查看、路由、创建、校验和打包本地 workspace。
-- **v1.0.0 — Project-Ready GameDesignOS：** 正式版，包含 Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、决策图、健康扫描、Human Gate 与 v1 workspace。
+- **v1.0.0 — Project-Ready GameDesignOS：** 带 tag 的稳定基线，包含 Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、决策图、健康扫描、Human Gate 与 v1 workspace。
 - **v1.1.0 — RJR-AI Authority Layer：** 剩余判断权边界、GitHub 定位、版本同步，以及 AI/workflow/eval/权限/记忆系统的 workflow-evolution 覆盖。
 - **v1.2.0 — Intent Work Order & Workflow Governance：** AI 工作单、workflow-run 治理引用、Paranoia checkpoint、release tag 补齐，以及 runtime/package 版本同步。
-- **v1.3.0.dev0 candidate — Portable Runtime & UL：** wheel 自包含资源、唯一 router 真源、`ul_state` schema、UL-L0～UL-L5、可选 workflow 引用与迁移门；仍非正式 release。
+- **v1.3.0.dev0 candidate — Portable Runtime & UL：** wheel 自包含资源、唯一 router 真源、`ul_state` schema、UL-L0～UL-L5、可选 workflow 引用与迁移门；尚未打 tag 或公开发布。
 - **v1.x — Proof and adoption：** 补更多公开案例、强化 adapter、推进 runtime dashboard，并沉淀真实项目 playbook。
 
 完整路线见按能力门推进的 [产品 Roadmap](./docs/product/roadmap.md)。

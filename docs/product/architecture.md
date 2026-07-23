@@ -1,6 +1,6 @@
 # GameDesignOS System Architecture
 
-GameDesignOS uses four product layers and one cross-cutting governance plane. The formal v1.2.0 runtime operates Project-Ready workspaces; the current v1.3 candidate adds portable runtime hardening plus optional UL (Uncertainty Ladder) state for attributable system evolution without migrating the v1 workspace schema.
+GameDesignOS uses four product layers and one cross-cutting governance plane. The tagged stable v1.2.0 runtime operates Project-Ready workspaces; the current v1.3 candidate adds portable runtime hardening plus optional UL (Uncertainty Ladder) state for attributable system evolution without migrating the v1 workspace schema.
 
 > 中文摘要：四层分别是 Skill Kernel、Contract Layer、Project Workspace 与 Runtime Interface；Human Gate、验证、来源边界和回滚规则贯穿所有层。
 
@@ -18,6 +18,23 @@ flowchart TD
     G -.-> C
     G -.-> S
 ```
+
+## Public Repository Layout
+
+The public repository separates editable truth, executable runtime, installable skills, proof, and generated output:
+
+| Surface | Canonical paths | Responsibility |
+| --- | --- | --- |
+| Runtime package | `gamedesignos/` | Deterministic CLI, routing, workspace lifecycle, gates, graphs, validation, and packaging. |
+| Specialist skills | the seven top-level `game-*` / `paranoia-*` skill directories | Independently installable expert workflows with their own references, templates, examples, metadata, and evals. |
+| Editable contracts | `contracts/` | Canonical schemas and the only editable `router.yaml`. Built wheels receive generated snapshots; package snapshots are not a second editing surface. |
+| Workspace templates | `runtime/workspace-template-v1/`, `runtime/workspace-template/` | Current Project-Ready v1 template and the compatible legacy v0.8/v0.9 template. |
+| Product and workflow docs | `docs/product/`, `docs/workflows/` | Product boundary, architecture, roadmap, and end-to-end routes. |
+| Public proof | `examples/`, skill `examples/`, `docs/showcases/` | Synthetic or cleared evidence that demonstrates bounded behavior without exposing private projects. |
+| Validation and delivery | `scripts/`, `.github/`, `releases/`, `CHANGELOG.md` | Repository gates, behavior tests, package smoke checks, CI, version history, and release notes. |
+| Integration and media | `adapters/`, `assets/` | Host-agent integration guidance and public visual material. |
+
+`build/`, `dist/`, `*.egg-info/`, caches, reports, and private/local deliverables are generated or local-only and remain ignored. They are never release truth.
 
 ## 1. Skill Kernel
 
@@ -81,20 +98,24 @@ The machine-readable artifact is `ul_state`, validated by `contracts/ul-state.sc
 
 ## 3. Project Workspace
 
-The Project Workspace is the durable project context. It stores work by lifecycle rather than by chat session:
+The Project Workspace is the durable project context. The current schema `1.0.0` is decision-first and stores work by lifecycle rather than by chat session:
 
 ```text
 00-inbox/          raw, unreviewed inputs
-01-concept/        concept seeds, promises, loops, scope gates
-02-evidence/       sources, screenshots, timestamps, evidence indexes
-03-analysis/       diagnosis, issue cards, transfer boundaries
-04-proposals/      decision memos, pitches, vertical-slice plans
-05-experiments/    variants, instrumentation, dashboards, rollback rules
-06-decisions/      human gates and decision logs
-07-retrospectives/ learning and workflow writeback
+01-decisions/      Decision Objects, decision log, Human Gate outcomes
+02-assumptions/    explicit assumptions, risk, confidence, validation state
+03-evidence/       sources, observations, boundaries, unsupported claims
+04-experiments/    plans, results, review state, rollback rules
+05-design-assets/  concepts, analyses, proposals, and other governed assets
+06-workflows/      workflow definitions and project-facing handoffs
+07-learning/       reviewed learning and candidate workflow writeback
+08-exports/        review-safe packs and explicitly cleared exports
+.gamedesignos/     runtime state, workflow runs, and gate results
 ```
 
 The workspace manifest is `game.designos.yaml`. It identifies the project, GameDesignOS version, asset directories, visibility, and operating rules.
+
+The legacy schema `0.8.0` remains supported for compatibility and uses the earlier concept/evidence/analysis/proposal/experiment/decision/retrospective layout under `runtime/workspace-template/`. New projects default to the v1 layout; compatibility does not make the legacy template the current architecture.
 
 ### Design Truth Order
 

@@ -35,6 +35,7 @@ REQUIRED_PATHS = [
     "SECURITY.md",
     "MANIFEST.in",
     "setup.py",
+    "gamedesignos/_version.py",
     "adapters/README.md",
     "contracts/README.md",
     "contracts/router.yaml",
@@ -80,6 +81,7 @@ REQUIRED_PATHS = [
     "runtime/workspace-template-v1/README.md",
     "runtime/workspace-template-v1/game.designos.yaml",
     "runtime/workspace-template-v1/design-asset-index.example.json",
+    "runtime/workspace-template-v1/00-inbox/README.md",
     "runtime/workspace-template-v1/01-decisions/DEC-PROTOTYPE-001.example.json",
     "runtime/workspace-template-v1/02-assumptions/assumption-registry.example.json",
     "runtime/workspace-template-v1/03-evidence/evidence-ledger.example.json",
@@ -622,8 +624,31 @@ def _check_public_readme_surface(repo_root: Path, errors: list[str]) -> None:
 
 
 def _check_p0_portability(repo_root: Path, errors: list[str]) -> None:
-    project = tomllib.loads((repo_root / "pyproject.toml").read_text(encoding="utf-8"))["project"]
-    package_version = str(project["version"])
+    pyproject = tomllib.loads((repo_root / "pyproject.toml").read_text(encoding="utf-8"))
+    project = pyproject["project"]
+    dynamic = set(project.get("dynamic", []))
+    version_source = (
+        pyproject.get("tool", {})
+        .get("setuptools", {})
+        .get("dynamic", {})
+        .get("version", {})
+        .get("attr")
+    )
+    if "version" not in dynamic or version_source != "gamedesignos._version.VERSION":
+        errors.append(
+            "pyproject.toml: version must be dynamic from gamedesignos._version.VERSION"
+        )
+    version_path = repo_root / "gamedesignos" / "_version.py"
+    version_match = re.search(
+        r'(?m)^VERSION\s*=\s*"([^"]+)"\s*$',
+        version_path.read_text(encoding="utf-8"),
+    )
+    package_version = version_match.group(1) if version_match else ""
+    if not package_version:
+        errors.append(f"{version_path}: missing canonical VERSION assignment")
+    constants_text = (repo_root / "gamedesignos" / "constants.py").read_text(encoding="utf-8")
+    if "from ._version import VERSION as RUNTIME_VERSION" not in constants_text:
+        errors.append("gamedesignos/constants.py: RUNTIME_VERSION must import canonical VERSION")
     template_path = repo_root / "runtime" / "workspace-template-v1" / "game.designos.yaml"
     template = _parse_yaml(template_path, errors)
     template_runtime = (
@@ -634,6 +659,34 @@ def _check_p0_portability(repo_root: Path, errors: list[str]) -> None:
     if template_runtime != package_version:
         errors.append(
             f"{template_path}: designos.version {template_runtime!r} must match package {package_version!r}"
+        )
+    template_assets = template.get("assets", {}) if isinstance(template, dict) else {}
+    if not isinstance(template_assets, dict):
+        errors.append(f"{template_path}: assets must be a mapping")
+    else:
+        for field, directory in sorted(template_assets.items()):
+            if not field.endswith("_dir"):
+                continue
+            guide = template_path.parent / str(directory) / "README.md"
+            if not guide.is_file():
+                errors.append(
+                    f"{template_path}: assets.{field} must point to a directory with README.md"
+                )
+
+    workspace_schema_path = repo_root / "contracts" / "project-workspace.schema.json"
+    workspace_schema = _parse_json(workspace_schema_path, errors)
+    runtime_versions = (
+        workspace_schema.get("properties", {})
+        .get("designos", {})
+        .get("properties", {})
+        .get("version", {})
+        .get("enum", [])
+        if isinstance(workspace_schema, dict)
+        else []
+    )
+    if package_version not in runtime_versions:
+        errors.append(
+            f"{workspace_schema_path}: designos.version enum must include {package_version!r}"
         )
 
     router_path = repo_root / "contracts" / "router.yaml"

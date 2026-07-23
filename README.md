@@ -73,7 +73,7 @@ You still make the calls. The system supplies specialist workflows, shared hando
 | Public proof cases | 2 | Evidence-linked game-analysis and experience-density examples with explicit source boundaries |
 | Runtime | 1 | Deterministic local CLI for routing, workspace creation, validation, health checks, graphs, gates, and review-safe packs |
 
-> **Development candidate: v1.3.0.dev0.** Candidate wheels carry their own contracts/templates and `router.yaml` remains the only editable routing source. UL (Uncertainty Ladder) now has a machine-readable `ul_state` schema, UL-L0 through UL-L5, an optional workflow reference, and attribution/transfer regressions. All 7 skills still pass the Agent Skills reference validator; packaged behavior fixtures remain 9 suites / 53 evals. The latest formal release remains v1.2.0.
+> **Development candidate: v1.3.0.dev0.** Candidate wheels carry their own contracts/templates and `router.yaml` remains the only editable routing source. UL (Uncertainty Ladder) now has a machine-readable `ul_state` schema, UL-L0 through UL-L5, an optional workflow reference, and attribution/transfer regressions. All 7 skills still pass the Agent Skills reference validator; packaged behavior fixtures remain 9 suites / 53 evals. The latest tagged stable source version is v1.2.0; its GitHub Release page is not published yet.
 
 ## Project-Ready Runtime
 
@@ -433,10 +433,10 @@ gamedesignos doctor
 
 - **v0.8.0 — Runtime Foundation:** workspace template, workspace contracts, product architecture, workflow routes, and validation.
 - **v0.9.0 — Local Runtime Prototype:** initialize, inspect, route, create, validate, and pack local workspaces.
-- **v1.0.0 — Project-Ready GameDesignOS:** formal release with the Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning chain, decision graph, health scan, Human Gate, and v1 workspace.
+- **v1.0.0 — Project-Ready GameDesignOS:** tagged stable baseline with the Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning chain, decision graph, health scan, Human Gate, and v1 workspace.
 - **v1.1.0 — RJR-AI Authority Layer:** residual judgment boundaries, GitHub positioning, version sync, and workflow-evolution coverage for AI/workflow/eval/permission/memory systems.
 - **v1.2.0 — Intent Work Order & Workflow Governance:** AI work orders, workflow-run governance refs, Paranoia checkpoints, release tag cleanup, and runtime/package version sync.
-- **v1.3.0.dev0 candidate — Portable Runtime & UL:** self-contained wheel resources, one router source, `ul_state` schema, UL-L0 through UL-L5, optional workflow references, and transfer gates; not a formal release.
+- **v1.3.0.dev0 candidate — Portable Runtime & UL:** self-contained wheel resources, one router source, `ul_state` schema, UL-L0 through UL-L5, optional workflow references, and transfer gates; not tagged or published.
 - **v1.x — Proof and adoption:** more public cases, adapter hardening, runtime dashboards, and validated real-project playbooks.
 
 See the capability-gated [product roadmap](./docs/product/roadmap.md).

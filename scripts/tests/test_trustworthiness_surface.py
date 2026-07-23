@@ -6,7 +6,11 @@ import tomllib
 import unittest
 from pathlib import Path
 
-from gamedesignos.constants import PROJECT_READY_LIFECYCLE_DIRS, VALID_DECISION_TYPES
+from gamedesignos.constants import (
+    PROJECT_READY_LIFECYCLE_DIRS,
+    RUNTIME_VERSION,
+    VALID_DECISION_TYPES,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -83,9 +87,8 @@ class TrustworthinessSurfaceTest(unittest.TestCase):
 
     def test_development_package_does_not_claim_stable_classifier(self) -> None:
         project = tomllib.loads((REPO_ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
-        version = str(project["version"])
         classifiers = set(project.get("classifiers", []))
-        if ".dev" in version:
+        if ".dev" in RUNTIME_VERSION:
             self.assertNotIn("Development Status :: 5 - Production/Stable", classifiers)
             self.assertIn("Development Status :: 4 - Beta", classifiers)
 

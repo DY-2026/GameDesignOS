@@ -15,6 +15,8 @@ def run(args: list[str], *, cwd: Path) -> subprocess.CompletedProcess[str]:
         [sys.executable, *args],
         cwd=cwd,
         text=True,
+        encoding="utf-8",
+        errors="replace",
         capture_output=True,
         check=False,
     )

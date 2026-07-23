@@ -10,36 +10,36 @@ All notable changes to GameDesignOS will be recorded here.
 - Added generated wheel snapshots of canonical contracts and workspace templates so installed runtimes can operate without a source checkout, including an sdist-to-wheel rebuild gate.
 - Added Agent Skills portability metadata, 7/7 five-gate behavior suites without dropping existing domain regressions, cross-platform CI, an installed-wheel smoke test, and the public-synthetic Golden Lighthouse path.
 - Added `SECURITY.md` and Dependabot configuration.
+- Added a text-free GitHub hero visual that shows fragmented AI game-design inputs resolving into evidence, experiments, decisions, and durable project memory.
+- Added a dated GitHub README benchmark covering Browser Use, OpenHands, MetaGPT, AutoGen, CrewAI, and LangGraph with explicit transfer and non-transfer boundaries.
 
 ### Changed
 
 - Changed the development runtime to `1.3.0.dev0` while keeping workspace schema `1.0.0` compatible.
 - Made `contracts/router.yaml` the only editable runtime routing source; Python now compiles deterministic rules from the contract.
 - Kept UL optional and `shadow` by default: it controls uncertainty exposure between VOI selection and OODA execution, but does not replace domain skills, migrate existing workspaces, or expand Human Gate authority.
-
-### Security
-
-- Removed skill-root escape references and kept publishing, durable rule promotion, real-account actions, and irreversible commitments behind Human Gate.
-
-### Added
-
-- Added a text-free GitHub hero visual that shows fragmented AI game-design inputs resolving into evidence, experiments, decisions, and durable project memory.
-- Added a dated GitHub README benchmark covering Browser Use, OpenHands, MetaGPT, AutoGen, CrewAI, and LangGraph with explicit transfer and non-transfer boundaries.
+- Centralized the package/runtime candidate version in `gamedesignos/_version.py`, removed the hard-coded version from the CI wheel-install command, and declared Python 3.11/3.12/3.13 package support.
+- Upgraded official GitHub Actions to Node 24-compatible `actions/checkout@v7` and `actions/setup-python@v7`, added read-only workflow permissions, concurrency cancellation, and a bounded job timeout.
+- Reconciled the repository architecture, GitHub About source, and release-state contract with the current public repository: 13 remote tags, no GitHub Releases, no PyPI package, and `v1.3.0.dev0` still candidate.
+- Added the two packaged static behavior-eval fixture suites to CI.
+- Added trustworthiness regressions for README schema counts and runtime/schema decision-type parity.
+- Refreshed product architecture, roadmap, usage, and v1.2 release-status documentation to match the current tagged runtime.
+- Reworked the README first screen around one outcome promise, four primary links, a visible decision flow, and a 30-second Quick Start; refreshed GitHub About copy and topics to match.
 
 ### Fixed
 
+- Made CLI stdout/stderr and installed-wheel smoke capture use an explicit UTF-8 contract so Chinese output does not crash or become locale-dependent on redirected Windows streams.
+- Restored isolated sdist-to-wheel rebuilding so clean Python 3.12/3.13 environments install the declared `setuptools.build_meta` backend instead of relying on ambient build tools.
+- Completed the static v1 workspace template with its declared `00-inbox/` guide and added the file to package smoke coverage.
 - Aligned v1 Assumption, Evidence, Experiment, and Workflow runtime records with their canonical schemas and added a full-cycle schema regression.
 - Corrected the no-Decision next-action hint to use `gamedesignos decision new ...`.
 - Made `gamedesignos ask` route-only unless the user supplies `--destination` / `--workspace`; routing confidence no longer acts as authorization to create files, and explicit long-lived setup remains available through `start`.
 - Converted filesystem failures at the CLI boundary into concise validation errors instead of exposing raw tracebacks.
 - Added negative routing regressions for project-review and high-confidence project requests without an explicit destination.
 
-### Changed
+### Security
 
-- Added the two packaged static behavior-eval fixture suites to CI.
-- Added trustworthiness regressions for README schema counts and runtime/schema decision-type parity.
-- Refreshed product architecture, roadmap, usage, and v1.2 release-status documentation to match the current tagged runtime.
-- Reworked the README first screen around one outcome promise, four primary links, a visible decision flow, and a 30-second Quick Start; refreshed GitHub About copy and topics to match.
+- Removed skill-root escape references and kept publishing, durable rule promotion, real-account actions, and irreversible commitments behind Human Gate.
 
 ## [v1.2.0] - 2026-07-09
 

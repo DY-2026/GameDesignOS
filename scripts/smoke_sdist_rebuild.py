@@ -16,6 +16,7 @@ REQUIRED_WHEEL_FILES = {
     "gamedesignos/_data/contracts/ul-state.schema.json",
     "gamedesignos/_data/workspace-template/game.designos.yaml",
     "gamedesignos/_data/workspace-template-v1/game.designos.yaml",
+    "gamedesignos/_data/workspace-template-v1/00-inbox/README.md",
 }
 
 
@@ -34,7 +35,6 @@ def main() -> int:
                 "pip",
                 "wheel",
                 "--no-deps",
-                "--no-build-isolation",
                 "--wheel-dir",
                 str(wheel_dir),
                 str(sdists[-1]),

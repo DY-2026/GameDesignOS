@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gamedesignos"
-version = "1.3.0.dev0"
+dynamic = ["version"]
 description = "Local-first game design OS that turns AI output into reviewable decisions with evidence, experiments, Human Gates, and rollback"
 readme = "runtime/cli/README.md"
 requires-python = ">=3.11"
@@ -20,8 +20,11 @@ dependencies = [
 classifiers = [
   "Development Status :: 4 - Beta",
   "Environment :: Console",
+  "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Topic :: Games/Entertainment",
   "Topic :: Software Development :: Libraries :: Application Frameworks"
 ]
@@ -37,6 +40,9 @@ gamedesignos = "gamedesignos.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["gamedesignos*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "gamedesignos._version.VERSION"}
 
 [tool.setuptools.package-data]
 gamedesignos = ["_data/**/*"]

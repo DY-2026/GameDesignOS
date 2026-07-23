@@ -66,6 +66,20 @@ def _path(value: str | None) -> Path | None:
     return Path(value).expanduser() if value else None
 
 
+def _configure_utf8_stdio() -> None:
+    """Keep Unicode CLI output portable across redirected Windows streams."""
+
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if not callable(reconfigure):
+            continue
+        try:
+            reconfigure(encoding="utf-8", errors="backslashreplace")
+        except (OSError, ValueError):
+            # Test doubles and host-managed streams may forbid reconfiguration.
+            continue
+
+
 def _emit(data: Any, *, as_json: bool, text: str) -> None:
     print(json.dumps(data, ensure_ascii=False, indent=2) if as_json else text)
 
@@ -797,6 +811,7 @@ def _run(args: argparse.Namespace) -> int:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    _configure_utf8_stdio()
     parser = build_parser()
     raw_args = list(sys.argv[1:] if argv is None else argv)
     if raw_args and raw_args[0] not in KNOWN_COMMANDS and not raw_args[0].startswith("-"):

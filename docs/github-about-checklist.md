@@ -12,3 +12,10 @@
 - [ ] README 首屏承诺与 About Description 没有冲突。
 - [ ] 没有写入版本数量、stars、用户规模或“production-ready”等易漂移/未证明声明。
 - [ ] 退出设置页后重新打开公开仓库，确认 Description、Topics 和链接实际生效。
+
+## 当前同步包（2026-07-23）
+
+- 状态：`needs_sync`
+- 目标 Description、Website 和 Topics：只从 `GITHUB_ABOUT.md` 复制。
+- 同一 Human Gate 内可以同步 About 元数据；创建 GitHub Release 是另一项公开发布动作，必须单独确认。
+- 同步后把 `GITHUB_ABOUT.md` 的审计快照更新为实际读回结果，不用“已点击保存”代替公开页面验证。

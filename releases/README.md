@@ -9,6 +9,17 @@
 - `MINOR`：新增 skill、流程、公开能力、非破坏性行为提升。
 - `PATCH`：修复错误、文档/校验脚本改进、兼容性细化。
 
+## 四层发布状态
+
+本仓库把下面四层分开记录，不能再用“已存在”模糊代替：
+
+1. `source_prepared`：版本号、CHANGELOG、release note 和验证器已经同步。
+2. `tag_present`：远端存在指向已评审 release commit 的 Git tag。
+3. `github_release_published`：GitHub Release 页面已基于该 tag 公开，并完成读回验证。
+4. `package_published`：包索引或其他分发渠道已经实际可安装，并完成仓库外 smoke。
+
+Tag 不等于 GitHub Release；本地 wheel 也不等于包已经公开发布。
+
 ## 新增正式 Skill 的发布检查
 
 新增或正式接入一个 public skill 时，不要只改 skill 目录和 README。必须同步检查：
@@ -87,19 +98,23 @@
 
 ## 当前发布状态
 
-- `v0.1.0`（已存在）
-- `v0.2.0`（已存在）
-- `v0.3.0`（已存在）
-- `v0.4.0`（已补 tag：`game-experience-density-optimizer` 与 ED 实验基础）
-- `v0.5.0`（已补 tag：contract layer、WOOP workflow governance 与 README 首屏刷新）
-- `v0.6.0`（已存在 tag：新增 `game-design-proposal-writer`、ED experiment compiler、七 skill GitHub 首屏）
-- `v0.6.1`（仓库校验修复与 README 版本同步）
-- `v0.7.0`（已补 tag：GameDesignOS by Paranoia 公开品牌、GitHub URL、v7 README 封面和案例入口整理）
-- `v0.8.0`（已补 tag：Runtime Foundation、Project Workspace、workspace contracts、Decision-to-Information 工作流与 VOI Decision Gate）
-- `v0.9.0`（已补 tag：Local Runtime Prototype；`gamedesignos` CLI、workspace 初始化/状态/路由/创建/校验/打包/doctor、VOI 评估与 runtime 单测；GitHub Release 仍需按发布流程创建）
-- `v1.0.0`（本地 tag 已补：Project-Ready GameDesignOS；Decision/Assumption/Evidence/Experiment/Gate/Workflow/Learning 主链路、v1 workspace、健康扫描、决策图与完整 runtime 行为测试；GitHub Release 仍需 maintainer 发布）
-- `v1.1.0`（本地 tag 已补：RJR-AI Authority Layer；剩余判断权边界、GitHub About 定位、README trio、runtime/package 版本与 router/eval/validator 覆盖已同步；GitHub Release 仍需 maintainer 发布）
-- `v1.2.0`（本地已准备 release note：Intent Work Order & Workflow Governance；AI 工作单、workflow-run.governance、Paranoia Checkpoint、runtime/package 版本与 tag backfill 已同步；Git tag/Release 仍需 release commit 后发布）
+最后核验：`2026-07-23`。
+
+| Surface | 当前事实 | 状态 |
+| --- | --- | --- |
+| 最新正式源码版本 | `v1.2.0`，release note 与 CHANGELOG 已存在 | `source_prepared` |
+| 远端 tag | `v0.1.0` 至 `v1.2.0` 共 13 个；`v1.2.0` 指向 `7eeb6f5` | `tag_present` |
+| GitHub Releases | 公开 Releases API 返回 0 项 | `not_published` |
+| 包索引 | PyPI 的 `gamedesignos` 项目返回 404 | `not_published` |
+| `main` 开发线 | `1.3.0.dev0`：portable runtime 与可选 UL 控制层 | `candidate` |
+| Workspace schema | `1.0.0`，保持 v1 向后兼容 | `stable_contract` |
+
+### 下一次公开发布建议
+
+1. 先修复并通过 Linux/Windows × Python 3.11/3.12/3.13 的完整 CI。
+2. 经 Human Gate 后，用既有 `v1.2.0` tag 与 `releases/v1.2.0.md` 创建第一个 GitHub Release，并重新打开页面验证。
+3. `v1.3.0.dev0` 继续保持 candidate；只有 roadmap 的 UL 迁移证据与 package/CI 退出门满足后，才准备 `v1.3.0` release commit、tag 和 GitHub Release。
+4. PyPI 发布不是当前默认动作；只有明确需要 `pip install gamedesignos` 的公开分发承诺时再增加该渠道和凭据治理。
 
 ## 非目标约束
 
